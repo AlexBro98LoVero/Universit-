@@ -1,0 +1,2951 @@
+\documentclass{rapport}
+\usepackage{lipsum}
+\usepackage{gensymb}
+\usepackage{float}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsthm} 
+\usepackage{amssymb}
+\usepackage{cancel}
+
+\usepackage{enumitem}
+\usepackage[most, theorems]{tcolorbox}
+\usepackage{xcolor}
+\usepackage[italian]{babel} % lingua italiana
+
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18, width=10cm}
+
+\usepackage{tikz}
+\newcommand*\circled[2][]{%
+  \tikz[baseline=(char.base)]{
+    \node[shape=circle,draw=#1,inner sep=1pt] (char) {$\displaystyle #2$};
+  }%
+}
+
+
+
+\newtcbtheorem{teorema}{Teorema}{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  enhanced,
+  fonttitle=\bfseries,
+}{theo}
+
+\newtcbtheorem{definizione}{Definizione}{
+    colback=green!5!white, 
+    colframe=green!75!black, 
+    enhanced,
+    fonttitle=\bfseries,
+}{def}
+
+\newtcbtheorem{esercizio}{Esercizio}{
+    colback=red!5!white, 
+    colframe=red!75!black, 
+   enhanced,
+  fonttitle=\bfseries,
+}{es}
+
+\newtcbtheorem{corollario}{Corollario}{
+    colback=pink!5!white, 
+    colframe=pink!75!black, 
+    enhanced,
+  fonttitle=\bfseries,
+}{corr}
+
+\newtcbtheorem{esempio}{Esempio}{
+    colback=purple!5!white, 
+    colframe=purple!75!black, 
+    enhanced,
+  fonttitle=\bfseries,
+}{esem}
+
+% \newtheorem{theorem}{Teorema}
+% \newtheorem{proposition}[theorem]{Proposizione}
+% \newtheorem{corollary}[theorem]{Corollario}
+% \newtheorem{lemma}[theorem]{Lemma}
+
+% \theoremstyle{definition}
+% \newtheorem{definition}[theorem]{Definizione}
+% \newtheorem{axiom}[theorem]{Assioma}
+% \newtheorem{example}[theorem]{Esempio}
+
+% \theoremstyle{remark}
+% \newtheorem{remark}[theorem]{Remark}
+% \newtheorem{note}[theorem]{Note}
+\def\mathunderline#1#2{\color{#1}\underline{{\color{black}#2}}\color{black}}
+
+\title{DataBase} %title of the file
+
+\begin{document}
+
+%----------- Report information ---------
+
+\logo{logos/logo.jpg}
+\uni{\textbf{Università degli Studi di Padova}}
+\ttitle{Formulario di Teoremi e relative Dimostrazioni} %title of the file
+\subject{Analisi 1} % Subject name
+\topic{Formulario di Teoremi e relative Dimostrazioni} % Topic name
+
+\students{Alex Gasparini} % information related to the students
+
+%----------- Init -------------------
+        
+\buildmargins % display margins
+\buildcover % create the front cover of the document
+\toc % creates the table of contents
+
+%------------ Report body ----------------
+
+
+
+
+\addcontentsline{toc}{section}{Teorema del binomio di Newton}
+\begin{teorema}{del binomio di Newton}{}
+\begin{equation*}
+    (a+b)^n = \sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^{k} \quad \forall n \in \mathbb{N}_0
+\end{equation*}
+
+\end{teorema} 
+
+\begin{proof} 
+Facciamo una dimostrazione per induzione. Partiamo con la base induttiva, con $n_0 = 0$:
+
+\begin{align*}
+    (a+b)^0 &= \sum_{k=0}^{0}\binom{0}{k}a^{0-k}b^{k} \\
+    1 &= \binom{0}{0}a^{0-0}b^{0} \\
+    1 &= 1 \cdot 1 \cdot 1 \\
+    1 &= 1
+\end{align*}
+
+
+La base induttiva è stata verificata. Ora passiamo al passo, quindi supponiamo che $P(n)$ sia vero, e proviamo a vedere se è vero $P(n+1)$
+
+\begin{equation*}
+    (a+b)^{n+1} = \sum_{k=0}^{n+1}\binom{n}{k}a^{n+1-k}b^{k}    
+\end{equation*}
+
+Per proseguire con la dimostrazione lasceremo in alterato il termine di destra e andremo a modificare quello di sinistra.
+
+\begin{equation*}
+    (a+b)^{n+1} =(a+b)^{n} \cdot(a+b) 
+\end{equation*}
+
+Ora possiamo sostituire $(a+b)^{n}$ con $P(n)$ visto che è $P(n)$ è vera (dato che è una nostra ipotesi)
+
+\begin{align}
+    (a+b)^{n+1} &= \left( \sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^{k}\right) \cdot(a+b)   \\
+     &= \mathunderline{blue}{a \cdot \left(\sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^{k} \right)}+\mathunderline{red}{b\cdot \left(\sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^{k}\right)} \label{eq:bin1}
+\end{align}
+
+
+Per comodità andiamo a d analizzare singolarmente le due sommatorie, prima quella in blu e poi quella in rosso.
+
+\begin{align*}
+\mathunderline{blue} {a \cdot \left( \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^{k} \right)} &= \sum_{k=0}^{n} a \cdot \binom{n}{k} a^{n-k} b^{k} \\
+ &= \sum_{k=0}^{n}\binom{n}{k} a^{n+1-k} b^{k}
+\end{align*}
+
+
+
+\newpage
+Ora analiziamo la parte rossa
+
+
+\begin{align*}
+\mathunderline{red} {b \cdot \left( \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^{k} \right)} &= \sum_{k=0}^{n} b \cdot \binom{n}{k} a^{n-k} b^{k} \\
+ &= \sum_{k=0}^{n}\binom{n}{k} a^{n-k} b^{k+1}
+\end{align*}
+
+ora facciamo una sostituzione $h = k+1$
+
+\begin{align*}
+\mathunderline{red} {\sum_{k=0}^{n}\binom{n}{k} a^{n-k} b^{k+1}} &= \sum_{h=1}^{n+1}\binom{n}{h-1} a^{n-(h-1)} b^{h} \\
+ &= \sum_{h=1}^{n+1}\binom{n}{h-1} a^{n-h+1} b^{h}
+\end{align*}
+
+Visto che gli indici nelle sommatorie sono muti, sostituiamo $h$ con $k$, in modo che tutte le sommatorie sono rispetto a $k$
+
+\begin{align*}
+\mathunderline{red} {\sum_{h=1}^{n+1}\binom{n}{h-1} a^{n-h+1} b^{h}} = \sum_{k=1}^{n+1}\binom{n}{k-1} a^{n+1-k} b^{k}
+\end{align*}
+
+Ricomposiamo le due sommatorie ritornando al punto \eqref{eq:bin1}
+
+
+\begin{align}
+    (a+b)^{n+1} &= \mathunderline{blue}{\sum_{k=0}^{n}\binom{n}{k} a^{n+1-k} b^{k}}+\mathunderline{red}{\sum_{k=1}^{n+1}\binom{n}{k-1} a^{n+1-k}b^{k}} \label{eq:bin2}
+\end{align}
+ Per unire le due sommatorie devono avere gli stessi indici, quindi rimoviamo gli indici "in più", nella prima togliamo il termine con indice $k=0$, in modo che entrambe partano con $k=1$, e nella seconda rimuoviamo il termine $k=n+1$ in modo che entrambe finiscano con il termine $k=n$
+
+ \begin{align*}
+    \mathunderline{blue}{\sum_{k=0}^{n}\binom{n}{k} a^{n+1-k} b^{k}} &= \binom{n}{0} a^{n+1-0} b^{0} + \sum_{k=1}^{n}\binom{n}{k} a^{n+1-k} b^{k} \\
+    &= 1\cdot a^{n+1} \cdot 1 + \sum_{k=1}^{n}\binom{n}{k} a^{n+1-k} b^{k}\\
+    &= a^{n+1} + \sum_{k=1}^{n}\binom{n}{k} a^{n+1-k} b^{k}
+\end{align*}
+
+\newpage
+ \begin{align*}
+    \mathunderline{red}{\sum_{k=1}^{n+1}\binom{n}{k-1} a^{n+1-k}b^{k}} &= \binom{n}{(n+1)-1} a^{n+1 -(n+1)}b^{n+1} + \sum_{k=1}^{n}\binom{n}{k-1} a^{n+1-k}b^{k}  \\
+    &= \binom{n}{n} a^{0}b^{n+1} + \sum_{k=1}^{n}\binom{n}{k-1} a^{n+1-k}b^{k} \\
+    &= 1 \cdot 1 \cdot b^{n+1} + \sum_{k=1}^{n}\binom{n}{k-1} a^{n+1-k}b^{k}\\
+    &= b^{n+1} + \sum_{k=1}^{n}\binom{n}{k-1} a^{n+1-k}b^{k}
+\end{align*}
+
+ Riscriviamo il termine \eqref{eq:bin2}
+
+
+\begin{align*}
+    (a+b)^{n+1} &= \mathunderline{blue}{a^{n+1} + \sum_{k=1}^{n}\binom{n}{k} a^{n+1-k} b^{k}}+\mathunderline{red}{b^{n+1} + \sum_{k=1}^{n}\binom{n}{k-1} a^{n+1-k}b^{k}} \\
+    &= \mathunderline{blue}{a^{n+1}} + \mathunderline{red}{b^{n+1}} + \mathunderline{blue}{\sum_{k=1}^{n}\binom{n}{k} a^{n+1-k} b^{k}} + \mathunderline{red}{\sum_{k=1}^{n}\binom{n}{k-1} a^{n+1-k}b^{k}}  \\
+    &=a^{n+1} + b^{n+1} + \sum_{k=1}^{n} \left(\binom{n}{k} a^{n+1-k} b^{k} +\binom{n}{k-1} a^{n+1-k}b^{k}\right)\\
+    &=a^{n+1} + b^{n+1} + \sum_{k=1}^{n} a^{n+1-k} b^{k} \cdot\left( \binom{n}{k} +\binom{n}{k-1} \right)\\
+    &=a^{n+1} + b^{n+1} + \sum_{k=1}^{n} a^{n+1-k} b^{k} \cdot\binom{n+1}{k} \\
+    &=a^{n+1} + b^{n+1} + \sum_{k=1}^{n} \binom{n+1}{k}a^{n+1-k} b^{k} 
+\end{align*}
+ Siamo quasi alla fine ma notiamo che rispetto a $P(n+1)$ gli indici sono sbagliati, infatti $P(n+1)$ parte con indice $k=0$ e termina con $k=n+1$, mentre la sommatoria che abbiamo appena trovato parte da $k=1$ e termina con $k=n$. Proviamo a vedere cosa sarebbero i termini $k=0$ e $k=n+1$ (quelli che a noi mancano)
+
+
+\begin{align*}
+    \binom{n+1}{0}a^{n+1-0} b^{0}  &= 1 \cdot a^{n+1} \cdot 1 = \mathunderline{blue}{a^{n+1}} \qquad (k=0)  \\ 
+    \binom{n+1}{n+1}a^{n+1-(n+1)} b^{n+1}  &= 1 \cdot 1 \cdot b^{n+1} = \mathunderline{red}{b^{n+1}} \qquad (k=n+1)  
+\end{align*}
+ \newpage
+Vediamo che i termini che ci mancano ($a^{n+1}$ e $b^{n+1}$) in realtà ce li abbiamo fuori dalla sommatoria, quindi possiamo "portarli dentro" alla sommatoria sistemando gli indici
+
+\begin{align*}
+    (a+b)^{n+1} &= a^{n+1} + b^{n+1} + \sum_{k=1}^{n} \binom{n+1}{k}a^{n+1-k} b^{k}  \\
+    &= \sum_{k=0}^{n+1} \binom{n+1}{k}a^{n+1-k} b^{k}
+\end{align*}
+
+In questa maniera siamo riusciti a dimostrare il passo indutttivo, visto che siamo partiti da $P(n)$ e siamo riusciti a dimostrare che $P(n+1)$. Pertanto, visto che sia il passo induttivo che la base induttiva sono verificati, allora il teorema è dimostrato. 
+\end{proof}
+
+
+\addcontentsline{toc}{section}{Teorema dell'Irrazionalità di $\sqrt{2}$}
+\begin{teorema}{Irrazionalità di $\sqrt{2}$}{}
+    
+
+    \begin{equation*}
+        \sqrt{2} \notin \mathbb{Q}
+    \end{equation*}
+\end{teorema}
+    
+
+\begin{proof}
+    La dimostrazione sarà fatta per assurdo, quindi partiamo supponendo che $\sqrt{2} \in \mathbb{Q}$, pertanto $\sqrt{2}$ lo possiamo scrivere come:
+
+    \begin{equation*}
+        \sqrt{2} = \frac{p}{q} \qquad p,q \in \mathbb{Z} \setminus\{0\}
+    \end{equation*}
+
+    Supponiamo anche che il $mcd(p, q) = 1$ (Massimo Comun Divisore), altrimenti $p$ e $q$ sarebbero semplificabili ulteriormente. Attenzione perchè questo punto sarà fondamentale per la dimostrazione.
+
+    Per semplicità, eleviamo tutto al quadrato
+
+    \begin{align}
+        2 &= \frac{p^2}{q^2} \\
+        2q^2 &= p^2 \label{eq:rad2_1}
+    \end{align}
+
+    Ora notiamo che $p^2$ è un multiplo di $2$, perciò $p^2$ è un numero pari. di conseguenza anche $p$ è un numero pari dato che solamente un il prodotto di due numeri pari da un numero pari. Allora possiamo scrivere $p$ come 
+
+    \begin{equation*}
+        p = 2k \qquad k \in \mathbb{Z}         
+    \end{equation*}
+
+    Quindi andiamo a sostituirlo nell'equazione \eqref{eq:rad2_1}
+
+    \begin{align*}
+        2q^2 &= (2k)^2  \\
+        2q^2 &= 4k^2 \\
+        q^2 &= 2k^2
+    \end{align*}
+
+    Dopo le varie semplificazioni notiamo che anche $q^2$ è divisivile per $2$, e come abbiamo dedotto per $p$, allora anche $q$ è divisibile per 2. Però sia $p$ che $q$ sono divisibili per $2$, questo implica che $mcd(p,q) \ge 2$. Cosa assurda, visto che avevamo imposto che $mcd(p,q) = 1$, pertanto sono sbagliate le tesi: ovvero che $\sqrt{2} \in \mathbb{Q}$, e se questa affermazione è sbagliata allora per forza $\sqrt{2} \notin \mathbb{Q}$. 
+\end{proof}
+
+
+\newpage
+
+
+\begin{definizione}{Insieme Limitato}{}
+\addcontentsline{toc}{section}{Definizione di Insieme Limitato}
+Dato $\varnothing \ne A \subseteq \mathbb{R} $ è detto
+
+\begin{itemize}
+    \item \textbf{Superiorimente limitato} se  $\exists M \in \mathbb{R} : M \geq a \;\; \forall a \in A $
+    
+    \item \textbf{Inferiormente limitato} se  $\exists m \in \mathbb{R} : m \leq a \;\; \forall a \in A $
+\end{itemize}
+
+L'insieme $\{M: M \geq a \;\; \forall a \in A \}\label{eq:mag} $ è detto \textbf{Insieme dei maggioranti di $A$}.
+
+
+L'insieme $\{m: m \leq a \;\; \forall a \in A \}$ è detto \textbf{Insieme dei minoranti di $A$}
+
+\end{definizione}
+
+
+
+
+\begin{definizione} {Massimo e Minimo}{}
+
+\addcontentsline{toc}{section}{Definizione di Massimo e Minimo}
+\noindent
+
+\begin{itemize}
+    \item Un maggiorante $M$ di $ A \subseteq \mathbb{R} $ è detto \textbf{massimo} se $M \in A$
+
+    \begin{equation}\label{eq:max}
+       M=  max(A) = (M \geq a \;\; \forall a \in A)  \wedge M \in A
+    \end{equation}
+
+    \item Un minorante $m$ di $ A \subseteq \mathbb{R} $ è detto \textbf{minimo} se $m \in A$
+    
+    \begin{equation} \label{eq:min1}
+       m=  min(A) = (m \leq a \;\; \forall a \in A)  \wedge m \in A
+    \end{equation}
+\end{itemize}
+
+
+
+    
+\end{definizione}
+
+
+
+\begin{teorema}{Unicità dei Massimi e Minimi}{}
+\addcontentsline{toc}{section}{Teorema dell'unicità dei Massimi e Minimi}
+    Dato $\varnothing \ne A \subseteq \mathbb{R}$ se ammette un massimo o un minimo, essi sono \textbf{unici} 
+\end{teorema}
+
+\begin{proof}
+    Supponiamo che ci siano due massimi $M_1, M_2$ con $M_1 \neq M_2$. Visto che $M_1$ è un massimo allora, per definizione di massimo (\ref{eq:max}), deve essere $M_1 \in A$. Poi visto che $M_2$ è un massimo, di conseguenza è anche un maggiorante allora, per definizione di maggiorante,  deve valere la seguente affermazione
+
+    \begin{equation*}
+         M_2 \geq a \;\; \forall a \in A
+    \end{equation*}
+
+    Dato che $M_1 \in A$ possiamo dire che 
+    
+    \begin{equation} \label{eq:max1}
+         M_2 \geq M_1
+    \end{equation}
+
+
+    Ora rifacciamo il seguente ragionamento ma al contrario. Dato che $M_2$ è massimo allora deve essere $M_2 \in A$. Visto che $M_1$ è un massimo deve anche essere un maggiorante, e per tanto vale
+
+    \begin{equation*}
+         M_1 \geq a \;\; \forall a \in A
+    \end{equation*}
+
+    Dato che $M_2 \in A$ possiamo dire che 
+    
+    \begin{equation} \label{eq:max2}
+         M_1 \geq M_2
+    \end{equation}
+
+
+    Ora combinando le informazioni (\ref{eq:max1}) e (\ref{eq:max2}) deve valere 
+
+    \begin{equation*}
+        (M_2 \geq M_1) \wedge(M_1 \geq M_2) \Rightarrow M_1 = M_2
+    \end{equation*}
+
+    Dato che una delle ipotesi era che $M_1 \neq M_2$ abbiamo raggiunto un assurdo, per tanto il massimo deve essere unico. La dimostrazione per il minimo è analoga. 
+\end{proof}
+
+
+
+\begin{definizione}{Estremi Superiore e Inferiore}{}
+ \addcontentsline{toc}{section}{Definizione Estremi Superiori e Inferiore}
+    Dato $\varnothing \ne A \subseteq \mathbb{R} $ definiamo 
+    \begin{itemize}
+        \item \textbf{estremo superiore} di $A$ come il minore dei maggioranti.  
+        \begin{equation}
+            sup(A) = min\{M: M \geq a \;\; \forall a \in A \}
+        \end{equation}
+
+        \item \textbf{estremo inferiore} di $A$ come il maggiore dei minoranti.  
+        \begin{equation*}
+            inf(A) = max\{m: m \leq a \;\; \forall a \in A \}
+        \end{equation*}
+    \end{itemize}
+\end{definizione}
+
+
+\begin{teorema}{Relazione Massimi/Minimi e Estremi}{}
+    Dato $\varnothing \ne A \subseteq \mathbb{R}$
+\addcontentsline{toc}{section}{Relazione Massimi/Minimi e Estremi}
+    \begin{itemize}
+        \item Se esiste $max(A)$, allora coincide con $sup(A)$
+
+        \begin{equation*}
+            M = max(A) \Rightarrow M = sup(A)
+        \end{equation*}
+
+         \item Se esiste $min(A)$, allora coincide con $inf(A)$
+
+        \begin{equation*}
+            m = min(A) \Rightarrow m = inf(A)
+        \end{equation*}
+        
+    \end{itemize}
+\end{teorema}
+
+\begin{proof}
+    Supponiamo che esista $M_1 = max(A)$ allora sappiamo che è un maggiorante, e di conseguenza appartiene all'insieme dei maggioranti ($N$)
+    
+    \begin{equation} \label{eq:min3}
+        M_1\in N = \{M:M\geq a \;\; \forall a \in A\}
+    \end{equation}
+    
+    e sappiamo anche che $M_1 \in A$, visto che è il massimo. 
+    
+    Se prendiamo un numero $u \in N$ abbiamo  che 
+
+    \begin{equation*}
+        u\geq a \;\; \forall a \in A \;\; \forall u\in N
+    \end{equation*}
+
+    Visto che $M_1 \in A$ allora deve valere 
+    
+    \begin{equation*}
+        u\geq M_1 \;\;  \forall u\in N
+    \end{equation*}
+
+    Per questo deduciamo che $M_1$ è minorante di $N$, ma nel punto (\ref{eq:min3}) avevamo detto che $M_1 \in N$, di conseguenza 
+
+    \begin{equation*}
+        M_1 = min(N)
+    \end{equation*}
+
+    Che per definizione è anche l'estremo superiore, quindi
+
+    \begin{equation*}
+        M_1 = sup(A)
+    \end{equation*}
+
+    La dimostrazione del minimo è analoga.
+\end{proof}
+
+\textbf{N.B.} che $max(A) \Rightarrow sup(A)$ e che $sup(A) \not\Rightarrow max(A) $. Per vederlo basta farsi degli esempi, come $A = \{x \in \mathbb{R} ^+ : x^2 < 2\}$ si vede che esiste un estremo superiore ($sup(A) = \sqrt{2}$) mentre non esiste il massimo.
+
+
+
+\begin{teorema}{Caratterizzazione degli Estremi}{}
+
+\addcontentsline{toc}{section}{Caratterizzazione degli Estremi}
+Dato $\varnothing \ne A \subseteq \mathbb{R} $ se esiste $sup(A)$ oppure $inf(A)$ allora possiamo definirli anche come:
+
+
+\begin{equation*}
+    S= \sup(A)= \begin{cases}
+S \in \{M:M\geq a \;\; \forall a \in A \} \\
+\forall\varepsilon > 0  \;\; \exists a \in A : a > S-\varepsilon 
+\end{cases}
+\end{equation*}
+
+
+  
+\begin{equation*}
+    s= \inf(A)= \begin{cases}
+s \in \{m:m\leq a \;\; \forall a \in A \} \\
+\forall\varepsilon > 0  \;\; \exists a \in A : a < s+\varepsilon 
+\end{cases}
+\end{equation*}
+
+
+\end{teorema}
+    
+
+\addcontentsline{toc}{section}{Completezza di $\mathbb{R}$ \textit{I°} forma}
+
+\begin{teorema}{Completezza di $\mathbb{R}$ \textit{I°} forma}{}
+
+Dati $A, B \subseteq \mathbb{R}$ tali che $a \leq b \;\;\forall a\in A \;\;\forall b\in B$
+
+allora $\exists c \in \mathbb{R}$, detto \textbf{elemento separatore} tale che 
+
+\begin{equation*}
+    a \leq c \leq  b \;\;\forall a\in A \;\;\forall b\in B
+\end{equation*}
+    
+\end{teorema}
+
+\addcontentsline{toc}{section}{Completezza di $\mathbb{R}$ \textit{II°} forma}
+\begin{teorema}{Completezza di $\mathbb{R}$ \textit{II°} forma}{}
+Dato $\varnothing \ne A \subseteq \mathbb{R}$ se è superiormente/inferiormente limitato allora ammette un estremo superiore/inferiore.
+
+\end{teorema}
+
+\begin{proof}
+    Dato che $A$ è superiormente limitato allora esiste l'insieme dei maggiornati $N = \{M: M \in \mathbb{R} : M \geq a \;\; \forall a \in A\}$. Visto che tutti gli elementi dell'inisieme dei maggioranti è maggiore di tutti gli elementi di $A$ ($n \geq a \;\;\forall a\in A \;\;\forall n\in N$) possiamo applicare il Teorema di completezza di $\mathbb{R}$ \textit{I°} forma
+
+
+    \begin{equation*}
+        \exists c \in \mathbb{R} : \;\; \mathunderline{blue}{a \leq }c \mathunderline{red}{\leq  n }\;\;\forall a\in A \;\;\forall n\in N
+    \end{equation*}
+
+    Visto che $\mathunderline{blue}{a \leq c} \;\;\forall a\in A$ vuol dire che $c$ è un maggiorante di $A$ e di conseguenza $c\in N$ (l'insieme dei maggioranti). 
+
+    Dato che $\mathunderline{red}{c \leq  n } \;\;\forall n\in N$ allora $c$ è un minorante di $N$. Quindi visto che $c \in N$, per definizione di minimo (\ref{eq:min1}) possiamo dire che 
+
+    \begin{equation*}
+        c = min(N)
+    \end{equation*}
+
+    Questo coincide con la definizione di \textbf{estremo superiore}, quindi
+
+    \begin{equation*}
+        c = sup(A)
+    \end{equation*}
+
+    Quindi abbiamo dimostrato che esiste un estremo superiore. 
+
+    La dimostrazione don l'estremo inferiore è analoga.
+\end{proof}
+
+\newpage
+
+
+\addcontentsline{toc}{section}{Definizione di Intorno}
+\begin{definizione}{Intorno}
+    Sia $r \in \mathbb{R} \;\cup \; \{\pm\infty\}$ allora
+
+\vspace{-0.35cm}
+    \begin{itemize}
+        \item Se $r \in \mathbb{R}$ diciamo \textbf{intorno} un qualsiasi intervallo aperto della forma 
+        \vspace{-0.35cm}
+        \begin{equation*}
+            (r-\varepsilon, r+\varepsilon) \;\; \epsilon >0
+        \end{equation*}
+
+        \item Se $r = +\infty$ diciamo \textbf{intorno} un qualsiasi intervallo aperto della forma 
+        \vspace{-0.35cm}
+        \begin{equation*}
+            (M, +\infty) \;\; M \in \mathbb{R} \;\cup \; \{-\infty\}
+        \end{equation*}
+
+        \item Se $r = -\infty$ diciamo \textbf{intorno} un qualsiasi intervallo aperto della forma 
+        \vspace{-0.35cm}
+        \begin{equation*}
+            (-\infty, M) \;\; M \in \mathbb{R} \;\cup \; \{+\infty\}
+        \end{equation*}
+    \end{itemize}
+\end{definizione}
+
+
+
+\begin{teorema}{Intersezione degli introni}{}
+\addcontentsline{toc}{section}{Teorema di Intersezione degli Intorni}
+\noindent
+
+    Sia $I_1, I_2 \subseteq \mathbb{R}$ intorni di $x_0$, allora anche $I = I_1 \;\cap\; I_2$ è intorno di $x_0$.
+\end{teorema}
+
+\begin{teorema}{Separazione degli introni}{}
+\addcontentsline{toc}{section}{Teorema di Separazione degli introni}
+\noindent
+
+    Sia $r_1, r_2 \in \mathbb{R} \;\cup \; \{\pm\infty\}$ allora $\exists I_1$ intorno di $r_1$ e $\exists I_2$ intorno di $r_2$ tali che $I_1 \;\cap\; I_2 = \varnothing$ 
+\end{teorema}
+
+
+
+    \addcontentsline{toc}{section}{Definizione di punto di Accumulazione}
+\begin{definizione}{Definizione di punto di Accumulazione}
+Sia $r\in \mathbb{R} \cup  \{\pm\infty\}$ è detto \textbf{punto di accumulazione} di $\varnothing \ne A \subseteq \mathbb{R}$ se
+\vspace{-0.25cm}
+    \begin{itemize}
+        \item caso $r \in \mathbb{R}$: 
+        \vspace{-0.35cm}
+        \begin{center}
+        
+            $\forall I\subseteq \mathbb{R}$ intorno di $r\;\;\;A \cap(I \setminus \{r\}) \neq \varnothing$  
+        \end{center}
+    \vspace{-0.35cm}
+        \item caso $r \in \{\pm\infty\}$: 
+        \vspace{-0.35cm}
+        \begin{center}
+        
+            $\forall I\subseteq \mathbb{R}$ intorno di $r\;\;\;A \cap I \neq \varnothing$  
+        \end{center}
+    \end{itemize}
+\end{definizione}
+
+
+
+\addcontentsline{toc}{section}{Definizione di punto di Accumulazione Destro/Sinistro}
+\begin{definizione}{Accumulazione Destro/Sinistro}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $r\in \mathbb{R}$ è detto 
+
+    \begin{itemize}
+        \item \textbf{Punto di accumulazione destro} se
+    \vspace{-0.20cm}
+        \[
+        \forall\varepsilon>0\;\;\; (r,r+\varepsilon) \cap A\neq \varnothing
+        \]
+
+
+        \item \textbf{Punto di accumulazione sinistro} se
+\vspace{-0.20cm}
+        \[
+        \forall\varepsilon>0\;\;\; (r-\varepsilon,r) \cap A \neq \varnothing
+        \]
+    \end{itemize}
+
+    \textbf{N.B.} i simboli $\pm \infty$ non ha senso definirli punti di accumulazione destro/sinistro
+\end{definizione}
+
+\newpage
+\begin{esercizio}{}{}
+    Sia $r\in \mathbb{R}$ e $\varnothing \ne A \subseteq \mathbb{R}$, $r$ è punto di accumulazione destro o sinistro di $A$ se e solo se $r$ è punto di accumulazione di $A$
+\end{esercizio}
+
+\begin{proof}
+    Visto che questa è una doppia implicazione dobbiamo controllare che l'implicazione sia vera da entrambi i lati. 
+    
+    ($\implies$)Partiamo dimostrando che se $r$ è punto di accumulazione destro (o sinistro) di $A$ allora $r$ è punto di accumulazione di $A$. Partiamo con la definizione di punto di accumulazione destro.
+
+    \[
+    \forall\varepsilon>0\;\;\; (r,r+\varepsilon) \cap A \neq \varnothing
+    \]
+
+    Ora dobbiamo controllare se è vera la definizione di punto di accumulazione, per farla riscriviamola 
+
+    \begin{center}
+        $\forall I\subseteq \mathbb{R}$ intorno di $r\;\;\;A \cap(I \setminus \{r\}) \neq \varnothing$  
+    \end{center}
+    \[
+        \forall \varepsilon>0 \;\;\; ((r-\varepsilon, r+\varepsilon) \setminus \{r\} ) \cap A \neq \varnothing
+    \]
+
+
+    Con questa riscrittura si nota che 
+
+
+    \[
+    (r,r+\varepsilon) \subseteq (r-\varepsilon, r+\varepsilon) \setminus \{r\}
+    \]
+
+    Di conseguenza per ogni insieme che troviamo per il punto di accumulazione destro, posso trovare un intervallo sul punto di accumulazione, di conseguenza se $r$ è un punto di accumulazione destro deve anche essere un punto di accumulazione in $A$. Ragionamento analogo per il punto di accumulazione sinistro
+
+
+    ($\impliedby$)Per dimostrare che se $r$ è punto di accumulazione allora deve essere punto di accumulazione destro o sinistro, ragioniamo per assurdo: quindi supponiamo che $r$ non è ne punto di accumulaione destro ne sinistro. Allora sappiamo
+
+    \[
+        \exists\varepsilon_1>0,\exists\varepsilon_2>0 :(r-\varepsilon_1, r) \cap A = \varnothing \wedge (r, r + \varepsilon_2) \cap A = \varnothing 
+    \]
+
+
+    Ma se prendiamo $\varepsilon = min(\varepsilon_1,\varepsilon_2)$ allora 
+
+    \[
+        \exists\varepsilon>0 :  (r-\varepsilon_,  r + \varepsilon_) \cap A = \varnothing
+    \]
+
+
+    Questo non è altro che la definizione di punto isolato, ovvero la negazione di punto di accumulazione. Quindi abbiamo scoperto che 
+
+    \begin{center}
+        $r$ non è punto acc. dx e $r$ non è punto acc. sx $\Rightarrow$ $r$ non è punto di acc.
+    \end{center}
+
+    Usando le proprietà dell'implicazione $(P \Rightarrow Q ) \Leftrightarrow (\overline{Q}
+ \Rightarrow \overline{P})$
+
+    \begin{center}
+        $r$ è punto di acc.$\Rightarrow$ $r$ è punto acc. dx opure $r$ è punto acc. sx 
+    \end{center}
+
+    
+\end{proof}
+
+
+
+
+
+
+\newpage
+
+
+
+
+
+
+
+\begin{definizione}{Definizione di Limite}{}
+
+\addcontentsline{toc}{section}{Definizione di Limite}
+    Dato $\varnothing \neq A \subseteq \mathbb{R}$, $x_0\in \mathbb{R} \cup  \{\pm\infty\}$ punto di accumulazione per $A$, $f:A\rightarrow\mathbb{R}$. Diciamo che $l  \in \mathbb{R} \;\cup \; \{\pm\infty\}$ è \textbf{limite di $f$ per $x\rightarrow x_0$} se
+
+    \begin{center}
+        $\forall U \subseteq \mathbb{R}$ intorno di $l$, $\exists I \subseteq \mathbb{R}$ intorno di $x_0$ tale che \\ $f(x) \in U\;\;\; \forall x \in A \cap (I \;\setminus \{x_0\})$
+    \end{center}
+\end{definizione}
+
+
+
+\begin{teorema}{Unicità del limite}{}
+
+\addcontentsline{toc}{section}{Teorema di Unicità del Limite}
+    Sia $\varnothing \neq A \subseteq \mathbb{R}$, $x_0\in \mathbb{R}\cup \{\pm\infty\}$ punto di accumulazione per $A$, $f:A\rightarrow\mathbb{R}$. Se esiste il limite $f$ per $x\rightarrow x_0$ allora è unico. E lo si indica con:
+
+    \begin{equation}
+        \lim_{x\to x_0} f(x) = l
+    \end{equation}
+\end{teorema}
+
+\begin{proof}
+    Supponiamo che il limite esista ed abbiamo due valori: $l_1, l_2 \in \mathbb{R}\cup \{\pm\infty\}$ con $l_1 \neq l_2$. Visto che per ipotesi $l_1 \neq l_2$ allora per il teorema di separazione abbiamo che $\exists U_1 \subseteq \mathbb{R}$ intorno di $l_1$ e $\exists U_2 \subseteq \mathbb{R}$ intorno di $l_2$ tali che:
+
+    \begin{equation}\label{eq:unicita1}
+         U_1 \cap U_2 = \varnothing
+    \end{equation}
+
+     Applicando la definizione di limite, $\exists I_1, I_2$ intorni di $x_0$ tali che:
+
+    \begin{center}
+        $\forall U_1$ intorno di $l_1 \;\;\;\;\; f(x) \in U_1 \;\;\; \forall x \in A \cap (I_1 \setminus \{x_0\})$
+    \end{center}
+
+    
+    \begin{center}
+        $\forall U_2$ intorno di $l_2 \;\;\;\;\; f(x) \in U_2 \;\;\; \forall x \in A \cap (I_2 \setminus \{x_0\})$
+    \end{center}
+
+
+     Usando il teorema di intersezione degli intorni, $\exists I_3 =I_1 \cap I_2$ intorno di $x_0$, e visto che $I_3 \subseteq I_1$, anche in esso varrà la proprietà del limite $l_1$. Contemporaneamente varrà anche la proprietà del limite $l_2$ visto che $I_3 \subseteq I_2$, per tanto
+
+     \begin{center}
+        $\forall U_1 \;\forall U_2  \;\;\;\;\; f(x) \in U_1  \wedge f(x) \in U_2 \;\;\; \forall x \in A \cap (I_3 \setminus \{x_0\})$
+    \end{center}
+
+
+    la congiungiole logica la possiamo riscrivere come congiunzione insiemistica
+
+    \begin{center}
+        $\forall U_1 \;\forall U_2  \;\;\;\;\; f(x) \in U_1  \cap U_2 \;\;\; \forall x \in A \cap (I_3 \setminus \{x_0\})$
+    \end{center}
+
+    Però questo necessita che $\forall U_1 \;\forall U_2 \;\;\; U_1  \cap U_2 \neq \varnothing$, perchè altrimenti il limite non esisterebbe. Ma all'inizio con l'equazione (\ref{eq:unicita1}) sappiamo che esistono almeno un $U_1$ e un $U_2$ che rendono l'intersezione vuoto. Per tanto è un assurdo e le ipotesi erano sbagliate. Di conseguenza il limite deve essere unico e non può assumere più di un valore. 
+
+\end{proof}
+
+
+\newpage
+
+\begin{esercizio}{}{}
+\addcontentsline{toc}{section}{Esercizi Dimostrazione Limite}
+    \begin{equation*}
+        \lim_{x\to x_0} 2x+3 = 2x_0 +3
+    \end{equation*}    
+\end{esercizio}
+
+\begin{proof}
+    Proviamo a dimostrarlo con la definizione. $f(x)=2x+3$ e, dato che è un polinomio, il suo dominio sarà $A = \mathbb{R}$. l'intorno di $l = 2x_0 +3$ sarà $U = (2x_0 +3-\varepsilon, 2x_0 +3 + \varepsilon)$, e un intorno di $x_0$ sarà $I =(x_0-\delta, x_0+ \delta)$. Di conseguenza con la definizione di limite sarà
+
+
+    \begin{equation*}
+        \forall U \;\;\;\; f(x) \in U \;\;\; \forall x \in  I \setminus\{x_0\}
+    \end{equation*}
+
+    Con i dati dell'esercizio
+
+    \begin{equation*}
+        \forall \varepsilon>0 \;\;\;\; 2x+3 \in (2x_0 +3-\varepsilon, 2x_0 +3 + \varepsilon) \;\;\; \forall x \in  (x_0-\delta, x_0+ \delta) \setminus\{x_0\}
+    \end{equation*}
+
+    Riscriviamo il termine $2x+3 \in (2x_0 +3-\varepsilon, 2x_0 +3 + \varepsilon)$
+
+    \begin{center}
+         $2x_0 +3-\varepsilon <2x+3 < 2x_0 +3 + \varepsilon $\\
+         $2x_0-\varepsilon <2x < 2x_0 + \varepsilon$ \\
+         $x_0-\frac{\varepsilon }{2} <x < x_0 + \frac{\varepsilon }{2}$\\
+    \end{center}
+
+
+    Vediamo come partendo dalla prima porzione abbiamo trovato un intorno su cui deve stare $x$, pertanto affinchè sia vero la definizione di limite possiamo scegliere 
+
+    \begin{equation*}
+        \delta \leq \frac{\varepsilon}{2}
+    \end{equation*}
+\end{proof}
+
+
+\begin{esercizio}{}{}
+    \begin{equation*}
+        \lim_{x\to x_0} c = c \;\;\; \forall c \in \mathbb{R}
+    \end{equation*} 
+\end{esercizio}
+
+
+\begin{proof}
+    Usiamo la definizione di limite 
+
+\[
+\forall \varepsilon>0 \;\;\;\; c \in (c-\varepsilon, c + \varepsilon) \;\;\; \forall x \in  (x_0-\delta, x_0+ \delta) \setminus\{x_0\}
+\]
+    Scrivendola in un'altra maniera 
+\[
+\forall \varepsilon>0 \;\;\;\; x \in  (x_0-\delta, x_0+ \delta) \setminus\{x_0\} \Rightarrow c \in (c-\varepsilon, c + \varepsilon)
+\]
+
+Però il conseguente della nostra implicazione è sempre vero, perchè $c$ sarà sempre nell'intevallo $(c-\varepsilon, c + \varepsilon)$ per qualsiasi valore di $\varepsilon$ positivo. Quindi volendo riscrivere la proposizione
+
+
+    \[
+\forall \varepsilon>0 \;\;\;\; x \in  (x_0-\delta, x_0+ \delta) \setminus\{x_0\} \Rightarrow Vero
+\]
+
+Una implicazione è sempre vera quando implica vero (vedi tabella di verità dell'implicazione). Quindi la nostra proposizione è sempre vera, e di conseguenza il limite è verificato.
+\end{proof}
+
+\begin{esercizio}{}{}
+    \begin{equation*}
+        \lim_{x\to x_0} x^2 = x_0^2
+    \end{equation*}
+\end{esercizio}
+
+\begin{proof}
+    Con la definizione di limite abbiamo
+
+    \begin{equation*}
+        \forall \varepsilon>0 \;\;\;\; x^2 \in (x_0^2 -\varepsilon, x_0^2 + \varepsilon) \;\;\; \forall x \in  (x_0-\delta, x_0+ \delta) \setminus\{x_0\}
+    \end{equation*}
+
+    Utilizzando le proprietà della funzione modulo possiamo scriverlo anche come 
+
+    \begin{equation*}
+        \forall \varepsilon>0 \;\;\;\; |x^2 -x_0^2| < \varepsilon \; \Leftarrow \; |x - x_0| < \delta
+    \end{equation*}
+
+    Riscriviamo il primo termine
+
+    
+        \[|x^2 -x_0^2| < \varepsilon\] 
+        \[|(x-x_0)(x+x_0)| < \varepsilon\]
+        \[|x-x_0||x+x_0| < \varepsilon\] 
+    
+
+
+    Ora dobbiamo capire quanto vale $|x+x_0| $in modo da non avere più la variabile $x$. Per farlo scegliamo $\delta<1$
+
+        
+    
+        \[|x+x_0| < \delta <1\]
+        \[|x+x_0|<1\]
+    
+
+    con questo scopriamo che 
+    
+        \[|x+x_0| = |x-x_0+2x_0| \leq \mathunderline{red}{|x-x_0|} + 2|x_0| < \mathunderline{red}{1} + 2|x_0|\]
+        \[|x+x_0| < 1+2|x_0|\]
+    
+    
+    Moltiplicando per $|x-x_0|$, ricordandoci anche che $|x-x_0|<\delta$
+    
+    \begin{center}
+        \[|x-x_0||x+x_0| < |x-x_0|(1 + 2|x_0|)\]
+        \[|x-x_0||x+x_0| < \mathunderline{red}{|x-x_0|}(1 + 2|x_0|) < \mathunderline{red}{\delta}(1 + 2|x_0|)\]
+        \[|x-x_0||x+x_0| < \delta(1 + 2|x_0|)\]
+    \end{center}
+
+    Partendo da $|x-x_0|<\delta$ siamo riusciti a capire che $|x^2-x_0^2|<\delta(1 + 2|x_0|)$, quindi se per verificare il limite bisogna che $|x^2-x_0^2|<\varepsilon$ è necessario imporre 
+
+    
+        \[\delta(1 + 2|x_0|) < \varepsilon  \]
+        \[\delta < \frac{\varepsilon}{1 + 2|x_0|}\]
+    
+    Visto che abbiamo imposto $\delta<1$, aggiustiamo la definizione
+
+    \[\delta < min \left( 1,\frac{\varepsilon}{1 + 2|x_0|}\right) \]
+    
+\end{proof}
+
+
+\newpage
+
+\begin{esercizio}{}{}
+    \begin{equation*}
+        \lim_{x\to x_0} \sqrt{x} = \sqrt{x_0}  \;\;\; \forall x_0\geq 0
+    \end{equation*}
+\end{esercizio}
+
+\begin{proof}
+    Usiamo la definizione di limite
+
+    \[
+    \forall \varepsilon > 0 \;\;\; |\sqrt{x} - \sqrt{x_0}|<\epsilon \;\;\; |x-x_0| < \delta 
+    \]
+
+
+    Partiamo analizzando il termine $|x-x_0| < \delta$
+
+
+    \[
+    |x-x_0| < \delta
+    \]
+
+    \[
+    |\sqrt{x}-\sqrt{x_0}|\cdot|\sqrt{x}+\sqrt{x_0}| < \delta
+    \]
+
+    \[
+    |\sqrt{x}-\sqrt{x_0}| < \frac{\delta}{|\sqrt{x}+\sqrt{x_0}|}
+    \]
+
+    Ora possiamo sfruttare la seguente espressione
+
+    \[
+    |\sqrt{x}+\sqrt{x_0}| \geq |\sqrt{x_0}|
+    \]
+
+    \[
+    \frac{1}{|\sqrt{x}+\sqrt{x_0}|} \leq \frac{1}{|\sqrt{x_0}|}
+    \]
+
+    Di conseguenza
+
+    \[
+    |\sqrt{x}-\sqrt{x_0}| < \frac{\delta}{|\sqrt{x}+\sqrt{x_0}|} \leq \frac{\delta}{\sqrt{x_0}}
+    \]
+
+    \[
+    |\sqrt{x}-\sqrt{x_0}| <  \frac{\delta}{\sqrt{x_0}}
+    \]
+
+
+    Affinchè il limite sia verificato è necessiario che 
+    
+    \[
+    \frac{\delta}{\sqrt{x_0}} < \varepsilon
+    \]
+
+    \[
+    \delta < \sqrt{x_0}\varepsilon
+    \]
+
+
+    \textbf{N.B.} per tutto l'esercio abbiamo potuto scrivere $\sqrt{x_0}$ non controllando se $x_0$ fosse non negativo perchè il dominio di $f(x) = \sqrt{x}$ è $\mathbb{R}^+_0$ e di conseguenza qualsiasi punto $x<0$ non è punto di accumulazione, dato che esiste almeno un intorno di un numero negativo che intersecato con il dominio ($\mathbb{R}^+_0$) dà insieme vuoto. E per questo il limite lo possiamo fare solo con valori di $x\geq0$ e possiamo scrivere $\sqrt{x_0}$ senza alcun problema.
+
+\end{proof}
+\newpage
+\begin{esercizio}{}{}
+    \begin{equation*}
+        \lim_{x\to x_0} x^n = x_0^n \;\;\;\; \forall n\in\mathbb{N}
+    \end{equation*}
+\end{esercizio}
+
+\begin{proof}
+    Con la definizione di limite abbiamo
+    
+        \[|x^n -x_0^n| < \varepsilon\] 
+        \[\left|(x-x_0)\left(\sum_{k=0}^{n-1} x^{n-1-k}x_0^k\right)\right| < \varepsilon\]
+        \[|x-x_0|\left|\left(\sum_{k=0}^{n-1} x^{n-1-k}x_0^k\right)\right| < \varepsilon\] 
+    
+
+
+    Ora dobbiamo capire quanto vale il secondo termine in modo da non avere più la variabile $x$. 
+
+        
+    
+        \[|x+x_0| < \delta <1\]
+        \[|x+x_0|<1\]
+    
+    con questo scopriamo che 
+    
+        \[|x| = |x-x_0+x_0| \leq \mathunderline{red}{|x-x_0|} + |x_0| < \mathunderline{red}{1} + |x_0|\]
+        \[|x| < 1+|x_0|\]
+    
+    
+    Di conseguenza
+
+    \[\left|\left(\sum_{k=0}^{n-1} x^{n-1-k}x_0^k\right)\right| \leq \sum_{k=0}^{n-1} |x^{n-1-k}x_0^k| = \sum_{k=0}^{n-1} |\mathunderline{red}{x^{n-1-k}}||x_0^k| \leq \sum_{k=0}^{n-1} |(\mathunderline{red}{1+|x_0|})^{n-1-k}||x_0^k|\] 
+
+
+    Semplificando un po troviamo che 
+
+    \[\left|\left(\sum_{k=0}^{n-1} x^{n-1-k}x_0^k\right)\right| \leq (1+|x_0|)^{n-1}\sum_{k=0}^{n-1} \left(\frac{|x_0|}{1+|x_0|}\right)^k\]
+
+
+    
+    Moltiplicando per $|x-x_0|$, ricordandoci anche che $|x-x_0|<\delta$
+
+        \[\mathunderline{blue}{|x-x_0|\left|\left(\sum_{k=0}^{n-1} x^{n-1-k}x_0^k\right)\right|}  < |x-x_0|(1+|x_0|)^{n-1}\sum_{k=0}^{n-1} \left(\frac{|x_0|}{1+|x_0|}\right)^k\]
+        \[\mathunderline{blue}{|x^n-x_0^n|}< \mathunderline{red}{|x-x_0|}(1+|x_0|)^{n-1}\sum_{k=0}^{n-1} \left(\frac{|x_0|}{1+|x_0|}\right)^k < \mathunderline{red}{\delta}(1+|x_0|)^{n-1}\sum_{k=0}^{n-1} \left(\frac{|x_0|}{1+|x_0|}\right)^k\]
+        \[|x^n-x_0^n| < \delta(1+|x_0|)^{n-1}\sum_{k=0}^{n-1} \left(\frac{|x_0|}{1+|x_0|}\right)^k\]
+        
+
+
+    Per trovare quanto vale $\varepsilon$ basta fare 
+
+    
+        \[\delta(1+|x_0|)^{n-1}\sum_{k=0}^{n-1} \left(\frac{|x_0|}{1+|x_0|}\right)^k < \varepsilon  \]
+        \[\delta < \frac{\varepsilon}{(1+|x_0|)^{n-1}\sum_{k=0}^{n-1} \left(\frac{|x_0|}{1+|x_0|}\right)^k}\]
+    
+    Visto che abbiamo imposto $\delta<1$, aggiustiamo la definizione
+
+    \[\delta < min \left( 1,\frac{\varepsilon}{(1+|x_0|)^{n-1}\sum_{k=0}^{n-1} \left(\frac{|x_0|}{1+|x_0|}\right)^k}\right) \]
+    
+\end{proof}
+
+\begin{esercizio}{}{}
+    \begin{equation*}
+        \lim_{x\to x_0} sin(x) = sin(x_0)
+    \end{equation*}
+\end{esercizio}
+
+
+\begin{proof}
+    Dalla definizione di limite
+
+    \[
+    |sin(x)-sin(x_0)| < \varepsilon
+    \]
+
+    Usando le formule di Prostaferesi ($sin(\alpha) - sin(\beta) = 2cos\left(\frac{\alpha+\beta}{2}\right)sin\left(\frac{\alpha-\beta}{2}\right)$)
+
+
+    \[
+        |sin(x)-sin(x_0)| =     \left|2cos\left(\frac{x+x_0}{2}\right)sin\left(\frac{x-x_0}{2}\right)\right|
+    \]
+
+    Ora ricordiamo che per definizione delle funzioni trigonometriche, vale sempre la seguente proposizione
+
+    \[
+    |cos(x)| \leq 1  \;\;\;\;\;\;\;\;\;\;\;\; |sin(x)|\leq 1
+    \]
+
+    Quindi usiamo questa proprietà del coseno per diventare
+
+     \[
+        \left|2\mathunderline{red}{cos\left(\frac{x+x_0}{2}\right)}sin\left(\frac{x-x_0}{2}\right)\right| \leq 2\left|\mathunderline{red}{1}\cdot sin\left(\frac{x-x_0}{2}\right) \right|
+    \]
+
+    Poi ricordiamo anche che per la funzione seno vale la seguente relazione
+
+    \[
+    |sin(x)| \leq |x|
+    \]
+
+    E che quindi nella nostra dimostrazione possiamo usarla 
+
+    \[
+    2\left|sin\left(\frac{x-x_0}{2}\right) \right| \leq 2\left|\frac{x-x_0}{2}\right| = |x-x_0|
+    \]
+
+
+    Riscrivendo le informazioni trovate finora sappiamo che
+
+    \[
+        |sin(x)-sin(x_0)| \leq |x-x_0|
+    \]
+
+    Per la definizione di limite sappiamo che $|x-x_0| < \delta$
+
+    \[
+        |sin(x)-sin(x_0)| \leq |x-x_0| <\delta
+    \]
+
+
+    Ora se dobbiamo trovare il $\varepsilon$ basta impore
+
+    \[
+        |sin(x)-sin(x_0)| \leq |x-x_0| <\delta < \varepsilon
+    \]
+
+    \[\delta < \varepsilon\]
+
+
+    Per il coseno la dimostrazione è analoga.
+\end{proof}
+    
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to 0} a^x = 1 \;\;\;\;\;a \in [1,+\infty)
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Per dimostrare questo limite dobbiamo trovare un un qualche $\delta>0$ tale che
+
+    \[
+    \forall \varepsilon>0 \;\;\; |x-0| < \delta \Rightarrow |a^x-1| < \epsilon
+    \]
+
+    \[
+        \forall \varepsilon>0 \;\;\; -\delta <x < \delta \Rightarrow 1-\epsilon < a^x < 1+\epsilon
+    \]
+
+    Quindi iniziamo partendo dalla disuguaglianza di Bernulli
+
+    \begin{equation}
+        (1+\varepsilon)^n \geq 1+n\varepsilon \;\;\; \forall n \in \mathbb{N}_0 \; \forall \varepsilon \geq 0
+    \end{equation}
+
+    Ora decidiamo che $a < 1+n\varepsilon$ e che quindi $\forall n>\frac{a-1}{\varepsilon}$ vale
+
+    \[
+    (1+\varepsilon)^n \geq 1+n\varepsilon > a
+    \]
+
+    \[
+    (1+\varepsilon)^n  > a
+    \]
+
+    \[
+        1+\varepsilon  > a^{\frac{1}{n}}
+    \]
+
+
+    Ora quindi sappiamo che per qualsiasi valore di $n>\frac{a-1}{\varepsilon}$ vale la relazione $a^{\frac{1}{n}} < 1+\varepsilon$, quindi se trovo per quali valori di $x$ vale la relazione $a^x<a^{\frac{1}{n}}$ posso imporre $a^x < a^{\frac{1}{n}} < 1+\varepsilon $ che vuol dire che abbiamo dimostrato la prima parte. 
+
+
+    \[
+    a^x < a^{\frac{1}{n}}
+    \]
+
+    Per monotonia della funzione $f(x) = a^x$ allora  vale
+
+    \[
+    x < \frac{1}{n}
+    \]
+
+    Quindi per dimostrare il limite basta scegliere un $\delta <\frac{1}{n}$ in modo tale che l'espressione $a^x <1+\varepsilon$ sia valida.
+\newpage
+    Per dimostrare la porzione $1-\varepsilon < a^x$ dobbiamo ricorrere alla formula 
+
+    \begin{equation} \label{eq:bern}
+        1-\varepsilon < \frac{1}{1+\varepsilon}
+    \end{equation}
+    
+
+
+    Dai ragionamenti di prima sappiamo che $(1+\varepsilon)^n > a$, quindi vale anche
+
+    \[
+    \left(\frac{1}{1+\varepsilon}\right)^n < \frac{1}{a^n}
+    \]
+
+    Quindi se eleviamo tutto alla $n$ l'equazione (\ref{eq:bern}) ricaviamo
+
+     \[
+    (1-\varepsilon )^n<\left(\frac{1}{1+\varepsilon}\right)^n < \frac{1}{a}
+    \]
+    
+    \textbf{N.B.} per non avere problemi di segno dobbiamo imporre $1-\varepsilon >0 \Rightarrow \varepsilon < 1$.
+    
+    \[
+    (1-\varepsilon )^n< \frac{1}{a}
+    \]
+
+     \[
+    1-\varepsilon < a^{-\frac{1}{n}}
+    \]
+
+    Quindi come per la prima parte della dimostrazione ora basta scegliere delle $x$ per cui $a^{-\frac{1}{n} }< a^x$, che per monotonia come prima rimane
+
+    \[
+    -\frac{1}{n} < x
+    \]
+    
+    Per confermare la dimostrazione possiamo scegliere un $\delta$ tale che 
+
+    \[
+    -\frac{1}{n} < -\delta
+    \]
+
+    
+    \[
+    \delta < \frac{1}{n} 
+    \]
+
+    Quindi sce scegliamo un $\delta < \frac{1}{n}$ anche l'espressione $1-\varepsilon < a^x$ sarà verificata. Pertanto per verificare il limite basta scegliere 
+
+    \[
+    \delta = min\left(1, \frac{\varepsilon}{a-1}\right)
+    \]
+    
+\end{proof}
+
+
+\begin{esercizio}{}{}
+    
+
+    \[
+        \lim_{x\to 0} a^x = 1 \;\;\;\;\;a \in(0,1)
+    \]
+\end{esercizio}
+\begin{proof}
+    Per dimostrare questo limite possiamo usare uno stratagemma per evitare di fare tutta la dimostrazione classica. Perchè con l'esercizio precendente abbiamo dimostrato con la base $a\geq 1$, quindi cerchiamo di ricondurli a quel limite. Per farlo usiamo le regole delle potenze infatti 
+
+    \[
+        0<a<1 \Rightarrow \frac{1}{a} > 1
+    \]
+
+    Quindi il limite lo possiamo riscrivere come
+
+
+    \vspace{-0.30cm}
+    \[
+        \lim_{x\to 0} a^x = \lim_{x\to 0} \left( \frac{1}{a}\right)^{-x}
+    \]
+
+    In questa maniera la base è maggiore di 1, di conseguenza è uguale al limite dell'esercizio precedente da quel punto di vista. Quello che cambia è che all'esponente abbiamo $-x$ e non più $x$, però non è troppo un problema, infatti se $x\to 0$ allora anche $-x\to 0$, quindi l'esponente si avvicina lo stesso allo $0$, di conseguenza il limite sarà lo stesso, di prima e possiamo usare quello (che abbiamo già dimostrato) per dimostrare questo senza la dimostrazione rigorosa.
+
+    \vspace{-0.35cm}
+    \[
+        \lim_{x\to 0} \left( \frac{1}{a}\right)^{-x} = \lim_{x\to 0} \left( \frac{1}{a}\right)^{x} = 1
+    \]
+
+    \textbf{N.B.} il passaggio dove diciamo che se $x\to 0$ allora $-x\to 0$ non è dimostrato in maniera rigorosa, infatti per questo passaggio serve il teorema del cambio di variabile che vedremo più avanti, ma intuitivamente ha senso che se $x\to 0$ allora $-x\to 0$.
+\end{proof}
+
+
+
+    Ora vediamo un caso particolare, che come vedremo non ha soluzione per come abbiamo definito il limite. 
+  \begin{esercizio}{}{}  
+
+    \begin{equation*}
+        \lim_{x\to 0} \frac{1}{x} \neq +\infty
+    \end{equation*}
+\end{esercizio}
+   \begin{proof}
+       
+    Proviamo usando la definizione di limite.
+\vspace{-0.10cm}
+    \[\forall M > 0 \; \exists \delta > 0 : f(x) \in (M, +\infty) \; \forall x \in (x_0-\delta, x_0+\delta)\setminus\{x_0\}
+    \]
+    \[\forall M > 0 \; \exists \delta > 0 : \frac{1}{x} \in (M, +\infty) \; \forall x \in (0-\delta, 0+\delta)\setminus\{0\}
+    \]
+
+    Partiamo analizzando $\frac{1}{x} \in (M, +\infty)$
+
+    \[
+    \frac{1}{x} \in (M, +\infty) \Leftrightarrow \frac{1}{x} > M 
+    \]
+
+    Ricordiamo che $M>0$, quindi anche $\frac{1}{x} >0 \Leftrightarrow x>0$. Ora possiamo fare il reciproco di entrambi i  membri (visto che sono entrampi positivi)
+
+    \[
+    \frac{1}{x} > M > 0 \Leftrightarrow  0 < x < \frac{1}{M}
+    \]
+
+    Quindi fino ad ora abbiamo capito che $f(x) \in (M, +\infty)$ è uguale a dire $0 < x < \frac{1}{M}$, però nella definizione di limite abbiamo che $\forall x \in (-\delta, \delta)\setminus\{0\}$ però questo è impossibile, perchè per qualsiasi valore di $\delta$ l'intevallo comprenderà anche numeri negativi (dato che l'intervallo è $(-\delta, \delta)$ ma ciò va in contraddizione con quanto abbiamo trovato prima (ovvero che $0<x<\frac{1}{M}$. Infatti non c'è nessun valore di $\delta>0$ che valida la seguente affermazione.
+
+    \[
+    (-\delta, \delta)\setminus\{0\} \nsubseteq (0, \frac{1}{M})
+    \]
+
+    Pertanto il limite è sbagliato. Il ragionamento con $-\infty$ è analogo.
+
+    Per poter calcolare questo limite ci serve la nozione di limite destro e limite sinistro.
+    
+    \end{proof}
+
+
+
+\begin{definizione}{Limite Destro e Sinistro}{}
+    
+\addcontentsline{toc}{section}{Definizione di Limite Destro e Sinistro}
+
+    Sia $\varnothing \neq A \subseteq \mathbb{R}$, $f:A\to \mathbb{R}$ 
+
+    \begin{itemize}
+        \item Sia $x_0$ punto di accumulazione destro, allora definiamo limite destro di $f(x)$ come 
+
+        \[
+        \lim_{x\to x_0^+}f(x) = l
+        \]
+
+        E la sua caratterizzazione sarà
+
+        \begin{center}
+            $\lim_{x\to x_0^+}f(x) = l \Leftrightarrow $ $\forall U \subseteq \mathbb{R}$ intorno di $l$ $\exists I \subseteq \mathbb{R}$ intorno di $x_0$ tale che $\forall x \in A \cap I \cap (x_0,+\infty) \;\;\; f(x) \in U$
+        \end{center}
+
+
+         \item Sia $x_0$ punto di accumulazione sinistro, allora definiamo limite sinistro di $f(x)$ come 
+
+        \[
+        \lim_{x\to x_0^-}f(x) = l
+        \]
+
+        E la sua caratterizzazione sarà
+
+        \begin{center}
+            $\lim_{x\to x_0^-}f(x) = l \Leftrightarrow $ $\forall U \subseteq \mathbb{R}$ intorno di $l$ $\exists I \subseteq \mathbb{R}$ intorno di $x_0$ tale che $\forall x \in A \cap I \cap (-\infty,x_0) \;\;\; f(x) \in U$
+        \end{center}
+    \end{itemize}
+\end{definizione}
+
+    Ora proviamo a risolvere il limite di prima con il limite destro.
+
+\begin{esercizio}{}{}
+
+    \begin{equation*}
+        \lim_{x\to 0^+} \frac{1}{x} = +\infty
+    \end{equation*}
+
+\end{esercizio}
+
+\begin{proof}
+    Usiamo la definizione di limite destro
+
+    \[
+    \forall M>0 \;\;\exists \delta >0 : \; \frac{1}{x} \in (M, +\infty ) \;\; \forall x \in (0-\delta, 0+\delta) \setminus \{0\} \cap (0, +\infty)  
+    \]
+
+    Riscriviamo meglio l'ultimo termine
+
+    \[
+    (-\delta, +\delta) \setminus \{0\} \cap (0, +\infty) = (0, \delta)
+    \]
+
+    Ora possiamo fare gli stessi ragionamenti di prima 
+
+    \[
+    \frac{1}{x} \in (M, +\infty ) \Leftrightarrow \frac{1}{x} > M 
+    \]
+
+    Visto che $M>0 $ allora anche $x>0$, per lo stesso ragionamento di prima
+
+    \[
+    \frac{1}{x} > M  \Leftrightarrow 0<x <\frac{1}{M}
+    \]
+
+    Ora però il risultato è diverso da prima infatti, dopo le semplificazione, la nostra condizione del limite sarà $\forall x \in (0, \delta) \Rightarrow x \in (0, \frac{1}{M})$. Ora affinchè questa proposizione sia vera basta prendere
+
+\vspace{-0.50cm}
+    \[
+        \delta \leq \frac{1}{M}
+    \]
+
+    E quindi ora il limite è verificato. Per il limite $\lim_{x\to 0^-} \frac{1}{x} = -\infty$ il ragionamento è analogo.
+\end{proof}
+
+
+\begin{esercizio}{}{}
+    \[
+    \lim_{x\to 0^-} \frac{1}{x^2} = +\infty
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Usiamo la definizione 
+
+    \[
+        \forall M>0 \;\;\exists \delta >0 : \; \frac{1}{x^2} \in (M, +\infty ) \;\; \forall x \in (0-\delta, 0+\delta) \setminus \{0\} \cap (-\infty, 0)  
+    \]
+
+    Riscrivendo meglio la definizione
+
+    \begin{equation}\label{eq:sx}
+       \forall \delta >0 \;\;\; x \in (-\delta, 0) \Rightarrow \frac{1}{x^2}  \in (M, +\infty)        
+    \end{equation}
+     
+
+
+    Riscriviamo il secondo termine
+
+    \[ 
+    \frac{1}{x^2}  \in (M, +\infty) \Leftrightarrow \frac{1}{x^2} > M
+    \]
+
+    Ora non abbiamo nessun problema riguardante il segno visto che $x^2>0\;\;\forall x \neq 0$, quindi possiamo invertire la disequazione
+    \vspace{-0.30cm}
+    \[
+    x^2 < \frac{1}{M}
+    \]
+
+    Visto che, sia $x^2$ che $\frac{1}{M}$ sono positivi possiamo fare la radice quadrata ambo i membri 
+
+    \[
+    \sqrt{x^2} < \sqrt{\frac{1}{M}}
+    \]
+    
+    \[
+    |x| < \frac{1}{\sqrt{M}}
+    \]
+
+    \[
+   - \frac{1}{\sqrt{M}}< x < \frac{1}{\sqrt{M}}
+    \]
+
+    Riscrivendo l'espressione (\ref{eq:sx}) 
+
+    \[
+    \forall \delta >0 \;\;\; x \in (-\delta, 0) \Rightarrow x \in \left(- \frac{1}{\sqrt{M}},  \frac{1}{\sqrt{M}}\right) 
+    \]
+
+    Questa implicazione è vera quando vale
+
+    \[
+    -\delta\geq - \frac{1}{\sqrt{M}}
+    \]
+
+    \[
+    \delta \leq \frac{1}{\sqrt{M}}
+    \]
+    
+\end{proof}
+
+\begin{teorema}{Relazione Limite con limite Destro e Sinistro}{}
+\addcontentsline{toc}{section}{Relazione Limite con limite Destro e Sinistro}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $x_0 \in \mathbb{R}$ punto di accumulazione di $f(x)$ e $l \in \mathbb{R} \cup \{\pm \infty\}$ allora
+
+
+    \begin{equation*}
+        \lim_{x\to x_0} f(x) = l \Leftrightarrow \lim_{x\to x_0^-} f(x) = \lim_{x\to x_0^+} f(x) = l
+    \end{equation*}
+\end{teorema}
+
+
+\begin{proof}
+    Visto che è una doppia implicazione dovremmo controllare entrambe le direzione
+
+    ($\implies$) quindi, usando la definizione di limite, sappiamo che 
+
+    \begin{center}
+        $\forall U \subseteq \mathbb{R}$ intorno di $l$, $\exists I\subseteq \mathbb{R}$ intorno di $x_0$ tale che $\forall x \in A \cap I \setminus \{x_0\} \; \Rightarrow \; f(x) \in U$
+    \end{center}
+
+
+    Se quindi sappiamo che l'affermazione è vera (per ipotesi) $\forall x \in A \cap I \setminus \{x_0\}$ allora varrà anche per un qualunque sottoinsieme, quindi la proposizione sarà vera anche per l'insieme 
+    $A \cap I \cap (x_0, +\infty)$ e anche  per $A \cap I \cap (-\infty, x_0)$, che sono gli insiemi compresi nella definizione di limite destro e limite sinistro. Pertanto saranno valide anche le definizioni di limite destro e sinistro e quindi è verificata l'implicazione.
+
+
+    ($\impliedby$) Se quindi esiste il limite destro e sinistro sappiamo che
+
+    \begin{itemize}
+        \item per limite destro
+
+        \begin{center}
+            $\forall U \subseteq \mathbb{R}$ intorno di $l$, $\exists I_1\subseteq \mathbb{R}$ intorno di $x_0$ tale che $\forall x \in A \cap I_1 \cap (x_0, +\infty) \; \Rightarrow \; f(x) \in U$
+        \end{center}
+
+        \item per limite sinistro
+
+        \begin{center}
+            $\forall U \subseteq \mathbb{R}$ intorno di $l$, $\exists I_2\subseteq \mathbb{R}$ intorno di $x_0$ tale che $\forall x \in A \cap I_2 \cap (-\infty,x_0 ) \; \Rightarrow \; f(x) \in U$
+        \end{center}
+    \end{itemize}
+
+    Se noi ora, per il teorema di intersezione degli intorni, possiamo trovare un $I = I_1 \cap I_2$ intorno di $x_0$. tale che vale
+\begin{center}
+    $\forall U \subseteq \mathbb{R}$ intorno di $l$, $\exists I\subseteq \mathbb{R}$ intorno di $x_0$ tale che $\forall x \in A \cap I \cap ((-\infty,x_0 ) \cup (x_0, +\infty)) \; \Rightarrow \; f(x) \in U$
+
+\end{center}
+    
+    che scrivendo meglio
+
+\begin{center}
+    $\forall U \subseteq \mathbb{R}$ intorno di $l$, $\exists I\subseteq \mathbb{R}$ intorno di $x_0$ tale che $\forall x \in A \cap I \setminus \{x_0 \} \; \Rightarrow \; f(x) \in U$
+
+\end{center}
+
+    Che valida la definizione di $\displaystyle\lim_{x\to x_0} f(x) = l$.
+\end{proof}
+\newpage
+\begin{esercizio}{}{}
+
+    Sia $f(x)=\begin{cases}
+        1 & \text{se } x<0 \\ 
+        200 & \text{se } x=0 \\
+         1 & \text{se } x>0 \\
+    \end{cases}$ Allora 
+
+    \begin{equation*}
+        \lim_{x\to 0} f(x) = 1
+    \end{equation*}
+    
+\end{esercizio}
+
+
+\begin{proof}
+    Partiamo analizzando il limite sinistro 
+
+    \[
+    \lim_{x\to 0^-} f(x)
+    \]
+
+
+    Ora nell'intervallo $(-\infty, 0)$ la funzione assume sempre il valore $1$, quindi possiamo sostiture la funzione nel limite nel suo valore
+
+    \[
+    \lim_{x\to 0^-} f(x)=\lim_{x\to 0^-} 1 = 1
+    \]
+
+    Ora facciamo lo stesso ragionamendo con il limite destro, e visto che anche nell'intervallo $(0, +\infty)$ assume sempre il valore $1$ possiamo calcolare il limite destro
+
+    \[
+    \lim_{x\to 0^+} f(x)=\lim_{x\to 0^+} 1 = 1
+    \]
+
+    Ora, dato che il limite destro e sinistro esistono e sono uguali, per il teorema visto prima sappiamo che esiste anche il limite
+
+     \[
+    \lim_{x\to 0} f(x)= 1
+    \]
+
+    \textbf{N.B.} questo è un esempio lampante per capire che il limite studia "ciò che è attorno" ad un punto di una funzione, e al limite "non tiene conto" di cosa fa la funzione nel punto effettivo, come in questo esempio anche se $f(0) = 200$ non influenza il valore del limite. 
+\end{proof}
+
+\newpage
+
+\begin{teorema}{Limite del Valore Assoluto di una Funzione}{}
+
+\addcontentsline{toc}{section}{Limite del Valore Assoluto di una Funzione}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $x_0 \in \mathbb{R}$ punto di accumulazione di $f(x)$ e $l \in \mathbb{R}$ allora
+
+    \begin{equation*}
+        \lim_{x\to x_0} f(x) = l \implies \lim_{x\to x_0} |f(x)| = |l|
+    \end{equation*}
+\end{teorema}
+
+
+\begin{proof}
+    Inizialmente iniziamo a studiare per $l>0$, quindi per ipotesi sappiamo che 
+
+    \begin{center}
+        $\forall U \subseteq \mathbb{R}$ intorno di $l$ $\exists I\subseteq \mathbb{R}$ intorno di $x_0 :
+        x \in I \implies f(x) \in U$
+    \end{center}
+
+    E dobbiamo trovare che
+
+    \begin{center}
+        $\forall U \subseteq \mathbb{R}$ intorno di $|l|$ $\exists I\subseteq \mathbb{R}$ intorno di $x_0 :
+        x \in I \implies |f(x)| \in U$
+    \end{center}
+
+    Partiamo dalla prima proposizione, e riscriviamo meglio la prima parte
+
+    \begin{center}
+        $\forall U \subseteq \mathbb{R}$ intorno di $l$ 
+    \end{center}
+
+    \[
+     \forall \varepsilon > 0 \;\;\; |f(x)-l| < \varepsilon
+    \]
+
+    \[
+        l-\varepsilon < f(x) < l+\varepsilon
+    \]
+
+    Notiamo che se scegliamo $\varepsilon<l$ allora $l-\varepsilon > 0$ e quindi
+
+    \[
+       0 < l-\varepsilon < f(x) < l+\varepsilon
+    \]
+
+    Quindi ora tutti i termini sono positivi allora, per la seguente proprietà del valore assoluto $a >0 \implies a = |a|$ possiamo sostituire il termine $f(x)$ con $|f(x)|$
+
+    \[
+       0 < l-\varepsilon < |f(x)| < l+\varepsilon
+    \]
+
+    Ora riprendiamo il la condizione che abbiamo imposto $\varepsilon < l$, noi sappiamo, per definizione di limite, che $\varepsilon > 0$ quindi $0<\varepsilon < l$ di conseguenza $l>0$, quindi abbiamo scoperto che che anche $l$ è positivo e che quindi possiamo usare la stessa proprietà di che abbiamo usato per $|f(x)|$ per mettere il modulo
+
+    \[
+       |l|-\varepsilon < |f(x)| < |l|+\varepsilon
+    \]
+
+    Con questo siamo riusciti a verificare il limite perchè $|f(x)|$ è in un introno di $|l|$. Ora però ci manca da controllare i casi con $l<0$, e per evitare di usare la dimostrazione classica di limite usiamo uno stratagemma
+
+    \[
+    \lim_{x\to x_0} f(x) = l < 0 \iff \lim_{x\to x_0} -f(x) = -l > 0 
+    \]
+
+    Ora visto che $l<0$ allora $-l > 0$ e di conseguenza possiamo usare il teorema che abbiamo appena verificato (e possiamo applicarlo proprio perchè $-l > 0$)
+    
+    \[
+    \lim_{x\to x_0} -f(x) = -l  \implies \lim_{x\to x_0} |-f(x)|  = |-l| \implies \lim_{x\to x_0} |f(x)|  = |l|
+    \]
+    
+    E quindi anche per $l<0$ il risultato rimane lo stesso e quindi il limite è verificato $\forall l \neq 0$. 
+\end{proof}
+
+\addcontentsline{toc}{section}{Limite del Valore Assoluto di una Funzione (caso $l=0$)}
+
+\begin{teorema}{Limite del Valore Assoluto di una Funzione (caso $l=0$)}{}
+
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $x_0 \in \mathbb{R}$ punto di accumulazione di $f(x)$ e $l \in \mathbb{R}$ allora
+
+    \begin{equation*}
+        \lim_{x\to x_0} f(x) = 0 \iff \lim_{x\to x_0} |f(x)| = 0
+    \end{equation*}
+\end{teorema}
+
+\begin{proof}
+    Visto che c'è una dobbia implicazione controlliamo entrambi i sensi
+
+    ($\implies$) Sappiamo che $\forall \varepsilon >0$ $\exists\delta>0$ tale che
+
+    \[
+    f(x) \in (-\varepsilon, \varepsilon) \;\;\;\; \forall x \in (x_0-\delta,x_0+\delta)
+    \]
+
+    Riscrivendo meglio il primo termine
+
+    \[
+    -\varepsilon < f(x) <  \varepsilon
+    \]
+
+    Usiamo le proprietà dei valori assoluti
+
+    \[
+    -\varepsilon < f(x) <  \varepsilon \iff 0\leq|f(x)| < \varepsilon
+    \]
+
+    Quindi ora sappiamo che il limite è verificato per $0\leq |f(x)| < \varepsilon$ ma quindi possiamo "allargare" l'intervallo e varrà comunque la proprietà e quindi
+
+    \[
+    0\leq |f(x)| < \varepsilon \implies -\varepsilon < |f(x)| < \varepsilon
+    \]
+
+    E di conseguenza è verificato il limite $\lim_{x\to x_0} |f(x)| = 0$.
+
+    ($\impliedby$) Sappiamo che $\forall \varepsilon >0$ $\exists\delta>0$ tale che
+
+    \[
+    |f(x)| \in (-\varepsilon, \varepsilon) \;\;\;\; \forall x \in (x_0-\delta,x_0+\delta)
+    \]
+
+    Riscrivendo meglio il primo termine
+
+    \[
+    -\varepsilon < |f(x)| <  \varepsilon
+    \]
+
+    Possiamo togliere la parte $-\varepsilon$ perchè il valore assoluto è sempre positivo
+
+    \[
+    |f(x)| <  \varepsilon \iff -\varepsilon < f(x) <  \varepsilon
+    \]
+
+     e quindi è verificato il limite $\displaystyle\lim_{x\to x_0} f(x) = 0$.
+\end{proof}
+
+\textbf{N.B.} faccendo un riassunto dei due teoremi appena fatti sappiamo che 
+
+\[
+\lim_{x\to x_0} f(x) = l \implies \lim_{x\to x_0} |f(x)| = |l|
+\]\[
+\lim_{x\to x_0} f(x) = l \iff \lim_{x\to x_0} |f(x)| = 0
+\]
+
+E vedendo bene notiamo che se $\displaystyle\lim_{x\to x_0} |f(x)| = |l|$ allora non possiamo dire nulla su $\displaystyle\lim_{x\to x_0} f(x) = l $. Vediamo un esempio.
+
+\newpage
+\begin{esercizio}{}{}
+    Sia $f(x)=\begin{cases}
+        1 & \text{se }x\leq 0 \\
+        -1 & \text{se }x> 0
+    \end{cases}$  
+
+\end{esercizio}
+possiamo notare che 
+    \[
+    |f(x)|=\begin{cases}
+        |1| & \text{se }x\leq 0 \\
+        |-1| & \text{se }x> 0
+    \end{cases} = \begin{cases}
+        1 & \text{se }x\leq 0 \\
+        1& \text{se }x> 0
+    \end{cases} \iff  |f(x)| = 1
+    \]
+
+    E che quindi 
+
+    \[
+    \lim_{x\to 0} |f(x)| = \lim_{x\to 0} 1 = 1
+    \]
+
+    Ora proviamo a vedere $\lim_{x\to 0} f(x)$, e visto che è una funzione definita a tratti facciamo il limite destro e sinistro. Partiamo con quello sinistro e vediamo che la funzione nell'intervallo $(-\infty, 0) $ assume il valore $1$ quindi
+
+    \[
+     \lim_{x\to 0^-} f(x) = \lim_{x\to 0^-} 1 = 1
+    \]
+
+    Con il limite destro e la nostra funzione nell'intervallo $(0, +\infty)$ assume il valore $-1$ e quindi
+
+    \[
+     \lim_{x\to 0^+} f(x) = \lim_{x\to 0^-} -1 = -1
+    \]
+
+    Notiamo che 
+    \[
+     \lim_{x\to 0^-} f(x) \ne \lim_{x\to 0^+} f(x) \implies\nexists\lim_{x\to 0} f(x)
+    \]
+    
+
+
+\begin{teorema}{ Permanenza del Segno}{}
+
+\addcontentsline{toc}{section}{Teorema della Permanenza del Segno}
+    Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f:A\to\mathbb{R}$, $x_0$ punto di accumulazione di $f(x)$ e $l=\lim_{x\to x_0} f(x)$ allora 
+
+    \begin{itemize}
+        \item Se $l>0$ allora $f(x) >0$ definitivamente per $x\to x_0$
+        \item Se $l<0$ allora $f(x) <0$ definitivamente per $x\to x_0$
+    \end{itemize}
+\end{teorema}
+
+\begin{proof}
+    Facciamo la dimostrazione per $l>0$, gli altri casi sono analoghi.
+
+    Per ipotesi sappiamo che il limite esiste, e pertanto 
+
+    \begin{center}
+        $\forall \varepsilon>0$ $\exists I$ intorno di $x_0$ tale che $f(x) \in (l-\varepsilon, l+\varepsilon) \;\;\; \forall x \in A\cap (I \setminus \{x_0\}) $
+    \end{center}
+
+    Se scelgo $\varepsilon < l$ avrò che 
+
+    \[
+    \varepsilon < l \implies l-\varepsilon >0 \implies 0 < l-\varepsilon < f(x)
+    \]
+
+    di conseguenza
+
+    \[
+    f(x) > 0 \;\;\; \forall x \in A\cap (I \setminus \{x_0\})
+    \]
+
+    
+\end{proof}
+\newpage
+
+\addcontentsline{toc}{section}{Limiti e Relazioni d'Ordine I}
+\begin{teorema}{limiti e relazioni d'ordine I}
+    Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f,g:A\to\mathbb{R}$, $x_0$ punto di accumulazione in $A$ e $l_1=\lim_{x\to x_0} f(x)$ e   $l_2=\lim_{x\to x_0} g(x)$
+
+  
+   \begin{center}
+       $l_1 < l_2 \implies f(x) < g(x)$ definitivamente per $x\to x_0$
+   \end{center}
+    
+
+\end{teorema}
+
+\begin{proof}
+    Dato che $l_1 < l_2$ sappiamo che $l_1 \ne l_2$ e quindi per il teorema di separazione degli intorni $\exists U_1$ intorno di $l_1$ e $\exists U_2$ intorno di $l_2$ tali che 
+
+    \begin{equation}\label{eq:not}
+        U_1 \cap U_2 = \varnothing
+    \end{equation}
+
+    Ora per definizione di limite sappiamo 
+
+    \begin{itemize}
+        \item $\forall U_1$ intorno di $l_1$ $\exists I_1$ intorno di $x_0$ tale che $f(x) \in U_1 \;\;\; \forall x \in A\cap (I_1 \setminus \{x_0\}) $
+
+        \item $\forall U_2$ intorno di $l_2$ $\exists I_2$ intorno di $x_0$ tale che $g(x) \in U_2 \;\;\; \forall x \in A\cap (I_2 \setminus \{x_0\}) $
+    \end{itemize}
+
+
+    Ora se dato che abbiamo $I_1$ e $I_2$ intorni di $x_0$, per il teorema di intersezione sappiamo 
+
+   \begin{center}
+       $\exists I = I_1 \cap I_2$ intorno di $x_0$
+   \end{center}
+
+   E quindi nell'intorno $I$ varrà
+    
+    \begin{equation}\label{eq:fg}
+        f(x) \in U_1 \land g(x) \in U_2 \;\;\; \forall x \in A\cap (I \setminus \{x_0\}) 
+    \end{equation}
+
+    riscriviamo l'equazione (\ref{eq:not})
+
+    \[
+        (l_1 - \varepsilon_1,l_1 + \varepsilon_1) \cap (l_2 - \varepsilon_2,l_2 + \varepsilon_2)  = \varnothing 
+    \] 
+
+    Dato che per ipotesia sappiamo $l_1 < l_2$, cioò può accedere soltanto se 
+
+    \[
+    \mathunderline{red}{l_1 + \varepsilon_1 < l_2 - \varepsilon_2}
+    \]
+
+\vspace{-0.35cm}
+    Ora usiamo questa informazione e combiniamola con la formula (\ref{eq:fg})
+    
+    \[
+    f(x) \in (l_1 - \varepsilon_1,l_1 + \varepsilon_1)
+    \land g(x) \in (l_2 - \varepsilon_2,l_2 + \varepsilon_2)
+    \]
+    \[
+    \mathunderline{blue}{l_1 - \varepsilon_1 <f(x) < l_1 + \varepsilon_1} \land \mathunderline{blue}{l_2 - \varepsilon_2 <g(x)< l_2 + \varepsilon_2}
+    \]
+    \vspace{-0.35cm}
+    \[
+    \mathunderline{blue}{f(x) < l_1} +\mathunderline{red}{ \varepsilon_1 < l_2} - \mathunderline{blue}{\varepsilon_2 <g(x)}
+    \]
+    \vspace{-0.35cm}
+    \[
+    f(x) < g(x) \;\;\;\forall x \in A\cap (I \setminus \{x_0\}) 
+    \]
+\end{proof}
+
+\newpage
+
+\begin{teorema}{limiti e relazioni d'ordine II}{}
+
+\addcontentsline{toc}{section}{Limiti e Relazioni d'Ordine II}
+    Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f,g:A\to\mathbb{R}$, $x_0$ punto di accumulazione in $A$ e $l_1=\lim_{x\to x_0} f(x)$ e   $l_2=\lim_{x\to x_0} g(x)$
+
+  
+   \begin{center}
+       $f(x) \leq g(x)$ definitivamente per $x\to x_0 \implies l_1 \leq l_2 $
+   \end{center}
+    
+
+\end{teorema}
+
+\begin{proof}
+    La dimostrazione segue per assurdo, quindi supponiamo che $l_1 > l_2$, allora per il teorema della relazione d'ordine I sappiamo che 
+
+    \begin{center}
+       $l_1 > l_2 \implies f(x) > g(x)$ definitivamente per $x\to x_0$
+   \end{center}
+
+   Ma ciò va in contraddizione con le ipotesi iniziali $f(x) < g(x)$ pertanto è impossibile che $l_1> l_2$ e di conseguenza è vero che $l_1 \leq l_2$. 
+\end{proof}
+
+\begin{esercizio}{}{}
+    \textbf{N.B.} se $f(x) < g(x)$ non possiamo dire con certezza nulla su $l_1 < l_2$. Vediamo un esempio. Sia $f(x) = 0$ e $g(x) = x^2$. Noi sappiamo che 
+
+    \[
+    f(x) < g(x) \;\;\; \forall x \in \mathbb{R} \setminus \{0\}
+    \]
+
+    Ma i limiti per $x\to 0$ fanno $\displaystyle\lim_{x\to 0} f(x) =\lim_{x\to 0} g(x) = 0$.
+\end{esercizio}
+
+
+\begin{teorema}{Due Carabinieri}{}
+
+\addcontentsline{toc}{section}{Teorema dei due Carabinieri}
+    Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f,g,h:A\to\mathbb{R}$, $x_0$ punto di accumulazione in $A$ e $\lim_{x\to x_0} f(x)=\lim_{x\to x_0} h(x) = l$.
+
+    
+    \[
+    f(x) \leq g(x) \leq h(x) \implies \lim_{x\to x_0} g(x) = l
+    \]
+\end{teorema}
+
+\begin{proof}
+    Visto che $f(x)$ e $h(x)$ hanno limite, sappiamo che
+
+    \begin{itemize} 
+    \centering
+        \item $\forall U$ intorno di $l$ $\exists I_1$ intorno di $x_0$ tale che $f(x) \in U \;\;\; \forall x \in A\cap (I_1 \setminus \{x_0\}) $
+
+        \item $\forall U$ intorno di $l$ $\exists I_2$ intorno di $x_0$ tale che $h(x) \in U \;\;\; \forall x \in A\cap (I_2 \setminus \{x_0\}) $
+    \end{itemize}
+
+    Ora per il teorema di intersezione degli intorni sappiamo che
+
+    \begin{center}
+        $\exists I = I_1 \cap I_2$ intorno di $x_0$
+    \end{center}
+
+    In $I$ vale 
+
+    \[
+    f(x) \in U \land h(x) \in U \;\;\; \forall x \in A\cap (I \setminus \{x_0\})
+    \]
+
+    Pertanto sappiamo che 
+
+    \[
+    \mathunderline{red}{l - \varepsilon <f(x)} < l + \varepsilon \land  - \varepsilon <\mathunderline{red}{h(x) < l + \varepsilon}
+    \]
+\newpage
+    Combinando questa informazione con le ipotesi ($\mathunderline{blue}{f(x) \leq g(x) \leq h(x)}$ definitivamente per $x\to x_0$)
+
+    \[
+    \mathunderline{red}{l - \varepsilon <f}(\mathunderline{blue}{x)\leq g(x) \leq h }(\mathunderline{red}{x) < l + \varepsilon}
+    \]
+
+    Di conseguenza 
+
+    \[
+    l - \varepsilon < g(x) < l + \varepsilon\;\;\; \forall x \in A\cap (I \setminus \{x_0\})
+    \]
+
+    E questà è la definizione di limite, quindi questo implica che 
+
+    \[
+    \exists \lim_{x\to x_0} g(x) =  l
+    \]
+    
+\end{proof}
+
+
+\begin{corollario}{Teorema dei carabinieri II}{}
+Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f,g:A\to\mathbb{R}$, $x_0$ punto di accumulazione in $A$ e $f(x) \leq g(x)$ definitivamente per $x\to x_0$. Allora
+
+
+    \begin{itemize}
+    \centering
+        \item se $\displaystyle  \lim_{x\to x_0} f(x) = +\infty \implies \lim_{x\to x_0} g(x) = +\infty$
+        \item se $\displaystyle  \lim_{x\to x_0} g(x) = -\infty \implies \lim_{x\to x_0} f(x) = -\infty$
+    \end{itemize}
+
+\end{corollario}
+
+\begin{esercizio}{}{}
+    \[
+    \lim_{x\to 0} \frac{\sin(x)}{x} = 1
+    \]
+\end{esercizio}
+
+\begin{proof}
+Iniziamo disegnando una circonferenza unitaria e notiamo che
+
+\begin{center}
+    
+
+\begin{tikzpicture}
+  \begin{axis}[
+  xmin=0, xmax=1.3,
+ymin=0, ymax=1.3,
+axis equal,
+axis lines=middle,
+enlargelimits=false,
+clip=false,
+axis line style={-stealth, thick},
+ width=8cm
+]
+
+
+    % --- Circonferenza unitaria ---
+    \addplot[
+      domain=0:90,
+      samples=200,
+      black,
+       thick
+    ] ({cos(x)}, {sin(x)});
+
+    % --- Raggio ---
+    \addplot[gray, ultra thick] coordinates {(0,0) (1, {tan(40)})};
+
+
+    % --- Arco dell’angolo (sulla circonferenza) ---
+    \addplot[blue, ultra thick, domain=0:40, samples=100]
+      ({cos(x)}, {sin(x)});
+
+    % --- Seno (rosso, verticale) ---
+    \addplot[red, ultra thick] coordinates {({cos(40)}, 0) ({cos(40)}, {sin(40)})};
+
+
+
+    \addplot[green, ultra thick] coordinates {(1, 0) (1, {tan(40)})};
+
+    % --- Etichette ---
+    \node[blue] at (axis cs:{cos(40*0.7)+0.01}, {sin(40*0.7)+0.1}) {$x$};
+    \node[red] at (axis cs:{cos(40)-0.15},{sin(40)/2}) {$\sin(x)$};
+    \node[green!50!black, right] at (axis cs:1,0.84) {$\tan(x)$};
+
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+Dal grafico possiamo notare che in un intorno di 0 abbiamo che
+
+\[
+\sin(x) \leq x \le \tan(x)
+\]
+ \newpage
+Ora possiamo  dividere tutto per $\sin(x)$
+
+\[
+\frac{\sin(x)}{\sin(x)} \leq \frac{x}{\sin(x)} \le \frac{\tan(x)}{\sin(x)}
+\]
+
+\[
+1 \leq \frac{x}{\sin(x)} \le \frac{1}{\cos(x)}
+\]
+
+inveriamo tutti i membri (e anche i segni delle disequazioni)
+
+\[
+1 \geq \frac{\sin(x)}{x} \ge \cos(x)
+\]
+
+
+Ora vediamo che $\displaystyle\lim_{x\to 0} 1 = 1$,$\displaystyle\lim_{x\to 0} \cos(x) = \cos(0)=  1$, e visto che le due funzioni estreme tendono entrambe a $1$ e la funzione $\frac{\sin(x)}{x} $ è compresa tra le altre due funzioni definitivamente per $x\to x_0$ allora per il teorema dei carabinieri abbiamoche 
+
+\[
+\lim_{x\to 0} \frac{\sin(x)}{x} = 1
+\]
+
+\end{proof}
+\vspace{-0.50cm}
+\begin{teorema}{Algebra dei Limiti Finiti}{}
+\addcontentsline{toc}{section}{Algebra dei Limiti Finiti}
+    Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f,g:A\to\mathbb{R}$, $x_0$ punto di accumulazione in $A$ e $\displaystyle\lim_{x\to x_0} f(x)=l_1\in\mathbb{R}$ e $ \displaystyle\lim_{x\to x_0} g(x) = l_2 \in \mathbb{R}$. Allora
+
+\begin{enumerate}[label=(\roman*)]
+
+    \centering
+    \item $\displaystyle\lim_{x\to x_0} [f(x)+g(x)] = l_1+l_2$
+    \item $\displaystyle \lim_{x\to x_0} [f(x)\cdot g(x)] = l_1\cdot l_2$
+    \item $\displaystyle\lim_{x\to x_0} \frac{f(x)}{g(x)} = \frac{l_1}{l_2}$ (se $l_2 \ne 0$)
+\end{enumerate}
+
+\end{teorema}
+
+
+\begin{proof}
+    $(i)$ Partiamo scrivendo le definizioni di limite come sappiamo 
+    \begin{itemize} 
+    \centering
+        \item $\forall \varepsilon>0$ $\exists I_1$ intorno di $x_0$ tale che $f(x) \in (l_1-\varepsilon, l_1+\varepsilon) \;\;\; \forall x \in A\cap (I_1 \setminus \{x_0\}) $
+
+        \item $\forall \varepsilon>0$ $\exists I_2$ intorno di $x_0$ tale che $g(x) \in (l_2-\varepsilon, l_2+\varepsilon) \;\;\; \forall x \in A\cap (I_2 \setminus \{x_0\}) $
+    \end{itemize}
+
+    Quindi per il teorema di intersezione trovo un $I= I_1 \cap I_2$ intorno di $x_0$ tale che
+
+    \[
+    \forall \varepsilon>0\;\; f(x) \in (l_1-\varepsilon, l_1+\varepsilon) \land g(x) \in (l_2-\varepsilon, l_2+\varepsilon)
+    \]
+    \[
+    \mathunderline{red}{l_1-\varepsilon <f(x)< l_1+\varepsilon} \;\;\;\;\; \mathunderline{blue}{l_2-\varepsilon<g(x)< l_2+\varepsilon}
+    \]
+    \[
+    \mathunderline{red}{l_1-\varepsilon} +\mathunderline{blue}{l_2-\varepsilon}<\mathunderline{red}{f(x)}+\mathunderline{blue}{g(x)}< \mathunderline{red}{l_1+\varepsilon}+\mathunderline{blue}{l_2+\varepsilon}
+    \]
+    \[
+    (l_1 +l_2)-2\varepsilon<f(x)+g(x)< (l_1+l_2)+2\varepsilon
+    \]
+
+E notiamo che $f(x)+g(x)$ è in un intorno di $l_1+l_2$ e che quindi il limite è verificato.
+
+\textbf{N.B.} anche se c'è scritto $2\varepsilon$ e non solamente $\varepsilon$ va bene lo stesso, anche perchè l'espressione all'interno della definizione di limite è $\forall \varepsilon>0$ e quindi anche se moltiplico $\varepsilon$ per una qualsiasi costante, potrò rappresentare qualunque intorno.
+
+\newpage
+
+$(ii)$ Partiamo analizzando il seguente modulo, e compensando il termine $l_1\cdot g(x)$
+
+
+\[
+    |f(x)\cdot g(x) - l_1\cdot l_2| = |f(x)\cdot g(x)-\mathunderline{red}{l_1\cdot g(x)} + \mathunderline{red}{l_1\cdot g(x)} - l_1\cdot l_2| \]
+
+    Ora raccogliamo alcuni termini
+\[
+|f(x)\cdot \mathunderline{red}{g(x)}-l_1\cdot \mathunderline{red}{g(x)} + \mathunderline{blue}{l_1}\cdot g(x) - \mathunderline{blue}{l_1}\cdot l_2| = |(f(x)-l_1)\cdot \mathunderline{red}{g(x)} + \mathunderline{blue}{l_1}\cdot (g(x)-l_2)|
+\]
+
+Applichiamo la disuguaglianza triangolare
+
+
+\begin{align*}
+    |(f(x)-l_1)\cdot g(x) + l_1\cdot (g(x)-l_2)| &\leq |(f(x)-l_1)\cdot g(x)| + |l_1\cdot (g(x)-l_2)| \\
+    &=|(f(x)-l_1)|\cdot |g(x)| + |l_1|\cdot |(g(x)-l_2)| 
+\end{align*}
+
+Ora dalle definizioni di limite sappiamo che $|f(x)-l_1| < \varepsilon$ e  $|g(x)-l_2| < \varepsilon$
+
+\[
+\mathunderline{red}{|(f(x)-l_1)|}\cdot |g(x)| + |l_1|\cdot \mathunderline{blue}{|(g(x)-l_2)|} < \mathunderline{red}{\varepsilon}\cdot |g(x)| + |l_1|\cdot\mathunderline{blue}{\varepsilon} = \varepsilon\cdot(|g(x)| + |l_1|)
+\]
+
+Per valutare la quanto vale $|g(x)|$ facciamo qualche sistemazione algebrica
+
+\begin{align*}
+    |g(x)| &= |g(x) - l_2 + l_2|\\
+    &\leq | g(x) - l_2| + |l_2|\\
+    &< \varepsilon + |l_2|
+\end{align*}
+
+Con questo possiamo semplificare
+
+\[
+\varepsilon\cdot (|g(x)| + |l_1|)< \varepsilon\cdot ((\varepsilon+|l_2|) + |l_1|)
+\]
+
+Per semplificare possiamo scegliere $\varepsilon<1$
+
+\[
+\varepsilon\cdot ((1+|l_2|) + |l_1|) = \varepsilon\cdot (1+|l_2| + |l_1|)
+\]
+
+Facendo un po' di ordine vediamo che 
+
+\[
+|f(x)\cdot g(x) - l_1\cdot l_2| < \varepsilon\cdot (1+|l_2| + |l_1|)
+\]
+
+
+Di Conseguenza abbiamo trovato che $|f(x)\cdot g(x) - l_1\cdot l_2|$ è sempre minore di $\varepsilon$, appatto di qualche costante proporzionale. Infatti $1+|l_2| + |l_1|$ è sempre maggiore di $1$ e quindi il limite è verificato.
+
+\newpage
+
+\textit{($iii$)} Per verificare questo limite è necessario verificare che 
+
+\begin{equation}\label{eq:divLim1}
+\lim_{x\to x_0} \frac{1}{g(x)} = \frac{1}{l_2}
+\end{equation}
+
+Perchè se fosse vero potremmo usare il teorema del prodotto perchè
+
+\begin{equation}\label{eq:divLim2}
+    \lim_{x\to x_0} \frac{f(x)}{g(x)} = \lim_{x\to x_0}\left[  f(x)\cdot \frac{1}{g(x)}\right] = l_1 \cdot \frac{1}{l_2} = \frac{l_1}{l_2}
+\end{equation}
+
+
+Quindi proviamo a verificare (\ref{eq:divLim1}) con la definizione di limite
+
+\[
+    \left| \frac{1}{g(x)} - \frac{1}{l_2} \right| = \left| \frac{l_2 - g(x)}{g(x)\cdot l_2}\right| = \frac{|g(x) - l_2|}{|g(x)||l_2|}
+\]
+
+
+Visto che il limite $\displaystyle\lim_{x\to x_0} g(x) = l_2$ è verificato per ipotesi, allora sappiamo $\exists I_1$ intorno di $x_0$ tale che $|g(x) - l_2|< \varepsilon$ $\forall x \in I$,  e quindi 
+
+\[
+\forall x \in I_1 \;\;\; \frac{|g(x) - l_2|}{|g(x)||l_2|} < \frac{\varepsilon}{|g(x)||l_2|}
+\]
+
+Ora per capire quanto vale $|g(x)|$ dobbiamo dividere i casi con $l_2 >0$ e $l_2 <0$, noi ora vedremo la dimostrazione per $l_2 >0$, l'altro caso è analogo.
+
+Quindi sfruttando il teorema della permanenza del segno noi sappiamo che $exists I_2$ intorno di $x_0$ tale che $g(x)>0 $ $\forall x \in I_2$, di conseguenza sarà vero anche che $\forall x \in I_2$  $g(x) > \frac{l_2}{2}$, e quindi anche $\frac{1}{g(x)} < \frac{2}{|l_2|}$.
+
+Possiamo usare il teorema di intersezione degli intorno per trovare $I_3 = I_1 \cap I_2$ intorno di $x_0$ tale che 
+
+
+\[
+\forall x \in I_3 \;\;\; \frac{|g(x) - l_2|}{|g(x)||l_2|} < \frac{\varepsilon}{|g(x)||l_2|} = \frac{\varepsilon}{|l_2|} \cdot \frac{1}{|g(x)|} < \frac{\varepsilon}{|l_2|} \cdot \frac{2}{|l_2|} = \frac{2\varepsilon}{|l_2|^2}
+\]
+
+E che quindi 
+\[
+\left| \frac{1}{g(x)} - \frac{1}{l_2} \right|  < \frac{2\varepsilon}{|l_2|^2}
+\]
+
+Per lo stesso ragionamento fatto prima nel prodotto, abbiamo trovato che il limite è minore di $\varepsilon$ appatto di una costante moltiplicativa.
+
+Quindi abbiamo trovato un intevallo $I_3$ che verifica il limite $\displaystyle\lim_{x\to x_0} \frac{1}{g(x)} = \frac{1}{l_2}$ e che quindi usando anche il teorema del prodotto, si verifica il teorema della divisione, come visto nel punto (\ref{eq:divLim2}). Chiaramente visto che $g(x)$ è a denominatore è necessario che $g(x) \ne 0$ definitivamente per $x\to x_0$.
+\end{proof}
+
+\newpage 
+
+
+\addcontentsline{toc}{section}{Algebra dei Limiti Infiniti (Forme Determinate)}
+\begin{teorema}{Algebra dei Limiti Infiniti (Forme Determinate)}{}
+        Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f,g:A\to\mathbb{R}$, $x_0$ punto di accumulazione in $A$. Allora
+
+
+    \begin{enumerate}[label=(\roman*)]
+
+        \centering
+        \item 
+        Se $\displaystyle\lim_{x\to x_0} f(x) = \color{red}\pm \color{black}\infty$ e $g(x)$ è definitivamente limitata per $x\to x_0$ allora
+        \[\displaystyle\lim_{x\to x_0} [f(x)\pm g(x)] = \color{red}\pm \color{black}\infty\]
+
+    
+        \item Se $\displaystyle\lim_{x\to x_0} f(x) = 0$ e $g(x)$ è definitivamente limitata per $x\to x_0$ allora
+        \[\displaystyle\lim_{x\to x_0} [f(x)\cdot g(x)] = 0]\]
+
+        \item Se $\displaystyle\lim_{x\to x_0} f(x) = \color{red}\pm \color{black}\infty$ e $\exists c > 0 : g(x) \leq c$ definitivamente per $x\to x_0$ allora
+        \[\displaystyle\lim_{x\to x_0} [f(x)\cdot g(x)] = \color{red}\pm \color{black}\infty\]
+    
+        \item Se $\displaystyle\lim_{x\to x_0} f(x) = \color{red}\pm \color{black}\infty$ e $\exists c > 0 : 0 < g(x) \leq c$ definitivamente per $x\to x_0$ allora
+        \[\displaystyle\lim_{x\to x_0} \frac{f(x)}{g(x)} = \color{red}\pm \color{black}\infty\]
+    
+        \item Se $\displaystyle\lim_{x\to x_0} f(x) = \pm \infty$ e $g(x)$ è definitivamente limitata per $x\to x_0$ allora
+        \[\displaystyle\lim_{x\to x_0} \frac{g(x)}{f(x)} = 0\]
+
+        \item Se $\displaystyle\lim_{x\to x_0} f(x) = 0$, $f(x)$ è positiva definitivamente per $x\to x_0$ e $\exists c > 0 : g(x) > c$ definitivamente per $x\to x_0$ allora
+        \[\displaystyle\lim_{x\to x_0} \frac{g(x)}{f(x)} = +\infty\]
+        
+        \item Se $\displaystyle\lim_{x\to x_0} f(x) = 0$, $f(x)$ è negativa definitivamente per $x\to x_0$ e $\exists c > 0 : g(x) > c$ definitivamente per $x\to x_0$ allora
+        \[\displaystyle\lim_{x\to x_0} \frac{g(x)}{f(x)} = -\infty\]
+    \end{enumerate}
+
+
+    
+\end{teorema}
+
+\newpage
+
+\addcontentsline{toc}{section}{Esercizi sull'Algebra dei Limiti Infiniti}
+\begin{esercizio}{}{}
+    \[
+        \lim_{x \to +\infty} x^2 + \sin(x) = +\infty
+   \]
+\end{esercizio}
+
+\begin{proof}
+    Vediamo che 
+    \[
+    \lim_{x \to +\infty} x^2 = +\infty
+    \]
+
+    In più $|\sin(x)| \leq 1$ $\forall x \in \mathbb{R}$ e quindi lo è anche definitivamente per $x\to +\infty$, Quindi come nella casistica $(i)$ dell'algebra dei limiti finiti abbiamo che 
+\[\lim_{x \to +\infty} x^2 + \sin(x) = +\infty\]
+
+\end{proof}
+
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x \to +\infty} x(\sin(x)+2) = +\infty
+   \]
+\end{esercizio}
+
+\begin{proof}
+    Notiamo che 
+    \[
+    \lim_{x \to +\infty} x = +\infty
+    \]
+
+    In più $0< \sin(x) +2 \leq 3$ $\forall x \in \mathbb{R}$ e quindi lo è anche definitivamente per $x\to +\infty$, Quindi come nella casistica $(iv)$ dell'algebra dei limiti finiti abbiamo che 
+\[\lim_{x \to +\infty} x(\sin(x)+2) = +\infty\]
+
+\end{proof}
+
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x \to -2} \frac{x}{(x+2)^2} = +\infty
+   \]
+\end{esercizio} 
+
+
+
+\begin{proof}
+    Se proviamo a calcolare il limite notiamo che il denominatore tende a 0, mentre il numeratore tende a -2 quindi sembra di essere nella casistica ($vi$), controlliamo se le ipotesi sono verificate. 
+
+    In primis il teorema richiede che $f(x)$ sia positivo definitivamente per $x\to -2$, è questo è verificato sempre, infatti $(x+2)^2 > 0 \implies \forall x \ne -2 $. In più il numeratore ($x$) è limitato definitivamente per $x\to -2$, pertanto il teorema è applicabile e quindi 
+    \[
+        \lim_{x \to -2} \frac{x}{(x+2)^2} = +\infty
+   \]
+
+    \textbf{N.B.} Se il limite fosse stato $\displaystyle\lim_{x\to -2}\frac{x}{x+2}$ il teorema non sarebbe applicabile, perchè $x+2$ non è positiva definitivamente per $x\to -2$, perchè un qualsiasi intorno dalla parte sinistra sarebbe negativo e invece la parte destra sarebbe positiva. Pertanto non si può applicare il teorema ($vi$). Per risolverlo è necessario calcolare o il limite destro o sinistro, infatti in quei intorni ($x+2$) è positivo definitivamente. Quindi $\displaystyle\lim_{x\to -2^-}\frac{x}{x+2} = +\infty$ e $\displaystyle\lim_{x\to -2^+}\frac{x}{x+2} = -\infty$. E da questo notiamo che $\nexists \displaystyle\lim_{x\to -2}\frac{x}{x+2}$ perchè il limite destro e sinistro sono diversi.
+\end{proof}
+
+
+\addcontentsline{toc}{section}{Forme Indeterminate}
+\begin{definizione}{Forme Indeterminate}
+    SSi dicono \textbf{Forme Indeterminate} tutti i limiti che hanno come risultato 
+
+   \[
+\begin{array}{@{\qquad}c@{\qquad}c@{\qquad}c@{\qquad}}
+\bigl[\dfrac{\infty}{\infty}\bigr] & \bigl[\dfrac{0}{0}\bigr] & \bigl[\infty \cdot 0\bigr] \\[6pt]
+\bigl[+\infty - \infty\bigr] & \bigl[\infty^{0}\bigr] & \bigl[1^{0}\bigr]
+\end{array}
+\]
+
+
+    E il risultato effettivo del limite non si può determinare subito, ma sono necessarie altre operazioni.
+
+    \textbf{N.B.} Pertanto due limiti che hanno inizialmente la stessa forma indeterminata posso avere limiti diversi, vediamo degli esempi.
+\end{definizione}
+
+
+
+\addcontentsline{toc}{section}{Primi Esercizi sulle Forme Indeterminate}
+
+\begin{esercizio}{}{}
+    \[
+    \lim_{x\to +\infty} \frac{2x^2+3x-1}{x^2 - 1}
+    \]
+\end{esercizio}
+
+
+\begin{proof}
+    Se proviamo a calcolare il limite vediamo che il numeratore tende a $+\infty$ e lo stesso si può dire per il denominatore. Quindi caschiamo nella forma indeterminata del tipo $\bigl[\dfrac{\infty}{\infty}\bigr]$. Pertanto dobbiamo fare delle manipolazioni, proviamo raccogliendo il grado maggiore ($x^2$) al numeratore e lo stesso facciamo anche a demonimatore
+    \[
+    \lim_{x\to +\infty} \frac{2x^2+3x-1}{x^2 - 1} = \lim_{x\to +\infty} \frac{x^2\left(2+\frac{3}{x}-\frac{1}{x^2}\right)}{x^2\left(1-\frac{1}{x^2}\right)}
+    \]
+
+    Notiamo che il termine $x^2$ si può semplificare
+
+    \[
+     \lim_{x\to +\infty} \frac{\cancel{x^2}\left(2+\frac{3}{x}-\frac{1}{x^2}\right)}{\cancel{x^2}\left(1-\frac{1}{x^2}\right)} = \lim_{x\to +\infty} \frac{2+\frac{3}{x}-\frac{1}{x^2}}{1-\frac{1}{x^2}}
+    \]
+
+    Ora possiamo calcolare il limite infatti i termini $\frac{3}{x}$, $\frac{1}{x^2}$ tendono a 0 quando $x\to \infty$ (questo grazie alle forme determinate) e quindi 
+
+    \[
+        \lim_{x\to +\infty}
+        \frac{2+\circled[red!75!black]{\frac{3}{x}}-\circled[red!75!black]{\frac{1}{x^2}}}{1-\circled[red!75!black]{\frac{1}{x^2}}} = \frac{2 + 0 - 0}{1 - 0} = 2
+        \]
+
+
+    Quindi 
+
+     \[
+    \lim_{x\to +\infty} \frac{2x^2+3x-1}{x^2 - 1} = 2
+    \]
+
+    Quindi noi siamo partiti con una forma indeterminata e siamo arrivati a una soluzione che è 2. Ora vediamo che un altro limite sempre con la stessa forma indeterminata, ma avremo un altro risultato.
+\end{proof}
+
+\newpage
+
+\begin{esercizio}{}{}
+    \[
+    \lim_{x\to +\infty} \frac{x^3+5x}{x^2 +7x - 1}
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Notiamo subito che esce la stessa forma indeterminata: $\bigl[\dfrac{\infty}{\infty}\bigr]$ e quindi proviamo a fare la stessa tecnica di prima
+
+    \[
+    \lim_{x\to +\infty} \frac{x^3+5x}{x^2 +7x - 1} = \frac{x^3\left(1 + \frac{5}{x^2}\right)}{x^2\left(1 + \frac{7}{x}-\frac{1}{x^2}\right)} = \frac{x\left(1 + \frac{5}{x^2}\right)}{1 + \frac{7}{x}-\frac{1}{x^2}} 
+    \]
+
+    Ora come prima i termini con la $x$ a denominatore tendono a 0, però a numeratore è rimasto una $x$ che tende a $+\infty$ quindi il numeratore, per la proprietà ($iii$) delle forme determinate, tende a $+\infty$, il denominatore invece tende a 1, e quindi per la proprietà ($iv$) il limite tende a $+\infty$.
+\[
+    \lim_{x\to +\infty} \frac{x^3+5x}{x^2 +7x - 1} = +\infty
+    \]
+
+    \textbf{N.B.} inizialmente anche questo limite era della forma $\bigl[\dfrac{\infty}{\infty}\bigr]$ ma abbiamo avuto un risultato diverso da prima, e quindi quando ci troviamo davanti una forma indetermnata sappiamo che dobbiamo rimaneggiare i termini.
+\end{proof}
+
+
+\begin{esercizio}{}{}
+    \[
+    \lim_{x\to +\infty} \sqrt{x^2+x+1} - x
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Proviamo a calcolare il limite ma notiamo subito che viene fuori una forma indeterminata della forma $\bigl[+\infty - \infty\bigr]$ e quindi dobbiamo fare dei rimaneggiamenti. Ricordandoci la formula della somma per differenza ($(A+B)(A-B)=A^2-B^2$) possiamo moltiplicare e dividere per il binomio coniugato
+    \begin{align*}
+        \lim_{x\to +\infty} \sqrt{x^2+x+1} - x &=     \lim_{x\to +\infty} (\sqrt{x^2+x+1} - x) \cdot \frac{\sqrt{x^2+x+1} + x}{\sqrt{x^2+x+1} + x} \\ 
+        &=  \lim_{x\to +\infty}   \frac{(\sqrt{x^2+x+1} - x)(\sqrt{x^2+x+1} + x)}{\sqrt{x^2+x+1} + x} \\ 
+        &= \lim_{x\to +\infty} \frac{(\sqrt{x^2+x+1})^2 - x^2}{\sqrt{x^2+x+1} + x} \\
+        &= \lim_{x\to +\infty} \frac{ x^2+x+1 - x^2}{\sqrt{x^2+x+1} + x} \\
+        &= \lim_{x\to +\infty} \frac{ x+1 }{\sqrt{x^2+x+1} + x}
+    \end{align*}
+    
+    Dopo tutti questi maneggiamenti sembra che abbiamo solo che complicato il limite, però li abbiamo fatto diventare in un limite nella forma $\bigl[\dfrac{\infty}{\infty}\bigr]$ che però abbiamo già visto come risolvere, infatti basta che raccogliamo il grado maggiore 
+
+    \[
+    \lim_{x\to +\infty} \frac{ x+1 }{\sqrt{x^2+x+1} + x} = \lim_{x\to +\infty} \frac{ x\left(1+\frac{1}{x}\right) }{\sqrt{x^2\left(1+\frac{1}{x}+\frac{1}{x^2}\right)} + x}
+    \]
+
+    Ora per "tirare fuori" $x^2$ dalla radice, dobbiamo ricordarci di mettere il modulo (perchè $\sqrt{x^2} = |x|$), però dato che noi stiamo analizzando per $x\to +\infty$ siamo sicuri che $x>0$ (per definizione di limite) e pertanto $|x| = x$
+
+    \[
+    \lim_{x\to +\infty} \frac{ x\left(1+\frac{1}{x}\right) }{x\sqrt{\left(1+\frac{1}{x}+\frac{1}{x^2}\right)} + x} = \lim_{x\to +\infty} \frac{ x\left(1+\frac{1}{x}\right) }{x\cdot\left(\sqrt{1+\frac{1}{x}+\frac{1}{x^2}} + 1\right)} = \lim_{x\to +\infty} \frac{ 1+\frac{1}{x}}{\sqrt{1+\frac{1}{x}+\frac{1}{x^2}} + 1}
+    \]
+
+    Possiamo calcolare il limite 
+
+    \[
+    \lim_{x\to +\infty} \frac{ 1+\circled[red!75!black]{\frac{1}{x}}}{\sqrt{1+\circled[red!75!black]{\frac{1}{x}}+\circled[red!75!black]{\frac{1}{x^2}}} + 1} = \frac{1 + 0}{\sqrt{1 + 0 +0 } +1} = \frac{1}{2}
+    \]
+\end{proof}
+
+\begin{esercizio}{}{}
+    Dato un generico polinomio $P(x) = \displaystyle\sum_{i=0}^{n} a_i x^i$ dove $a_i$ sono i coefficenti del polinomio e $n$ il grado del polinomio. Con $a_n > 0$
+    \[
+        \lim_{x\to +\infty} P(x)
+    \]
+\end{esercizio}
+
+
+\begin{proof}
+    Il limite è nella forma $[+\infty -\infty]$ e quindi procediamo raccogliendo il grado maggiore ($x^n$)
+
+    \[
+        \lim_{x\to +\infty} P(x) = \lim_{x\to +\infty} (a_0 + a_1x + ... + a_nx^n) = \lim_{x\to +\infty} x^n\left(\frac{a_0}{x^n} + \frac{a_1}{x^{n-1}} + ... + a_n\right) 
+    \]
+
+    Ora possiamo calcolare il limite infatti tutti i termini dentro le parentesi infatti tendonon tutti a 0. Quindi il termine dentro le parentesi tende a $a_0$ e che quindi moltiplicato per $x^n\to +\infty$  tente a $ +\infty$. Se invece $a_n<0$ il limite tendeva a $-\infty$.
+
+    \[
+        \lim_{x\to +\infty} x^n\left(\circled[red!75!black]{\frac{a_0}{x^n}} + \circled[red!75!black]{\frac{a_1}{x^{n-1}}} + \circled[red!75!black]{...} + a_n\right)  = +\infty
+    \]
+
+    Quindi con questo iniziamo a capire che nei polinomi quello che ci interessa quando $x\to \infty$ è il termine con il grado più alto ($x^n$), intatti per risolvere questo esercizio i termini più piccoli di $x^n$ è come se li avessimo trascurati. Infatti è vera la seguente equazione $\displaystyle\lim_{x\to \infty} P(x) =\lim_{x\to \infty} a_nx^n$ per qualsiasi polinomio $P(x)$ e $\forall a_n \in \mathbb{R}\setminus \{0\}$. 
+\end{proof}
+
+
+\addcontentsline{toc}{section}{Teorema del Cambio di Variabile}
+\begin{teorema}{Cambio di Variabile}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $\varnothing \ne B \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $g:B \to \mathbb{R}$ e $x_0 \in \mathbb{R} \cup \{\pm \infty\}$ un punto di accumulazione in $f(A)\cap B$ allora se $\exists \displaystyle\lim_{x\to x_0} f(x) = y_0$, con $y_0$ punto di accumulazione in $B$   e se è vera almeno una delle due proposizioni 
+    \begin{itemize}
+        \item $f(x) \ne y_0$ definitivamente per $x\to x_0$
+        \item $\displaystyle \lim_{y\to y_0} g(y) = g(y_0)$ \;\;\;\;\; (continuità di $g(x)$)
+    \end{itemize}
+
+    Allora 
+    \[
+        \lim_{x\to x_0} g(f(x)) = \lim_{y\to y_0} g(y)
+    \]
+\end{teorema}
+
+
+\begin{esercizio}{}{}
+    Ora vediamo perchè è fondamentale che almeno una dei due requisiti sia vero, proviamo con un controesempio. Infatti sia $f(x)=5$ e $g(x)=\begin{cases}
+        2 & \text{se } x\ne 5 \\
+        1  & \text{se } x= 5 \\
+    \end{cases}$ e vediamo subito che nessuna delle due proposizioni è vera. 
+\end{esercizio}
+
+\begin{proof}
+    Infatti il limite effettivo, senza usare il teorema del cambio di variabile è
+    \[
+    \lim_{x\to x_0} g(f(x)) = \lim_{x\to x_0} g(5) = \lim_{x\to x_0} 1 = 1 
+    \]
+
+    Invece se proviamo a usare il cambio di variabile, dobbiamo prima calcolare $y_0$
+    \[
+    \lim_{x\to x_0} f(x) = 5\;\;\; [=y_0]
+    \]
+
+    Ora il limite diventa
+    \[
+    \lim_{x\to x_0} g(f(x)) = \lim_{y\to 5} g(y) = 2
+    \]
+
+    Quindi usando solo le funzioni composte il limite è uscito 1, mentre con il teorema del cambio di variabile è venuto fuori 2, cosa impossibile per il teorema di unicità del limite e pertanto il teorema del cambio di variabile non si può applicare in questo esercizio, proprio perchè mancavano i criteri richiesti dal teorema stesso. 
+    
+\end{proof}
+
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to 0} \frac{\sin(x^2)}{x^2}
+    \]
+\end{esercizio}
+
+
+\begin{proof}
+    Vediamo che assomiglia molto al limite $\displaystyle\lim_{x\to 0} \frac{\sin(x)}{x} = 1$ l'unica cosa che cambia è che abbiamo $x^2$ anzichè $x$, quindi proviamo a cambiare la variabile $x^2$ con $y$, quindi dobbiamo calcolare 
+    \[
+        \lim_{x\to 0} x^2 = 0\;\;\; [=y_0]
+    \]
+    Visto che sono valide tutte le condizioni del teorema del cambio di variabile, infatti $x^2 \ne 0$ in un intorno di $0$. Mentre l'altra condizione non è valida infatti non si può calcolare in $0$ la funzione $g(y)=\frac{\sin(y)}{y}$, però non ci interessa perchè il teorema richiede almeno una delle due proposizioni. 
+
+    Quindi il limite diventa
+    \[
+        \lim_{x\to 0} \frac{\sin(x^2)}{x^2} = \lim_{y\to 0} \frac{sin(y)}{y} = 1
+    \]
+\end{proof}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to +\infty} e^{\frac{1}{x^2-x}}
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Al denominatore abbiamo una forma del tipo $\bigl[+\infty - \infty \bigr]$, quindi proviamo a vedere come si comporta quel denominatore per $x\to+\infty$. Per calcolarlo possiamo usare la proprietà dei polinomi che abbiamo visto nell'esercizio dei polinomi, infatti basta tenere il grado maggiore ($x^2$)
+    \[
+        \lim_{x\to +\infty} x^2 - x = \lim_{x\to +\infty} x^2  = +\infty \;\;\; [=y_0]
+    \]
+    Vediamo che il denominatore ha limite e quindi possiamo fare il cambio di variabile e possiamo applicarlo perchè è valida la prima condizione, infatti $x^2-x \ne +\infty$ sempre, mentre la seconda non può mai essere vera perchè non possiamo calcolare $g(+\infty)$, perchè ricordiamo che $\pm \infty$ non sono punti di nessun dominio
+    \[
+    \lim_{x\to +\infty} e^{\frac{1}{x^2-x}} = \lim_{y\to +\infty} e^{\frac{1}{y}}
+    \]
+    Ora possiamo riutilizzare il teorema del cambio di variabile, visto che non siamo ancora in un limite noto, e quindi vediamo come si comporta la frazione all'esponente
+    \[
+    \lim_{y\to+\infty} \frac{1}{y} = 0 \;\;\; [=z_0]
+    \]
+    Visto che ha limite e rispetta sempre il primo criterio e anche il secondo del teorema del cambio di variabile, allora possiamo riapplicare il teorema e finalmente calcolare il limite.
+    \[
+    \lim_{y\to +\infty} e^{\frac{1}{y}} = \lim_{z\to 0} e^z = 1
+    \]
+    Quindi 
+    \[
+    \lim_{x\to +\infty} e^{\frac{1}{x^2-x}} = 1
+    \]
+\end{proof}
+
+\newpage
+
+\addcontentsline{toc}{section}{Limite di funzioni Monotone caso Finito}
+\begin{teorema}{Limite di funzioni Monotone}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $I\subseteq \mathbb{R}$ intorno di $x_0 \in \mathbb{R}$ tale che $f(x)$ è monotona in $I$
+
+    \begin{itemize}
+        \item Se $f(x)$ è monotona crescente allora 
+        \[
+        \lim_{x\to x_0^-} f(x) = \sup\{f(A \cap I \cap (-\infty, x_0))\}
+        \]
+        \[
+        \lim_{x\to x_0^+} f(x) = \inf\{f(A \cap I \cap (x_0, +\infty))\}
+        \]
+        \item Se $f(x)$ è monotona decrescente allora 
+        \[
+        \lim_{x\to x_0^-} f(x) = \inf\{f(A \cap I \cap (-\infty, x_0))\}
+        \]
+        \[
+        \lim_{x\to x_0^+} f(x) = \sup\{f(A \cap I \cap (x_0, +\infty))\}
+        \]
+    \end{itemize}
+\end{teorema}
+
+\begin{proof}
+    Faremo la dimostrazione del caso $f(x)$ è crescente e per il limite sinistro, gli altri casi sono analoghi.
+
+    Per ipotesi chiaramente supponiamo che esista $S=\sup\{f(A \cap I \cap (-\infty, x_0))\}$, quindi per definizione di superiore, sappiamo che il superiore ($S$) è più grande di qualsiasi elemento nell'insieme (cioè $f(x)$), quindi
+    \begin{equation}\label{eq:extr1}
+        f(x) \leq S \;\;\;\;\; \forall x  \in A \cap I \cap (-\infty, x_0)
+    \end{equation}
+
+    Ora usando la caratterizzazione degli estremi e sappiamo che 
+    \[
+    f(\hat{x}) > S - \varepsilon \;\;\; \forall \varepsilon > 0 \;\; \exists \hat{x} \in A \cap I \cap (-\infty, x_0)
+    \]
+    Poi, per monotonia della funzione sappiamo che se $\hat{x} < x$ allora 
+    \begin{equation}\label{eq:extr2}
+        f(\hat{x}) < f(x) \implies S - \varepsilon < f(\hat{x}) < f(x) \;\;\; \forall \varepsilon > 0
+    \end{equation}
+    Ora combinando le informazioni (\ref{eq:extr1}) e (\ref{eq:extr2}) sappiamo che
+    \[
+    S-\varepsilon < f(x) < S \;\;\; \forall \varepsilon > 0 \;\; \forall x \in A \cap I \cap (-\infty, x_0)
+    \]
+    Visto che $\varepsilon >0$ sappiamo che $S < S+ \varepsilon$ e quindi 
+    \[
+    S-\varepsilon < f(x) < S < S+ \varepsilon
+    \]
+    \[
+    S-\varepsilon < f(x) < S + \varepsilon \;\;\; \forall \varepsilon > 0 \;\; \forall x \in A \cap I \cap (-\infty, x_0)
+    \]
+    E questa non è altro che la definizione di limite
+    \[
+        \lim_{x\to x_0^-} f(x) = \sup\{f(A \cap I \cap (-\infty, x_0))\}
+    \]
+\end{proof}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to x_0} a^x = a^{x_0}
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Questo è vero proprio perchè se $a>1$ la funzione $a^x$ è monotona crescente, se $a=1$ è costante e invece se $a<1$ la funzione è monotona decrescente, quindi si può sempre applicare il teorema.
+\end{proof}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to x_0} \log_ax = \log_ax_0 \;\; \;\; \; \forall x_0 > 0
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Possiamo fare lo stesso ragionamento del per il logaritmo, infatti se $a>1$ la funzione $\log_ax$ è monotona crescente, se $a=1$ è costante e invece se $a<1$ la funzione è monotona decrescente, quindi si può sempre applicare il teorema. L'unica cosa che cambia dall'esercizio precedente è che $x_0$ deve essere positivo, perche il dominio di $\log_ax$ è $\forall x > 0$, e di conseguenza qualsiasi punto $x_0 < 0$ non è punto di accumulazione e pertanto non può essere calcolato il limite in quel punto.
+\end{proof}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to x_0} x^\alpha = x_0^\alpha \;\; \;\; \; \forall x_0 \ne 0 \;\; \forall \alpha \in \mathbb{R}
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Se $\alpha > 0$ avremo una potenza che è sempre monotona crescente per $x_0 > 0$, mentre se $\alpha$ è pari allora la funzione sarà decrescente per $x_0 < 0$ mentre se $\alpha$ è dispari la funzione è crescente anche per $x < 0 $ . Se $\alpha = 0$ allora avremo una funzione costante e se $\alpha<0$ la funzione sarà del tipo $\frac{1}{x^\alpha}$ che sarà monotona decrescente.     
+\end{proof}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to 0^+} x^\alpha = \begin{cases}
+            0 & \text{se } \alpha > 0 \\
+            +\infty & \text{se } \alpha < 0 \\
+        \end{cases}
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Questo è un caso particolare dell'esercizio precedente, infatti se $x\to 0^+$ allora con $\alpha>0$ avremo una forma del tipo $0^\alpha$ che chiaramente tende a 0, mentre se $\alpha < 0$ la funzione diventa $\frac{1}{x^{|\alpha|}}$ che fa tendere il denominatore a $0^+$ e che quindi fa tendere la funzione a $+\infty$.    
+\end{proof}
+
+
+\addcontentsline{toc}{section}{Limite di funzioni Monotone caso Infinito}
+\begin{teorema}{Limite di funzioni Monotone caso Infinito}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $I\subseteq \mathbb{R}$ intorno di $\pm \infty $ tale che $f(x)$ è monotona in $I$
+
+    \begin{itemize}
+        \item Se $f(x)$ è monotona crescente allora 
+        \[
+        \lim_{x\to +\infty} f(x) = \sup\{f(A \cap I)\}
+        \]
+        \[
+        \lim_{x\to -\infty} f(x) = \inf\{f(A \cap I )\}
+        \]
+        \item Se $f(x)$ è monotona decrescente allora 
+        \[
+        \lim_{x\to +\infty} f(x) = \inf\{f(A \cap I )\}
+        \]
+        \[
+        \lim_{x\to -\infty} f(x) = \sup\{f(A \cap I)\}
+        \]
+    \end{itemize}
+\end{teorema}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to +\infty} a^x = \begin{cases}
+            +\infty & \text{se } a > 1 \\
+            1 & \text{se } a = 1 \\
+            0 & \text{se } 0< a < 1 \\
+        \end{cases}
+    \]
+\end{esercizio}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to -\infty} a^x = \begin{cases}
+            0 & \text{se } a > 1 \\
+            1 & \text{se } a = 1 \\
+            +\infty & \text{se } 0< a < 1 \\
+        \end{cases}
+    \]
+\end{esercizio}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to +\infty} log_a(x) = \begin{cases}
+            +\infty & \text{se } a > 1 \\
+            -\infty & \text{se } 0< a < 1 \\
+        \end{cases}
+    \]
+\end{esercizio}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to \pm\infty} |x|^\alpha = \begin{cases}
+            +\infty & \text{se } \alpha > 0 \\
+            1 & \text{se } \alpha = 0 \\
+            0 & \text{se } \alpha < 0 \\
+        \end{cases}
+    \]
+\end{esercizio}
+
+
+
+\newpage
+\begin{teorema}{Potenza di Funzioni}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$ e $f,g:A\to \mathbb{R}$, $x_0$ punto di accumulazione in $A$
+
+    \[
+        \lim_{x\to x_0} f(x) ^ {g(x)} 
+    \]
+\end{teorema}
+
+\begin{proof}
+    Per calcolare questo limite possiamo usare la continuità dell'esponenziale. Perchè il limite lo possiamo calcolare come
+    \[
+        f(x) ^ {g(x) }  = e ^ {\log\bigl({f(x) ^ {g(x)}}\bigr)} = e ^ {g(x) \cdot \log({f(x)}) }
+    \]
+
+    ora con il cambio di variabile possiamo fare 
+    \[
+    \lim_{x\to x_0} g(x) \cdot \log({f(x)}) = y_0
+    \]
+    \[
+        \lim_{x\to x_0} f(x) ^ {g(x)} = \lim_{x\to x_0} e ^ {\log\bigl({f(x) ^ {g(x)}}\bigr)} = \lim_{y\to y_0} e^y = e^{y_0}
+    \]
+\end{proof}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to +\infty} x ^ {\frac{1}{\log(x+1)}} 
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Usiamo il ragionamento dell'esercizio precedente, con il caso $f(x) = x$, $g(x) = \frac{1}{log(x+1)}$
+    \[
+        x ^ {\frac{1}{\log(x)}} = e ^ {\log\bigl(x ^ {\frac{1}{\log(x+1)}}\bigr)}= e ^ {\frac{1}{\log(x+1)} \cdot \log(x)} =e ^ {\frac{\log(x)}{\log(x+1)} } 
+    \]
+    ora calcoliamo il limite dell'esponente
+    \[
+        \lim_{x\to +\infty} = \frac{log(x)}{log(x+1)}
+    \]
+    Questo limite è della forma $\bigl[\frac{\infty}{\infty}\bigr]$ e pertanto proviamo a raggruppare come nei polinomio
+    \[
+        \lim_{x\to +\infty} = \frac{\log(x)}{\log(x+1)}  
+        = \lim_{x\to +\infty}  \frac{\log(x)}{\log(x\bigl(1+\frac{1}{x}\bigr))} 
+    \]
+    \[
+         = \lim_{x\to +\infty}\frac{\log(x)}{\log (x) + \log\bigl(1+\frac{1}{x}\bigr)} 
+         = \lim_{x\to +\infty}\frac{1}{1 + \frac{\log\bigl(1+\frac{1}{x}\bigr)}{\log(x)}}
+    \]
+    Ora il termine $\log\bigl(1+\frac{1}{x}\bigr)$ tende a 0, invece $\log(x)$ tende a $+\infty$, quindi complessivamente la frazione tende a 0 e quindi possiamo calcolare il limite e sostituirlo  
+    \[
+    \lim_{x\to +\infty}\frac{1}{1 + \circled[red]{\frac{\log\bigl(1+\frac{1}{x}\bigr)}{\log(x)}}} = \frac{1}{1+0} = 1 \implies \lim_{y\to 1} e^y = e^1 = e
+    \]
+\end{proof}
+
+
+\begin{definizione}{Numero di Nepero ($e$)}{}
+    \[
+        e := \lim_{x\to +\infty} \left(1 + \frac{1}{x}\right)^{x}
+    \]
+\end{definizione}
+\begin{esercizio}{}{}
+    \[
+    \lim_{x\to -\infty} \left(1 + \frac{1}{x}\right)^{x}
+    \]
+\end{esercizio}
+\begin{proof}
+    Per vedere come tende la funzione a $-\infty$ possiamo provare usando il cambio di variabile con $y=-x$ per provare a ricondurci alla definizione del numero di Nepero
+    \[
+        \lim_{x\to -\infty} \left(1 + \frac{1}{x}\right)^{x} = \lim_{y\to +\infty} \left(1 + \frac{1}{-y}\right)^{-y}  
+    \]
+    Ora racciamo qualche riarrangiamento 
+\[
+        \lim_{y\to +\infty} \left(1 + \frac{1}{-y}\right)^{-y}  =  \lim_{y\to +\infty} \left(\frac{-y + 1}{-y}\right)^{-y} =   \lim_{y\to +\infty} \left(\frac{y - 1}{y}\right)^{-y} = \lim_{y\to +\infty} \left(\frac{y}{y-1}\right)^{y}
+    \]
+    Il denominatore $y-1$ è molto scomodo, quindi proviamo a sostituirlo con $z=y-1$
+    \[
+\lim_{y\to +\infty} \left(\frac{y}{y-1}\right)^{y} = \lim_{z\to +\infty} \left(\frac{z+1}{z}\right)^{z+1} = \lim_{z\to +\infty} \left(1 + \frac{1}{z}\right)^{z+1}
+    \]
+    Per sistemare l'esponente basta usare la proprietà degli esponenti e l'algebra dei limiti per il prodotto
+    \[
+        \lim_{z\to +\infty} \left(1 + \frac{1}{z}\right)^{z+1} = \lim_{z\to +\infty} \left(1 + \frac{1}{z}\right)^{z} \cdot \left(1 + \frac{1}{z}\right) = \lim_{z\to +\infty} \left(1 + \frac{1}{z}\right)^{z} \cdot \lim_{z\to +\infty} \left(1 + \frac{1}{z}\right)
+    \]
+    Il primo limite tende a $e$ per la definizione di numero di Nepero, mentre nel secondo limite il termine ($\frac{1}{z}$) tende a 0 e quindi complessivamente il limite tende a 1
+    \[
+    \lim_{z\to +\infty} \left(1 + \frac{1}{z}\right)^{z} \cdot \lim_{z\to +\infty} \left(1 + \circled[red]{\frac{1}{z}}\right) = e \cdot 1 = e
+    \]
+    Quindi notiamo che il limite tende ad $e$ anche per $x\to-\infty$, pertanto possiamo modificare la definizione con
+    \[
+    e = \lim_{x\to \pm\infty} \left(1 + \frac{1}{x}\right)^{x}
+    \]
+\end{proof}
+\newpage
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to 0} = (1+x)^{\frac{1}{x}}
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Per risolvere questo limite dobbiamo usare un cambio di variabile con $y = \frac{1}{x}$ però dobbiamo stare attenti infatti per valori di $x\to 0^+ \implies y\to +\infty$ mentre $x\to 0^- \implies y\to -\infty$ quindi dobbiamo studiare in due casi separati. Indichiamo con $(i)$ per il caso $y\to+\infty$  e $(ii)$ per il caso $y\to-\infty$ 
+    \[
+        (i) \;\;\; \lim_{x\to 0^+} = (1+x)^{\frac{1}{x}} = \lim_{y\to +\infty} = \left(1+\frac{1}{y}\right)^{y} = e
+    \] 
+     \[
+        (ii) \;\;\; \lim_{x\to 0^-} = (1+x)^{\frac{1}{x}} = \lim_{y\to -\infty} = \left(1+\frac{1}{y}\right)^{y} = e
+    \]
+    
+    Vediamo che nonostante abbiamo dovuto dividere in due casistiche separate il limite tende allo stesso valore, e che quindi per il teorema della relazione tra limite e limite destro/sinistro sappiamo che
+    \[
+    \lim_{x\to 0} = (1+x)^{\frac{1}{x}} = e
+    \]
+\end{proof}
+
+\addcontentsline{toc}{section}{Limiti Notevoli}
+\begin{definizione}{Limiti Notevoli}{}
+    Si definiscono Limiti Notevoli tutti i limiti della seguente forma. (Le dimostrazione le vediamo subito dopo)
+    \begin{enumerate}[label=(\roman*)]
+        \centering
+        \item $\displaystyle\lim_{x\to 0} \frac{\sin(x)}{x} = 1$ (Già dimostrato)
+        \item $\displaystyle\lim_{x\to 0} \frac{1-\cos(x)}{x^2} = \frac{1}{2}$
+        \item $\displaystyle\lim_{x\to 0} \frac{\tan(x)}{x} = 1$
+        \item $\displaystyle\lim_{x\to +\infty} \left(1 + \frac{\alpha}{x}\right)^{x} = e^\alpha$  $\forall \alpha \in \mathbb{R}$
+        \item $\displaystyle\lim_{x\to 0} \frac{\log(1+x)}{x} = 1$
+        \item $\displaystyle\lim_{x\to 0} \frac{e^x-1}{x} = 1$ 
+    \end{enumerate}
+\end{definizione}
+\newpage
+\begin{esercizio}{}{}
+    \[
+    \lim_{x\to 0} \frac{1-\cos(x)}{x^2} = \frac{1}{2}
+    \]
+\end{esercizio}
+\begin{proof}
+    Si vede subito che è una forma $\bigl[\frac{0}{0}\bigr]$ e però non sembra riconducibile a nessun limite tra quelli che abbiamo visto, però proviamo a a "trasformare" il coseno in seno , visto che del seno sappiamo un limite notevole $(i)$. Per farlo dobbiamo ricordarci la formula fondamentale della trigonometria: $\cos^2(x) + \sin^2(x) = 1$
+    \begin{align*}
+    \lim_{x\to 0} \frac{1-\cos(x)}{x^2} &= \lim_{x\to 0} \frac{1-\cos(x)}{x^2} \cdot \frac{1+\cos(x)}{1+\cos(x)} = \lim_{x\to 0} \frac{1-\cos^2(x)}{x^2} \cdot \frac{1}{1+\cos(x)} \\
+    &= \lim_{x\to 0} \frac{\sin^2(x)}{x^2} \cdot \frac{1}{1+\cos(x)} = \lim_{x\to 0} \left(\frac{\sin(x)}{x}\right)^2 \cdot \frac{1}{1+\cos(x)}
+    \end{align*}
+    Ora il primo termine, visto che è il limite notevole $(i)$, tende a 1, mentre il secondo tende a $\frac{1}{2}$
+    \[
+    \lim_{x\to 0} \left(\frac{\sin(x)}{x}\right)^2 \cdot \frac{1}{1+\cos(x)} = (1)^2 \cdot \frac{1}{1+1} = \frac{1}{2}
+    \]
+\end{proof}
+
+\begin{esercizio}{}{}
+    \[
+    \frac{\tan(x)}{x} = 1
+    \]
+\end{esercizio}
+\begin{proof}
+    Questo è molto semplice infatti basta usare la definizione di tangente ($\tan(x) = \frac{\sin(x)}{\cos(x)}$)
+    \[
+    \lim_{x\to 0}\frac{\tan(x)}{x} = \lim_{x\to 0}\frac{\frac{\sin(x)}{\cos(x)}}{x} = \lim_{x\to 0}\frac{\sin(x)}{x} \cdot \frac{1}{\cos(x)} = 1\cdot \frac{1}{1} = 1
+    \]
+\end{proof}
+
+\begin{esercizio}{}{}
+ \[
+ \lim_{x\to +\infty} \left(1 + \frac{\alpha}{x}\right)^{x}
+ \]   
+\end{esercizio}
+
+\begin{proof}
+    Questo chiaramente assomiglia molto alla definizione di $e$, soltanto che c'è un $\alpha$ di troppo. Possiamo provare a sostituire ma notiamo una cosa, infatti se vogliamo sostituire $\alpha y = x$ dobbiamo distinguere i casi $\alpha > 0$, $\alpha = 0$, $\alpha < 0$.  Studiamo i singoli casi e numeriamoli rispettivamente $(i)$,$(ii)$,$(iii)$
+    \[
+    (i) \;\;\; \lim_{x\to +\infty} \left(1 + \frac{\alpha}{x}\right)^{x} = \lim_{y\to +\infty} \left(1 + \frac{1}{y}\right)^{\alpha y} = \lim_{y\to +\infty} \left(\left(1 + \frac{1}{y}\right)^{y}\right)^\alpha = (e)^\alpha = e^\alpha
+    \]
+
+    \[
+    (ii) \;\;\; \lim_{x\to +\infty} \left(1 + \frac{0}{x}\right)^{x} =  \lim_{x\to +\infty} 1 ^{x} = 1 \;\;\; [=e^0]
+    \]
+
+    \[
+    (iii) \;\;\; \lim_{x\to +\infty} \left(1 + \frac{\alpha}{x}\right)^{x} = \lim_{y\to -\infty} \left(1 + \frac{1}{y}\right)^{\alpha y} = \lim_{y\to -\infty} \left(\left(1 + \frac{1}{y}\right)^{y}\right)^\alpha = (e)^\alpha = e^\alpha
+    \]
+\end{proof}
+
+\begin{esercizio}{}{}
+    \[
+    \lim_{x\to 0} \frac{\log(1+x)}{x} = 1
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Per risolvere questo basta usare le proprietà dei logaritmi
+    \[
+\lim_{x\to 0} \frac{\log(1+x)}{x} = \lim_{x\to 0} \frac{1}{x} \cdot \log(1+x) = \lim_{x\to 0} \log\left((1+x)^{\frac{1}{x}}\right) = \log(e) = 1
+    \]
+\end{proof}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to 0} \frac{e^x-1}{x} = 1
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Questo invece è un pò più complicato, infatti non abbiamo visto limiti di questo. Però possiamo provare con una sostituzione $y = \log(x)$ e vediamo che succede, ricordandoci che se $x\to0$ allora $y\to -\infty$
+    \[
+        \lim_{x\to 0} \frac{e^x-1}{x} = \lim_{y\to -\infty} \frac{e^{\log(y)}-1}{\log(y)} = \lim_{y\to -\infty} \frac{y-1}{\log(y)}
+    \]
+    Ora assomiglia al limite dell'esercizio precedente, soltanto che all'interno dell'logaritmo abbiamo $y$ e non $y+1$, quindi per farlo "sbucare" fuori possiamo fare un'altra sostituzione $z=y+1$
+    \[
+    \lim_{y\to -\infty} \frac{y-1}{\log(y)} = \lim_{z\to -\infty} \frac{z}{\log(z+1)}
+    \] 
+    Adesso il limite è riconducibile a limite notevole $(v)$
+    \[
+    \lim_{z\to -\infty} \frac{z}{\log(z+1)} = \lim_{z\to -\infty} \frac{1}{\frac{\log(z+1)}{z}} = \frac{1}{1} = 1
+    \]
+\end{proof}
+
+\newpage
+
+\addcontentsline{toc}{section}{Definizione di Funzioni Asintotiche}
+\begin{definizione}{Funzioni Asintotiche}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di accumulazione in $A$ e se
+
+    \begin{itemize}
+        \centering
+        \item $f(x)\ne 0$, $g(x) \ne 0$ definitivamente per $x\to x_0$
+        \item $\displaystyle \exists \lim_{x\to x_0} \frac{f(x)}{g(x)} = 1$
+    \end{itemize}
+
+    Allora diciamo che "$f(x)$ è asintotica per $x\to x_0$ a $g(x)$" e lo indichiamo con il simbolo
+    \[
+        f(x) \sim g(x) \;\;\;\;\; x\to x_0
+    \]
+\end{definizione}
+
+\begin{esempio}{}{}
+    \[
+        \sin(x) \sim x \;\;\;\;\; x\to 0
+    \]
+\end{esempio}
+
+\begin{proof}
+    Dai limiti notevoli sappiamo che $\displaystyle\lim_{x\to 0} \frac{\sin(x)}{x}$, sappiamo inoltre che $\sin(x) \ne 0$ definitivamente per $x\to 0$ e lo stesso vale per $x \ne 0$. Pertanto possiamo dire che 
+    \[
+        \sin(x) \sim x \;\;\;\;\; x\to 0
+    \] 
+
+    \textbf{N.B.} questo ragionamento lo possiamo fare per tutti i limiti notevoli, quindi sarà vero anche $\log(1+x) \sim x$ per $x\to 0$, $\tan(x) \sim x$ per $x\to 0$, $e^x -1 \sim x$ per $x\to 0$ (che lo possiamo scrivere anche come $e^x \sim 1+ x$).  
+\end{proof}
+
+\begin{esempio}{}{}
+    \[
+        \cos(x) \sim 1-\frac{x^2}{2} \;\;\;\;\; x\to 0
+    \]
+\end{esempio}
+
+\begin{proof}
+    Per il limite notevole del coseno dobbiamo fare qualche ragionameto in più, infatti il limite fa come risultato $\frac{1}{2}$ e non 1, quindi non possiamo dire nulla sull'asintoticità, ma possiamo fare qualche mageggio, infatti
+    \[
+        \lim_{x\to 0} \frac{1-\cos(x)}{x^2} = \frac{1}{2} \implies \lim_{x\to 0} \frac{1-\cos(x)}{\frac{x^2}{2}} = 1
+    \]
+    Dopo questo riarrangiamento possiamo dire che 
+    \[
+    1 - \cos(x) \sim \frac{x^2}{2} \;\;\;\;\; x \to 0
+    \]
+    Che possiamo riscrivere come
+    \[
+    \cos(x) \sim 1-\frac{x^2}{2} \;\;\;\;\; x\to 0
+    \]
+\end{proof}
+\newpage
+
+\addcontentsline{toc}{section}{Teorema delle Proprità delle Funzioni Asintotiche}
+\begin{teorema}{Proprietà delle Funzioni Asintotiche}{}
+     Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g, h, \hat{f}, \hat{g}:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$ 
+
+
+     $(i)$ se $f \sim g$ allora è vera una delle due proposizioni
+    \begin{itemize}
+        \item $f$ e $g$ hanno entrambe limite in $x_0$
+        \item $f$ e $g$ entrambe non hanno limite in $x_0$
+    \end{itemize}
+    $(ii)$ se $f \sim g$ e $h \sim g$ per $x\to x_0$ allora è vero che $f \sim h$ per $x\to x_0$
+\vspace{0.2cm}
+
+    $(iii)$ se $f \sim \hat{f}$ per $x\to x_0$, $g \sim \hat{g}$ per $x\to x_0$ allora sono vere entrambe le equivalenze:
+\[
+\begin{array}{c  @{\qquad\qquad}  c}
+f\cdot g \sim \hat{f}\cdot \hat{g} 
+&
+\dfrac{f}{g} \sim \dfrac{\hat{f}}{\hat{g}}
+\end{array}
+\]
+\end{teorema}
+
+\begin{proof}
+    Segue la dimostrazione del punto $(ii)$ e $(iii)$.
+
+    $(ii)$ Noi sappiamo che $f \sim g$ e che $g \sim h$ ma vogliamo vedere se è vero  che $f \sim h$, e se fosse vera quest'ultima equivalenza allora dovrebbe essere vero che 
+    \[
+        f \sim h \iff \lim_{x\to x_0} \frac{f(x)}{h(x)} = 1
+    \]
+    Quindi proviamo a vedere se il limite fa 1, e per farlo dividiamo e moltiplichiamo per $g(x)$
+    \[
+    \lim_{x\to x_0} \frac{f(x)}{h(x)} = \lim_{x\to x_0} \frac{f(x)}{h(x)} \cdot \frac{g(x)}{g(x)}  =  \lim_{x\to x_0} \frac{f(x)}{g(x)} \cdot \frac{g(x)}{h(x)}=  \lim_{x\to x_0}  \frac{f(x)}{g(x)} \cdot \frac{1}{\frac{h(x)}{g(x)}} 
+    \]
+    Ma visto che per ipotesi $f \sim g$ e $g \sim h$, allora i rapporti varranno 1, e pertanto il teorema è verificato
+    \[
+        \lim_{x\to x_0}  \frac{f(x)}{g(x)} \cdot \frac{1}{\frac{h(x)}{g(x)}}  = 1 \cdot \frac{1}{1} = 1
+    \]
+
+    $(iii)$ Riscriviamo $f\cdot g \sim \hat{f}\cdot \hat{g}$ usando la definizione di funzione asintotica
+    \[
+        f(x)\cdot g(x) \sim \hat{f}(x)\cdot \hat{g}(x) \iff \lim_{x\to x_0} \frac{f(x)\cdot g(x)}{\hat{f}(x)\cdot \hat{g}(x)} = 1
+    \]
+    Quindi per dimostrare il teorema basta controllare che il limite faccia 1, ma è molto semplice infatti se spezziamo la frazione e grazie alle ipotesi ($f \sim \hat{f}$ e $g \sim \hat{g}$) allora 
+    \[
+    \lim_{x\to x_0} \frac{f(x)\cdot g(x)}{\hat{f}(x)\cdot \hat{g}(x)} = \lim_{x\to x_0} \frac{f(x)}{\hat{f}(x)} \cdot \frac{g(x)}{\hat{g}(x)}  = \lim_{x\to x_0} \frac{f(x)}{\hat{f}(x)} \cdot  \lim_{x\to x_0}  \frac{g(x)}{\hat{g}(x)}  = 1 \cdot 1 = 1
+    \]
+    Il ragionamento è analogo per $\dfrac{f}{g} \sim \dfrac{\hat{f}}{\hat{g}}$.
+\end{proof}
+
+\end{document}
