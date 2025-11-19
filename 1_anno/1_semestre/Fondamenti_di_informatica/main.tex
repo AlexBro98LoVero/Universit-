@@ -99,8 +99,8 @@
 
 
 
-
-\addcontentsline{toc}{section}{Teorema del binomio di Newton}
+\section{Principio d'Induzione}
+\addcontentsline{toc}{subsection}{Teorema del binomio di Newton}
 \begin{teorema}{del binomio di Newton}{}
 \begin{equation*}
     (a+b)^n = \sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^{k} \quad \forall n \in \mathbb{N}_0
@@ -117,6 +117,7 @@ Facciamo una dimostrazione per induzione. Partiamo con la base induttiva, con $n
     1 &= 1 \cdot 1 \cdot 1 \\
     1 &= 1
 \end{align*}
+
 
 
 La base induttiva è stata verificata. Ora passiamo al passo, quindi supponiamo che $P(n)$ sia vero, e proviamo a vedere se è vero $P(n+1)$
@@ -222,7 +223,7 @@ In questa maniera siamo riusciti a dimostrare il passo indutttivo, visto che sia
 \end{proof}
 
 
-\addcontentsline{toc}{section}{Teorema dell'Irrazionalità di $\sqrt{2}$}
+\addcontentsline{toc}{subsection}{Teorema dell'Irrazionalità di $\sqrt{2}$}
 \begin{teorema}{Irrazionalità di $\sqrt{2}$}{}
     
 
@@ -268,14 +269,13 @@ In questa maniera siamo riusciti a dimostrare il passo indutttivo, visto che sia
 
 \newpage
 
+\section{Insiemistica}
 
 \begin{definizione}{Insieme Limitato}{}
-\addcontentsline{toc}{section}{Definizione di Insieme Limitato}
+\addcontentsline{toc}{subsection}{Definizione di Insieme Limitato}
 Dato $\varnothing \ne A \subseteq \mathbb{R} $ è detto
-
 \begin{itemize}
     \item \textbf{Superiorimente limitato} se  $\exists M \in \mathbb{R} : M \geq a \;\; \forall a \in A $
-    
     \item \textbf{Inferiormente limitato} se  $\exists m \in \mathbb{R} : m \leq a \;\; \forall a \in A $
 \end{itemize}
 
@@ -291,18 +291,15 @@ L'insieme $\{m: m \leq a \;\; \forall a \in A \}$ è detto \textbf{Insieme dei m
 
 \begin{definizione} {Massimo e Minimo}{}
 
-\addcontentsline{toc}{section}{Definizione di Massimo e Minimo}
+\addcontentsline{toc}{subsection}{Definizione di Massimo e Minimo}
 \noindent
 
 \begin{itemize}
     \item Un maggiorante $M$ di $ A \subseteq \mathbb{R} $ è detto \textbf{massimo} se $M \in A$
-
     \begin{equation}\label{eq:max}
        M=  max(A) = (M \geq a \;\; \forall a \in A)  \wedge M \in A
     \end{equation}
-
     \item Un minorante $m$ di $ A \subseteq \mathbb{R} $ è detto \textbf{minimo} se $m \in A$
-    
     \begin{equation} \label{eq:min1}
        m=  min(A) = (m \leq a \;\; \forall a \in A)  \wedge m \in A
     \end{equation}
@@ -316,7 +313,7 @@ L'insieme $\{m: m \leq a \;\; \forall a \in A \}$ è detto \textbf{Insieme dei m
 
 
 \begin{teorema}{Unicità dei Massimi e Minimi}{}
-\addcontentsline{toc}{section}{Teorema dell'unicità dei Massimi e Minimi}
+\addcontentsline{toc}{subsection}{Teorema dell'unicità dei Massimi e Minimi}
     Dato $\varnothing \ne A \subseteq \mathbb{R}$ se ammette un massimo o un minimo, essi sono \textbf{unici} 
 \end{teorema}
 
@@ -359,7 +356,7 @@ L'insieme $\{m: m \leq a \;\; \forall a \in A \}$ è detto \textbf{Insieme dei m
 
 
 \begin{definizione}{Estremi Superiore e Inferiore}{}
- \addcontentsline{toc}{section}{Definizione Estremi Superiori e Inferiore}
+ \addcontentsline{toc}{subsection}{Definizione Estremi Superiori e Inferiore}
     Dato $\varnothing \ne A \subseteq \mathbb{R} $ definiamo 
     \begin{itemize}
         \item \textbf{estremo superiore} di $A$ come il minore dei maggioranti.  
@@ -377,7 +374,7 @@ L'insieme $\{m: m \leq a \;\; \forall a \in A \}$ è detto \textbf{Insieme dei m
 
 \begin{teorema}{Relazione Massimi/Minimi e Estremi}{}
     Dato $\varnothing \ne A \subseteq \mathbb{R}$
-\addcontentsline{toc}{section}{Relazione Massimi/Minimi e Estremi}
+\addcontentsline{toc}{subsection}{Relazione Massimi/Minimi e Estremi}
     \begin{itemize}
         \item Se esiste $max(A)$, allora coincide con $sup(A)$
 
@@ -436,7 +433,7 @@ L'insieme $\{m: m \leq a \;\; \forall a \in A \}$ è detto \textbf{Insieme dei m
 
 \begin{teorema}{Caratterizzazione degli Estremi}{}
 
-\addcontentsline{toc}{section}{Caratterizzazione degli Estremi}
+\addcontentsline{toc}{subsection}{Caratterizzazione degli Estremi}
 Dato $\varnothing \ne A \subseteq \mathbb{R} $ se esiste $sup(A)$ oppure $inf(A)$ allora possiamo definirli anche come:
 
 
@@ -460,7 +457,7 @@ s \in \{m:m\leq a \;\; \forall a \in A \} \\
 \end{teorema}
     
 
-\addcontentsline{toc}{section}{Completezza di $\mathbb{R}$ \textit{I°} forma}
+\addcontentsline{toc}{subsection}{Completezza di $\mathbb{R}$ \textit{I}° forma}
 
 \begin{teorema}{Completezza di $\mathbb{R}$ \textit{I°} forma}{}
 
@@ -474,7 +471,7 @@ allora $\exists c \in \mathbb{R}$, detto \textbf{elemento separatore} tale che
     
 \end{teorema}
 
-\addcontentsline{toc}{section}{Completezza di $\mathbb{R}$ \textit{II°} forma}
+\addcontentsline{toc}{subsection}{Completezza di $\mathbb{R}$ \textit{II}° forma}
 \begin{teorema}{Completezza di $\mathbb{R}$ \textit{II°} forma}{}
 Dato $\varnothing \ne A \subseteq \mathbb{R}$ se è superiormente/inferiormente limitato allora ammette un estremo superiore/inferiore.
 
@@ -510,7 +507,7 @@ Dato $\varnothing \ne A \subseteq \mathbb{R}$ se è superiormente/inferiormente 
 \newpage
 
 
-\addcontentsline{toc}{section}{Definizione di Intorno}
+\addcontentsline{toc}{subsection}{Definizione di Intorno}
 \begin{definizione}{Intorno}
     Sia $r \in \mathbb{R} \;\cup \; \{\pm\infty\}$ allora
 
@@ -539,14 +536,14 @@ Dato $\varnothing \ne A \subseteq \mathbb{R}$ se è superiormente/inferiormente 
 
 
 \begin{teorema}{Intersezione degli introni}{}
-\addcontentsline{toc}{section}{Teorema di Intersezione degli Intorni}
+\addcontentsline{toc}{subsection}{Teorema di Intersezione degli Intorni}
 \noindent
 
     Sia $I_1, I_2 \subseteq \mathbb{R}$ intorni di $x_0$, allora anche $I = I_1 \;\cap\; I_2$ è intorno di $x_0$.
 \end{teorema}
 
 \begin{teorema}{Separazione degli introni}{}
-\addcontentsline{toc}{section}{Teorema di Separazione degli introni}
+\addcontentsline{toc}{subsection}{Teorema di Separazione degli introni}
 \noindent
 
     Sia $r_1, r_2 \in \mathbb{R} \;\cup \; \{\pm\infty\}$ allora $\exists I_1$ intorno di $r_1$ e $\exists I_2$ intorno di $r_2$ tali che $I_1 \;\cap\; I_2 = \varnothing$ 
@@ -554,7 +551,8 @@ Dato $\varnothing \ne A \subseteq \mathbb{R}$ se è superiormente/inferiormente 
 
 
 
-    \addcontentsline{toc}{section}{Definizione di punto di Accumulazione}
+
+    \addcontentsline{toc}{subsection}{Definizione di punto di Accumulazione}
 \begin{definizione}{Definizione di punto di Accumulazione}
 Sia $r\in \mathbb{R} \cup  \{\pm\infty\}$ è detto \textbf{punto di accumulazione} di $\varnothing \ne A \subseteq \mathbb{R}$ se
 \vspace{-0.25cm}
@@ -577,7 +575,7 @@ Sia $r\in \mathbb{R} \cup  \{\pm\infty\}$ è detto \textbf{punto di accumulazion
 
 
 
-\addcontentsline{toc}{section}{Definizione di punto di Accumulazione Destro/Sinistro}
+\addcontentsline{toc}{subsection}{Definizione di punto di Accumulazione Destro/Sinistro}
 \begin{definizione}{Accumulazione Destro/Sinistro}
     Sia $\varnothing \ne A \subseteq \mathbb{R}$, $r\in \mathbb{R}$ è detto 
 
@@ -674,11 +672,11 @@ Sia $r\in \mathbb{R} \cup  \{\pm\infty\}$ è detto \textbf{punto di accumulazion
 
 
 
-
+\section{Limiti}
 
 \begin{definizione}{Definizione di Limite}{}
 
-\addcontentsline{toc}{section}{Definizione di Limite}
+\addcontentsline{toc}{subsection}{Definizione di Limite}
     Dato $\varnothing \neq A \subseteq \mathbb{R}$, $x_0\in \mathbb{R} \cup  \{\pm\infty\}$ punto di accumulazione per $A$, $f:A\rightarrow\mathbb{R}$. Diciamo che $l  \in \mathbb{R} \;\cup \; \{\pm\infty\}$ è \textbf{limite di $f$ per $x\rightarrow x_0$} se
 
     \begin{center}
@@ -690,7 +688,7 @@ Sia $r\in \mathbb{R} \cup  \{\pm\infty\}$ è detto \textbf{punto di accumulazion
 
 \begin{teorema}{Unicità del limite}{}
 
-\addcontentsline{toc}{section}{Teorema di Unicità del Limite}
+\addcontentsline{toc}{subsection}{Teorema di Unicità del Limite}
     Sia $\varnothing \neq A \subseteq \mathbb{R}$, $x_0\in \mathbb{R}\cup \{\pm\infty\}$ punto di accumulazione per $A$, $f:A\rightarrow\mathbb{R}$. Se esiste il limite $f$ per $x\rightarrow x_0$ allora è unico. E lo si indica con:
 
     \begin{equation}
@@ -738,7 +736,7 @@ Sia $r\in \mathbb{R} \cup  \{\pm\infty\}$ è detto \textbf{punto di accumulazion
 \newpage
 
 \begin{esercizio}{}{}
-\addcontentsline{toc}{section}{Esercizi Dimostrazione Limite}
+\addcontentsline{toc}{subsection}{Esercizi Dimostrazione Limite}
     \begin{equation*}
         \lim_{x\to x_0} 2x+3 = 2x_0 +3
     \end{equation*}    
@@ -1250,7 +1248,7 @@ Una implicazione è sempre vera quando implica vero (vedi tabella di verità del
 
 \begin{definizione}{Limite Destro e Sinistro}{}
     
-\addcontentsline{toc}{section}{Definizione di Limite Destro e Sinistro}
+\addcontentsline{toc}{subsection}{Definizione di Limite Destro e Sinistro}
 
     Sia $\varnothing \neq A \subseteq \mathbb{R}$, $f:A\to \mathbb{R}$ 
 
@@ -1394,7 +1392,7 @@ Una implicazione è sempre vera quando implica vero (vedi tabella di verità del
 \end{proof}
 
 \begin{teorema}{Relazione Limite con limite Destro e Sinistro}{}
-\addcontentsline{toc}{section}{Relazione Limite con limite Destro e Sinistro}
+\addcontentsline{toc}{subsection}{Relazione Limite con limite Destro e Sinistro}
     Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $x_0 \in \mathbb{R}$ punto di accumulazione di $f(x)$ e $l \in \mathbb{R} \cup \{\pm \infty\}$ allora
 
 
@@ -1498,7 +1496,7 @@ Una implicazione è sempre vera quando implica vero (vedi tabella di verità del
 
 \begin{teorema}{Limite del Valore Assoluto di una Funzione}{}
 
-\addcontentsline{toc}{section}{Limite del Valore Assoluto di una Funzione}
+\addcontentsline{toc}{subsection}{Limite del Valore Assoluto di una Funzione}
     Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $x_0 \in \mathbb{R}$ punto di accumulazione di $f(x)$ e $l \in \mathbb{R}$ allora
 
     \begin{equation*}
@@ -1569,7 +1567,7 @@ Una implicazione è sempre vera quando implica vero (vedi tabella di verità del
     E quindi anche per $l<0$ il risultato rimane lo stesso e quindi il limite è verificato $\forall l \neq 0$. 
 \end{proof}
 
-\addcontentsline{toc}{section}{Limite del Valore Assoluto di una Funzione (caso $l=0$)}
+\addcontentsline{toc}{subsection}{Limite del Valore Assoluto di una Funzione (caso $l=0$)}
 
 \begin{teorema}{Limite del Valore Assoluto di una Funzione (caso $l=0$)}{}
 
@@ -1686,7 +1684,7 @@ possiamo notare che
 
 \begin{teorema}{ Permanenza del Segno}{}
 
-\addcontentsline{toc}{section}{Teorema della Permanenza del Segno}
+\addcontentsline{toc}{subsection}{Teorema della Permanenza del Segno}
     Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f:A\to\mathbb{R}$, $x_0$ punto di accumulazione di $f(x)$ e $l=\lim_{x\to x_0} f(x)$ allora 
 
     \begin{itemize}
@@ -1720,8 +1718,8 @@ possiamo notare che
 \end{proof}
 \newpage
 
-\addcontentsline{toc}{section}{Limiti e Relazioni d'Ordine I}
-\begin{teorema}{limiti e relazioni d'ordine I}
+\addcontentsline{toc}{subsection}{Limiti e Relazioni d'Ordine \textit{I}}
+\begin{teorema}{limiti e relazioni d'ordine \textit{I}}
     Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f,g:A\to\mathbb{R}$, $x_0$ punto di accumulazione in $A$ e $l_1=\lim_{x\to x_0} f(x)$ e   $l_2=\lim_{x\to x_0} g(x)$
 
   
@@ -1794,9 +1792,9 @@ possiamo notare che
 
 \newpage
 
-\begin{teorema}{limiti e relazioni d'ordine II}{}
+\begin{teorema}{limiti e relazioni d'ordine \textit{II}}{}
 
-\addcontentsline{toc}{section}{Limiti e Relazioni d'Ordine II}
+\addcontentsline{toc}{subsection}{Limiti e Relazioni d'Ordine \textit{II}}
     Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f,g:A\to\mathbb{R}$, $x_0$ punto di accumulazione in $A$ e $l_1=\lim_{x\to x_0} f(x)$ e   $l_2=\lim_{x\to x_0} g(x)$
 
   
@@ -1830,7 +1828,7 @@ possiamo notare che
 
 \begin{teorema}{Due Carabinieri}{}
 
-\addcontentsline{toc}{section}{Teorema dei due Carabinieri}
+\addcontentsline{toc}{subsection}{Teorema dei due Carabinieri}
     Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f,g,h:A\to\mathbb{R}$, $x_0$ punto di accumulazione in $A$ e $\lim_{x\to x_0} f(x)=\lim_{x\to x_0} h(x) = l$.
 
     
@@ -1989,7 +1987,7 @@ Ora vediamo che $\displaystyle\lim_{x\to 0} 1 = 1$,$\displaystyle\lim_{x\to 0} \
 \end{proof}
 \vspace{-0.50cm}
 \begin{teorema}{Algebra dei Limiti Finiti}{}
-\addcontentsline{toc}{section}{Algebra dei Limiti Finiti}
+\addcontentsline{toc}{subsection}{Algebra dei Limiti Finiti}
     Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f,g:A\to\mathbb{R}$, $x_0$ punto di accumulazione in $A$ e $\displaystyle\lim_{x\to x_0} f(x)=l_1\in\mathbb{R}$ e $ \displaystyle\lim_{x\to x_0} g(x) = l_2 \in \mathbb{R}$. Allora
 
 \begin{enumerate}[label=(\roman*)]
@@ -2139,7 +2137,7 @@ Quindi abbiamo trovato un intevallo $I_3$ che verifica il limite $\displaystyle\
 \newpage 
 
 
-\addcontentsline{toc}{section}{Algebra dei Limiti Infiniti (Forme Determinate)}
+\addcontentsline{toc}{subsection}{Algebra dei Limiti Infiniti (Forme Determinate)}
 \begin{teorema}{Algebra dei Limiti Infiniti (Forme Determinate)}{}
         Siano $\varnothing \ne A \subseteq \mathbb{R}$, $f,g:A\to\mathbb{R}$, $x_0$ punto di accumulazione in $A$. Allora
 
@@ -2177,7 +2175,7 @@ Quindi abbiamo trovato un intevallo $I_3$ che verifica il limite $\displaystyle\
 
 \newpage
 
-\addcontentsline{toc}{section}{Esercizi sull'Algebra dei Limiti Infiniti}
+\addcontentsline{toc}{subsection}{Esercizi sull'Algebra dei Limiti Infiniti}
 \begin{esercizio}{}{}
     \[
         \lim_{x \to +\infty} x^2 + \sin(x) = +\infty
@@ -2234,7 +2232,7 @@ Quindi abbiamo trovato un intevallo $I_3$ che verifica il limite $\displaystyle\
 \end{proof}
 
 
-\addcontentsline{toc}{section}{Forme Indeterminate}
+\addcontentsline{toc}{subsection}{Forme Indeterminate}
 \begin{definizione}{Forme Indeterminate}
     SSi dicono \textbf{Forme Indeterminate} tutti i limiti che hanno come risultato 
 
@@ -2253,7 +2251,7 @@ Quindi abbiamo trovato un intevallo $I_3$ che verifica il limite $\displaystyle\
 
 
 
-\addcontentsline{toc}{section}{Primi Esercizi sulle Forme Indeterminate}
+\addcontentsline{toc}{subsection}{Primi Esercizi sulle Forme Indeterminate}
 
 \begin{esercizio}{}{}
     \[
@@ -2375,7 +2373,7 @@ Quindi abbiamo trovato un intevallo $I_3$ che verifica il limite $\displaystyle\
 \end{proof}
 
 
-\addcontentsline{toc}{section}{Teorema del Cambio di Variabile}
+\addcontentsline{toc}{subsection}{Teorema del Cambio di Variabile}
 \begin{teorema}{Cambio di Variabile}{}
     Sia $\varnothing \ne A \subseteq \mathbb{R}$, $\varnothing \ne B \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $g:B \to \mathbb{R}$ e $x_0 \in \mathbb{R} \cup \{\pm \infty\}$ un punto di accumulazione in $f(A)\cap B$ allora se $\exists \displaystyle\lim_{x\to x_0} f(x) = y_0$, con $y_0$ punto di accumulazione in $B$   e se è vera almeno una delle due proposizioni 
     \begin{itemize}
@@ -2469,7 +2467,7 @@ Quindi abbiamo trovato un intevallo $I_3$ che verifica il limite $\displaystyle\
 
 \newpage
 
-\addcontentsline{toc}{section}{Limite di funzioni Monotone caso Finito}
+\addcontentsline{toc}{subsection}{Limite di funzioni Monotone caso Finito}
 \begin{teorema}{Limite di funzioni Monotone}{}
     Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $I\subseteq \mathbb{R}$ intorno di $x_0 \in \mathbb{R}$ tale che $f(x)$ è monotona in $I$
 
@@ -2568,7 +2566,7 @@ Quindi abbiamo trovato un intevallo $I_3$ che verifica il limite $\displaystyle\
 \end{proof}
 
 
-\addcontentsline{toc}{section}{Limite di funzioni Monotone caso Infinito}
+\addcontentsline{toc}{subsection}{Limite di funzioni Monotone caso Infinito}
 \begin{teorema}{Limite di funzioni Monotone caso Infinito}{}
     Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $I\subseteq \mathbb{R}$ intorno di $\pm \infty $ tale che $f(x)$ è monotona in $I$
 
@@ -2745,7 +2743,7 @@ Quindi abbiamo trovato un intevallo $I_3$ che verifica il limite $\displaystyle\
     \]
 \end{proof}
 
-\addcontentsline{toc}{section}{Limiti Notevoli}
+\addcontentsline{toc}{subsection}{Limiti Notevoli}
 \begin{definizione}{Limiti Notevoli}{}
     Si definiscono Limiti Notevoli tutti i limiti della seguente forma. (Le dimostrazione le vediamo subito dopo)
     \begin{enumerate}[label=(\roman*)]
@@ -2845,7 +2843,7 @@ Quindi abbiamo trovato un intevallo $I_3$ che verifica il limite $\displaystyle\
 
 \newpage
 
-\addcontentsline{toc}{section}{Definizione di Funzioni Asintotiche}
+\addcontentsline{toc}{subsection}{Definizione di Funzioni Asintotiche}
 \begin{definizione}{Funzioni Asintotiche}{}
     Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di accumulazione in $A$ e se
 
@@ -2898,7 +2896,7 @@ Quindi abbiamo trovato un intevallo $I_3$ che verifica il limite $\displaystyle\
 \end{proof}
 \newpage
 
-\addcontentsline{toc}{section}{Teorema delle Proprità delle Funzioni Asintotiche}
+\addcontentsline{toc}{subsection}{Teorema delle Proprità delle Funzioni Asintotiche}
 \begin{teorema}{Proprietà delle Funzioni Asintotiche}{}
      Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g, h, \hat{f}, \hat{g}:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$ 
 
@@ -2947,5 +2945,777 @@ f\cdot g \sim \hat{f}\cdot \hat{g}
     \]
     Il ragionamento è analogo per $\dfrac{f}{g} \sim \dfrac{\hat{f}}{\hat{g}}$.
 \end{proof}
+
+
+\addcontentsline{toc}{subsection}{Gerarchia degli Infiniti}
+\begin{teorema}{Gerarchia degli Infiniti}{}
+    Siano $a > 1$, $\alpha > 0$, $\beta >0$ allora sono vere
+    \begin{enumerate}[label=(\roman*)]
+        \centering
+        \item $\displaystyle\lim_{x\to +\infty} \frac{x^\alpha}{a^x} = 0 $
+        \item $\displaystyle\lim_{x\to +\infty} \frac{(\log_{a}x)^\beta}{x^\alpha} = 0 $
+    \end{enumerate}
+
+\end{teorema}
+
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to 0^+} x \log(x)
+    \]
+\end{esempio}
+
+\begin{proof}
+    Si può notare come sia un limite nella forma $\bigl[0\cdot\infty\bigr]$ e quindi dobbiamo fare degli riarrangiamenti. Partimo portando il termine $x$ a denominatore.
+    \[
+     \lim_{x\to 0^+} x \log(x) =  \lim_{x\to 0^+} \frac{\log(x)}{\frac{1}{x}}
+    \]
+    Ora possiamo fare una sostituzione con $y = \frac{1}{x}$, e quindi se $x\to 0^+$ allora $y\to +\infty$
+    \[
+\lim_{x\to 0^+} \frac{\log(x)}{\frac{1}{x}} = \lim_{y\to +\infty} \frac{\log(\frac{1}{y})}{y}
+    \]
+    Usando le proprietà dei logaritmi abbiamo 
+    \[
+    \lim_{y\to +\infty} \frac{\log(\frac{1}{y})}{y} = \lim_{y\to +\infty} \frac{\log(y^{-1})}{y} = \lim_{y\to +\infty} -\frac{\log(y)}{y}
+    \]
+    E che quindi con la gerarchia degli Infiniti
+    \[
+    \lim_{y\to +\infty} -\frac{\log(y)}{y} = 0
+    \]
+\end{proof}
+
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to 0^+} x^x
+    \]
+\end{esempio}
+
+\begin{proof}
+    Per svolgere questo limite possiamo usare la regola delle potenze di funzioni per riarrangiarla e possiamo usare il limite dell'esempio precedente per calcolarlo
+    \[
+        \lim_{x\to 0^+}x^x =\lim_{x\to 0^+} e^{\log(x^x)} = \lim_{x\to 0^+}e^{x\log(x)} = e^0 = 1
+    \]
+\end{proof}
+
+\section{Simboli di Landau}
+
+\addcontentsline{toc}{subsection}{Definizione di o-piccolo}
+\begin{definizione}{o-piccolo}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$  e se 
+    \[
+        \lim_{x\to x_0} \frac{f(x)}{g(x)} = 0
+    \]
+
+    Allora diciamo che "$f(x)$ è un o-piccolo di $g(x)$ per $x\to x_0$" e lo indichiamo con il simbolo
+    \[
+        f(x) = o(g(x))\;\;\;\;\; x\to x_0
+    \]
+\end{definizione}
+Ora seguiranno alcuni esempi per familiarizzare con il simbolo 
+
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to 0} \frac{x^3}{x} = 0 \iff x^3 = o(x) \;\;\;\;\; x\to 0
+    \]
+\end{esempio}
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to 0} \frac{\sin^2(x)}{x} = 0 \iff \sin^2(x) = o(x) \;\;\;\;\; x\to 0
+    \]
+\end{esempio}
+
+\textbf{N.B.} anche se $\sin^2(x) = o(x)$ e $x^3 = o(x)$ per $x\to 0$ \textbf{NON} possiamo dire che $sin^2(x) = x^2$. Anche perche $sin^2(x)$ e $x^2$ sono due cose separate. Infatti con la nozione di o-piccolo sappiamo che una funzione è più grande di un'altra, ma se due funzioni sono entrambe o-piccolo di una funzione, non possiamo dire nulla delle due funzioni.
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to +\infty} \frac{x}{x^2} = 0 \iff x = o(x^2) \;\;\;\;\; x\to+\infty
+    \]
+\end{esempio}
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to 0} x = 0 \iff x = o(1) \;\;\;\;\; x\to 0
+    \]
+\end{esempio}
+
+Questo perchè possiamo riscrivere $x$ come $\frac{x}{1}$ e per questo possiamo scrivere $x = o(1)$. Difatto in generale se $\displaystyle\lim_{x\to x_0}f(x) = 0$ allora possiamo dire che $f(x) = o(1)$ per $x\to x_0$.
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to 0} \frac{x^3}{x^2} = 0 \iff x^3 = o(x^2) \;\;\;\;\; x\to 0
+    \]
+\end{esempio}
+
+\newpage
+
+\addcontentsline{toc}{subsection}{Proprietà degli o-piccoli \textit{I}}
+\begin{teorema}{Proprietà o-piccoli}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$  allora 
+
+    \begin{enumerate}[label=(\roman*)]
+        \centering
+        \item $\displaystyle\lim_{x\to x_0} \frac{o(f(x))}{f(x)} = 0$
+        \item $o(f(x)) \pm o(f(x)) = o(f(x)) \;\;\;\;\; x\to x_0$
+        \item $o(f(x)) \cdot o(g(x)) = o(f(x)\cdot g(x)) \;\;\;\;\; x\to x_0$
+        \item $|o(f(x))|^\alpha = o(|f(x)|^\alpha) \;\;\;\;\; x\to x_0 \;\;\; \forall \alpha > 0$
+    \end{enumerate}
+    Se $g(x)\ne 0$  definitivamente per $x\to x_0$, allora 
+
+    
+
+    \begin{enumerate}[label=(\roman*)]
+        \setcounter{enumi}{4}
+        \centering
+        \item $o(f(x)) \cdot g(x) = o(f(x) \cdot g(x)) \;\;\;\;\; x\to x_0$
+    \end{enumerate}
+    Se, oltre a $g(x)\ne 0$, è vero che $|g(x)|$ è limitata definitivamente allora vale
+
+    
+
+    \begin{enumerate}[label=(\roman*)]
+        \setcounter{enumi}{5}
+        \centering
+        \item $o(f(x)) \cdot g(x) = o(f(x)) \;\;\;\;\; x\to x_0$
+    \end{enumerate}
+
+    
+\end{teorema}
+
+\begin{proof}
+    ($i$) sia una qualsiasi funzione allora $g(x) = o(f(x))$, allora per definizione di o-piccolo sappiamo che 
+    \[
+        g(x) = o(f(x)) \iff \lim_{x\to x_0}    \frac{g(x)}{f(x)} = 0
+    \]  
+    Ora però possiamo sostituire $g(x)$ con $o(f(x))$ visto che è vera per ipotesi
+    \[
+    \lim_{x\to x_0}    \frac{g(x)}{f(x)} = 0 \implies \lim_{x\to x_0}    \frac{o(f(x))}{f(x)} = 0
+    \]
+    E con questo abbiamo verificato il primo teorema.
+
+    $(ii)$ Sia $g_1(x) = o(f(x))$ e $g_2(x) = o(f(x))$ allora proviamo a vedere se è vero il teorema, quindi usiamo la definizione di o-piccolo
+    \[
+    g_1(x) \pm g_2(x) = o(f(x)) \iff \lim_{x\to x_0} \frac{g_1(x) \pm g_2(x)}{f(x)} = \lim_{x\to x_0} \frac{g_1(x)}{f(x)}\pm \frac{g_2(x)}{f(x)} 
+    \]
+    Ora visto che $g_1(x) = o(f(x))$ e $g_2(x) = o(f(x))$ allora se vengono divise per $f(x)$ tenderanno a 0 e quindi
+    \[
+    \lim_{x\to x_0} \circled[red]{\frac{g_1(x)}{f(x)}}\pm \circled[red]{\frac{g_2(x)}{f(x)}} = 0 \pm 0 = 0
+    \]
+    E quindi il teorema è verificato visto che è venuto proprio 0. 
+    
+    \textbf{N.B.} anche $o(f(x)) - o(f(x)) = o(f(x))$  e NON si eliminano gli o-piccoli.
+\newpage
+
+    ($iii$) Come nel punto $(ii)$, basta che controlliamo se è vero usando la definizione di o-piccolo
+    \[
+        o(f(x)) \cdot o(g(x)) = o(f(x)\cdot g(x)) \iff \lim_{x\to x_0} \frac{o(f(x)) \cdot o(g(x)) }{f(x)\cdot g(x)}
+    \]
+    Ora possiamo fare degli riarrangiamenti 
+    \[
+    \lim_{x\to x_0} \frac{o(f(x)) \cdot o(g(x)) }{f(x)\cdot g(x)} = \lim_{x\to x_0} \frac{o(f(x))}{f(x)} \cdot \frac{o(g(x)) }{g(x)}
+    \]
+    Ora usiamo la proprietà $(i)$ 
+    \[
+    \lim_{x\to x_0} \frac{o(f(x))}{f(x)} \cdot \frac{o(g(x)) }{g(x)} = 0\cdot 0 = 0
+    \]
+    E quindi il teorema è verificato.
+
+    $(iv)$  Usiamo la definizione di o-piccolo
+    \[
+    |o(f(x))|^\alpha = o(|f(x)|^\alpha) \iff \lim_{x\to x_0} \frac{|o(f(x))|^\alpha}{|f(x)|^\alpha}
+    \]
+    Usiamo le proprietà dei moduli e delle potenze e la proprietà $(i)$
+    \[
+    \lim_{x\to x_0} \frac{|o(f(x))|^\alpha}{|f(x)|^\alpha} = \lim_{x\to x_0} \left|\frac{o(f(x))}{f(x)}\right|^\alpha = 0 ^ \alpha = 0
+    \]
+    L'ultimo passaggio è valido perchè abbiamo definito $\alpha > 0$ e quindi non reca alcun problema l'esponente. Il modulo serve solo per poter farlo anche di radici, così è valido anche per radici negative.
+
+
+    $(v)$ Usiamo la definizione di o-piccolo
+    \[
+     o(f(x)) \cdot g(x) = o(f(x)\cdot g(x)) \iff \lim_{x\to x_0} \frac{o(f(x)) \cdot g(x) }{f(x)\cdot g(x)}
+    \]
+    Notiamo che il termine $g(x)$ si può semplificare e poi possiamo usare la proprietà $(i)$
+    \[
+    \lim_{x\to x_0} \frac{o(f(x)) \cdot g(x) }{f(x)\cdot g(x)} = \lim_{x\to x_0} \frac{o(f(x))}{f(x)} = 0
+    \]
+
+    $(vi)$ Usiamo la definizione di o-piccolo
+    \[
+     o(f(x)) \cdot g(x) = o(f(x)) \iff \lim_{x\to x_0} \frac{o(f(x)) \cdot g(x) }{f(x)} = \lim_{x\to x_0} \frac{o(f(x)) }{f(x)} \cdot g(x) 
+    \]
+    Ora notiamo che il termine $\frac{o(f(x)) }{f(x)}$ tende a 0 per proprietà $(i)$, quindi l'unico caso a cui dobbiamo stare attenti è quando $h(x)$ tende a $\infty$, perchè qualora fosse avremmo una forma indeterminata $\big[0\cdot \infty\big]$, però per ipotesi noi sappiamo che $|g(x)|$ è limitata, allora possiamo usare la proprietà $(ii)$ dell'algebra dei limiti finiti per scoprire che tende a 0, grazie al fatto che $|g(x)|$ è limitata
+    \[
+    \lim_{x\to x_0} \frac{o(f(x)) }{f(x)} \cdot g(x)  = 0
+    \]
+    Pertanto il teorema è verificato.
+\end{proof}
+
+\addcontentsline{toc}{subsection}{Relazione tra o-piccolo e Asintoticità}
+\begin{teorema}{Relazione tra o-piccolo e Asintoticità}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$ e $g(x)\ne 0$ definitivamente per $x\to x_0$
+
+    \[
+        f(x) \sim g(x) \;\;\; x\to x_0 \implies f(x) = g(x) + o(g(x))  \;\;\; x\to x_0
+    \]
+\end{teorema}
+\begin{proof}
+    Usando la definizione di funzione asintotica sappiamo che 
+    \[
+    f(x) \sim g(x) \iff  \lim_{x\to x_0} \frac{f(x)}{g(x)} = 1
+    \]
+    ora possiamo portare 1 dall'altra parte e facciamo denominatore comune 
+    \[
+    \lim_{x\to x_0} \frac{f(x)}{g(x)} = 1 \implies \lim_{x\to x_0} \big[\frac{f(x)}{g(x)} - 1\big]= 0 \implies \lim_{x\to x_0} \frac{f(x)-g(x)}{g(x)} = 0 
+    \]
+    A questo punto possiamo usare la definizione di o-piccolo, visto che abbiamo un limite che tende a 0
+    \[
+        \lim_{x\to x_0} \frac{f(x)-g(x)}{g( x)}= 0 \iff f(x)-g(x) = o(g(x))
+    \]
+    Facendo qualche riarrangiamento abbiamo 
+    \[
+    f(x)-g(x) = o(g(x)) \implies f(x) = g(x) + o(g(x)) \;\;\; x\to x_0
+    \]
+\end{proof}
+
+Ora vediamo l'applicazione di questo teorema sui limiti notevoli
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to 0} \frac{\sin(x)}{x} = 1 \implies \sin(x) = x + o(x) \;\;\;\;\; x\to 0
+    \]
+\end{esempio}
+
+Per il limite del coseno usiamo lo stesso trick che abbiamo usato l'ulima volta, ovvero di dividere per $\frac{1}{2}$ in modo che ora il limite tenda a 1
+
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to x_0} \frac{1-\cos(x)}{\frac{1}{2}x^2} = 1 \implies 1-\cos(x) = \frac{1}{2}x^2 + o(x^2) \implies \cos(x) = 1 -\frac{1}{2}x^2 + o(x^2) 
+    \]
+\end{esempio}
+
+\text{N.B.} non ho scritto $o(\frac{1}{2}x^2)$ perchè ho usato la proprietà $(vi)$ delle proprietà degli o-piccolo, e lo abbiamo potuto applicare perchè la funzione $g(x)= \frac{1}{2}$ è sempre limitata.
+
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to 0} \frac{\tan(x)}{x} = 1 \implies \tan(x) = x + o(x) \;\;\;\;\; x\to 0
+    \]
+\end{esempio}
+
+
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to x_0} \frac{\log(1+x)}{x} = 1 \implies \log(1+x) = x + o(x) \;\;\;\;\; x\to 0
+    \]
+\end{esempio}
+
+\begin{esempio}{}{}
+    \[
+        \lim_{x\to x_0} \frac{e^x-1}{x} = 1 \implies e^x -1  = x + o(x) \implies e^x  = 1 + x + o(x)  \;\;\;\;\; x\to 0
+    \]
+\end{esempio}
+
+
+\addcontentsline{toc}{subsection}{Teorema del Cambio di variabile con o-piccolo}
+\begin{teorema}{Cambio di variabile con o-piccolo}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g_1, g_2$ a valori reali tali che $g_1 \circ f,g_2 \circ f :A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$ e supponiamo che
+    \begin{itemize}
+        \item $\displaystyle\lim_{x\to x_0} f(x) = y_0$
+        \item $g_1(y) = g_2(y) + o(g_2(y))\;\;\;\;\; y\to y_0$
+        \item $f(x) \ne y_0$ definitivamente per $x\to x_0$
+    \end{itemize}
+
+    Allora 
+    \[
+        g_1(f(x)) = g_2(f(x)) + o(g_2(f(x)))\;\;\;\;\; y\to y_0
+    \]
+\end{teorema}
+
+
+\begin{esempio}{}{}
+    Proviamo a fare qualche applicazione pratica di questo teorema, per esempio proviamo con $f(x) = x^2$, $g_1(y) = \sin(y)$ e $x_0=0$
+\end{esempio}
+
+In primis dobbiamo controllare che esista il limite di $f(x)$
+\[
+\lim_{x\to 0} x^2 = 0 \;\;\; [= y_0]
+\]
+Ora proviamo a sviluppare $g_1(y)$, e possiamo usare proprio lo sviluppo che abbiamo scoperto prima ($\sin(y) = y + o(y)$) per $y\to 0$, seguendo la notazione del teorema, $g_2(y) = y$. Ora basta controllare se $x^2 \ne 0$ definitivamente ed effettivamente lo è visto che $x^2>0$ $\forall x \ne 0$ e quindi possiamo applicare il teorema e scopriamo che 
+\[
+\sin(x^2) = x^2 + o(x^2) \;\;\;\;\; x\to 0
+\]
+
+\begin{esempio}{}{}
+    Ora proviamo a fare un altro esempio con $f(x) = \sin(x)$, $g_1(y) = e^y$ e $x_0=0$, vediamo subito che 
+    \[
+    \lim_{x\to 0} \sin(x) = 0 \;\;\; [= y_0]
+    \]
+    Sappiamo in oltre lo svilutto di $e^y = 1+ y +o(y)$ per $y\to 0$, in oltre sappiamo che $\sin(x) \ne 0$ in un intorno di 0 e di conseguenza possiamo applicare il teorema e scopriamo che 
+    \[
+        e^{\sin(x)} = 1 + \sin(x) + o(\sin(x)) \;\;\;\;\; x\to 0
+    \]
+\end{esempio}
+
+
+\addcontentsline{toc}{subsection}{Principio di Sostituzione}
+\begin{teorema}{Principio di Sostituzione}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g, \hat{f}, \hat{g}:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$ e $g(x)\ne 0$,$\hat{f}(x)\ne 0$,$\hat{g}(x)\ne 0$  definitivamente per $x\to x_0$ e se 
+    \[
+        f(x) = \hat{f}(x) + o(\hat{f}(x)) \;\;\;\;\; x\to x_0
+    \]
+     \[
+        g(x) = \hat{g}(x) + o(\hat{g}(x)) \;\;\;\;\; x\to x_0
+    \]
+    Allora
+    \[
+        \lim_{x\to x_0} \frac{f(x)}{g(x)} = \lim_{x\to x_0} \frac{\hat{f}(x)}{\hat{g}(x)}  
+    \]
+\end{teorema}
+
+\begin{proof}
+    Per capire quanto vale $\displaystyle\lim_{x\to x_0} \frac{f(x)}{g(x)} $ basta che facciamo una sostituzione con le ipotesi
+    \[
+    \lim_{x\to x_0} \frac{f(x)}{g(x)}  = \lim_{x\to x_0} \frac{\hat{f}(x) + o(\hat{f}(x))}{\hat{g}(x) + o(\hat{g}(x)) } 
+    \]
+    Ora possiamo raccogliere a numeratore $\hat{f}(x)$ e a denominatore $\hat{g}(x)$
+    \[
+    \lim_{x\to x_0} \frac{\hat{f}(x) + o(\hat{f}(x))}{\hat{g}(x) + o(\hat{g}(x)) }  = \lim_{x\to x_0} \frac{\hat{f}(x)}{\hat{g}(x)} \cdot \frac{1 + \frac{o(\hat{f}(x))}{\hat{f}(x)}}{ 1+ \frac{o(\hat{g}(x))}{\hat{g}(x)} } 
+    \]
+    Ora possiamo dividere per l'algebra dei limiti e possiamo usare la proprietà $(i)$ degli o-piccoli
+    \[
+    \lim_{x\to x_0} \frac{\hat{f}(x)}{\hat{g}(x)} \cdot \frac{1 + \frac{o(\hat{f}(x))}{\hat{f}(x)}}{ 1+ \frac{o(\hat{g}(x))}{\hat{g}(x)} }  = \lim_{x\to x_0} \frac{\hat{f}(x)}{\hat{g}(x)} \cdot \lim_{x\to x_0}\frac{1 + \circled[red]{\frac{o(\hat{f}(x))}{\hat{f}(x)}}}{ 1+ \circled[red]{\frac{o(\hat{g}(x))}{\hat{g}(x)}} } = \lim_{x\to x_0} \frac{\hat{f}(x)}{\hat{g}(x)} \cdot \frac{1 + 0}{ 1+0 } = \lim_{x\to x_0} \frac{\hat{f}(x)}{\hat{g}(x)}   
+    \]
+\end{proof}
+
+Questo teorema è molto forte infatti vediamo un esercizio dove lo applichiamo
+
+\begin{esercizio}{}{}
+    \[
+    \lim_{x\to 0} \frac{1-\cos(x)}{e^{x^2}-1}
+    \]
+\end{esercizio}
+
+Per applicare il teorema dobbiamo trovare quelle equivalenze con gli o-piccoli, e infatti le conosciamo sia per $1-\cos(x) = \frac{1}{2}x^2 + o(x^2)$ che per $e^{x^2}-1 = x^2 +o(x^2)$, e di conseguenza possiamo calcolare il limite come
+\[
+\lim_{x\to 0} \frac{1-\cos(x)}{e^{x^2}-1} = \lim_{x\to 0} \frac{\frac{1}{2}x^2}{x^2} = \frac{1}{2}
+\]
+Questo esercizio si sarebbe potuto svolgere anche con i limiti notevoli ma avrebbe richiesto molti calcoli in più.
+
+
+\addcontentsline{toc}{subsection}{Proprietà degli o-piccoli \textit{II}}
+\begin{teorema}{Ulteriori proprietà degli o-piccoli}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$  allora 
+
+    \begin{enumerate}[label=(\roman*)]
+        \setcounter{enumi}{6}
+        \centering
+        \item $o(o(f(x))) = o(f(x))$ per $x\to x_0$
+        \item $o(f(x) + o(f(x))) = o(f(x))$ per $x\to x_0$
+    \end{enumerate}
+\end{teorema}
+
+
+\begin{proof}
+    $(vii)$ Usiamo la definizione di o-piccolo 
+    \[
+        o(o(f(x))) = o(f(x)) \iff \lim_{x\to x_0} \frac{o(o(f(x)))}{f(x)}
+    \]
+    Per calcolare e controllare che il limite faccia 0, dobbiamo moltiplicare e dividere per $o(f(x))$
+    \[
+    \lim_{x\to x_0} \frac{o(o(f(x)))}{f(x)} = \lim_{x\to x_0} \frac{o(o(f(x)))}{f(x)} \cdot \frac{o(f(x))}{o(f(x))} = \lim_{x\to x_0} \frac{o(o(f(x)))}{o(f(x))} \cdot \frac{o(f(x))}{f(x)}
+    \]
+    Il secondo termine ($\frac{o(f(x))}{f(x)}$) per la proprietà $(i)$ degli o-piccoli sappiamo che tende a 0, e lo stesso vale per il primo termine, infatti la regola generale per questi casi è $\frac{o(f(x))}{f(x)} \to 0$ però se scelgo $f(x)=o(g(x))$, allora il limite diventa $\frac{o(o(g(x)))}{o(g(x))} \to 0$, pertanto
+    \[
+        \lim_{x\to x_0} \frac{o(o(f(x)))}{o(f(x))} \cdot \frac{o(f(x))}{f(x)} = 0\cdot 0 = 0
+    \]
+    E visto che il limite viene 0, la proprietà è verificata.
+
+    $(viii)$ Usiamo la definizione di o-piccolo 
+    \[
+    o(f(x) + o(f(x))) = o(f(x)) \iff \lim_{x\to x_0} \frac{o(f(x) + o(f(x)))}{f(x)}
+    \]
+    Possiamo moltiplicare e dividere per $f(x) + o(f(x))$
+    \begin{align*}
+        \lim_{x\to x_0} \frac{o(f(x) + o(f(x)))}{f(x)} &= \lim_{x\to x_0} \frac{o(f(x) + o(f(x)))}{f(x)} \cdot \frac{f(x) + o(f(x))}{f(x) + o(f(x))} \\
+        &=  \lim_{x\to x_0} \frac{o(f(x) + o(f(x)))}{f(x) + o(f(x))} \cdot \frac{f(x) + o(f(x))}{f(x)} \\
+        &= \lim_{x\to x_0} \frac{o(f(x) + o(f(x)))}{f(x) + o(f(x))} \cdot \left(1 +\frac{o(f(x))}{f(x)}     \right)
+    \end{align*}
+    Possiamo usare lo stesso ragionamento usato per il punto $(vii)$ dicendo che $\frac{o(f(x) + o(f(x)))}{f(x) + o(f(x))}\to 0$ 
+    \[
+    \lim_{x\to x_0} \frac{o(f(x) + o(f(x)))}{f(x) + o(f(x))} \cdot \left(1 +\frac{o(f(x))}{f(x)}     \right) = 0 \cdot ( 1+ 0) = 0
+    \]
+    Di conseguenza il teorema è verificato.
+\end{proof}
+
+
+\addcontentsline{toc}{subsection}{Esercizi con o-piccolo}
+\begin{esercizio}{}{}
+    \[
+    \lim_{x\to 0^+} \frac{e^{\sin(x)} - e^{-x}}{1-\cos(\sqrt{x})}
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Per risolvere questo esercizio dobbiamo usare gli sviluppi degli o-piccoli, in questo esercizio ci basta quello di $e^x$ e di $1-\cos(x)$ e quindi sappiamo che 
+    \[
+        e^{-x} = 1 + -x + o(x)
+    \]
+    \[
+        1-\cos(\sqrt{x}) = \frac{1}{2} (\sqrt{x})^2 + o((\sqrt{x})^2 )
+    \]
+    Semplificando lo sviluppo del coseno abbiamo che $1-\cos(\sqrt{x}) = \frac{1}{2}x + o(x )$, non serve mettere il modulo perchè $x\to 0^+$ e quindi $x$ è positivo. Ora però dobbiamo capire quanto vale $e^{\sin(x)}$ e intanto usiamo lo sviluppo di $e^x$
+    \[
+        e^{\sin(x)} = 1 + \mathunderline{red}{\sin(x)} + o(\mathunderline{blue}{\sin(x)})
+    \]
+    Però il seno lo possiamo sviluppare a sua volta come $\sin(x) = x+ o(x)$ e di conseguenza
+    \[
+    e^{\sin(x)} = 1 +  \mathunderline{red}{x + o(x)} + o(\mathunderline{blue}{x+ o(x)})
+    \]
+    E quindi grazie alla proprietà $(viii)$ sappiamo che possiamo riscrivere $(o(x+ o(x)))$ come $o(x)$
+    \[
+    e^{\sin(x)} = 1 +  x + o(x) + o(x) 
+    \]
+    Poi per la proprietà $(ii)$ sappiamo che 
+    \[
+    e^{\sin(x)} = 1 +  x + o(x)
+    \]
+    Ora possiamo sostituire gli sviluppi nell'esercizio 
+    \[
+    \lim_{x\to 0^+} \frac{\mathunderline{red}{e^{\sin(x)}}- \mathunderline{blue}{e^{-x}}}{\mathunderline{green}{1-\cos(\sqrt{x})}} = \frac{\mathunderline{red}{1 +  x + o(x)} - \mathunderline{blue}{(1 -  x + o(x))}}{\mathunderline{green}{\frac{1}{2}x + o(x )}} = \lim_{x\to 0^+} \frac{2x + o(x)}{\frac{1}{2}x + o(x)}
+    \]
+    Per il prinicipio di sostituzione sappiamo che 
+    \[
+    \lim_{x\to 0^+} \frac{2x + o(x)}{\frac{1}{2}x + o(x)} = \lim_{x\to 0^+} \frac{2x }{\frac{1}{2}x} = \lim_{x\to 0^+} \frac{2}{\frac{1}{2}} = 4
+    \]
+    Se il numeratore fosse stato $e^{\sin(x)} - e^{x}$, allora dopo lo svilutto il numeratore sarebbe diventato $o(x)$ e quindi la frazione sarebbe stata $\frac{o(x)}{\frac{1}{2}x + o(x)}$ e quindi dividento tutto per $x$ avremmo avuto 
+    \[
+     \lim_{x\to 0^+}\frac{\frac{o(x)}{x}}{\frac{1}{2} + \frac{o(x)}{x}}
+    \]
+    E che quindi per la proprietà $(i)$ avremmo avuto 
+    \[
+     \lim_{x\to 0^+}\frac{\circled[red]{\frac{o(x)}{x}}}{\frac{1}{2} + \circled[red]{\frac{o(x)}{x}}} = \frac{0}{\frac{1}{2} + 0} = 0
+    \]
+\end{proof}
+
+\begin{esercizio}{}{}
+    \[
+        \lim_{x\to 0} \frac{e^{\tan(\sin(x))} - 1}{e^{\sin(\tan(x))} - 1}
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Iniziamo analizzando il numeratore, vediamo che possiamo fare lo sviluppo di $e^x-1$
+    \[
+    e^{\tan(\sin(x))} -1  = \mathunderline{red}{\tan(\sin(x))} + o(\mathunderline{blue}{\tan(\sin(x))})
+    \]
+    Adesso facciamo lo sviluppo di $\tan(\sin(x)) = \sin(x) + o(\sin(x))$
+    \[
+    e^{\tan(\sin(x))} -1  = \mathunderline{red}{\sin(x)+ o(\sin(x))} + o(\mathunderline{blue}{\sin(x)+ o(\sin(x))})
+    \]
+    Possiamo usare la proprietà $(viii)$ e $(ii)$
+    \[
+    e^{\tan(\sin(x))} -1  = \sin(x)+ o(\sin(x)) +  o(\sin(x)) = \mathunderline{green}{\sin(x)}+ o(\mathunderline{purple}{\sin(x)})
+    \] 
+    Sviluppiamo anche il seno
+    \[
+    e^{\tan(\sin(x))} -1  = \mathunderline{green}{x + o(x)} + o(\mathunderline{purple}{x+o(x)})
+    \]
+    Ripetendo le proprietà $(viii)$ e $(ii)$
+    \[
+    e^{\tan(\sin(x))} -1  = x + o(x) + o(x) = x + o(x)
+    \]
+    Sistemato il numeratore, dobbiamo fare gli stessi passaggi al denominatore, ma invertendo il passaggio dello sviluppo del seno con quello della tangente
+    \begin{align*}
+        e^{\sin(\tan(x))} - 1 &= \mathunderline{red}{\sin(\tan(x))} + o(\mathunderline{blue}{\sin(\tan(x))}) \\
+        &= \mathunderline{red}{\tan(x)+ o(\tan(x))} + o(\mathunderline{blue}{\tan(x)+ o(\tan(x))}) \\
+        &= \tan(x)+ o(\tan(x)) +  o(\tan(x))  \\
+        &= \mathunderline{green}{\tan(x)}+ o(\mathunderline{purple}{\tan(x)}) \\
+        &= \mathunderline{green}{x + o(x)} + o(\mathunderline{purple}{x+o(x)})\\ 
+        &= x + o(x) + o(x) \\
+        &= x + o(x)
+    \end{align*}
+
+    E quindi sostituendo questi sviluppi nel limite abbiamo che 
+    \[
+    \lim_{x\to 0} \frac{e^{\tan(\sin(x))} - 1}{e^{\sin(\tan(x))} - 1} = \lim_{x\to 0} \frac{x + o(x)}{x + o(x)} = \lim_{x\to 0} \frac{x }{x } = 1
+    \]
+\end{proof}
+
+\newpage
+\begin{esercizio}{}{}
+    \[
+    \lim_{x\to 0} \frac{\log(1 + x\sin^2(2x))}{4\tan^3(x)\cos(3x^2)}
+    \]
+\end{esercizio}
+
+\begin{proof}
+    In primis notiamo che il termine $\cos(3x^2) \to 1$ per $x\to 0$, pertanto possiamo staccarlo dal limite e calcolarlo a parte 
+    \[
+    \lim_{x\to 0} \frac{\log(1 + x\sin^2(2x))}{4\tan^3(x)\cos(3x^2)} = \lim_{x\to 0} \frac{\log(1 + x\sin^2(2x))}{4\tan^3(x)} \cdot \frac{1}{\cos(3x^2)} = \lim_{x\to 0} \frac{\log(1 + x\sin^2(2x))}{4\tan^3(x)} \cdot 1
+    \] 
+    Dopo questo, vediamo che abbiamo un $\log(1+x)$ e $\tan(x)$ che possiamo sviluppare
+    \[
+    \log(1 + x\sin^2(2x)) = x\sin^2(2x) + o(x\sin^2(2x)) 
+    \]
+    Facciamo lo stesso per $\sin(2x) = 2x+ o(x)$
+    \[
+    \log(1 + x\sin^2(2x)) = x \cdot (2x+ o(x))^2 + o(x\cdot (2x+ o(x))^2) 
+    \] 
+    ora capiamo il come calcolare il termine $(2x+ o(x))^2$ infatti proviamo a sviluppare il quadrato di binomio e troviamo che $4x^2 + 4x \cdot o(x) + (o(x))^2$, per la proprietà $(iv)$ possiamo riscrivere $(o(x))^2$ come $(o^2)$, mentre il termine $4x\cdot o(x)$ possiamo usare la proprietà $(iii)$ per portare $4x$ dentro l'o-piccolo. Quindi il termine diventa $4x^2 + o(4x^2)$. Di conseguenza il logaritmo diventa, usando le proprietà $(iii)$ e $(viii)$
+    \begin{align*}
+        \log(1 + x\sin^2(2x)) &= x \cdot (4x^2+ o(x^2)) + o(x\cdot (4x^2+ o(x^2))) \\
+        &= 4x^3+ o(4x^3) + o( 4x^3+ o(4x^3)) \\ 
+        &= 4x^3+ o(4x^3) + o(4x^3) \\
+        &= 4x^3+ o(4x^3) 
+    \end{align*}
+    
+    Per la tangente facciamo gli stessi procedimenti
+    \begin{align*}
+        \tan^3(x) &= (x+o(x))^3 \\
+        &= x^3 + 3x^2 \cdot o(x) + 3x \cdot (o(x))^2 + (o(x))^3 \\
+        &= x^3 +  o(3x^3) + 3x \cdot o(x^2) + o(x^3) \\
+        &= x^3 +  o(x^3) +  o(3x^3) + o(x^3) \\
+        &= x^3 +  o(x^3) + o(x^3) + o(x^3) \\
+        &= x^3 +  o(x^3) \\
+    \end{align*}
+
+    E quindi sostituiendo gli sviluppi abbiamo che 
+    \[
+    \lim_{x\to 0} \frac{\log(1 + x\sin^2(2x))}{4\tan^3(x)} = \lim_{x\to 0} \frac{4x^3+ o(4x^3) }{4(x^3 +  o(x^3))} = \lim_{x\to 0} \frac{4x^3+ o(4x^3) }{4x^3 +  o(4x^3)} = \lim_{x\to 0} \frac{4x^3}{4x^3 }  = 1
+    \]
+\end{proof}
+
+
+Con l'esercizio precedente abbiamo scoperto che 
+
+\addcontentsline{toc}{subsection}{Binomio con o-piccolo}
+\begin{teorema}{Binomio con o-piccolo}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$  allora
+    \[
+        (f(x) + o(f(x)))^n = f^n(x) + o(f^n(x)) \;\;\;\;\; \forall n \in \mathbb{N}
+    \] 
+\end{teorema}
+\begin{proof}
+    Per dimostrare questo teorema dobbiamo usare il binomiale di Newton e quindi 
+    \[
+    (f(x) + o(f(x)))^n = \sum_{k=0}^{n} \binom{n}{k} \cdot [f(x)]^{n-k} \cdot [o(f(x))]^{k} 
+    \]
+    Estraiamo il primo termine con $k=0$ visto che in quel caso $o(f(x))$ avrebbe esponente 0 e quindi non ci sarebbe
+    \[
+    \sum_{k=0}^{n} \binom{n}{k} \cdot [f(x)]^{n-k} \cdot [o(f(x))]^{n} = f^{n}(x) +  \sum_{k=1}^{n} \binom{n}{k} \cdot [f(x)]^{n-k} \cdot [o(f(x))]^{k}
+    \]
+    Ora possiamo usare le proprietà $(iv)$ per poter portare dentro l'esponente nel o-piccolo, poi la proprietà ($iii$) per portare il termine $[f(x)]^{n-k}$ dentro al o-piccolo
+    \begin{align*}
+        \sum_{k=1}^{n} \binom{n}{k} \cdot [f(x)]^{n-k} \cdot [o(f(x))]^{k} &= \sum_{k=1}^{n} \binom{n}{k} \cdot [f(x)]^{n-k} \cdot o(f^{n}(k)) \\
+        &= \sum_{k=1}^{n} \binom{n}{k}  \cdot o([f(x)]^{n-k} \cdot f^{k}(x)) \\
+        &= \sum_{k=1}^{n} \binom{n}{k}  \cdot o([f(x)]^{n-k+ k}) \\
+        &= \sum_{k=1}^{n} \binom{n}{k}  \cdot o(f^n(x)) 
+    \end{align*}
+    Poi visto che $\binom{n}{k}$ è una costante la possiamo togliere per la $(vi)$, e poi dato che dentro la sommatoria non ci sono più termini rispetto a $k$ possiamo calcolarla ($\sum_{k=1}^{n} c = n\cdot c$)
+    \[
+        \sum_{k=1}^{n} \binom{n}{k}  \cdot o(f^n(x))  = \sum_{k=1}^{n} o(f^n(x)) = n\cdot o(f^n(x))
+   \]
+   Ora possiamo usare di nuovo la proprietà $(vi)$ per togliere $n$ e così il teorema è verificato
+   \[
+   n\cdot o(f^n(x)) = o(f^n(x))
+   \]
+   \[
+   (f(x) + o(f(x)))^n = f^n(x) + o(f^n(x))
+   \]
+
+\end{proof}
+
+\begin{esercizio}{}{}
+    Sia $f:\mathbb{R} \to\mathbb{R} $  tale che $f(x) = o(x^2)$ per $x\to +\infty$, discutere il limite 
+    \[
+        \lim_{x\to +\infty} \frac{f(x)}{x^\alpha + x + 1}
+    \]
+    Al variare di $\alpha \in \mathbb{R}$
+\end{esercizio}
+\begin{proof}
+    Visto che sappiamo che $f(x) = o(x^2)$, l'unica unformazione che sappiamo è che 
+    \[
+        \lim_{x\to +\infty} \frac{f(x)}{x^2} = 0
+    \]
+    Pertanto divisiamo numeratore e denominatore per $x^2$
+    \[
+    \lim_{x\to +\infty} \frac{f(x)}{x^\alpha + x + 1} = \lim_{x\to +\infty} \frac{\frac{f(x)}{x^2}}{x^{\alpha-2} +\frac{1}{x} + \frac{1}{x^2}}
+    \]
+    Ora il numeratore tende a 0, i termini $\frac{1}{x}$ e $\frac{1}{x^2}$ tendono a 0 per $x\to +\infty$, quindi ci manca da capire il termine $x^ {\alpha-2}$. Per questo dobbiamo dividere in 3 casi. 
+
+    Se $\alpha > 2$ allora $\alpha -2 > 0$ e quindi $x^{\alpha -2} \to +\infty$ e quindi il denominatore complessivamente tende a $+\infty$ e pertanto di conseguenza il limite tende a 0
+    \[
+    \lim_{x\to +\infty} \frac{\frac{f(x)}{x^2}}{x^{\alpha-2} +\frac{1}{x} + \frac{1}{x^2}} = \frac{0}{+\infty +0 + 0} = \bigl[\frac{0}{+\infty}\bigr] = 0
+    \]
+
+    \textbf{N.B.} scrivere $\bigl[\frac{0}{+\infty}\bigr]$ è tecnicamente sbagliato perchè $\infty$ non è un numero ma un simbolo,  e pertanto non si possono fare le operazioni con quel numero. L'ho scritto soltato per enfatizzare il concetto di limite ma non è tecnicamente corretto scriverlo. Volendo essere più precisi, avremmo dovuto usare l'algebra dei limiti infiniti.
+
+Se $\alpha = 2$ allora il termine $x^{\alpha -2} = x^{2 -2} = 1$ e quindi il limite diventare
+    \[
+    \lim_{x\to +\infty} \frac{\frac{f(x)}{x^2}}{x^{\alpha-2} +\frac{1}{x} + \frac{1}{x^2}}  = \frac{0}{1+0+0} = 0
+    \]
+
+    Se $\alpha < 2$ allora possiamo il termine $x^{\alpha -2} \to 0$ dato che l'esponente sarebbe negativo e quindi andrebbe a denominatore. E quindi il limite diventerebbe
+    \[
+    \lim_{x\to +\infty} \frac{\frac{f(x)}{x^2}}{x^{\alpha-2} +\frac{1}{x} + \frac{1}{x^2}}  = \frac{0}{0+0+0} = \bigl[\frac{0}{0}\bigr]
+    \]
+    In questo caso siamo incappati in una forma indeterminata, e che quindi con i dati che abbiamo a nostra disposizione non possiamo dire nulla in merito al limite.
+    
+\begin{center}
+    $\displaystyle\lim_{x\to +\infty} \frac{f(x)}{x^\alpha + x + 1}=\begin{cases}
+        0 & \text{se } \alpha \ge 2 \\
+        \text{Non Definibile} & \text{se } \alpha < 2
+    \end{cases}$
+\end{center}
+\end{proof}
+
+
+\addcontentsline{toc}{subsection}{Definizione di O-grande}
+\begin{definizione}{O-grande}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$ . Se esiste $I \subseteq \mathbb{R}$ intorno di $x_0$  $\exists M >0$ tale che 
+    \[
+        |f(x)| \leq M|g(x)| \;\;\;\;\; \forall x \in A \cap I \setminus \{x_0\}
+    \]
+    Allora diciamo che "$f(x)$ è un O-grande di $g(x)$ per $x\to x_0$" e lo indichiamo con il simbolo
+    \[
+        f(x) = O(g(x))\;\;\;\;\; x\to x_0
+    \]
+\end{definizione}
+
+\begin{esempio}{}{}
+    Sia $f(x) = x\sin(\frac{1}{x})$ e possiamo vedere che 
+    \[
+    \left|x\sin\left(\frac{1}{x}\right)\right| \leq |x| \;\;\;\;\; \forall x \in \mathbb{R}
+    \]
+    Visto che $|\sin(x)| \leq 1$. Di conseguenza possiamo prendere un qualsiasi punto $x_0 \in \mathbb{R}$ e sapremo che 
+    \[
+    x\sin\left(\frac{1}{x}\right) = O(x) \;\;\;\;\; x\to x_0
+    \]
+\end{esempio}
+
+\begin{esercizio}{}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$. Allora 
+    \[
+        f(x) = o(g(x)) \;\;\; x\to x_0 \implies f(x) = O(g(x)) \;\;\; x\to x_0
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Per ipotesi sappiamo che $f(x) = o(g(x))$, che usando la definizione di o-piccolo sappiamo che 
+    \[
+    f(x) = o(g(x)) \iff \lim_{x\to x_0} \frac{f(x)}{g(x)} = 0
+    \]
+    Pertanto usando la definizione di limite sappiamo che 
+    \[
+        \left|\frac{f(x)}{g(x)}\right| < \varepsilon \;\;\; \forall x \in I
+    \]
+    Dove $I\subseteq \mathbb{R}$ è un intorno di $x_0$. Ora usiamo le proprietà dei modili
+    \[
+    \left|\frac{f(x)}{g(x)}\right| < \varepsilon  \implies \frac{|f(x)|}{|g(x)|} < \varepsilon \implies |f(x)| < \varepsilon |g(x)|
+    \]
+    Però la definizione O-grande richiedeva che ci fosse almeno un $M>0$ tale che $ |f(x)| < M|g(x)|$, però con la definizione di limite abbiamo trovato che vale $\forall \varepsilon >0$ e di conseguenza basta scegliere $M = \varepsilon$ e implicazione è verificata.
+
+   
+\end{proof}
+
+ \newpage
+    \textbf{ATTENZIONE} Non è vero il contrario, infatti lo vediamo con un esempio, infatti se  prendiamo $f(x)=x+1$ e $g(x)=x+2$ è facile vedere che 
+    \[
+    |x+1| \leq |x+2| \;\;\;\;\; \forall x \geq -1
+    \]
+    Pertanto possiamo scegliere un qualsiasi intorno di 0 della forma $I = (-\delta, +\delta)$ con $\delta\leq 1$, e di conseguenza è verificata la definizione di O-grande e quindi
+    \[
+        x+1 = O(x+2)\;\;\;\;\; \forall x \in I
+    \]
+    Però se proviamo a vedere se $f(x)=o(g(x))$ vediamo subito che non lo è dato che
+    \[
+        \lim_{x\to 0}\frac{f(x)}{g(x)} = \lim_{x\to 0}\frac{x+1}{x+2} = \frac{1}{2} \ne 0 
+    \]
+    Questo succede perchè O-grande ci dice che una funzione è più piccola di un'altra, mentre o-piccolo ci dice che una funzione è tanto più piccola di un'altra, a tal punto da rendere il limite uguale a 0.
+
+
+\addcontentsline{toc}{subsection}{Confronti di Infiniti}
+\begin{definizione}{Confronti di Infiniti}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$ e se 
+    \[
+    \begin{array}{c @{\hspace{2cm}} c}
+    \displaystyle\exists \lim_{x\to x_0}f(x) \in \{\pm \infty\} &  \displaystyle\exists \lim_{x\to x_0}g(x) \in \{\pm \infty\} 
+    \end{array}
+    \]
+    Allora dichiamo che 
+    \begin{itemize}
+        \item "$f(x)$ è infinito dello stesso ordine di $g(x)$" se
+        \[
+        \exists \lim_{x\to x_0}\frac{f(x)}{g(x)} \in \mathbb{R} \setminus \{0\}
+        \] 
+        \item "$f(x)$ è infinito ordine di ordine inferiore $g(x)$"  se
+        \[
+        \exists \lim_{x\to x_0}\frac{f(x)}{g(x)} = 0
+        \] 
+         \item "$f(x)$ è infinito ordine di ordine superiore $g(x)$" se
+        \[
+        \exists \lim_{x\to x_0}\frac{g(x)}{f(x)} = 0
+        \] 
+        \item "$f(x)$ è infinito di ordine non confrontabile a $g(x)$" se
+        \[
+        \nexists \lim_{x\to x_0}\frac{f(x)}{g(x)} 
+        \] 
+    \end{itemize}
+\end{definizione}
+
+\addcontentsline{toc}{subsection}{Confronti di Infinitesimi}
+\begin{definizione}{Confronti di Infinitesimi}{}
+    Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $x_0 $ punto di acc. in $A$ e se
+
+    \begin{itemize}
+        \item $x_0 \in \mathbb{R}$ allora diciamo che 
+        
+        \begin{itemize}
+            \item "$f(x)$ è infinitesima di ordine $\alpha \in \mathbb{R}$ per $x\to x_0$" se
+            \[
+                \exists \lim_{x\to x_0}\frac{f(x)}{|x-x_0|^\alpha} \in \mathbb{R} \setminus \{0\}
+            \]
+            \item "$f(x)$ è infinita di ordine $\alpha \in \mathbb{R}$ per $x\to x_0$" se
+            \[
+                \exists \lim_{x\to x_0}f(x)|x-x_0|^\alpha \in \mathbb{R} \setminus \{0\}
+            \]
+        \end{itemize}
+
+        \item $x_0 \in \{\pm \infty\}$ allora diciamo che 
+        
+        \begin{itemize}
+            \item "$f(x)$ è infinitesima di ordine $\alpha \in \mathbb{R}$ per $x\to x_0$" se
+            \[
+                \exists \lim_{x\to x_0}f(x)|x|^\alpha \in \mathbb{R} \setminus \{0\}
+            \]
+            \item "$f(x)$ è infinita di ordine $\alpha \in \mathbb{R}$ per $x\to x_0$" se
+            \[
+                \exists \lim_{x\to x_0}\frac{f(x)}{|x|^\alpha} \in \mathbb{R} \setminus \{0\}
+            \]
+        \end{itemize}
+         
+    \end{itemize}
+
+\end{definizione}
+
+\begin{esercizio}{}{}
+    Calcolare l'ordine di infinitesimo per $x\to 0^+$ di $f(x)=\sqrt{1+x^2} - \cos(x)$,
+    \end{esercizio}
+    \begin{proof}
+     per farlo dobbiamo usare la definzione di funzione infinitesima
+    \[
+        \lim_{x\to 0^+} \frac{\sqrt{1+x^2} - \cos(x)}{x^\alpha}
+    \]
+    Per capire quanto vale dobbiamo fare una razionalizzazione
+   \begin{align*}
+    \lim_{x\to 0^+} \frac{\sqrt{1+x^2} - \cos(x)}{x^\alpha} &= \lim_{x\to 0^+} \frac{\sqrt{1+x^2} - \cos(x)}{x^\alpha} \cdot \frac{\sqrt{1+x^2} + \cos(x)}{\sqrt{1+x^2} + \cos(x)} \\ 
+    &= \lim_{x\to 0^+} \frac{1+x^2 - \cos^2(x)}{x^\alpha (\sqrt{1+x^2} + \cos(x))}
+    \end{align*}
+
+    Il termine $\sqrt{1+x^2} + \cos(x)\to 2$ quindi possiamo levarlo visto che non influisce sul grado della funzione. Notiamo in oltre che possiamo spaccare la funzione nel seguente modo
+    \[
+    \lim_{x\to 0^+} \frac{1+x^2 - \cos^2(x)}{x^\alpha (\sqrt{1+x^2} + \cos(x))} = \lim_{x\to 0^+} \frac{x^2 }{x^\alpha} + \frac{1 - \cos^2(x)}{x^\alpha}
+    \]
+    Ed entrambi convergono solo se $\alpha = 2$, e quindi il gradi infinitesimale di $f(x)$ è 2.
+    Se fosse stato $f(x)=\sqrt{1-x^2} - \cos(x)$ era necessario usare gli sviluppi dell'o-piccolo.
+\end{proof}
+
+\begin{teorema}{}{}
+    
+\end{teorema}
 
 \end{document}
