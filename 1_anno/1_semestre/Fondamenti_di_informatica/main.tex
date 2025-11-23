@@ -74,6 +74,9 @@
 % \newtheorem{remark}[theorem]{Remark}
 % \newtheorem{note}[theorem]{Note}
 \def\mathunderline#1#2{\color{#1}\underline{{\color{black}#2}}\color{black}}
+\newcommand{\mathrect}[2]{%
+  \fcolorbox{#1}{white}{\strut$\displaystyle #2$}%
+}
 
 \title{DataBase} %title of the file
 
@@ -3714,8 +3717,708 @@ Se $\alpha = 2$ allora il termine $x^{\alpha -2} = x^{2 -2} = 1$ e quindi il lim
     Se fosse stato $f(x)=\sqrt{1-x^2} - \cos(x)$ era necessario usare gli sviluppi dell'o-piccolo.
 \end{proof}
 
-\begin{teorema}{}{}
+\section{Successioni e Serie}
+\addcontentsline{toc}{subsection}{Definizione di Successione}
+\begin{definizione}{Successioni}{}
+    Si definisce successione una funzione a variabile naturale a valori reali, $a: \mathbb{N} \to \mathbb{R}$ e si indica con $(a_n)_{n\in \mathbb{N}}$ oppure $\{a_n\}_{n\in \mathbb{N}}$, mentre il ternime generale si indica con $a(n)$ oppure $a_n$. Il dominio può essere $\mathbb{N}$, $\mathbb{N}_0$ oppure $A = \{n \in \mathbb{N}: n \geq n_0\}$, dove $n_0$ è un qualsiasi numero naturare dal quale inizia la successione. 
+\end{definizione}
+
+vediamo qualche esempio di successione 
+\begin{esempio}{}{}
+    \begin{itemize}
+        \item $a_{n} = n! \;\;\; \forall n \in \mathbb{N}_0$
+        \item $a_n = (n-5)! \;\;\;\forall n \geq 5$
     
+        Qui chiaramente il fattoriale è definitio per numeri non negativi, quindi la successione deve partire da 5, perchè prima non è definita.
+        \item $a_n = \frac{1}{n} \;\;\;\forall n \in \mathbb{N}$
+        
+        In questo caso basta togliere soltanto il caso $n=0$
+        \item $a_n = \frac{1}{n-7} \;\;\;\forall n \geq 8$
+        
+        Teoricamente in questo caso basterebbe levare il caso $n=7$, ma per evitare di avere un "buco" nella sequenza, la facciamo partire da $n=8$.
+    \end{itemize}
+\end{esempio}
+
+\addcontentsline{toc}{subsection}{Punti di Accumulazione per le Successioni }
+\begin{teorema}{Punti di Accumulazione per le Successioni}{}
+    Dato che le successioni sono delle funzioni, allora saranno validi tutti i teoremi visti in precedenza, però abbiamo qualche particolarità, in fatti nelle successioni esiste un unico punto di accumulazione: $+\infty$, dato che se prendiamo un qualsiasi altro punto vedremo che è isolato. Infatti per ogni punto del dominio posso sempre trovare un intervallo vuoto, basta scegliere un raggio $< 1$. Quindi nelle successioni possiamo fare solo ed esclusivamente il seguente limite 
+    \[
+    \lim_{n\to +\infty} a_n =l
+    \]
+    Di conseguenza possiamo scrivere anche soltanto $\lim a_n = l$ oppure ancora più semplicemente $a_n \to l$.
 \end{teorema}
 
+\addcontentsline{toc}{subsection}{Convergenza, Divergenza e Irregolarità delle successioni }
+\begin{definizione}{Convergenza, Divergenza e Irregolarità delle successioni}{}
+    Sia $A = \{n \in \mathbb{N} : n \geq n_0\}$, $a:A \to \mathbb{R}$ allora
+    \begin{itemize}
+        \item Se $\lim  a_n = l\in \mathbb{R}$ allora diciamo che $(a_n)_{n\in A}$ è convergente a $l$
+        \item Se $\lim  a_n = l\in \{\pm \infty\}$ allora diciamo che $(a_n)_{n\in A}$ è divergente a $\{\pm \infty\}$
+        \item Se $\nexists\lim  a_n$  allora diciamo che $(a_n)_{n\in A}$ è irregolare
+ 
+    \end{itemize}
+     
+\end{definizione}
+
+
+\addcontentsline{toc}{subsection}{Monotonia e Limitatezza delle Successioni}
+\begin{definizione}{Monotonia e Limitatezza delle Successioni}{}
+    Dato che le successioni sono delle funzioni, riprendiamo le prinicipali definizioni delle funzioni a variabili reali e le analiziamo per le successioni
+
+    Sia $A = \{n \in \mathbb{N} : n \geq n_0\}$, $a:A \to \mathbb{R}$ allora diciamo che 
+    \begin{itemize}
+        \item $(a_n)_{n\in A}$ è monotona crescente se $a_n \leq a_{n+1} \;\;\; \forall n \in A$
+        \item $(a_n)_{n\in A}$ è monotona decrescente se $a_n \geq a_{n+1} \;\;\; \forall n \in A$
+    \end{itemize}
+    E chiaramente ci sarà anche la monotonia crescente stretta con $a_n < a_{n+1}$ e uguale per la descescenza. In oltre possiamo dire che è definitivamente crescente se è crescente $\forall n \geq \bar{n}$, ragionamento analogo alla decrescenza.
+
+    \begin{itemize}
+        \item $(a_n)_{n\in A}$  è limitata se $\exists M \geq 0$ tale che $|a_n| \leq M \;\;\; \forall n \in A$
+        \item $(a_n)_{n\in A}$  è limitata definitivamente se $\exists M \geq 0$ tale che $|a_n| \leq M \;\;\; \forall n \geq \bar{n}$
+    \end{itemize}
+
+    \textbf{N.B.} come dicevamo le successioni sono vere e proprie funzioni e pertanto saranno validi tutti i seguenti Teoremi: Teorema dell'unicità del limite, Relazione d'ordine \textit{I} e \textit{II}, Teorema dei due carabinieri, algebra dei limiti finiti e infiniti.
+\end{definizione}
+
+
+\addcontentsline{toc}{subsection}{Definizione di Successione Ricorsiva}
+\begin{definizione}{Successioni Ricorsive}{}
+     Sia $A = \{n \in \mathbb{N} : n \geq n_0\}$, $a:A \to \mathbb{R}$ allora diciamo che $a_n$ è ricorsiva se esiste una funzione tale che 
+     \[
+     a_n = f(a_{n-1})
+     \]
+     Un esempio classico è il fattoriale, infatti il fattoriale lo possiamo scrivere come
+     \begin{align*}
+        n! &= n\cdot (n-1)! \\
+        a_n &= n\cdot a_{n-1}
+     \end{align*}
+\end{definizione}
+
+\addcontentsline{toc}{subsection}{Limitatezza delle succesioni quando esiste Limite}
+\begin{teorema}{Limitatezza delle succesioni quando esiste Limite}{}
+    Sia $A = \{n \in \mathbb{N} : n \geq n_0\}$, $a:A \to \mathbb{R}$ e se $a_n \to l \in \mathbb{R}$ allora $(a_n)_{n\in A}$ è limitata globalmente.
+     
+\end{teorema}
+\begin{proof}
+    Nelle funzioni a variabili reali sapevamo che se esiste il limite allora la funzione era limitata definitivamente, proprio perche se $\displaystyle\exists\lim_{x\to x_0} f(x) = l$ sapevamo che 
+    \[
+        |f(x) - l| < \varepsilon \;\;\;\; \forall x \in I
+    \] 
+    E da questo potevamo dedurre che 
+    \begin{align*}
+        |f(x)| &= |f(x) - l + l| \\
+        &\leq |f(x) - l| + |l|\\ 
+        &< \varepsilon + |l|
+    \end{align*}
+    E di conseguenza noi sappiamo che $f(x)$ era limitata definitivamente, e quindi questo sarà vero anche per le successioni, ma con le successio possiamo dire qualcosa di più. Infatti se $a_n \to l$ per lo stesso ragionamento possiamo dire che 
+    \[
+        |a_n| < \varepsilon + |l|  \;\;\; \forall n \geq \bar{n}
+    \]
+    Ora possiamo prendere tutti i numeri prima di $\bar{n}$ e $\varepsilon + |l|$ e prendere il massimo tra questi valori
+    \[
+    M = \max\{|a_1|, |a_2|, |a_3|, ... ,|a_{\bar{n}}|,  \varepsilon + |l|\}
+    \]
+    Importante specificare che $M \not \in \{\pm \infty\}$, perche tutti i valori con $n\leq \bar{n}$ sono valori finiti, e lo stesso vale per $\varepsilon + |l|$. Ora notiamo che per i valori di $n\leq\bar{n}$ saranno sicuramente più piccoli del massimo tra loro. mentre per i valori con $n> \bar{n}$ abbiamo che saranno sempre minori di $\varepsilon + |l|$, di conseguenza $|a_n| < M$ per $\forall n \in A$ che è la definizione di limitata globarlmente, e non solamente definitivamente.
+\end{proof}
+
+
+\addcontentsline{toc}{subsection}{Definizione di Progressione Geormetrica}
+
+\begin{definizione}{Progressione Geormetrica}{}
+    Fissato $r\in \mathbb{R}$ detta ragione, allora si dice progressione geometrica la successione definita come
+    \[
+        a_n = r^n \;\;\;\;\; \forall n\in \mathbb{N}_0
+    \]
+    \begin{center} il cui limite è $\displaystyle\lim a_n=\begin{cases} +\infty & \text{se } r > 1 \\ 1 & \text{se } r = 1 \\0 & \text{se } -1<r < 1 \\ \text{Non Esiste} & \text{se } r \leq -1 \end{cases}$ \end{center}
+    
+\end{definizione}
+
+
+\addcontentsline{toc}{subsection}{Definizione di Sottosuccessione}
+\begin{definizione}{Sottosuccessione}{}
+    Sia $A = \{n \in \mathbb{N} : n \geq n_0\}$, $a:A \to \mathbb{R}$  e una funzione $\varphi: \mathbb{N} \to \mathbb{N}$ strettamente crescente, allora si dice Sottosuccessione, o estratta, di $(a_n)_{n \in A}$ la successione $(a_{\varphi(k)})_{k \in A}$
+\end{definizione}
+
+        Vediamo un esempio di sottosuccessione
+    \begin{esempio}{}{}
+        \[
+    \begin{array}{c @{\hspace{2cm}} c}
+    a_n = (-1)^n &  \varphi: n \to 2n
+    \end{array}
+    \]
+    \end{esempio}
+    \begin{proof}
+        Notiamo subito che la funzione $\varphi(n)$ è strettamente crescente, quindi la possiamo usare. Proviamo quindi a trovare la sotto successione $(a_{\varphi(k)})_{k \in \mathbb{N}}$, per farlo basta sostituire la funzione nella $n$ nella funzione originale.
+        \[
+        a_{\varphi(n)} = (-1)^{2n} \implies a_{\varphi(n)} = ((-1)^{2})^{n} \implies a_{\varphi(n)} = 1^n \implies a_{\varphi(n)} = 1
+        \]
+        Quindi questa sottosuccessione è semplicemente una sequenza di 1. Da notare che le sottosuccessioni sono come le funzioni composte nelle funzioni a variabile reale. In oltre in questo esempio possiamo notare che se avessimo scelto $\varphi(n) = 2n+1$ la sottosuccessione risultante sarebbe stata  $a_{\varphi(n)} = -1$, e questo vedremo presto implica una cosa molto importante.
+    \end{proof}
+
+
+\addcontentsline{toc}{subsection}{Relazione tra Successione e le sue Sottosuccessioni}
+    \begin{teorema}{Relazione tra Successione e le sue Sottosuccessioni}{}
+        Sia $A = \{n \in \mathbb{N} : n \geq n_0\}$, $a:A \to \mathbb{R}$ allora $\exists a_n \to l \in \mathbb{R} \cap \{\pm \infty\}$  se e solo se tutte le sottosuccessioni hanno limite $l$
+    \end{teorema}
+
+    Il teorema per com'è scritto non è molto utile, infatti è molto difficile controllare se tutte le possibili sottosuccessioni facciano lo stesso limite, ma è molto più utile la negazione di questo teorema, infatti se è vero che tutte le sottosuccessioni devono avere limite $l$, è anche vero che ne basta trovare almeno una che hanno limite diverso per dire che la successione originale non ha limite.
+
+    \begin{esempio}{}{}
+        \[
+            a_n = (-1)^n
+        \]
+    \end{esempio}
+    \begin{proof}
+        Infatti come avevamo visto se usiamo la sottosuccessione con $\varphi(n) = 2n$, veniva fuori $a_{\varphi(n)} = 1$, mentre se prendevo la sottosuccessione $\varphi(n) = 2n +1$ diventerebbe $a_{\varphi(n)} = -1$, di conseguenza due sottosuccessioni hanno limite diverso allora la successione $a_n = (-1)^n$ non ha limite.
+    \end{proof}
+
+
+\addcontentsline{toc}{subsection}{Teorema di Bolzano-Weierstrass}
+    \begin{teorema}{Teorema di Bolzano-Weierstrass}{}
+        Se $(a_n)_{n\in A}$ è limitata, allora esiste almeno una sottosuccessione $(a_{\varphi(n)})_{n\in A}$ che converge
+    \end{teorema}
+
+    Un esempio lo abbiamo visto appena adesso con la successione $ a_n = (-1)^n$, visto che è una funzione limitata allora almeno una, noi ne abbiamo trovate 2, sottosuccessione converge.
+
+\addcontentsline{toc}{subsection}{Caratterizzazione sequenziale del Limite}
+    \begin{teorema}{Caratterizzazione sequenziale del Limite}{}
+        Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $x_0$ punto di acc. in $A$ allora 
+        \[
+            \exists \lim_{x\to x_0} f(x) = l \in \mathbb{R} \cap \{\pm\infty\} \iff  \lim_{n\to +\infty} f(a_n) = l
+        \]
+        Per ogni successione $(a_n)_{n\in \mathbb{N}}$ tale che
+        \begin{itemize}
+            \centering
+            \item $a_n \ne 0$ definitivamente per $n \to +\infty$
+            \item $\lim a_n \to x_0$
+        \end{itemize}
+    \end{teorema}
+
+    Anche qua come nella relazione tra Successione e Sottosuccessioni, è impossibile trovare qualsiasi successione e controllare che tutte facciano $l$. Questo teorema è molto ultile usare la sua negazione, infatti basta trovare due successioni che rendono il limite diverso per capire che il limite della funzione originale non esiste. Infatti proviamo a calcolare un limite che è difficile da dimostrare, ma che con questo teorema diventa molto semplice.
+    
+\addcontentsline{toc}{subsection}{Esempi di applicazione della Caratterizzazione sequenziale del Limite}
+    \newpage
+    \begin{esercizio}{}{}
+        \[
+            \lim_{x\to +\infty} \sin(x)
+        \]
+    \end{esercizio}
+    \begin{proof}
+        Possiamo scegliere $a_n = \frac{\pi}{2} + 2\pi n$ e possiamo vedere che possiamo applicare il teorema perchè $a_n \ne 0$ definitivamente, e che $a_n \to +\infty$, quindi vediamo come diventa il limite
+        \[
+            \lim_{n\to +\infty} \sin(a_n) = \lim_{n\to +\infty} \sin\left(\frac{\pi}{2} + 2\pi n\right)
+        \]
+        Usando le proprietà del seno sappiamo che $\sin(\frac{\pi}{2} + 2\pi n) = 1 \;\;\; \forall n \in \mathbb{Z}$ e quindi 
+        \[
+        \lim_{n\to +\infty} \sin\left(\frac{\pi}{2} + 2\pi n\right) = \lim_{n\to +\infty } 1 = 1
+        \]
+        Ora ripetiamo lo stesso procedimento per $b_n = \frac{3\pi}{2} + 2\pi n$, ricordanto che per le proprietà del seno $\sin(\frac{3\pi}{2} + 2\pi n) = -1 \;\;\; \forall n \in \mathbb{Z}$
+        \[
+                   \lim_{n\to +\infty} \sin(b_n) = \lim_{n\to +\infty} \sin\left(\frac{3\pi}{2} + 2\pi n\right) = \lim_{n\to +\infty } -1 = -1
+        \]
+        Abbiamo trovato quindi due successione che fanno tendere la funzione a due limiti diversi e di conseguenza $\displaystyle\nexists            \lim_{x\to +\infty} \sin(x)$
+    \end{proof}
+
+    \begin{esercizio}{}{}
+        \[
+            \lim_{x\to 0} \frac{1}{x}
+        \]
+    \end{esercizio}
+
+    \begin{proof}
+        Anche se lo abbiamo già dimostrato che questo limite non esiste, proviamo a dimostrarlo grazie a questo teorema, infatti se scelgo $a_n = \frac{1}{n}$, è valida perchè $a_n \to 0$ e di condeguenza il limite diventa
+        \[
+        \lim_{x\to 0} \frac{1}{x} = \lim_{n\to +\infty} \frac{1}{a_n} = \lim_{n\to +\infty} \frac{1}{\frac{1}{n}} = \lim_{n\to +\infty} n = +\infty
+        \] 
+
+        Invece se provia con la successione $b_n = \frac{-1}{n}$ succede che
+        \[
+        \lim_{x\to 0} \frac{1}{x} = \lim_{n\to +\infty} \frac{1}{b_n} = \lim_{n\to +\infty} \frac{1}{\frac{-1}{n}} = \lim_{n\to +\infty} -n = -\infty
+        \] 
+        Anche qua vediamo che con la sucessione $a_n$ il nostro limite tende a $+\infty$, mentre con $b_n$ tende a $-\infty$ e pertanto $\displaystyle\nexists \lim_{x\to 0} \frac{1}{x}$, come avevamo già dimostrato.
+    \end{proof}
+    \newpage
+    \begin{esercizio}{}{}
+        Sia $f:\mathbb{R} \to \mathbb{R}$ una funzione periodica non costante, Allora
+        \[
+            \nexists\lim_{x\to +\infty} f(x)
+        \]
+    \end{esercizio}
+    \begin{proof}
+        In primis capiamo che ipotesi abbiamo infatti una funzione è periodica se $\exists T > 0$ tale che $f(x+nT) = f(x)\;\;\; \forall n \in \mathbb{Z}, \forall x\in \mathbb{R}$. In più sappiamo che non è costante, che vuol dire  $\exists x_1 \ne x_2$ tali che $f(x_1) \ne f(x_2)$. 
+
+        Quindi se scelgo $a_n = x_1 + nT$, e posso farlo perchè $a_n \to +\infty$ visto che $T >0$ per ipotesi, allora posso sostituirlo
+        \[
+        \lim_{x\to +\infty} f(x) = \lim_{n\to +\infty} f(a_n) = \lim_{n\to +\infty} f(x_1 + nT)
+        \]
+        Per definizione di funzione periodica sappiamo che $f(x_1 + nT) = f(x_1)$
+        \[
+        \lim_{n\to +\infty} f(x_1 + nT) = \lim_{n\to +\infty} f(x_1) = f(x_1)
+        \]
+        Ora posso scegliere $b_n = x_2 + nT$, e per la stessa logica di $a_n$
+        \[
+        \lim_{x\to +\infty} f(x) = \lim_{n\to +\infty} f(b_n) = \lim_{n\to +\infty} f(x_2 + nT) = \lim_{n\to +\infty} f(x_2) = f(x_2)
+        \]
+        Notiamo che in un caso il limite tende a $f(x_1)$ e in un altro tende a $f(x_2)$, e visto che per ipotesi $f(x_1) \ne f(x_2)$ allora $\displaystyle\nexists\lim_{x\to +\infty} f(x)$ 
+    \end{proof}
+
+\addcontentsline{toc}{subsection}{Gerarchia degli Infinito per le Successioni}
+    \begin{teorema}{Gerarchia degli Infinito per le Successioni}{}
+        Visto che le successioni sono funzioni ci portiamo dietro i seguenti teoremi
+        
+        Sia $\alpha>0, \beta>0, a>1$ 
+        \begin{enumerate}[label=(\roman*)]
+            \centering
+            \item $\displaystyle\lim_{n\to+\infty} \frac{(\log(n))^\beta}{n^\alpha}= 0$
+            \item $\displaystyle\lim_{n\to+\infty} \frac{n^\alpha}{a^n}= 0$ 
+        \end{enumerate}
+
+        In più, visto che le successioni sono definite per i numeri interi, allora possiamo usare anche il fattoriale, e quindi abbiamo due limiti nuovi
+        \begin{enumerate}[label=(\roman*)]
+            \setcounter{enumi}{2}
+            \centering
+            \item $\displaystyle\lim_{n\to+\infty} \frac{a^n}{n!}= 0$
+            \item $\displaystyle\lim_{n\to+\infty} \frac{n!}{n^n}= 0$ 
+        \end{enumerate}
+
+    \end{teorema}
+    \begin{proof}
+        I primi due sono verificati perchè sono vere per le funzioni a variabili reali, e di conseguenza valgono anche per le successioni. Iniziamo dimostrando la $(iv)$.
+\newpage
+        $(iv)$ Notiamo subito che sia $n!\ge 0$ che $n^n \ge 0$ e di conseguenza $\frac{n!}{n^n} \geq 0$. Ora riscriviamo la frazione usando la definizione di fattoriale
+        \[
+            \frac{n!}{n^n} = \frac{n \cdot (n-1)\cdot (n-2)\cdot ... \cdot 2\cdot 1}{n \cdot n \cdot n \cdot ...\cdot n  \cdot n } = \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot ...\cdot \frac{2}{n} \cdot \frac{1}{n}     
+        \]
+        Notiamo subito che il primo termine $\frac{n}{n} = 1$ quindi possiamo toglierlo, in più tutti i termini sono $\leq 1$, quindi 
+        \begin{align*}
+            \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot ...\cdot \frac{2}{n} \cdot \frac{1}{n} &\leq 1 \cdot \frac{n-2}{n} \cdot ...\cdot \frac{2}{n}  \cdot \frac{1}{n} \\ 
+            &\leq 1 \cdot 1 \cdot ... \cdot \frac{2}{n} \cdot \frac{1}{n} \\
+            &\leq ... \\
+            &\leq 1 \cdot 1 \cdot 1 \cdot 1 \cdot \frac{1}{n} \\
+            &\leq \frac{1}{n}
+        \end{align*}
+        Quindi abbiamo scoperto che
+        \[
+            0 \leq \frac{n!}{n^n} \leq \frac{1}{n}
+        \]
+        Visto che $\displaystyle\lim_{n\to+\infty}\frac{1}{n} = 0$, per il teorema dei carabinieri
+        \[
+        \lim_{n\to+\infty} \frac{n!}{n^n}= 0
+        \]
+
+        $(iii)$ Come prima, sappiamo che $a^n \geq 0$ e che $n! \geq 0$ e quindi $\frac{a^n}{n!} \ge 0$. Visto che $a>1$ allora $\exists N \in \mathbb{N}$ tale che $N>a$. Quindi potremo riscrivere la sequenza con $n\geq N$ come        
+        \[
+        \frac{a^n}{n!} =  \mathrect{red}{\frac{a}{1} \cdot \frac{a}{2} \cdot \frac{a}{3} \cdot ... \frac{a}{N-1} \cdot \frac{a}{N}} \cdot \mathrect{blue}{\frac{a}{N+1} \cdot .. \frac{a}{n-1}} \cdot \frac{a}{n} 
+        \]
+        Notiamo che tutti i termini nel riquadro rosso sono tutti $\leq a$, dato che $N>1$, mentre tutti i termini nel riquadro blu sono $\leq 1$ perchè $N\ge a \implies 1 \ge \frac{a}{N}$, quindi
+        \begin{align*}
+        \frac{a^n}{n!}  &\leq \mathrect{red}{a \cdot a \cdot a \cdot ... \cdot a \cdot a } \cdot \mathrect{blue}{1 \cdot ... \cdot 1} \cdot \frac{a}{n} \\    
+            &\leq a^N \cdot 1 \cdot \frac{a}{n} \\
+            &\leq \frac{a^{N+1}}{n}
+    \end{align*}
+        Quindi abbiamo scoperto che
+        \[
+            0 \leq \frac{a^n}{n!} \leq \frac{a^{N+1}}{n}
+        \]
+        Visto che $a^{N+1}$ è un numero ben definito e non è dipendente da $n$ allora $\displaystyle \lim_{n\to+\infty} \frac{a^{N+1}}{n} = 0$, e quindi per il teorema dei carabinieri 
+        \[
+        \lim_{n\to+\infty} \frac{n!}{n^n}= 0
+        \]
+        
+    \end{proof}
+
+\addcontentsline{toc}{subsection}{Formula di Stirling}
+    \begin{teorema}{Formula di Stirling}{}
+        \[
+         n! \sim \left(\frac{n}{e}\right)^n \sqrt{2\pi n} \;\;\;\;\; \text{ per } n\to+\infty
+        \]
+    \end{teorema}
+ Vediamo qualche esercizio per allenarci con questa formula
+    \begin{esercizio}{}{}
+        \[
+        \lim_{n\to +\infty} \sqrt[n]{n!} 
+        \]
+    \end{esercizio}
+    \begin{proof}
+        Visto che è una equivalenza asintotica possiamo sistutire $n!$
+        \[
+        \lim_{n\to +\infty} \sqrt[n]{n!} = \lim_{n\to +\infty} \sqrt[n]{ \left(\frac{n}{e}\right)^n \sqrt{2\pi n}} 
+        \]
+        Facciamo qualche riarrangiamento
+        \begin{align*}
+             \lim_{n\to +\infty} \sqrt[n]{ \left(\frac{n}{e}\right)^n \sqrt{2\pi n}}  &= \lim_{n\to +\infty} \sqrt[n]{ \left(\frac{n}{e}\right)^n} \cdot \sqrt[n]{ \sqrt{2\pi n}} \\ 
+          &= \lim_{n\to +\infty} \left(\frac{n}{e}\right) \cdot \sqrt[2n]{2\pi n} \\
+          &= e^{-1} \lim_{n\to +\infty} n\sqrt[2n]{2\pi n}
+        \end{align*}
+        
+        Ora possiamo usare la tecnica delle potenze di funzioni e  applichiamo le regole dei logaritmi
+        \begin{align*}
+            \lim_{n\to +\infty} n\sqrt[2n]{2\pi n} &= \lim_{n\to +\infty} e^{\log(n\sqrt[2n]{2\pi n})}\\
+                &= \lim_{n\to +\infty} e^{\log(n)+ \log((2\pi n)^\frac{1}{2n})} \\ 
+                 &= \lim_{n\to +\infty} e^{\log(n)+ \frac{1}{2n}\log(2\pi n)} \\ 
+                 &= \lim_{n\to +\infty} e^{\log(n)+ \frac{1}{2}\left(\frac{\log(2)}{n} +\frac{\log(\pi)}{n} +\frac{\log(n)}{n} \right)} 
+        \end{align*}
+         Ora i termini $\frac{\log(2)}{n}$ e $\frac{\log(\pi)}{n}$ è facile vedere che tendono a 0, poi per la gerarchia degli infiniti anche $\frac{\log(n)}{n}\to 0$, mentre il termine $\log(n) \to +\infty$, quindi l'esponente complessivamente tende a $+\infty$, quindi l'esponenziale tende anche lui a $+\infty$, e di conseguenza 
+         \[
+         \lim_{n\to +\infty} \sqrt[n]{n!}  = +\infty
+         \]
+    \end{proof}
+\newpage
+
+\addcontentsline{toc}{subsection}{Criterio di convergenza per le Successione}
+    \begin{teorema}{Criterio di convergenza per le Successione}{}
+        Sia $A = \{n \in \mathbb{N} : n \geq n_0\}$, $a:A \to \mathbb{R}$ e $(a_n)_{n\in A}$ definitivamente positiva allora se 
+        \[
+            \exists \lim \frac{a_{n+1}}{a_n} = l \in [0, +\infty) \cup \{+\infty\}
+        \]
+        allora 
+        \begin{enumerate}[label=(\roman*)]
+            \centering
+            \item $l \in [0, 1) \implies \lim a_n = 0 $
+            \item $l \in (1, +\infty) \cup \{+\infty\} \implies \lim a_n = +\infty$
+            \item $l = 1 \implies$ nulla si può dire
+        \end{enumerate}
+    \end{teorema}
+
+    \begin{proof}
+        Per dimostrare dobbiamo riprendere la definizione di limite, infatti se esiste il limite allora sappiamo che
+        \[
+            \lim \frac{a_{n+1}}{a_n} = l \iff \frac{a_{n+1}}{a_n} \in  (l-\varepsilon, l+\varepsilon) \;\;\;\;\; \forall x \in I
+        \]
+        Riscriviamo il termine
+        \[
+        \frac{a_{n+1}}{a_n} \in  (l-\varepsilon, l+\varepsilon) \iff l-\varepsilon < \frac{a_{n+1}}{a_n} < l+\varepsilon \implies (l-\varepsilon)a_n < a_{n+1}< (l+\varepsilon)a_n 
+        \]
+        $(i)$ Per dimostrare il punto $(i)$ ci basta prendere un qualsiasi $N \in \mathbb{N}$ e la disequazione  $\mathunderline{red}{a_{N+1}\leq (l+\varepsilon)a_N }$, infatti dato che è vera possiamo dire anche che $\mathunderline{blue}{a_{N+2}\leq (l+\varepsilon)a_{N+1} }$ e anche $a_{N+3}\leq (l+\varepsilon)a_{N+2} $ e così via, e possiamo dire che  %e seguendo questo ragionamento possiamo dire che  che $a_{n+k+1}< (l+\varepsilon)a_{n+k} $
+        \begin{align*}
+            a_{N+3} \leq(l+\varepsilon)\mathunderline{blue}{a_{N+2} \leq } & (l+\varepsilon)\mathunderline{blue}{(l+\varepsilon)a_{N+1}} \\
+             \leq &(l+\varepsilon)^2a_{N+1}   \\
+            a_{N+3} \leq (l+\varepsilon)^2\mathunderline{red}{a_{N+1} \leq} & (l+\varepsilon)^2\mathunderline{red}{(l+\varepsilon)a_{N}} \\
+             \leq &(l+\varepsilon)^3a_{N}   \\
+            a_{N+3}  \leq &(l+\varepsilon)^3a_{N}
+        \end{align*}
+        Seguendo questo ragionamento possiamo dire che 
+        \[
+            a_{N+k} \leq  (l+\varepsilon)^k a_N \;\;\;\;\; \forall k \in \mathbb{N}
+        \]
+        Ora noi per ipotesi sappiamo che $l \in [0, 1)$, quindi se scegliamo $\varepsilon \in [0, 1-l)$ in modo tale che il termine $(l+\varepsilon)< 1$. Ricordiamo anche che la funzione, per ipotesi, è definitivamente positiva, quindi sarà vero che $a_{N+k}\geq 0$. Ora se mandiamo al limite la seguente disequazione 
+        \[
+             0 \leq \lim_{k \to +\infty} a_{N+k} \leq \lim_{k \to +\infty} (l+\varepsilon)^k a_N
+        \]
+        Scopriamo che il termine di destra tende a 0 per le regole degli esponenziali, e quindi complessivamente il termine di destra $0\cdot a_N \to 0$, visto che $a_N$ è un numero finito. In più nel termine centrale possiamo togliere $N$ visto che $k \sim k + N$ per $k\to+\infty$, pertanto per il teorema dei due carabinieri abbiamo che 
+        \[
+        \lim_{k \to +\infty} a_{k} = 0
+        \]
+        
+        $(ii)$ Per dimostrare il secondo punto ci serve riprendere la disequazione impostata all'inizio della dimostrazione 
+        \[
+        (l-\varepsilon)a_n < a_{n+1}
+        \]
+        Ora per lo stesso ragionamento del punto scorso possiamo scegliere un $N \in \mathbb{N}$ e potremo dire che
+        \[
+         (l-\varepsilon)^k a_N \leq  a_{N+k} \;\;\;\;\; \forall k \in \mathbb{N}
+        \] 
+        Se scegliamo un $\varepsilon \in [0, l-1)$ avremo che $l-\varepsilon > 1$ e quindi se lo portiamo al limite avremo che $(l-\varepsilon)^k \to +\infty$, e di conseguenza per il corollario del teorema dei due carabinieri abbiamo che 
+        \[
+        \lim_{k \to +\infty} a_{k} = +\infty
+        \] 
+        \text{N.B.} è impossibile che  $a_N=0$, infatti $a_N$ è il termine generale di una serie, quindi ammeno che non sia la serie $a_N = 0$ che in quel caso converge, non ci sono problemi che venisse fuori una forma indeterminata $\bigl[\infty \cdot 0\bigr]$.
+    \end{proof}
+
+
+\addcontentsline{toc}{subsection}{Teorema dell'Esistenza del limite di funzioni Monotone}
+    \begin{teorema}{Esistenza del limite di funzioni Monotone}{}
+        Sia $A = \{n \in \mathbb{N} : n \geq n_0\}$, $a:A \to \mathbb{R}$ e $(a_n)_{n\in A}$ definitivamente monotona allora $\displaystyle\lim a_n \in \mathbb{R} \cup \{\pm \infty\}$ e possiamo dire anche che 
+        \begin{itemize}
+            \item Se  $(a_n)_{n\in A}$ è monotona crescente allora
+            \[
+                \lim a_n = \sup\{a_n : n \in A\}
+            \]
+            \item Se  $(a_n)_{n\in A}$ è monotona decrescente allora
+            \[
+                \lim a_n = \inf\{a_n : n \in A\}
+            \]
+        \end{itemize}
+        
+    \end{teorema}
+        Questo teorema è la versione del Teorema del limite di funzioni monotone applicato alle successioni, quindi non serve la dimostrazione perchè è la stessa delle funzioni.
+    
+
+\addcontentsline{toc}{subsection}{Definizione di Serie Numerica}
+    \begin{definizione}{Serie Numeriche}{}
+        Sia $(a_n)_{n\in\mathbb{N}}$ un successione a valori reali, definiamo la successione delle \textbf{somme parziali} $(S_k)_{k \in \mathbb{N}}$ definita come
+        \[
+            S_k = \sum_{n=1}^{k} a_n
+        \]
+        Diciamo "\textbf{serie numerica con termine generale $a_n$}" il limite della successione delle somme parziali, e la indichiamo come
+        \[
+            \sum_{n=1}^{+\infty} a_n = \lim_{k\to +\infty} S_k \in \mathbb{R} \cup \{\pm \infty\}
+        \]
+    \end{definizione}
+    
+    Visto che $S_k$ è una successione, allora anche nelle serie ereditiamo i termini già visti: \textbf{Convergenza},\textbf{Divergenza} e \textbf{Irregolare}
+        
+\addcontentsline{toc}{subsection}{Convergenza, Divergenza e Irregolarità delle Serie}
+    \begin{definizione}{Convergenza, Divergenza e Irregolarità delle Serie}{}
+        Sia $(a_n)_{n\in \mathbb{N}}$ una successione, allora diciamo che la serie numerica $\displaystyle\sum_{n=1}^{+\infty} a_n $ è
+         \begin{itemize}
+        \item Convergente se  $\lim  S_k = l\in \mathbb{R}$
+        \item Divergente se $\lim  S_k = l\in \{\pm \infty\}$
+        \item Irregolare se $\nexists\lim  S_k$  
+    \end{itemize}
+     
+    \end{definizione}
+    
+\addcontentsline{toc}{subsection}{Serie Geometrica}
+    \begin{esempio}{}{}
+        Se prendiamo $a_n = r^n$, con $r \in \mathbb{R}$, per induzione si può dimostrare che la successione delle somme parziale è definita come 
+        \[
+        S_k = \sum_{n=1}^{k} r^n = \frac{1-r^{k+1}}{1-r} 
+        \]
+        Pertanto se portiamo tutto al limite abbiamo che 
+        \begin{center}
+            $\displaystyle\sum_{n=1}^{k} r^n = \begin{cases}
+                \frac{1}{1-r} &\text{se } r \in (-1, 1)\\
+                +\infty &\text{se } r \geq 1 \\ 
+                \nexists &\text{se } r \leq 1 \\ 
+            \end{cases}$
+        \end{center}
+        
+        E questa è detta \textbf{Serie Geometrica}.
+    \end{esempio}
+
+\addcontentsline{toc}{subsection}{Serie Armonica Generalizzata}
+    \begin{teorema}{Serie Armonica Generalizzata }{}
+        Dato $\alpha \in [0, +\infty)$ allora con \textbf{Serie Armonica Generalizzata} intendiamo la serie
+        \begin{center}
+            $\displaystyle\sum_{n=1}^{+\infty} \frac{1}{n^\alpha} = \begin{cases}
+                \text{Divergente a } +\infty & \text{se } \alpha \in [0,1] \\
+                \text{Convergente}  & \text{se } \alpha > 1 
+            \end{cases}$
+        \end{center}
+    \end{teorema}
+    
+    \begin{proof}
+        (caso $\alpha \in [0,1)$) Scriviamo le somme parziali per capire meglio
+        \[
+        S_k = \sum_{n=1}^{k} \frac{1}{n^\alpha}= 1 + \frac{1}{2^\alpha} + \frac{1}{3^\alpha} + ... + \frac{1}{k^\alpha}
+        \]
+        Notiamo che $\forall n\leq k$ vale $\frac{1}{n^\alpha} \geq \frac{1}{k^\alpha}$, quindi possiamo dire che 
+         \begin{align*}
+            1 + \frac{1}{2^\alpha} + \frac{1}{3^\alpha} + ... + \frac{1}{k^\alpha} &\geq \frac{1}{k^\alpha}+ \frac{1}{k^\alpha} + \frac{1}{k^\alpha} + ... + \frac{1}{k^\alpha} \\
+            &= \frac{k}{k^\alpha} = k^{1-\alpha}
+         \end{align*}
+         Dato che $\alpha \in [0,1)$, appiamo che $1-\alpha > 0$, e quindi se portiamo la sommatoria al limite abbiamo che $k^{1-\alpha} \to +\infty$, e visto che la serie armonica è maggiore di una somma divergente, anche lei diventa divergente.
+
+        (caso $\alpha = 1$)  Notiamo che  la sommatoria $S_k$ è monotona crescente, infatti
+        \begin{align*}
+           S_{k+1} = \sum_{n=1}^{k+1} \frac{1}{n} &=  \left(\sum_{n=1}^{k} \frac{1}{n}\right) + \frac{1}{k+1} \\ 
+         S_{k+1} &= S_k + \frac{1}{k+1}
+        \end{align*}
+        E notiamo che $\frac{1}{k+1} > 0$, $\forall k > 0$, quindi
+       \begin{align*}
+         S_{k+1} &= S_k + \frac{1}{k+1} > S_k  + 0\\ 
+         S_{k+1}&> S_k
+       \end{align*}
+       E pertanto la serie è monotona crescente, e visto che la somma delle serie parziali è una successione, per il teorema dell'esistenza di funzioni monotone sappiamo che il limite esiste e deve valere $S \in [1, +\infty] \cup \{+\infty\}$. Osserviamo che
+\begin{align*}
+    S_{2k} - S_k &= \left(\sum_{n=1}^{2k} \frac{1}{n}\right) - \left(\sum_{n=1}^{k} \frac{1}{n}\right) \\
+    &=  \left(\sum_{n=1}^{k} \frac{1}{n}\right) + \left(\sum_{n=k+1}^{2k} \frac{1}{n}\right) - \left(\sum_{n=1}^{k} \frac{1}{n}\right) \\
+    &=    \sum_{n=k+1}^{2k} \frac{1}{n} =    \frac{1}{k+1} + \frac{1}{k+2} + \frac{1}{k+3} + ... + \frac{1}{2k} 
+\end{align*}
+    Come per il caso $\alpha \in [0,1)$, vediamo che $\frac{1}{k+n} \geq \frac{1}{2k}$, $\forall n\leq k$ e quindi
+    \begin{align*}
+        \frac{1}{k+1} + \frac{1}{k+2} + \frac{1}{k+3} + ... + \frac{1}{2k}  &\geq \frac{1}{2k} + \frac{1}{2k} + \frac{1}{2k} + ... + \frac{1}{2k} \\
+        &=  k \cdot \frac{1}{2k} = \frac{1}{2}
+    \end{align*}
+    Quindi abbiamo scoperto che $S_{2k} - S_k \geq \frac{1}{2}$, quindi sappiamo anche che $S_{2k} \geq S_k + \frac{1}{2}$, ma se supponiamo che  $S\ne +\infty$ vediamo che per $S_{2k} \to S$ e anche $S_k \to S$ e quindi 
+    \begin{align*}
+        S_{2k}  &\geq S_k +\frac{1}{2}\\
+        S &\geq S + \frac{1}{2} \\
+        0 &\geq \frac{1}{2}
+    \end{align*} 
+    Chiaramente è impossibile che $0 \geq \frac{1}{2}$, e quindi vuole dire che l'ipotesi che $S \ne +\infty$ è sbagliata e di conseguenza abbiamo scoperto che $S = +\infty$ e che quindi la serie $\displaystyle\sum_{n=1}^{+\infty} \frac{1}{n}$ è divergente. 
+    
+\newpage
+    (caso $\alpha > 1$) Come per il caso $\alpha = 1$ possiamo dire che la successione delle serie parziali è monotona crescente
+    \[
+     S_{k+1} = S_k + \frac{1}{(k+1)^\alpha} \geq S_k\;\;\;\;\; \forall k \in \mathbb{N}
+    \]
+    E di conseguenza il limite esiste e varrà $S \in [1, +\infty) \cup \{+\infty\}$, notiamo che
+    \begin{align*}
+        S_{2k+1} &= 1 + \frac{1}{2^\alpha} + \frac{1}{3^\alpha} + \frac{1}{4^\alpha} + \frac{1}{5^\alpha} + ... + \frac{1}{(2k)^\alpha} + \frac{1}{(2k+1)^\alpha} \\
+        &= 1 + \left(\frac{1}{2^\alpha} + \frac{1}{3^\alpha}\right) + \left(\frac{1}{4^\alpha} + \frac{1}{5^\alpha}\right) + ... + \left(\frac{1}{(2k)^\alpha} + \frac{1}{(2k+1)^\alpha}\right)  \\
+        &= 1+ \sum_{n=1}^{k} \left(\frac{1}{(2n)^\alpha} +\frac{1}{(2n+1)^\alpha} \right)
+    \end{align*}
+    
+    Sappiamo che $\frac{1}{(2n+1)^\alpha} \le \frac{1}{(2n)^\alpha}$, $\forall n \in \mathbb{N}$ e quindi 
+    \begin{align*}
+        \sum_{n=1}^{k} \left(\frac{1}{(2n)^\alpha} +\frac{1}{(2n+1)^\alpha} \right) &\leq \sum_{n=1}^{k} \left(\frac{1}{(2n)^\alpha} +\frac{1}{(2n)^\alpha} \right) \\
+        &= \sum_{n=1}^{k} \frac{2}{(2n)^\alpha} \\
+        &= \sum_{n=1}^{k} \frac{2^{1-\alpha}}{n^\alpha} \\
+        &= 2^{1-\alpha}\sum_{n=1}^{k}\frac{1}{n^\alpha} 
+    \end{align*}
+    Quindi abbiamo scoperto che 
+    \[
+        S_{2k+1} \leq 1 + 2^{1-\alpha}\sum_{n=1}^{k}\frac{1}{n^\alpha} 
+    \]  
+    Però ricordiamo che $\displaystyle\sum_{n=1}^{k}\frac{1}{n^\alpha} = S_k$ e quindi 
+    \[
+     S_{2k+1} \leq 1 + 2^{1-\alpha} S_k
+    \]
+    Prima abbiamo detto che la sommatoria ha limite visto che è monotona crescente, quindi supponiamo che $S \in [1, +\infty)$, pertanto se portiamo tutto al limite abbiamo che $S_{2k+1} \to S$ e $S_k \to S$.
+    \[
+        S \leq 1+2^{1-\alpha} S
+    \]
+    \[
+        S \leq \frac{1}{1-2^{1-\alpha}}
+    \]
+    Pertanto abbiamo che il limite delle somme parziali è minore di un certo valore finito, quindi la serie converge.
+   \end{proof}
+
+   
+\addcontentsline{toc}{subsection}{Linearità delle Serie}
+    \begin{teorema}{Linearità delle Serie}{}
+        Se $\displaystyle \sum_{n=1}^{+\infty} a_n$ e $\displaystyle \sum_{n=1}^{+\infty} b_n$ convergono allora anche $\displaystyle \sum_{n=1}^{+\infty}(c\cdot a_n +  d\cdot b_n)$ converge $(\forall c, d \in \mathbb{R})$. 
+    \end{teorema}
+
+    \begin{proof}
+        Per dimostrarlo è necessario usare l'algebra dei limiti finiti, infatti se, per ipotesi, $\displaystyle \sum_{n=1}^{+\infty} a_n = A$ e $\displaystyle \sum_{n=1}^{+\infty} b_n = B$, allora sappiamo che 
+        \begin{align*}
+            \sum_{n=1}^{+\infty}(c\cdot a_n +  d\cdot b_n) &= \lim_{k\to +\infty} \sum_{n=1}^{k}(c\cdot a_n +  d\cdot b_n) \\
+            &= \lim_{k\to +\infty} \sum_{n=1}^{k}(c\cdot a_n) +  \lim_{k\to +\infty} \sum_{n=1}^{k}(d\cdot b_n) \\
+            &=\lim_{k\to +\infty} c\sum_{n=1}^{k}a_n +  \lim_{k\to +\infty} d\sum_{n=1}^{k}b_n \\
+            &= c\cdot A + d\cdot B
+        \end{align*}
+        E chiaramente, visto che $A$ e $B$ sono dei numeri finiti, allora anche $c\cdot A + d\cdot B$ converge, e pertanto la sommatoria della combinazione lineare è convergente.
+    \end{proof}
+   
+    
+   
+   \begin{teorema}{Termine Generale in funzione dalla  relativa Serie Numerica}{}
+    Dato $(S_k)_{k \in \mathbb{N}}$ una successione delle somme parziali di una successione $(a_n)_{n \in \mathbb{N}}$, allora possiamo trovare l'espressione analitica del termine generale di $(a_n)_{n \in \mathbb{N}}$ come
+    \[
+        a_n = S_k - S_{k-1}
+    \]
+    \end{teorema}
+
+
+\addcontentsline{toc}{subsection}{Condizione Necessaria per la Convergenza di una Serie}
+\begin{teorema}{Condizione Necessaria per la Convergenza}{}
+        Sia $(a_n)_{ n\in \mathbb{N}}$ una successione, e $(S_k)_{k \in \mathbb{N}}$ la successione delle somme parziali, allora se $(S_k)_{k \in \mathbb{N}}$ è convergente allora 
+        \[
+            \lim_{n\to +\infty} a_n = 0
+        \]
+    \end{teorema}
+
+\begin{proof}
+    Usando il  termine Generale in funzione dalla  relativa Serie Numerica sappiamo che $a_n = S_k - S_{k-1}$, ma visto che per ipotesi $S_k$ converge a un numero ($S$), allora $S_k \to S$ e anche $S_{k-1} \to S$ pertanto se portiamo quell'informazione al limite abbiamo che
+    \begin{align*}
+         \lim_{n\to +\infty} a_n &=\lim_{n\to +\infty}( S_k - S_{k-1}) \\
+         \lim_{n\to +\infty} a_n &=S - S \\
+          \lim_{n\to +\infty} a_n &= 0
+    \end{align*}  
+\end{proof}
+
+Negli esercizi dovremmo trovare il carattere di una serie, quindi per come è posto questo teorema, non ci è molto utile. Però per le regole della implicazione logica, sappiamo anche che
+\begin{center}
+    $\displaystyle \lim_{n\to +\infty} a_n\ne 0 \implies \sum_{n=1}^{+\infty} a_n$ non converge.
+\end{center} 
+
+\textbf{N.B.} dall'implicazione sappiamo che la serie non converge, cioò vuol dire che o diverge o è irregolare, quindi attensione a non dire che diverge, perchè potrebbe essere irregolare. Per controllare se è divergente o convergente basta controllare se la serie è monotona, e in quel caso allora la serie è divergente.
+    
+Però se $\displaystyle \lim_{n\to +\infty} a_n = 0$, NON possiamo dire nulla, quindi per questi casi è necessario usare altri criteri. 
+Faccendo un esempio:  sia $a_n = \frac{1}{n}$ che $b_n = \frac{1}{n^2}$ abbiamo che
+\[
+\begin{array}{c @{\qquad} c}
+    \displaystyle\lim_{n\to +\infty} a_n =  \lim_{n\to +\infty} \frac{1}{n} = 0 & \displaystyle\lim_{n\to +\infty} b_n =  \lim_{n\to +\infty} \frac{1}{n^2} = 0
+\end{array}
+\]
+
+Però abbiamo visto con la serie armonica generalizzata abbiamo che $\displaystyle \sum_{n=1}^{+\infty} \frac{1}{n}$ diverge, mentre la serie $\displaystyle \sum_{n=1}^{+\infty} \frac{1}{n^2}$ converge. 
+
+\addcontentsline{toc}{subsection}{Definizione di Serie a Termini Positivi}
+\begin{definizione}{Serie a Termini Positivi}{}
+    Sia $(a_n)_{ n\in \mathbb{N}}$, se $a_n \geq 0$ $\forall n \in \mathbb{N}$ oppure $\forall n\geq \bar{n}$, allora diciamo che la serie $\displaystyle \sum_{n=1}^{+\infty} a_n$ è a \textbf{termini positivi} oppure a \textbf{termini definitivamente positivi}. 
+\end{definizione}
+\begin{teorema}{Proprietà delle Serie a Termini Positivi}{}
+    Se $\displaystyle \sum_{n=1}^{+\infty} a_n$ è a termini positivi, allora ha limite $S \in [0, +\infty) \cup \{+\infty\}$.
+\end{teorema}
+
+\begin{proof}
+    Visto che la serie è a termini definitivamente positivi, allora sappiamo che $a_n \geq 0$, $\forall n \geq \bar{n}$ allora sappiamo che
+    \[
+        S_{k} = S_{k-1} + a_{k} \geq S_{k-1} \;\;\;\;\; \forall n \geq \bar{n}
+    \]
+    \[
+    S_{k} \geq S_{k-1}
+    \]
+    Abbiamo scoperto che se la serie è a termini positivi allora è anche anche monotona crescente, e dato che sappiamo che se una serie è monotona crescente allora ha limite, di conseguenza anche se una serie è a termini positivi avrà limite convergente o divergente.
+\end{proof}
+
+\addcontentsline{toc}{subsection}{Criterio del Confronto delle Serie}
+\begin{teorema}{Criterio del Confronto delle Serie}{}
+    Sia $(a_n)_{ n\in \mathbb{N}}$ e $(b_n)_{ n\in \mathbb{N}}$ due successioni tali che $0 \leq a_n \leq b_n$ abbiamo che 
+    \begin{enumerate}[label=(\roman*)]
+        \item se $\displaystyle  \sum_{n=1}^{+\infty} b_n$ converge a $B\in \mathbb{R}$ allora anche $\displaystyle  \sum_{n=1}^{+\infty} a_n$ converge a $A\in \mathbb{R}$ con $A \leq B$.
+        \item se $\displaystyle  \sum_{n=1}^{+\infty} a_n$ diverge a $+\infty$ allora anche $\displaystyle  \sum_{n=1}^{+\infty} b_n$ diverge a $+\infty$
+    \end{enumerate}
+\end{teorema}
+
+\begin{proof}
+    Per dimostrarlo è necessario usare le somme parziali, infatti siano
+    \[
+    \begin{array}{c @{\qquad} c}
+        \displaystyle A_k =  \sum_{n=1}^{k} a_n & \displaystyle B_k =  \sum_{n=1}^{k} b_n 
+    \end{array}
+    \]
+
+    $(i)$  Poi dato che $a_n \leq b_n$ allora è vero anche che $A_k \leq B_n$, pertanto per il teorema di relazione d'ordine sappiamo che se $\displaystyle \sum_{n=1}^{+\infty} b_n= B$ allora   $\displaystyle  \sum_{n=1}^{+\infty} a_n = A$, in più, sempre per il teorema delle relazioni d'ordine sappiamo che $A \leq B$
+
+     $(ii)$ Per dimostrare questo punto invece è necessario usare il corollario del teorema dei carabinieri, infatti se $A_k$ diverge allora anche $B_k$ diverge.
+\end{proof}
+
+\begin{esempio}{}{}
+    Determinare il carattere della seguente serie
+    \[
+     \sum_{n=1}^{+\infty} \frac{1}{n(n+1)}
+    \]
+\end{esempio}
+
+Intanto notiamo che assomiglia molto alla serie $\sum \frac{1}{n^2}$, quindi proviamo a vedere se una è maggiore dell'altra
+\[
+    \frac{1}{n(n+1)} \leq \frac{1}{n^2}
+\]
+\[
+    n^2 \leq n^2+n
+\]
+\[
+    0 \leq n
+\]
+Quindi sappiamo che $\frac{1}{n(n+1)} \leq \frac{1}{n^2}$ e quindi per il criterio del confronto sappiamo che se $\sum \frac{1}{n^2}$ convergesse allora anche $\sum \frac{1}{n(n+1)}$ converge. Però abbiamo visto con le serie armoniche che $\sum \frac{1}{n^2}$ converge, visto che l'esponente $2>1$ e di conseguenza anche $\displaystyle\sum_{n=1}^{+\infty} \frac{1}{n(n+1)}$ converge. Per questa serie lo potevamo scoprire anche usando le serie telescopische, infatti $\frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}$ e quindi $\displaystyle\lim\sum_{n=1}^{k} \frac{1}{n(n+1)} = \lim_{k\to+\infty} \left(1 - \frac{1}{k+1}\right) = 1$, e infatti la serie converge a 1.
+
+\addcontentsline{toc}{subsection}{Definizione Serie Assolutamente Convergente}
+\begin{definizione}{Serie Assolutamente Convergente}{}
+    Sia $(a_n)_{ n\in \mathbb{N}}$ una successione, la serie $ \displaystyle \sum_{n=1}^{+\infty} a_n$ si dice \textbf{Assolutamente Convergente} se la serie $\displaystyle \sum_{n=1}^{+\infty} |a_n|$ converge. 
+\end{definizione}
+
+\begin{teorema}{Relazione Convergenza Assoluta e Semplice}{}
+    Sia $(a_n)_{ n\in \mathbb{N}}$ una successione, la serie $ \displaystyle \sum_{n=1}^{+\infty} a_n$  è assolutamente convergente, allora è anche converge anche semplicemente.
+\end{teorema}
+\begin{proof}
+    Proviamo a sviluppare la seguente serie, e applichiamo k-volte la diseguaglianza triangolare
+    \begin{align*}
+        \left|\sum_{n=1}^{k}a_n\right| &= |a_1 + a_2 + a_3 + ... + a_k| \\
+        &\leq |a_1 |+ |a_2 + a_3 + ... + a_k|  \\
+        &\leq |a_1 |+ |a_2| + |a_3 + ... + a_k|  \\
+        &\leq ...  \\
+        &\leq |a_1 |+ |a_2| + |a_3| + ... + |a_k|  \\
+        \left|\sum_{n=1}^{k}a_n\right| &\leq \sum_{n=1}^{k} |a_n| 
+    \end{align*}
+    Pertanto se, per ipotesi, $\sum |a_n|$ converge a $S\in \mathbb{R}^+$, allora se portiamo al limite la disequazione abbiamo che  
+    \[
+    \left|\sum_{n=1}^{+\infty}a_n\right| \leq S \iff  \sum_{n=1}^{+\infty}a_n \in [-S, S]
+    \]
+    Però visto che $S$ è un numero finito, e sappiamo che la serie è compresa tra due valori finiti, allora di conseguenza anche la serie $\displaystyle\sum_{n=1}^{+\infty} a_n$ converge semplicemente.
+\end{proof}
 \end{document}
