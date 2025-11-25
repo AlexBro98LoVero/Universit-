@@ -4421,4 +4421,607 @@ Quindi sappiamo che $\frac{1}{n(n+1)} \leq \frac{1}{n^2}$ e quindi per il criter
     \]
     Però visto che $S$ è un numero finito, e sappiamo che la serie è compresa tra due valori finiti, allora di conseguenza anche la serie $\displaystyle\sum_{n=1}^{+\infty} a_n$ converge semplicemente.
 \end{proof}
-\end{document}
+
+\textbf{N.B.} la covergenza assoluta implica la convergenza semplice, ma NON è vero il viceverca, vediamolo con un esempio.
+
+\begin{esempio}{}{}
+    Determinare il carattere della serie
+    \[
+        \sum_{n=1}^{+\infty} \frac{(-1)^n}{n}
+    \]
+\end{esempio}
+
+Notiamo subito che la serie non converge assolutamente infatti 
+\[
+\left|\frac{(-1)^n}{n}\right| = \frac{1}{n}
+\]
+Che per la serie armonica sappiamo che diverge, quindi sappiamo che la serie $\sum \frac{(-1)^n}{n}$ diverge assolutamente. Però ora proviamo a vedere se converge o diverge semplicemente, per farlo proviamo analizando la serie delle somme parziali
+\begin{align*}
+    S_{2k} &= \frac{(-1)^1}{1} + \frac{(-1)^2}{2} + \frac{(-1)^3}{3} + \frac{(-1)^4}{4} + ... + \frac{(-1)^{2k-1}}{2k-1} +\frac{(-1)^{2k}}{2k}\\
+    &= \left(1+ \frac{1}{2}\right) + \left(\frac{-1}{3}+ \frac{1}{4}\right)  + ... + \left(\frac{-1}{2k-1} +\frac{1}{2k}\right) \\
+    &= \sum_{n=1}^{k} \left(\frac{-1}{2n-1} + \frac{1}{2n}\right)\\
+    &= \sum_{n=1}^{k} \frac{-2n + 2n -1}{(2n-1)2n} =  -\sum_{n=1}^{k} \frac{1}{(2n-1)2n}
+\end{align*}
+
+Ora questa serie assomiglia molto alla serie armonica con $\alpha = 2$ che converge, quindi proviamo a vedere se può funzionare il criterio del confronto
+\[
+     \frac{1}{(2n-1)2n} \leq \frac{1}{n^2} \iff n^2 \leq 4n^2 - 2n
+\]
+\[
+    \iff 2n \leq 3n^2 \iff 2 \leq 3n \iff n \geq \frac{2}{3}
+\]
+Quindi sappiamo che la nostra serie è minore della serie armonica, pertanto la serie $\sum \frac{(-1)^n}{n}$ converge semplicemente, ma diverge assolutamente.
+
+\addcontentsline{toc}{subsection}{Criterio del Confronto Asintotico}
+\begin{teorema}{Criterio del Confronto Asintotico}{}
+    Siano $(a_n)_{ n\in \mathbb{N}}$ e $(b_n)_{ n\in \mathbb{N}}$ due successioni definitivamente positive tali che
+    \[
+        \exists \lim_{n\to +\infty} \frac{a_n}{b_n} = l \in [0, +\infty) \cup \{+\infty\}
+    \]
+    Allora 
+    \begin{enumerate}[label=(\roman*)]
+        \item se $l \in [0, +\infty)$ allora $\sum a_n$ e $\sum b_n$ hanno lo stesso carattere.
+        \item se $l=0$ allora valgono:
+        \begin{itemize}
+            \item se $\sum b_n$ converge allora $\sum a_n$ converge
+            \item  se $\sum a_n$ diverge allora $\sum b_n$ diverge
+        \end{itemize}
+        \item se $l=+\infty$ allora valgono:
+        \begin{itemize}
+            \item se $\sum a_n$ converge allora $\sum b_n$ converge
+            \item  se $\sum b_n$ diverge allora $\sum a_n$ diverge
+        \end{itemize}
+    \end{enumerate}
+\end{teorema}
+
+\begin{proof}
+    $(i)$ Usiamo la definizione di limite
+    \[
+        l-\varepsilon < \frac{a_n}{b_n} < l+\varepsilon \;\;\;\;\; \forall n \geq N
+    \]
+    Ora per comodità possiamo scegliere $\varepsilon = \frac{l}{2}$
+    \[
+        l-\frac{l}{2} < \frac{a_n}{b_n} < l+\frac{l}{2}
+    \]
+    \[
+    \frac{l}{2} < \frac{a_n}{b_n} < \frac{3l}{2}
+    \]
+    \[
+    \frac{l}{2}b_n< a_n < \frac{3l}{2}b_n
+    \]
+    E quindi 
+    \[
+        \mathunderline{red}{\frac{l}{2}\sum_{n=N}^{k}b_n < \sum_{n=N}^{k}} \mathunderline{blue}{a_n < \frac{3l}{2}\sum_{n=N}^{k}b_n}
+    \]
+    E quindi dalla disequazione sottolineata di rosso sappiamo, grazie al criterio del confronto, se $\sum b_n$ diverge allora $\sum a_n$ diverge, mentre con la disequazione in blu abbiamo che se $\sum b_n $ converge allora anche $\sum a_n$ converge. Pertanto notiamo che le due serie hanno sempre lo stesso carattere. 
+
+    \textbf{N.B.} non possono essere irregolari visto che per ipotesi devono essere a termini positivi, che ricordiamo che per le proprietà delle serie a termini positivi, non possono essere irregolari. 
+
+    $(ii)$ Usiamo la definizio di limite
+    \[
+         -\varepsilon < \frac{a_n}{b_n} < +\varepsilon \;\;\;\;\; \forall n \geq N
+    \]
+    Poi dato che $a_n$ e $b_n$ sono definitivamente positivi abbiamo che $\frac{a_n}{b_n} > 0$, in più possiamo scegliere $\varepsilon = 1$ e quindi abbiamo
+    \[
+    0 < \frac{a_n}{b_n} < 1 \implies a_n < b_n
+    \]
+    Pertanto $\sum a_n < \sum b_n$ e quindi per il teorema del confronto verifichiamo il teorema.
+
+     $(iii)$ Usiamo la definizione di limite
+     \[
+     \frac{a_n}{b_n} > M \;\;\;\;\; \forall n \geq N
+     \]
+     Pertanto possiamo dedurre che
+     \[ 
+     a_n > M\cdot b_n \implies \sum a_n > M \sum b_n
+     \]
+     Ed ora possiamo il teorema del confronto per dimostrare questo punto.
+\end{proof}
+\newpage
+\begin{esercizio}{}{}
+    Determina il carattere della seguente serie
+    \[
+    \sum_{n=1}^{+\infty} \frac{\sqrt{n^2+1}-n}{n}
+    \]
+\end{esercizio}
+
+\begin{proof}
+    In primis proviamo a controllare la condizione necessaria per la convergenza
+    \[
+        \lim_{n\to+\infty} \frac{\sqrt{n^2+1}-n}{n} = \lim_{n\to+\infty} \frac{\sqrt{n^2+1}}{n} + \frac{n}{n} = \lim_{n\to+\infty} \sqrt{1+\frac{1}{n^2}} - 1 = 1-1 = 0
+    \]
+    E quindi non possiamo dire nulla con la condizione necessaria di convergenza, quindi proviamo razionalizzando
+    \begin{align*}
+        \frac{\sqrt{n^2+1}-n}{n} &= \frac{\sqrt{n^2+1}-n}{n} \cdot \frac{ \sqrt{n^2+1}+n}{\sqrt{n^2+1}+n} \\
+        &= \frac{(n^2+1)-n^2}{n\bigl(\sqrt{n^2+1}+n\bigr)} = \frac{1}{n\bigl(\sqrt{n^2+1}+n\bigr)}
+     \end{align*}
+     Possiamo notare che la nuova frazione è $\sim \frac{1}{2n^2}$ infatti
+     \[
+        \lim_{n\to +\infty} \frac{\frac{1}{n\bigl(\sqrt{n^2+1}+n\bigr)}}{\frac{1}{2n^2}} = \lim_{n\to +\infty} \frac{\frac{1}{n^2\bigl(\sqrt{1+\frac{1}{n^2}}+1\bigr)}}{\frac{1}{2n^2}} = \lim_{n\to +\infty} \frac{\frac{1}{\sqrt{1+\frac{1}{n^2}}+1}}{\frac{1}{2}} = \frac{\frac{1}{1+1}}{\frac{1}{2}} = 1 
+     \]
+     Pertanto le serie avranno lo stesso carattere, ma $\frac{1}{2n^2}$ sappiamo che converge visto che è la serie armonica generalizzata con $\alpha=2$, e di conseguenza anche la serie $\sum \frac{\sqrt{n^2+1}-n}{n}$ convergerà per il criterio del confronto asintotico.
+    \end{proof}
+
+    \begin{esercizio}{}{}
+    Determina il carattere della seguente serie
+    \[
+    \sum_{n=1}^{+\infty} \sin\left(\frac{1}{3^n}\right)\arcsin\left(\frac{1}{2^n}\right)
+    \]
+\end{esercizio}
+\begin{proof}
+    Per i confronti asintotici sappiamo che per $n\to +\infty$
+    \[
+    \begin{array}{c @{\qquad}@{\qquad} c}
+       \displaystyle \sin\left(\frac{1}{3^n}\right) \sim \frac{1}{3^n} & \displaystyle\arcsin\left(\frac{1}{2^n}\right) \sim \frac{1}{2^n}
+    \end{array}
+    \]
+    Pertanto $ \displaystyle\sin\left(\frac{1}{3^n}\right)\arcsin\left(\frac{1}{2^n}\right) \sim \frac{1}{3^n} \cdot  \frac{1}{2^n} = \frac{1}{6^n}$, ma noi sappiamo che $\displaystyle\sum \frac{1}{6^n}$ converge visto che è una serie geometrica di ragione $r = \frac{1}{6}$ e quindi converge, ma visto che la serie $\displaystyle\sum \sin\left(\frac{1}{3^n}\right)\arcsin\left(\frac{1}{2^n}\right)$ è asintotica a $\displaystyle\sum \frac{1}{6^n}$ allora anche l'altra serie è convergente.
+\end{proof}
+
+\begin{esercizio}{}{}
+    Discutere il carattere della serie al variare di $\alpha \geq 0$
+    \[
+    \sum_{n=1}^{+\infty}\frac{1-\cos(1-\cos(\frac{1}{n}))}{e^{\tan(\frac{1}{n^\alpha})}-1}
+    \]
+\end{esercizio}
+
+\begin{proof}
+    Iniziamo a fare delle equivalenze asintotiche, infatti per $n\to+\infty$
+    \[
+        1-\cos\left(\frac{1}{n}\right) \sim \frac{1}{2n^2}
+    \]
+    E pertanto 
+    \[
+        1-\cos\left(1-\cos\left(\frac{1}{n}\right)\right) \sim 1-\cos\left(\frac{1}{2n^2}\right) \sim \frac{1}{8n^4}
+    \]
+    Mentre a denominatore iniziamo con 
+    \[
+        \tan\left(\frac{1}{n^\alpha}\right) \sim \frac{1}{n^\alpha}
+    \]
+    Di conseguenza
+    \[
+    e^{\tan(\frac{1}{n^\alpha})}-1 \sim e^{\frac{1}{n^\alpha}}-1 \sim \frac{1}{n^\alpha}
+    \]
+    Ricomponendo la frazione abbiamo che 
+    \[
+    \sum_{n=1}^{+\infty}\frac{1-\cos(1-\cos(\frac{1}{n}))}{e^{\tan(\frac{1}{n^\alpha})}-1} \sim \frac{\frac{1}{8n^4}}{\frac{1}{n^\alpha}} = \frac{1}{8n^{4-\alpha}}
+    \]
+    e per la serie armonica sappiamo che
+    \[
+    \sum \frac{1}{8n^{4-\alpha}} = \begin{cases}
+        \text{Converge} & \text{se } 4-\alpha > 1 \\
+        \text{Diverge} & \text{se } 4-\alpha \leq 1
+    \end{cases} = \begin{cases}
+        \text{Converge} & \text{se } \alpha < 3 \\
+        \text{Diverge} & \text{se } \alpha \geq 3
+    \end{cases}
+    \]
+    E chiaramente dato che le due serie sono asintotiche tra di loro, per forza devo avere lo stesso carattere, e quindi 
+     \[
+    \sum_{n=1}^{+\infty}\frac{1-\cos(1-\cos(\frac{1}{n}))}{e^{\tan(\frac{1}{n^\alpha})}-1} =\begin{cases}
+        \text{Converge} & \text{se } \alpha < 3 \\
+        \text{Diverge} & \text{se } \alpha \geq 3
+    \end{cases}
+    \]
+\end{proof}
+\newpage
+
+\addcontentsline{toc}{subsection}{Criterio del Rapporto}
+\begin{teorema}{Criterio del Rapporto}{}
+    Sia $(a_n)_{n\in \mathbb{N}}$ tale che $a_n > 0$ definitivamente allora
+    \begin{enumerate}[label=(\roman*)]
+        \item Se $\exists r \in (0, 1)$ tale che $\displaystyle\frac{a_{n+1}}{a_n} \leq r$ definitivamente allora la serie $\sum a_n$ converge
+         \item Se $\exists r\in [1, +\infty)$ tale che $\displaystyle\frac{a_{n+1}}{a_n} \geq r$ definitivamente allora la serie $\sum a_n$ diverge
+    \end{enumerate}
+\end{teorema}
+
+\begin{proof}
+    $(i)$ Per ipotesi sappiamo che è vero definitivamente che
+    \[
+        a_{N+1} \leq r\cdot a_N \;\;\;\;\; \text{con } N\in \mathbb{N}
+    \]
+    Per lo stesso ragionamento fatto per il criterio di convergenza delle Successioni possiamo dire che
+    \[
+    a_{N+k} \leq r^k\cdot a_N \;\;\;\;\; \forall k \geq 1
+    \]
+    Di conseguenza abbiamo che 
+    \begin{align*}
+        \sum a_{N+k} &\leq \sum r^k\cdot a_N \\
+        \sum a_{N+k} &\leq a_N \sum r^k
+    \end{align*}
+   
+    E chiaramente per $r \in (-1,1)$ abbiamo che la serie $ \sum r^k$ converge, e pertanto per il criterio del confronto abbiamo che anche la serie $\sum a_{N+k}$ converge. Dato che la successione è a termini positivi allora $\displaystyle\frac{a_{n+1}}{a_n} > 0$, pertanto è impossibile che $\displaystyle\frac{a_{n+1}}{a_n} \in (-1,0] $ e quindi possiamo trovare solamente valori di $r \in (0, 1)$.
+    $(ii)$ è necessiario fare lo stesso ragionamento, chiaramente la disequazione sarà
+    \[
+     a_{N+k} \geq r^k\cdot a_N \;\;\;\;\; \forall k \geq 1
+    \]
+    E quindi la serie geometrica diverge per valori di $r\in [1,+\infty)$, e quindi la serie $\sum a_{N+k}$ diverge anch'essa.
+\end{proof}
+
+\addcontentsline{toc}{subsection}{Criterio del Rapporto Asintotico}
+\begin{teorema}{Criterio del Rapporto Asintotico}{}
+    Sia $(a_n)_{n\in \mathbb{N}}$ tale che $a_n > 0$ definitivamente allora
+    \[
+        \exists \lim_{n\to +\infty} \frac{a_{n+1}}{a_n} = l \in [0, +\infty) \cup \{ +\infty\}
+    \]
+    Allora 
+    \begin{enumerate}[label=(\roman*)]
+        \centering
+        \item $\displaystyle l < 1 \implies \sum a_n$ converge 
+        \item $\displaystyle l > 1 \implies \sum a_n$ diverge
+        \item $\displaystyle l = 1 $ Non possiamo dire nulla sulla serie   
+    \end{enumerate}
+\end{teorema}
+
+\begin{esercizio}{}{}
+    Determina il carattere della serie 
+    \[
+    \sum_{n=1}^{+\infty} \frac{(3n)!}{n^{3n}}
+    \]
+\end{esercizio}
+\begin{proof}
+    Proviamo il criterio del rapporto asintotico 
+    \begin{align*}
+        \lim_{n\to +\infty} \frac{a_{n+1}}{a_n} &= \frac{(3(n+1))!}{(n+1)^{3(n+1)}} \cdot \frac{n^{3n}}{(3n)!} = \frac{(3n+3)!}{(n+1)^{3n+3}} \cdot \frac{n^{3n}}{(3n)!} = \frac{(3n+3)!}{(n+1)^{3n+3}} \cdot \frac{n^{3n}}{(3n)!} \\
+        &= \frac{(3n+3)(3n+2)(3n+1)(3n)!}{(n+1)^{3n} (n+1)^3} \cdot \frac{n^{3n}}{(3n)!} \\
+        &= \frac{(3n+3)(3n+2)(3n+1)}{ (n+1)^3} \cdot \frac{n^{3n}}{(n+1)^{3n}} \\
+        &=\frac{(3n+3)(3n+2)(3n+1)}{ (n+1)^3} \cdot \left(\frac{n}{n+1}\right)^{3n} \sim   \frac{(3n)(3n)(3n)}{ (n)^3} \cdot \left(\frac{n+1}{n}\right)^{-3n} \\
+        &=\frac{3^3n^3}{ n^3} \cdot \left(1+\frac{1}{n}\right)^{-3n} = 3^3\cdot e^{-3} = \left(\frac{3}{e}\right)^3 > 1
+    \end{align*}
+    E pertanto per il criterio del rapporto asintotico abbiamo che la serie diverge.
+\end{proof}
+
+Questa serie si poteva risolvere anche con il criterio necessario per la convergenza e tramite la formula di Stirling, infatti
+\begin{align*}
+    \lim_{n\to+\infty} \frac{(3n)!}{n^{3n}} &\sim \lim_{n\to+\infty} \frac{\left(\frac{3n}{e}\right)^{3n} \sqrt{2\pi (3n)}}{n^{3n}} = \lim_{n\to+\infty} \frac{\left(\frac{3}{e}\right)^{3n} n^{3n} \sqrt{6\pi n}}{n^{3n}}   \\
+&= \lim_{n\to+\infty} \left(\frac{3}{e}\right)^{3n}  \sqrt{6\pi n} = +\infty
+\end{align*}
+    \begin{esercizio}{}{}
+        Discutere il carattere della serie al variare di $x\in \mathbb{R}$
+        \[
+            \sum_{n=1}^{+\infty}\frac{x^n}{n^32^n}
+        \]
+    \end{esercizio}
+    \begin{proof}
+        Dato che $x\in \mathbb{R}$ per valori negativi avremo che la nostra serie non è a termini positivi, e quindi non potremmo applicare il teorema del rapporto asintotico, quindi proviamo a vedere se converge la serie $\sum \left|\frac{x^n}{n^32^n}\right| = \sum \frac{|x|^n}{n^32^n}$, in questa maniera la serie è a termini positivi e quindi possiamo applicare il teorema del criterio asintotico. 
+        \[
+            \lim_{n\to+\infty} \left|\frac{x^{n+1}}{(n+1)^32^{n+1}}\right| \cdot \left|\frac{n^32^n}{x^n}\right| = \lim_{n\to+\infty}\left|\frac{x}{2}\cdot \frac{n^3}{(n+1)^3}\right|  \sim \lim_{n\to+\infty}\left|\frac{x}{2}\right|\cdot \frac{n^3}{(n)^3}= \frac{|x|}{2}
+        \]
+        Per il criterio del rapporto asintotico sappiamo che se $\frac{|x|}{2}>1$, cioè $x < -2 \lor x >2$ allora la serie diverge assolutamente, mentre per $\frac{|x|}{2}<1$, cioò per $-2 <x < 2$ la serie converge assolutamente e quindi anche semplicemente. Però ora mancano i caso $x=\pm2$, visto che il criterio non ci permette di dedurre nulla, e quindi dobbiamo fare altro. Però notiamo subito che se $x=2$ allora
+        \[
+        \sum_{n=1}^{+\infty}\frac{x^n}{n^32^n} = \sum_{n=1}^{+\infty}\frac{2^n}{n^32^n} = \sum_{n=1}^{+\infty}\frac{1}{n^3}  
+        \] 
+        Notiamo che viene fuori la somma armonica generalizzata con $\alpha = 3$, che sappiamo che converge, mentre per il caso $x=-2$, possiamo riutilizzare il criterio della convergenza assoluta, infatti $\sum \left|\frac{(-2)^n}{n^32^n}\right| = \sum \frac{|-2|^n}{n^32^n} = \sum \frac{2^n}{n^32^n} = \sum \frac{1}{n^3}$ che abbiamo appena visto che converge. Pertanto per il caso $x=-2$ la serie converge assolutamente e quindi anche semplicemente. 
+        \[
+           \sum_{n=1}^{+\infty}\frac{x^n}{n^32^n} = \begin{cases}
+            \text{Diverge} & x < -2 \lor x > 2 \\
+            \text{Converge Semplicemente e Assolutamente} & -2 \leq x \leq 2 \\
+           \end{cases} 
+        \]
+        \textbf{N.B.} n caso $x < -2 \lor x > 2 $ ho scritto che diverge, e questo si può verificare con la condizione necessaria alla convergenza.  
+    \end{proof}
+
+    \begin{esercizio}{}{}
+        Discutere il carattere della serie al variare di $\alpha\geq 0$
+        \[
+            \sum_{n=1}^{+\infty}\frac{n!\cdot \alpha^n}{n^n}
+        \]
+    \end{esercizio}
+\begin{proof}
+        Proviamo usando il criterio del rapporto asintotico
+\begin{align*}
+       \lim_{n\to+\infty}\frac{a_{n+1}}{a_n} &= \lim_{n\to+\infty} \frac{(n+1)! \cdot \alpha^{n+1}}{(n+1)^{n+1}} \cdot \frac{n^n}{n! \cdot \alpha^n} = \lim_{n\to+\infty} \frac{(n+1)n! \cdot \alpha}{(n+1)(n+1)^n} \cdot \frac{n^n}{n!} \\
+       &= \lim_{n\to+\infty}\alpha \cdot \left(\frac{n}{n+1}\right)^{n} = \lim_{n\to+\infty}\alpha \cdot \left(\frac{n+1}{n}\right)^{-n} \\
+       &= \lim_{n\to+\infty}\alpha \cdot \left(1+\frac{1}{n}\right)^{-n}= \alpha \cdot e^{-1} =\frac{\alpha}{e}
+    \end{align*}
+    Quindi se $\frac{\alpha}{e} > 1 \implies \alpha > e$ allora la serie diverge, mentre se $\frac{\alpha}{e} < 1 \implies \alpha < e$ la serie converge. Proprio come l'esercizio precedente dobbiamo studiare a parte il caso $\alpha = e$, e notiamo che la serie diventa
+    \[
+    \sum_{n=1}^{+\infty}\frac{n!\cdot \alpha^n}{n^n} = \sum_{n=1}^{+\infty}\frac{n!\cdot e^n}{n^n}
+    \] 
+Proviamo a vedere con la condizione necessaria
+\[
+\lim_{n\to +\infty} \frac{n!\cdot e^n}{n^n} \sim \lim_{n\to +\infty} \frac{\left(\frac{n}{e}\right)^n\sqrt{2\pi n}\cdot e^n}{n^n} = \lim_{n\to +\infty} \frac{\frac{n^n}{e^n}\sqrt{2\pi n} \cdot e^n}{n^n} = \lim_{n\to+\infty}\sqrt{2\pi n} = +\infty
+\]
+E quindi per condizione necessaria sappiamo che con $\alpha = e$ la serie diverge. E quindi
+\[
+\sum_{n=1}^{+\infty}\frac{n!\cdot \alpha^n}{n^n} = \begin{cases}
+            \text{Converge } & \alpha < e \\
+            \text{Diverge} & \alpha \geq e \\
+           \end{cases} 
+\]
+        \end{proof}
+
+        \newpage
+
+\addcontentsline{toc}{subsection}{Criterio della Radice}
+        \begin{teorema}{Criterio della Radice}{}
+             Sia $(a_n)_{n\in \mathbb{N}}$ tale che $a_n > 0$ definitivamente allora
+        \begin{enumerate}[label=(\roman*)]
+            \item Se $\exists r \in (0, 1)$ tale che $\displaystyle\sqrt[n]{a_n} \leq r$ definitivamente allora la serie $\sum a_n$ converge
+            \item Se $\exists r\in [1, +\infty)$ tale che $\displaystyle\sqrt[n]{a_n} \geq r$ definitivamente allora la serie $\sum a_n$ diverge
+        \end{enumerate}
+        \end{teorema}
+
+        \begin{proof}
+            $(i)$ Dato che $a_n$ è definitivamente positiva, e visto che $n \in \mathbb{N}$ possiamo dire che
+            \[
+            \sqrt[n]{a_n} \leq r \implies a_n \leq r^n \implies \sum a_n \leq \sum r^n
+            \]
+            Se portiamo tutto al limite abbiamo che
+            \[
+               \lim_{k\to+\infty} \sum_{n=1}^{k} a_n \leq \lim_{k\to+\infty} \sum_{n=1}^{k} r^n
+            \]
+            Come abbiamo già visto, la serie geometrica converge solamente se $-1 < r < 1$, e quindi per il confronto abbiamo che anche la serie $ \sum a_n$ converge. Però dato che la serie è a termini positivi è impossibile che $r \in (-1,0]$ e quindi potremo avere valore di $r \in (0, 1)$.
+            
+            $(ii)$ ragionamento analogo al caso $(i)$, e quindi possiamo dire che 
+            \[
+            \sqrt[n]{a_n} \geq r \implies \sum a_n \geq \sum r^n
+            \]
+            Se portiamo tutto al limite abbiamo che
+            \[
+               \lim_{k\to+\infty} \sum_{n=1}^{k} a_n \geq \lim_{k\to+\infty} \sum_{n=1}^{k} r^n
+            \]
+            Ma la serie geometrica diverge per $r \leq -1 \lor r \geq 1$ e di conseguenza anche la serie $\sum a_n$ diverge. Però dato che la serie è a termini positivi è impossibile che $r \leq -1$ e quindi potremo avere valore di $r \geq 1$.
+        \end{proof}
+
+\addcontentsline{toc}{subsection}{Criterio della Radice Asintotico}
+        \begin{teorema}{Criterio della Radice Asintotico}{}
+        Sia $(a_n)_{n\in \mathbb{N}}$ tale che $a_n > 0$ definitivamente allora
+            \[
+                \exists \lim_{n\to +\infty} \sqrt[n]{a_n} = l \in [0, +\infty) \cup \{ +\infty\}
+            \]
+            Allora 
+            \begin{enumerate}[label=(\roman*)]
+                \centering
+                \item $\displaystyle l < 1 \implies \sum a_n$ converge 
+                \item $\displaystyle l > 1 \implies \sum a_n$ diverge
+                \item $\displaystyle l = 1 $ Non possiamo dire nulla sulla serie   
+            \end{enumerate}
+        \end{teorema}
+
+        \begin{esercizio}{}{}
+            Determinare il carattere della serie 
+            \[
+                \sum_{n=1}^{+\infty} \left(\frac{1}{2} + \frac{1}{2n}\right)^n
+            \]
+        \end{esercizio}
+        \begin{proof}
+            Se proviamo ad usare la condizione necessaria abbiamo che
+            \[
+            \lim_{n\to+\infty} \left(\frac{1}{2} + \frac{1}{2n}\right)^n \sim \lim_{n\to+\infty} \left(\frac{1}{2}\right)^n = 0
+            \]
+            E quindi non possiamo dedurre nulla. Quindi proviamo ad usare il criterio della radice
+            \[
+            \lim_{n\to+\infty} \sqrt[n]{\left(\frac{1}{2} + \frac{1}{2n}\right)^n} =  \lim_{n\to+\infty} \left(\frac{1}{2} + \frac{1}{2n}\right) =\frac{1}{2} +0 = \frac{1}{2} < 1 
+            \]
+            Notiamo che il risultato è minore di 1, e quindi per il criterio della radice sappiamo che la seria $\displaystyle\sum \left(\frac{1}{2} + \frac{1}{2n}\right)^n$ è convergente.
+        \end{proof}
+        \begin{esercizio}{}{}
+            Determinare il carattere della serie al variare $\alpha \geq 0$
+            \[
+                \sum_{n=1}^{+\infty} \alpha^n \left(1+ \frac{2}{n}\right)^n
+            \]
+        \end{esercizio}
+
+        \begin{proof}
+            Utiliziamo il criterio della radice
+            \[
+            \lim_{n\to+\infty} \sqrt[n]{\alpha^n \left(1+ \frac{2}{n}\right)^n} = \lim_{n\to+\infty}\alpha \left(1+ \frac{2}{n}\right) = \alpha
+            \]
+            Quindi visto che il risultato del limite è $\alpha$, abbiamo che per $\alpha>1$ la serie diverge, mentre per $\alpha <1$ la serie converge. Come al solito dobbiamo studiare a parte il caso $\alpha = 1$. Abbiamo che
+            \[
+            \sum_{n=1}^{+\infty} \alpha^n \left(1+ \frac{2}{n}\right)^n = \sum_{n=1}^{+\infty} 1^n \left(1+ \frac{2}{n}\right)^n = \sum_{n=1}^{+\infty} \left(1+ \frac{2}{n}\right)^n
+            \]
+            Per questa serie è necessario usare la condizione necessaria
+            \[
+            \lim_{n\to+\infty}  \left(1+ \frac{2}{n}\right)^n = e^2 \ne 0
+            \]
+            E quindi abbiamo che la serie con $\alpha = 1$ diverge. E quindi abbiamo che
+            \[
+                \sum_{n=1}^{+\infty} \alpha^n \left(1+ \frac{2}{n}\right)^n = \begin{cases}
+                    \text{Convergente} & 0 \leq \alpha < 1 \\
+                    \text{Divergente} & \alpha \geq 1 
+                \end{cases}
+            \]
+        \end{proof}
+
+        \begin{esercizio}{}{}
+            Determinare il carattere della serie al variare $x \in \mathbb{R}$
+            \[
+            \sum_{n=1}^{+\infty} \frac{x^n}{3^n\sqrt{n+1}}
+            \]
+        \end{esercizio}
+
+        \begin{proof}
+            Visto che $x\in  \mathbb{R}$, abbiamo che per $x < 0$ la serie non è più definitivamente positiva, quindi per poter usare i vari criteri è necessario che studiamo la serie dei valori assoluti: $\displaystyle\sum_{n=1}^{+\infty} \left|\frac{x^n}{3^n\sqrt{n+1}}\right| = \sum_{n=1}^{+\infty} \frac{|x|^n}{3^n\sqrt{n+1}}$. Dato che ora la serie è definitivamente positivi possiamo applicare il criterio della radice
+            \[
+            \lim_{n\to +\infty} \sqrt[n]{ \frac{|x|^n}{3^n\sqrt{n+1}}} =           \lim_{n\to +\infty} \frac{|x|}{3\sqrt[2n]{n+1}} 
+            \]
+            Per calcolare il denominatore dobbiamo fare un paio di riarrangiamenti
+            \[
+            \lim_{n\to+\infty} \sqrt[2n]{n+1} = \lim_{n\to+\infty} e^{log(\sqrt[2n]{n+1})} = \lim_{n\to+\infty} e^{log\left((n+1)^\frac{1}{2n}\right)}  = \lim_{n\to+\infty} e^{\frac{log(n+1)}{2n}}   = e^0 = 1
+            \]
+            E quindi abbiamo che
+            \[
+            \lim_{n\to +\infty} \frac{|x|}{3\sqrt[2n]{n+1}}  = \frac{|x|}{3}
+            \]
+            Quindi per $\frac{|x|}{3} < 1$, e cioè $ -3 < x < 3$, la serie converge assolutamente e quindi anche semplicemente. Per vedere l'altra casistica dobbiamo usare la condizione necessaria
+            \[
+            \lim_{n\to+\infty} \frac{x^n}{3^n\sqrt{n+1}} = \lim_{n\to+\infty} \frac{\left(\frac{x}{3}\right)^n}{\sqrt{n+1}} \sim \lim_{n\to+\infty} \frac{\left(\frac{x}{3}\right)^n}{\sqrt{n}}
+            \]
+            Ora dato che $|x| > 3$ (che è la casistica che ci manca), abbiamo che $\frac{x}{3} > 1$ e quindi per gerarchia degli infiniti abbiamo che 
+            \[
+            \lim_{n\to+\infty} \frac{\left(\frac{x}{3}\right)^n}{\sqrt{n}} = \infty
+            \] 
+            E quindi abbiamo che la serie per $|x| > 3$ è divergente. Ci mancano i casi $x = \pm3$, iniziamo con $x=3$ e abbiamo Che
+            \[
+            \sum_{n=1}^{+\infty} \frac{x^n}{3^n\sqrt{n+1}} = \sum_{n=1}^{+\infty} \frac{3^n}{3^n\sqrt{n+1}} = \sum_{n=1}^{+\infty} \frac{1}{\sqrt{n+1}} \sim \sum_{n=1}^{+\infty} \frac{1}{\sqrt{n}} = \sum_{n=1}^{+\infty} \frac{1}{n^{\frac{1}{2}}}
+            \]
+            Per la serie armonica abbiamo che la serie diverge. Per il caso $x=-3$ è necessario usare un criterio che dobbiamo ancora vedere (quello di Leibniz), e che quindi per ora lo lasciamo stare. Quindi
+            \[
+            \sum_{n=1}^{+\infty} \frac{x^n}{3^n\sqrt{n+1}}\begin{cases}
+                    \text{Convergente} & 0 -3 < x < 3 \\
+                    \text{Divergente} & x < -3 \lor x \geq 3
+                \end{cases}
+            \]
+        \end{proof}
+
+\addcontentsline{toc}{subsection}{Relazione tra criterio del Rapporto e della Radice}
+        \begin{teorema}{Relazione tra criterio del Rapporto e della Radice}{}
+            Sia $(a_n)_{n\in \mathbb{N}}$ una successione positiva, allora se
+            \[
+            \exists \lim_{n\to+\infty} \frac{a_{n+1}}{a_n} = l\in [0, +\infty) \cup \{+\infty\} \implies \lim_{n\to+\infty} \sqrt[n]{a_n} = l
+            \]
+        \end{teorema}
+        \begin{proof}
+            Per risolverlo dobbiamo dividere in due casi: $l \in [0,+\infty)$ e $l = +\infty$. Partiamo con la prima casistica
+            
+            $(i)$ Per ipotesi sappiamo che esiste il limite del rapposto (e fa un numero finito), e quindi usando la definizione di limite abbiamo che
+            \[
+                l-\varepsilon < \frac{a_{n+1}}{a_n} < l + \varepsilon \;\;\;\;\; \forall n \geq \bar{n}
+            \]
+            Dato che questo vale $\forall n \geq \bar{n}$, allora sarà vero anche che $ l-\varepsilon < \frac{a_{\bar{n} +1}}{ a_{\bar{n}}} < l + \varepsilon$, ma anche $l-\varepsilon < \frac{a_{\bar{n}+2}}{a_{\bar{n}+1}} < l + \varepsilon$, sarà valido anche per $\frac{a_{\bar{n}+3}}{a_{\bar{n}+2}}$, $\frac{a_{\bar{n}+4}}{a_{\bar{n}+3}}$ e così via fino a$\frac{a_{n}}{a_{n-1}}$, $\frac{a_{n+1}}{a_n}$. E dato che tutti i termini sono positivi, possiamo dire 
+            \[
+                l-\varepsilon < \frac{a_{n+1}}{a_n} < l + \varepsilon
+            \] 
+            \[
+                (l-\varepsilon)\frac{a_{n}}{a_{n-1}} < \frac{a_{n+1}}{a_n} \frac{a_{n}}{a_{n-1}} < (l + \varepsilon) \frac{a_{n}}{a_{n-1}}
+            \] 
+            \[
+                (l-\varepsilon)(l-\varepsilon) < (l-\varepsilon)\frac{a_{n}}{a_{n-1}} < \frac{a_{n+1}}{a_{n-1}} < (l + \varepsilon) \frac{a_{n}}{a_{n-1}} < (l + \varepsilon)(l + \varepsilon)
+            \] 
+            \[
+            (l-\varepsilon)^2 <  \frac{a_{n+1}}{a_{n-1}}  < (l + \varepsilon)^2
+            \]
+            E quindi possiamo continuare con questo ragionamento moltiplicando per tutte le frazioni e abbiamo
+            \[
+            (l-\varepsilon)^{n-\bar{n}} <  \frac{a_{n+1}}{a_{\bar{n}}}  < (l + \varepsilon)^{n-\bar{n}}
+            \]
+            \[
+            (l-\varepsilon)^{n-\bar{n}} a_{\bar{n}}<  a_{n+1} < (l + \varepsilon)^{n-\bar{n}}a_{\bar{n}}
+            \]
+            Ora se applichiamo la radice n-esima abbiamo che
+             \[
+            \sqrt[n]{(l-\varepsilon)^{n-\bar{n}} a_{\bar{n}}}<  \sqrt[n]{a_{n+1}} < \sqrt[n]{(l + \varepsilon)^{n-\bar{n}}a_{\bar{n}}}
+            \]
+             \[
+            (l-\varepsilon)^{1-\frac{\bar{n}}{n}}\sqrt[n]{ a_{\bar{n}}}<  \sqrt[n]{a_{n+1}} < (l + \varepsilon)^{1-\frac{\bar{n}}{n}}\sqrt[n]{ a_{\bar{n}}}
+            \]
+            Portando tutto al limite abbiamo abbiamo che $n+1 \to n$, $\frac{\bar{n}}{n} \to 0$ e $\sqrt[n]{a_{\bar{n}}}\to 1$ 
+            \[
+            (l-\varepsilon)<  \sqrt[n]{a_{n}} < (l + \varepsilon)
+            \]
+            Questo verifica il limite
+            \[
+                \lim_{n\to+\infty} \sqrt[n]{a_{n}} = l
+            \]
+            $(ii)$ basta fare lo stesso ragionamento ma il limite di partenza sara $\frac{a_{n+1}}{a_n} > M$, e poi il ragionamento è analogo. 
+        \end{proof}
+
+        \textbf{N.B.} quindi se durante un esercizio fai il criterio del rapporto è inutile che provi quello della radice perchè darà lo stesso risultato. Il criterio della radice va applicato dopo quello del rapporto solo se il limite del rapporto non esiste.
+\newpage
+
+        \begin{esercizio}{}{}
+            Determinare il carattere della serie
+            \[
+                \sum_{n=1}^{+\infty} 2^{n+(-1)^n}
+            \]
+        \end{esercizio}
+
+
+        
+        \begin{proof}
+            Se proviamo con il criterio del rapporto abbiamo che 
+            \[
+            \lim_{n\to +\infty}    \frac{2^{n+1+(-1)^{n+1}}}{2^{n+(-1)^n}} = \lim_{n\to +\infty}  2^{n+1+(-1)^{n+1} -n-(-1)^n-} = \lim_{n\to +\infty} 2^{1 +(-1)^{n+1}-(-1)^{n}}
+            \]
+            Però per il teorema della caratterizzazione sequenziale dei limiti e se scegliamo $a_n = 2n$ e $b_n = 2n+1$ abbiamo che il nostro limite tende a due valori diversi con $a_n$ il limite tende a $\frac{1}{2}$, mentre con $b_n$ tende a $8$, e quindi il limite non esiste.  In questo caso ha senso usare il criterio della radice, e quindi 
+        \[
+        \lim_{n\to +\infty}  \sqrt[n]{2^{n+(-1)^n}} = \lim_{n\to +\infty}  2^{\frac{n+(-1)^n}{n}} =  \lim_{n\to +\infty}  2^{ 1 + \frac{(-1)^n}{n}} = 2^{1+0} = 2 > 1
+        \]
+        Quindi la serie diverge.
+        \end{proof}
+
+
+\addcontentsline{toc}{subsection}{Criterio Condensazione di Cauchy}
+        \begin{teorema}{Criterio Condensazione di Cauchy}{}
+            Sia $(a_n)_{n\in \mathbb{N}}$ tale che
+            \begin{itemize}
+                \centering
+                \item $a_n \geq 0$ $\forall n \in \mathbb{N}$ (non negativa)
+                \item $a_{n+1} \leq a_n $ $\forall n \in \mathbb{N}$  ( decrescente)
+            \end{itemize}
+            Allora le due serie 
+            \[
+            \begin{array}{c @{\qquad}@{\qquad} c}
+                \displaystyle\sum_{n=1}^{+\infty} a_n & \displaystyle\sum_{n=1}^{+\infty} 2^na_{2^n} 
+            \end{array}
+            \]
+            Hanno lo stesso carattere e vale
+            \[
+            \frac{1}{2}\sum_{n=1}^{+\infty} 2^na_{2^n}  \leq\sum_{n=1}^{+\infty} a_n \leq \sum_{n=1}^{+\infty} 2^na_{2^n} 
+            \]
+        \end{teorema}
+        Questo teorema può essere utilizzato per dimostrare la serie armonica generalizzata, infatti se $a_n = \frac{1}{n^\alpha}$, sappiamo che $a_n \geq 0$ e vale anche $\frac{1}{(n+1)^\alpha} \leq \frac{1}{n^\alpha}$, e quindi possiamo applicare il teorema e avremo
+        \[
+            \sum_{n=1}^{+\infty} \frac{1}{n^\alpha} \implies \sum_{n=1}^{+\infty} 2^n \cdot \frac{1}{(2^n)^\alpha} =\sum_{n=1}^{+\infty} \frac{2^n}{2^{\alpha n}} =  \sum_{n=1}^{+\infty} (2^{1-\alpha})^n 
+        \]
+        Che per la serie geometrica abbiamo che
+        \[
+\sum_{n=1}^{+\infty} (2^{1-\alpha})^n = \begin{cases}
+    \text{Convergente } & 2^{1-\alpha} < 1 \\
+    \text{Divergente } & 2^{1-\alpha} \geq 1
+\end{cases}        = \begin{cases}
+    \text{Convergente } & \alpha > 1 \\
+    \text{Divergente } & \alpha \leq 1
+\end{cases}   
+        \]
+        Difatti abbiamo ritrovato lo stesso risultato trovato precedentemente.
+        \newpage
+
+\addcontentsline{toc}{subsection}{Definizione Serie a Segno Alterno}
+        \begin{definizione}{Serie a Segno Alterno}{}
+            Una serie a \textbf{segno alterno} è detta una qualsiasi serie esprimibile come
+            \[
+                \sum_{n=1}^{+\infty} (-1)^n a_n
+            \]
+            Con  $(a_n)_{n\in \mathbb{N}}$ una qualsiasi successione definitivamente positiva
+        \end{definizione}
+
+        Con queste tipologie di serie non possiamo applicare nessuno dei teoremi visti prima, perchè la serie non è mai a definitivamente positiva (per via del $(-1)^n$). L'unico che potremmo applicare sarebbe la condizione necessaria o il criterio del valore assoluto. Quindi le serie a segno alterno esiste un solo criterio usabile: quello di Leiniz.
+
+\addcontentsline{toc}{subsection}{Criterio di Leibniz}
+        \begin{teorema}{Criterio di Leibniz}{}
+            Sia $(a_n)_{n\in \mathbb{N}}$ una successione, se
+            \begin{itemize}
+                \centering
+                \item $a_n \geq 0$ $\forall n \in \mathbb{N}$ (non negativa)
+                \item $a_{n+1} \leq a_n $ $\forall n \in \mathbb{N}$  (decrescente)
+                \item $\displaystyle\lim_{n\to+\infty} a_n = 0$ (infinitesima) 
+            \end{itemize}
+            Allora la serie $\displaystyle \sum_{n=1}^{+\infty} (-1)^n a_n $
+            è convergente.
+        \end{teorema}
+
+        \begin{esempio}{}{}
+            Studiamo il caso
+            \[
+            \sum_{n=1}^{+\infty} \frac{(-1)^n}{n^\alpha}
+            \]
+        \end{esempio}
+        Ora per il criterio con il valore assoluto sappiamo Che
+        \[
+            \sum_{n=1}^{+\infty} \left|\frac{(-1)^n}{n^\alpha}\right| = \sum_{n=1}^{+\infty} \frac{1}{n^\alpha}
+        \]
+        Questa sappiamo che converge per $\alpha >1$, e quindi la nostra serie originale converge anche semplicemente, ma per $\alpha \in (0, 1]$, non sappiamo nulla, quindi usiamo il criterio di Leibniz. Notiamo che $a_n = \frac{1}{n^\alpha}$ e che 
+        \[
+        \begin{array}{c  @{\qquad}@{\qquad} c @{\qquad}@{\qquad} c}
+            \displaystyle\frac{1}{n^\alpha} \geq 0\;\;\;\;\forall n \in \mathbb{N} & \displaystyle\frac{1}{(n+1)^\alpha} \leq \frac{1}{n^\alpha}\;\;\;\; \forall n \in \mathbb{N}  & \displaystyle\lim_{n\to+\infty}\frac{1}{n^\alpha}= 0
+        \end{array}
+    \]  
+    Quindi la serie a segni alterni converge, e quindi per $\alpha \in (0, 1]$ abbiamo che la serie 
+    \[
+    \sum_{n=1}^{+\infty} \frac{(-1)^n}{n^\alpha}
+    \]
+    Converge semplicemente, ma diverge assolutamente. Mentre per $\alpha > 1$ converge sia semplicemente che assolutamente.
+        \end{document}
