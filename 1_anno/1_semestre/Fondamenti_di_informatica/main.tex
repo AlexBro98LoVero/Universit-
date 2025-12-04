@@ -14,7 +14,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.18, width=10cm}
+\pgfplotsset{compat=1.18}
 
 \usepackage{tikz}
 \newcommand*\circled[2][]{%
@@ -5024,4 +5024,1799 @@ E quindi per condizione necessaria sappiamo che con $\alpha = e$ la serie diverg
     \sum_{n=1}^{+\infty} \frac{(-1)^n}{n^\alpha}
     \]
     Converge semplicemente, ma diverge assolutamente. Mentre per $\alpha > 1$ converge sia semplicemente che assolutamente.
-        \end{document}
+       
+    
+    
+    
+    
+    
+   \section{Continuità delle Funzioni} 
+
+\addcontentsline{toc}{subsection}{Definizione di Funzione Continua}
+    \begin{definizione}{Definizione di Funzione Continua}{}
+        Sia $\varnothing \neq A \subseteq \mathbb{R}$, $f: A \to \mathbb{R}$ e $x_0 \in A$ diciamo che \textbf{$f$ è continua in $x_0$} se vale una delle due proposizioni: 
+        \begin{itemize}
+            \item $x_0$ è un punto isolato in $A$
+            \item $x_0$ è un punto di accumulazione in $A$ e vale
+            \[
+                \lim_{x\to x_0} f(x) = f(x_0)
+            \] 
+        \end{itemize}
+        Se $f$ è continua $\forall x \in A$, diciamo che è \textbf{continua nel suo dominio} e lo indichiamo con il simbolo $f \in C^0(A)$, e lo definiamo come
+        \[
+            C^0(A) = \{f:A \to \mathbb{R} \text{ }| \text{ } f \text{ è continua in } A\}
+        \] 
+    \end{definizione}
+    
+    Usando questa definizione possiamo dimostrare che alcune funzioni sono continue, infatti
+    \begin{itemize}
+        \item $f(x) = c\in \mathbb{R}$, è continua in $\mathbb{R}$ infatti, come abbiamo già dimostrato 
+        \[
+            \lim_{x\to x_0} f(x) = \lim_{x\to x_0} c = c = f(x_0) \;\;\;\;\; \forall x_0 \in \mathbb{R}
+        \] 
+        \item $f(x) = \sum_{i} a_i x^i$, ogni polinomio è continuo, come abbiamo già dimostrato
+        \item $\displaystyle f(x)=\frac{P(x)}{Q(x)}$, con $P, Q$ polinomi, abbiamo che è continua in $A = \{x : Q(x) \ne 0\}$
+        \item $f(x)=a^x$ con $a > 0$
+        \item $f(x) = \sin(x)$
+        \item $f(x) = \cos(x)$
+    \end{itemize}
+    
+    \begin{center}
+    \begin{tikzpicture} 
+         \begin{axis}[
+        xmin=-2, xmax=3,
+        ymin=-2, ymax=3,
+        axis equal,
+        axis lines=middle,
+        enlargelimits=false,
+        clip=false,
+        axis line style={-stealth, thick},
+        width=8cm
+    ]
+            \addplot[black, ultra thick, samples=50, domain=-2:2]({x}, {x}); 
+
+            \addplot[
+            only marks,
+            mark=*,
+            mark size=2pt,
+            black
+        ] coordinates {(3,1)};
+
+        \node[black] at (axis cs:2,2.5) {$y=f(x)$};
+        \end{axis} 
+    \end{tikzpicture}
+    \end{center}
+
+    Notiamo che il dominio di questa funzione è $\mathbb{D}(f) = [-2, 2] \cup \{3\}$, e la funzione è continua nel suo dominio, questo perche $\forall x \in [-2,2]$ la vale la seconda proposizione di funzione continua, mentre per il punto $x=3$ dato che è un punto isolato è continuo per definizione.
+    \newpage
+    Proviamo a vedere se è continua la funzione parte intera: $f(x)= \lfloor x \rfloor$, il cui grafico è 
+
+    
+   
+
+\begin{center}
+\begin{tikzpicture} 
+    \begin{axis}[
+        xmin=-4, xmax=4,
+        ymin=-4, ymax=4,
+        axis equal,
+        axis lines=middle,
+        enlargelimits=false,
+        clip=false,
+        axis line style={-stealth, thick},
+        width=10cm
+    ]
+        % Draw horizontal steps manually
+        \foreach \x in {-4,-3,...,3} {
+            % Horizontal segment
+            \addplot[black, ultra thick] coordinates {(\x,\x) (\x+1,\x)};
+            % Closed circle at start
+            \addplot[only marks, mark=*, mark size=2pt] coordinates {(\x,\x)};
+            % Open circle at end
+            \addplot[only marks, mark=o, mark size=2pt] coordinates {(\x+1,\x)};
+        }
+        
+        \node[black] at (axis cs:2,2.5) {$f(x)= \lfloor x \rfloor$};
+    \end{axis} 
+\end{tikzpicture}
+\end{center}
+
+Notiamo che per $x_0 \in \mathbb{Z}$ abbiamo che
+\[
+\lim_{x\to x_0^+} \lfloor x \rfloor = x_0 
+\]
+\[
+\lim_{x\to x_0^-} \lfloor x \rfloor = x_0 -1
+\]
+
+Ma Dato che il limite destro e sinistro sono  diversi e quindi il limite in quel punto non esiste, e di conseguenza non è continua, visto che la continuità richiede che si possa calcolare il limite nel punto. 
+
+Mentre per $x_0 \in\mathbb{R} \setminus \mathbb{Z}$, usando la definizione di limite e prendendo un valore di $\varepsilon < \min(x_0-\lfloor x_0\rfloor, \lceil x_0 \rceil - x_0 )$  la funzione $f(x) = \lfloor x \rfloor$ è costante $\forall x \in (x_0 - \varepsilon, x_0 +\varepsilon)$ è constate e, quindi esiste il limite in quel punto e fa proprio
+\[
+    \lim_{x\to x_0} \lfloor x \rfloor = \lfloor x_0 \rfloor
+\]
+E quindi per quei valori la funzione è continua. Di conseguenza possiamo scrivere che $\lfloor x \rfloor \in C^0(\mathbb{R} \setminus \mathbb{Z})$.
+  
+Un altro caso molto particolare è la funzione di Dirichlet, che è definita come
+\[
+f_D(x) = \begin{cases}
+    1 & x \in \mathbb{R} \setminus \mathbb{Q} \\
+    0 & x \in \mathbb{Q}
+\end{cases}
+\]
+Notiamo che se $x_0 \in \mathbb{R} \setminus \mathbb{Q}$, per caratterizzazione sequenziale possiamo scegliere  $(a_n)_(n \in \mathbb{n})$ tale che $a_n \in \mathbb{Q}$ e $a_n \to x_0$, e questo possiamo farlo per la densità di $\mathbb{Q}$. In quei casi $\lim_{n\to +\infty} f_D(a_n) = 0$ perchè $a_n \in \mathbb{Q}$ e quindi la funzione restituisce 0, ma è diverso da $f_D(x_0) = 1$, visto che $x_0$ è irrazionale. Quindi visto che limite e valore effettivo sono diversi la funzione non è continua. Mentre per i casi $x_0 \in \mathbb{Q}$, possiamo usare sempre la caratterizzazione sequenziale con $a_n = x_0  + \frac{1}{n} \sqrt(2)$, e questa successione $a_n \in \mathbb{R} \setminus \mathbb{Q}$ dato che c'è $\sqrt{2}$, ma $a_n \to x_0$, quindi il limite $f(a_n) \to 1$ visto che $a_n\in \mathbb{R} \setminus \mathbb{Q}$ ma il valore della funzione è $f(x_0) = 0$, e quindi la funzione non è continua. In sostanza la funzione è discontinua $\forall x \in \mathbb{R}$, come era prevedibile.
+
+\newpage
+
+\addcontentsline{toc}{subsection}{Caratterizzazione $\varepsilon - \delta$ della Funzione Continua }
+\begin{teorema}{Caratterizzazione $\varepsilon - \delta$ della Funzione Continua }{}
+    Sia $\varnothing \neq A \subseteq \mathbb{R}$, $f: A \to \mathbb{R}$ e $x_0 \in A$, se $f$ è continua in $x_0$ allora
+    \[
+        \forall \varepsilon > 0 \;\; \exists \delta > 0 : f(x) \in (f(x_0) - \varepsilon , f(x_0) + \varepsilon ) \;\; \forall x \in (x_0 - \delta, x_0 + \delta)
+    \]
+\end{teorema}
+Questo viene della definizione di limite.
+
+\addcontentsline{toc}{subsection}{Algebra delle Funzioni Continue }
+\begin{teorema}{Algebra delle Funzioni Confinue}{}
+    Sia $\varnothing \neq A \subseteq \mathbb{R}$, $f,g: A \to \mathbb{R}$ e $x_0 \in A$, se $f, g$  sono continue in $x_0$ allora
+    \begin{itemize}
+        \item $(f\pm g)(x)$ è continua in $x_0$
+        \item $(f\cdot g)(x)$ è continua in $x_0$
+        \item $(\frac{f}{g})(x)$ è continua in $x_0$ se $g(x_0) \neq 0$
+    \end{itemize}
+\end{teorema}
+
+Per dimostrare queste proposizioni è necessario usare l'algebra dei limiti finiti. 
+
+\textbf{N.B.} se le funzioni sono continue perchè $x_0$ è isolato, funziona lo stesso il teorema, perchè vuol dire che anche le funzioni $(f\pm g)$, $(f\cdot g)$ e $(\frac{f}{g})$ sono isolate nel punto $x_0$, e quindi è continua per definizione.
+Con questo teorema possiamo dimostrare che le funzioni $\sinh(x)$,$\cosh(x)$ e $\tan(x)$ sono continue.
+
+\addcontentsline{toc}{subsection}{Limitatezza delle Funzioni Continue }
+\begin{teorema}{Limitatezza delle funzioni continue}{}
+    Sia $\varnothing \neq A \subseteq \mathbb{R}$, $f: A \to \mathbb{R}$ e $x_0 \in A$, se $f$ è continua in $x_0$ allora è definitivamente limitata per $x\to x_0$
+\end{teorema}
+
+\begin{proof}
+    Se $x_0$ è punto isolato, allora perforza la funzione è limitata visto che $\forall\varepsilon >0$ abbiamo che $|f(x)| <  |f(x_0)| + \varepsilon$, quindi non abbiamo nulla da dimostrare.
+    
+    Se $x_0$ è un punto di accumulazione, possiamo usare la definizione di limite e abbiamo che
+    \[
+    \lim_{x\to x_0} f(x) = f(x_0) \iff |f(x) - f(x_0)| < \varepsilon \;\;\; \forall x \in A \cap I 
+    \]
+    Ma se guardiamo il termine 
+    \begin{align*}
+        |f(x)| &= |f(x) - f(x_0) + f(x_0)|  \\
+        &\leq |f(x) - f(x_0)| + |f(x_0)|  \\
+        &\leq  \varepsilon + |f(x_0)|
+    \end{align*}
+    Quindi notiamo che $f(x)$ è sempre limitata.
+\end{proof}
+
+\addcontentsline{toc}{subsection}{Permanenza del Segno delle Funzioni Continue }
+\begin{teorema}{Permanenza del Segno di Funzioni Continue}{}
+     Sia $\varnothing \neq A \subseteq \mathbb{R}$, $f: A \to \mathbb{R}$ e $x_0 \in A$, se $f$ è continua in $x_0$ allora 
+    \begin{itemize}
+        \item $f(x_0) > 0$, allora $f(x) > 0$ definitivamente per $x\to x_0$
+        \item $f(x_0) < 0$, allora $f(x) < 0$ definitivamente per $x\to x_0$
+    \end{itemize}
+\end{teorema}
+Per dimostrarlo è sufficiente fare il ragionamento analogo al teorema della permanenza del segno 
+\newpage
+
+\addcontentsline{toc}{subsection}{Continuità delle Funzioni Composte }
+\begin{teorema}{Continuità di Funzioni Composte }{}
+    Sia $\varnothing \neq A \subseteq \mathbb{R}$, $f,g$ funzioni tali che $g \circ f: A \to \mathbb{R}$ sia ben definita e sono tali
+    \begin{itemize}
+        \item $f$ è continua in $x_0 \in \mathbb{D}(f) \cap A$
+        \item $g$ è continua in $f(x_0) \in \mathbb{D}(g)$
+    \end{itemize}
+    Allora anche $(g \circ f)(x)$ è continua in $x_0 \in A$.
+\end{teorema}
+Per dimostrarlo è sufficiente usare il teorema del cambio di variabile nella definizione di continuità.
+
+\addcontentsline{toc}{subsection}{Caratterizzazione Sequenziale di funzioni Continue}
+\begin{teorema}{Caratterizzazione Sequenziale di funzioni Continue}{}
+    Sia $\varnothing \neq A \subseteq \mathbb{R}$, $f: A \to \mathbb{R}$ e $x_0 \in A$, se $f$  è continua in $x_0$ se e solo se  $\forall (a_n)_{n\in \mathbb{N}} \subseteq A$ tale che $\displaystyle \lim_{n\to +\infty} a_n = x_0$ vale $\displaystyle \lim_{n\to +\infty} f(a_n) = f(x_0)$.
+\end{teorema}
+Per dimostrarlo è sufficiente usare la caratterizzazione sequenziale del limite nella definizione di continuità.
+
+
+\addcontentsline{toc}{subsection}{Definizione di Prolungamento per Continuità}
+\begin{definizione}{Prolungamento per Continuità}{}
+     Sia $\varnothing \neq A \subseteq \mathbb{R}$, $f: A \to \mathbb{R}$ e $x_0 $ punto di accumulazione in $A$, $\displaystyle\exists \lim_{x\to x_0} f(x) = l$, se
+     \[
+     \begin{array}{c @{\qquad} c @{\qquad} c} 
+        l \ne f(x_0) & \text{oppure} & x_0 \not \in A
+     \end{array}
+     \]
+     Allora possiamo definire una nuova funzione $\tilde{f}: A \cup \{x_0\} \to \mathbb{R}$ che chiamiamo \textbf{prolungamento di $f$ in $x_0$} e la definiamo come
+     \[
+     \tilde{f}(x) = \begin{cases}
+        f(x) & x \in A \setminus \{x_0\}\\
+        l & x = x_0
+     \end{cases}
+     \]
+\end{definizione}
+Vediamo un esempio pratico.
+
+\begin{esempio}{}{}
+    \[
+        f(x) = \frac{\log(1+x)}{x}
+    \]
+\end{esempio}
+Notiamo che il dominio di quesa funzione è $\mathbb{D}(f) = x > -1 \land x \neq 0$, quindi possiamo vedere se possiamo prolungare in $x=0$, e notiamo che 
+\[
+    \lim_{x\to 0}\frac{\log(1+x)}{x} = 1
+\]
+Quindi visto che esiste il limite e $0 \not \in \mathbb{D}(f)$, e quindi possiamo prolungare la funzione:
+\[
+    \tilde{f}(x) =\begin{cases}
+        \frac{\log(1+x)}{x} & x \in  (-1, 0) \cup (0, +\infty)\\
+        1 & x = 0
+     \end{cases}
+\]
+In questo modo abbiamo reso continua una funzione che prima era discontinua.
+
+\newpage
+
+\textbf{N.B.} con la definzione che abbiamo dato di prolungamento, potremmo estendere anche per $\pm \infty$, infatti se la funzione ha limite ad infinito e sicuramente $\pm \infty \not \in \mathbb{R}$, quindi potremmo fare anche estensioni del tipo   
+\[
+\lim_{x\to\pm\infty} \arctan(x) = \pm\frac{\pi}{2}
+\]
+Di conseguenza possiamo scrivere che 
+\[
+     \tilde{f}(x) = \begin{cases}
+        \arctan(x) & x \in \mathbb{R} \\
+        \frac{\pi}{2} & x = +\infty \\
+        -\frac{\pi}{2} & x = -\infty 
+     \end{cases}
+\]
+Pertanto possiamo calcolare la funzione nei punti $\pm \infty$, e possiamo scrivere $\tilde{f}(+\infty) = \frac{\pi}{2}$, visto che ora $+\infty$ è un punto del dominio. Questo può essere comodo per dimostrare certi problemi, però è meno intuitivo. Quindi per non rendere le definizioni ambigue, definiamo \textbf{prolungamento di $f$ nei numeri reali} il  prolungamento dove $x\neq \pm \infty$.D'ora in poi, quando scriverò prolungamento di una funzione, darò per scontato che sia un prolungamento nei reali. 
+
+
+\addcontentsline{toc}{subsection}{Classificazione Punti di Discontinità}
+\begin{definizione}{Punti di Discontinità}{}
+    Sia $\varnothing \neq A \subseteq \mathbb{R}$, $f: A \to \mathbb{R}$ e $x_0 $ punto di accumulazione in $A$, e diciamo che \textbf{$f$ presenta una discontinità} nel punto $x_0$, se $f$ non è continua in $x_0$. Definiamo 3 tipologie di discontinità:
+    \begin{itemize}
+        \item definiamo discontinità \textbf{ eliminabile} un punto $x_0$ se possiamo fare un prolungamento di $f$ in $x_0$. 
+        \item definiamo discontinità \textbf{I specie} se 
+        \[
+        \begin{array}{c @{\qquad} c}
+            \displaystyle\exists \lim_{x\to x_0^-} f(x) =l_{sx} \in \mathbb{R}& \displaystyle\exists \lim_{x\to x_0^+} f(x) =l_{dx}\in \mathbb{R}
+        \end{array}
+        \] 
+        Ma $l_{sx} \ne l_{dx}$. Questa discontinità è detta anche \textbf{Salto}, infatti possiamo definire il salto come $S = l_{dx} - l_{sx}$.
+        \item definiamo discontinità \textbf{II specie} tutte le altre casistiche che non rientrano nella discontinità eliminabile o di I specie. 
+    \end{itemize}
+\end{definizione}
+
+Vediamo qualche esempio
+\begin{esempio}{}{}
+    Determinare le discontinuità di 
+    \[
+        f(x) = \frac{x^2-3x+2}{x-2}
+    \]
+\end{esempio}
+
+In primis notiamo che abbiamo un denominatore, quindi necessitiamo che il denominatore sia diverso da zero: $x-2 \ne 0 \implies x \neq 2$, quindi $\mathbb{D}(f) = \mathbb{R} \setminus \{2\}$. Di conseguenza nel punto $x=2$ la funzione non sarà continua. Capiamo che specie di discontinità è
+\[
+\lim_{x\to 2}\frac{x^2-3x+2}{x-2} = \lim_{x\to 2}\frac{(x-2)(x-1)}{x-2} =  \lim_{x\to 2} (x-1) = 1
+\] 
+Quindi notiamo che ricadiamo nella discontinità eliminabile, visto che esiste il limite nel punto. E quindi è anche estendibile:
+\[
+    \tilde{f}(x) = \begin{cases}
+        \frac{x^2-3x+2}{x-2} & x \neq 2 \\
+        1 & x=2
+    \end{cases}
+\]
+Guardiamo il grafico delle 2 funzioni
+
+\[
+\begin{array}{c @{\qquad}@{\qquad} c}
+
+% --- Primo grafico: f(x) con buco ---
+% --- Primo grafico: f(x) con buco (pallino vuoto) ---
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-1, xmax=4,
+    ymin=-3, ymax=3,
+    axis equal,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=7cm
+]
+    % Linea x-1 escluso x=2
+    \addplot[blue, ultra thick, domain=-1:1.999] ({x},{x-1});
+    \addplot[blue, ultra thick, domain=2.001:4] ({x},{x-1});
+
+    % Pallino davvero vuoto in x=2
+    % Cerchio bianco sotto
+    \addplot[only marks, mark=*, mark size=3pt, white] coordinates {(2,1)};
+    % Cerchio blu sopra
+    \addplot[only marks, mark=o, mark size=3pt, blue] coordinates {(2,1)};
+
+    \node[blue] at (axis cs:2.3,2.2) {$f(x)$};
+\end{axis}
+\end{tikzpicture}
+&
+% --- Secondo grafico: prolungamento continuo ---
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-1, xmax=4,
+    ymin=-3, ymax=3,
+    axis equal,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=7cm
+]
+    % Linea x-1
+    \addplot[red, ultra thick, domain=-1:4] ({x},{x-1});
+
+    % Punto chiuso in x=2
+    \addplot[only marks, mark=*, mark size=3pt, red] coordinates {(2,1)};
+
+    \node[red] at (axis cs:2.3,2.2) {$\tilde f(x)$};
+\end{axis}
+\end{tikzpicture}
+
+\end{array}
+\]
+\begin{esempio}{}{}
+     Determinare le discontinuità di 
+     \[
+        f(x) = \arctan\left(\frac{1}{x}\right)
+     \]
+\end{esempio}
+Anche qua come prima dobbiamo stare attenti al denominatore: $x\ne 0$, e quindi dobbiamo controllare solamente il punto $x=0$
+\[
+\lim_{x\to 0}  \arctan\left(\frac{1}{x}\right)
+\]
+Però ricordiamo che $\lim_{x\to 0}\frac{1}{x}$ perchè dobbiamo dividere nel limite destro e limite sinistro
+\[
+\begin{array}{c @{\qquad} c}
+    \displaystyle\lim_{x\to 0^+}  \arctan\left(\frac{1}{x}\right) = \frac{\pi}{2} & \displaystyle\lim_{x\to 0^-}  \arctan\left(\frac{1}{x}\right)= -\frac{\pi}{2}
+\end{array}
+\]
+Quindi visto che esistono il limite destro e sinitro ma sono valori finiti ma diversi, ricadiamo nella discontinità di I specie, e possiamo calcolare il salto $S = \frac{\pi}{2} - \left(-\frac{\pi}{2}\right) = \pi$. Vediamo il grafico
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-4, xmax=4,
+    ymin=-2, ymax=2,
+    axis equal=false,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=8cm,
+    samples=400
+]
+
+    % funzione corretta: atan() in deg → convertire in rad
+    \addplot[blue, ultra thick, domain=-4:-0.05]
+        (x,{atan(1/x)*pi/180});
+    \addplot[blue, ultra thick, domain=0.05:4]
+        (x,{atan(1/x)*pi/180});
+
+   % --- Palline vuote negli asintoti ---
+    % Punto bianco sotto
+    \addplot[only marks, mark=*, mark size=3pt, white]
+        coordinates {(0,pi/2) (0,-pi/2)};
+    % Cerchio esterno blu sopra
+    \addplot[only marks, mark=o, mark size=3pt, blue]
+        coordinates {(0,pi/2) (0,-pi/2)};
+\begin{scope}
+        \draw[
+            decorate,
+            decoration={brace, amplitude=8pt},
+            thick,
+            red
+        ]
+            (axis cs:0,pi/2) -- (axis cs:0,-pi/2)
+            node[midway, right=5pt, yshift=-6pt, red] {$S=\pi$};
+    \end{scope}
+    % etichette
+    \node[blue] at (axis cs:2,1.3) {$f(x)$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+
+\addcontentsline{toc}{subsection}{Teormea di Weierstrass}
+\begin{teorema}{Teorema di Weierstrass}{}
+    Siano $a,b \in \mathbb{R}$ con $a < b$, $f: [a, b] \to \mathbb{R}$, e $f \in C^0([a,b])$, allora $f$ ammette un massimo e un minimo in $[a, b]$. Cioè $\exists x_{min}, x_{max} \in [a, b]$ tali che 
+    \[
+    \begin{array}{c @{\qquad}@{\qquad} c}
+        f(x_{min}) \leq f(x) \;\;\; \forall x \in [a,b] &f(x_{max}) \geq f(x) \;\;\; \forall x \in [a,b]
+    \end{array}
+    \]
+\end{teorema}
+
+\begin{proof}
+    Dimostramo per il caso del massimo, il minimo è analogo.
+    Dato che $f \in C^0([a,b])$ allora sappiamo che almeno esiste un estremo superiore
+    \[
+    M = \sup\{f(x) : x \in [a,b]\}
+    \]
+    E supponiamo che $M \in \mathbb{R}$, con la caratterizzazione dell'estremo superiore, sappiamo che $\forall \varepsilon > 0 $, $\exists x_\varepsilon \in [a, b]$ tale che
+    \[
+    f(x_\varepsilon) > M -\varepsilon \;\;\;\;\; 
+    \]
+    Di conseguenza possiamo scegliere $\varepsilon = \frac{1}{n}$, con $n \in \mathbb{N}$,e quindi
+    \[
+    f(x_n) > M -\frac{1}{n} \;\;\;\;\; \forall n \geq 1
+    \]
+    Ma visto che sappiamo che per ogni $n$ possiamo trovare un $x_n$ che soddisfa quella relazione, possiamo definire una successione $(x_n)_{n\in \mathbb{N}}$, che sappiamo che è limitato da
+    \[  
+        a \leq x_n \leq b\;\;\;\;\; \forall n \geq 1
+    \]  
+    Ora però per il teorema di Bolzano-Weierstrass, dato che la successione $(x_n)_{n\in \mathbb{N}}$ è limitata, sappiamo che esiste almeno una sottosuccessione, $(x_{\varphi(n)})_{n\in \mathbb{N}} \to l \in [a,b]$, per un qualsiasi valore di $l$. Ma dato che la nostra funzione è continua $\forall x \in [a,b]$, e dato che $l\in [a,b]$, allora 
+    \begin{equation}\label{eq:weie1}
+   \mathunderline{red}{ \lim_{n\to+\infty} f(x_{\varphi(n)}) = f(l)}
+    \end{equation}
+    Riusiamo la caratterizzazione degli estremi, e la definizione di estremo superiore e sappiamo che 
+    \[
+    M-\frac{1}{n} < f(x_n) < M \;\;\;\;\; \forall n \geq 1
+    \] 
+    Portando tutto al limite abbiamo che
+    \[
+    \lim_{n\to+\infty}M-\frac{1}{n} <\lim_{n\to+\infty} f(x_n) <\lim_{n\to+\infty} M
+    \]
+    \[
+    M <\lim_{n\to+\infty} f(x_n) < M \implies \lim_{n\to+\infty} f(x_n) = M
+    \]
+    Ma dato che la serie converge ad $M$ con la successione  $(x_n)_{n\in \mathbb{N}}$, allora questo varrà per ogni sottosuccessione  $(x_{\varphi(n)})_{n\in \mathbb{N}}$, e quindi
+    \begin{equation}\label{eq:weie2}
+        \lim_{n\to+\infty} f(x_n) = M \implies \mathunderline{blue}{\lim_{n\to+\infty} f(x_{\varphi(n)}) = M}
+    \end{equation}
+    Ma combinando le informazioni (\ref{eq:weie1}) e(\ref{eq:weie2}) sappiamo che esiste almeno una sottosuccessione tale che
+    \[
+   \mathunderline{red}{f(l)=  \lim_{n\to+\infty}} \mathunderline{blue}{f(x_{\varphi(n)}) = M } \implies f(l) = M
+    \] 
+    Quindi abbiamo trovato un valore $l \in [a, b]$ tale che $f(l) = M$, ma $M$ è l'estremo superiore, di conseguenza $M$ è anche un massimo.
+    \newpage
+    Se invece $M = +\infty$, dobbiamo ripetere tutto il ragionamento, e quindi sappiamo che 
+    \[
+    \forall n \in \mathbb{N} \;\;\; \exists x_n \in [a, b] \;\;: \;\; f(x_n) > n
+    \]
+    Ma allora $x_n$ è limitata, e di conseguenza esiste almeno una sottosuccessione  $(x_{\varphi(n)})_{n\in \mathbb{N}} \to l \in [a,b]$, ma dato che $f$ è continua abbiamo che
+    \begin{equation}\label{eq:weie3}
+        \lim_{n\to+\infty} f(x_{\varphi(n)}) = f(l)
+    \end{equation}
+    Riutilizzando la caratterizzazione degli estremi sappiamo che
+    \[
+    f(x_n) > n
+    \]
+    ma portando al limite abbiamo che 
+    \begin{equation}\label{eq:weie4}
+    \lim_{n\to+\infty}  f(x_n) > \lim_{n\to+\infty}  n \implies \lim_{n\to+\infty}  f(x_n) = +\infty
+    \end{equation}
+    Ma questo varrà anche per ogni sottosuccessione $(x_{\varphi(n)})_{n\in \mathbb{N}}$, ma quindi campinando le informazioni (\ref{eq:weie3}) e (\ref{eq:weie3}) sappiamo che 
+    \[
+    \begin{aligned}
+    \lim_{n\to+\infty}  f(x_{\varphi(n)}) = +\infty \\ 
+    \lim_{n\to+\infty} f(x_{\varphi(n)}) = f(l)
+    \end{aligned}
+    \;\Rightarrow\;
+    f(l) = +\infty 
+    \]
+    Ma così abbiamo scoperto che un punto $l \in [a,b]$ vale $+\infty$, ma ciò è impossibile visto che $f$ è continua in $[a,b]$, e quindi deve valutare solo valori finiti, quindi per assurdo, scopriamo che $M \neq +\infty$. 
+\end{proof}
+
+\addcontentsline{toc}{subsection}{Teormea di Bolzano}
+\begin{teorema}{Teorema di Bolzano (o degli Zeri)}{}
+     Siano $a,b \in \mathbb{R}$ con $a < b$, $f: [a, b] \to \mathbb{R}$, e $f \in C^0([a,b])$ e se $f(a) \cdot f(b) < 0$ allora 
+     \[
+        \exists c \in (a,b) \; : f(c) = 0 
+     \]
+\end{teorema}
+\begin{proof}
+    Dato che $f(a) \cdot f(b) < 0$, allora possono accadere due casistiche: $f(a) < 0 < f(b)$ oppure $f(b) < 0 < f(a)$, per comodità supponiamo che $f(a) < 0 < f(b)$, nell'altro caso è sufficiente porre $g(x) = -f(x)$, in questo modo $g(a) \cdot g(b) < 0$ e  anche che $g(a) < 0 < g(b)$, e così con la dimostrazione che segue abbiamo dimostrato entrambe le casistiche. 
+
+    Definiamo \[
+    \begin{array}{c @{\qquad}@{\qquad} c @{\qquad}@{\qquad} c }
+        \displaystyle a_0 = a & \displaystyle c_0 =\frac{a_0+b_0}{2} & \displaystyle b_0 = b
+    \end{array}\]
+    E seguiamo il seguente algoritmo:
+    \begin{itemize}
+        \item Se $f(c_0) = 0$ abbiamo dimostrato il teorema, dato che $c_0 \in (a,b)$
+        \item Se $f(c_0) < 0$, allora poniamo $a_1 = c_0$ e $b_1 = b_0$, in modo tale che $f(a_1) \cdot f(b_1) < 0$
+        \item Se $f(c_0) > 0$, allora poniamo $a_1 = a_0$ e $b_1 = c_0$, in modo tale che $f(a_1) \cdot f(b_1) < 0$
+    \end{itemize}
+
+    \newpage
+
+    Reiteriamo il procedimento, quindi definiamo 
+    \[
+    c_1 = \frac{a_1 + b_1}{2}
+    \]
+    E seguiamo l' algoritmo:
+    \begin{itemize}
+        \item Se $f(c_1) = 0$ abbiamo dimostrato il teorema, dato che $c_1 \in (a,b)$
+        \item Se $f(c_1) < 0$, allora poniamo $a_2 = c_1$ e $b_2 = b_1$, in modo tale che $f(a_2) \cdot f(b_2) < 0$
+        \item Se $f(c_1) > 0$, allora poniamo $a_2 = a_1$ e $b_2 = c_1$, in modo tale che $f(a_2) \cdot f(b_2) < 0$
+    \end{itemize}
+    All'n-esimo passo, qualora non fosse mai stata verificata la prima condizione dell'algoritmo, avremo che
+    \[
+    c_n = \frac{a_n + b_n}{2}
+    \]
+    \begin{itemize}
+        \item Se $f(c_n) = 0$ abbiamo dimostrato il teorema, dato che $c_n \in (a,b)$
+        \item Se $f(c_n) < 0$, allora poniamo $a_{n+1} = c_n$ e $b_{n+1} = b_n$
+        \item Se $f(c_n) > 0$, allora poniamo $a_{n+1} = a_n$ e $b_{n+1} = c_n$
+    \end{itemize}
+    Con questo, possiamo definire le due successioni $(a_n)_{n\in \mathbb{N}}$ e $(b_n)_{n\in \mathbb{N}}$, e sappiamo che
+    \begin{enumerate}[label=(\roman*)]
+        \item $f(a_n) \le 0 $ $\forall n \in \mathbb{N}$
+        \item $f(b_n) \ge 0 $ $\forall n \in \mathbb{N}$
+    \end{enumerate}
+    \begin{itemize}
+        \item $(a_n)_{n\in \mathbb{N}}$ è crescente, dato che ad ogni passaggio o resta uguale al passaggio precedente oppure diventa $\frac{a_n + b_n}{2}$, che dato che $a_n < b_n$ sappiamo che 
+        \[
+           a_{n+1} = \frac{a_n + b_n}{2} \geq \frac{a_n + a_n}{2} = \frac{2a_n }{2} = a_n
+        \]
+        \item $(b_n)_{n\in \mathbb{N}}$ è decrescente, per lo stesso ragionamento di $(a_n)_{n\in \mathbb{N}}$
+    \end{itemize}
+    Dato che entrambe le successioni sono monotone e limitate sappiamo che convegono a dei valori, che chiamiamo $a_n \to A \in (a, b)$ e $b_n \to B \in (a, b)$. In più, dato che ad ogni passaggio prendiamo la metà degli estremi, sappiamo che 
+    \[
+    b_n - a_n = \frac{b-a}{2^n} \implies b_n = a_n +\frac{b-a}{2^n}
+    \]
+    Se portiamo al limite questa informazione scopriamo che
+    \[
+    \lim_{n\to+\infty} b_n = \lim_{n\to+\infty} \left(a_n +\frac{b-a}{2^n}\right) \implies B = A + 0 \implies B = A
+    \]
+    Se prendo $c = A = B$,  usando la continuità di $f$ e $(i)$, $(ii)$ 
+    \[
+        f(c) = f(A) = \lim_{n\to +\infty} f(a_n) \leq 0
+    \]
+    \[
+        f(c) = f(B) = \lim_{n\to +\infty} f(b_n) \geq 0
+    \]
+    Da cui
+    \[
+    0 \leq f(c) \leq 0 \implies f(c) = 0
+    \]
+\end{proof}
+
+\newpage
+\textbf{N.B.} Il teorema ci dice che esiste almeno uno zero, ciò vuol dire che ne possono esistere molteplici. Per esempio se prendo $f(x) = \sin(x)$ e prendo $a=\frac{-\pi}{2}$ e $b=\frac{9\pi}{2}$, sappiamo che $\sin(x) \in C^0(\mathbb{R})$ e che $f(a) = \sin(-\frac{\pi}{2}) = -1$, $f(b) = \sin(\frac{9\pi}{2}) = 1$ e quindi $f(a)\cdot f(b) = -1\cdot 1 = -1 < 0$, quindi è applicabile il teorema di Bolzano, e quindi sappiamo che ne esiste almeno uno zero. Ma se andiamo a vedere il grafico. 
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-1.5*pi, xmax=5.5*pi,
+    ymin=-2, ymax=2,
+    axis equal=false,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=15cm,                  % <-- SOLO larghezza aumentata
+    height=6cm,                  % <-- altezza controllata, non cresce
+    samples=500,
+    xtick={
+        -3.1416, -1.5708, 0, 3.1416, 6.2832, 9.4248, 12.5664, 14.1372
+    },
+    xticklabels={
+        $-\pi$, $-\frac{\pi}{2}$, $0$, $\pi$, $2\pi$, $3\pi$, $4\pi$, $\frac{9\pi}{2}$
+    },
+    ytick={-1,0,1}
+]
+
+    % --- Grafico sin(x) ---
+    \addplot[blue, ultra thick, domain=-pi:5*pi] {sin(deg(x))};
+
+    % --- Zeri ---
+    \addplot[only marks, mark=*, blue, mark size=2pt]
+        coordinates { (0,0) (pi,0) (2*pi,0) (3*pi,0) (4*pi,0)};
+
+    % --- Punto rosso: a = -π/2 ---
+    \addplot[only marks, mark=*, red, mark size=3pt]
+        coordinates {(-pi/2, {-1})};
+    \node[red] at (axis cs:-pi/2, -1.3) {$f(a)$};
+
+    % --- Punto rosso: b = 9π/2 ---
+    \addplot[only marks, mark=*, red, mark size=3pt]
+        coordinates {(9*pi/2, {1})};
+    \node[red] at (axis cs:9*pi/2, 1.3) {$f(b)$};
+
+    % Etichetta funzione
+    \node[blue] at (axis cs:4,1.3) {$\sin(x)$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Ma notiamo subito che esistono 4 zeri. Può succedere che ci venga richiesto dell'esistenza di un unico zero, in quel caso bisogna controllare se è verificato il teorema di Bolzano (per vedere se ha degli zeri), e poi controllare se la funzione è monotona. Infatti se la funzione è monotona è verifica il teorema di Bolzano allora sappiamo che $\exists! c \in (a,b)$ tale che $f(c) =0$. Infatti con l'esempio del seno, sappiamo che il seno non è monotono, e pertanto abbiamo che ci sono più zeri. 
+
+Invece se prendiamo la funzione $f(x)=e^x + x$ e prendiamo $a=-1$ e $b=0$, notiamo subito che $f \in C^0(\mathbb{R})$ e che $f(b)=f(0) = e^0 + 0 = 1$ e per $f(a)$ dobbiamo ricordarci che $e^{-1} < 1$, infatti $f(-1) = e^{-1} - 1 < 1 - 1 = 0$, e quindi il teorema è applicabile. 
+
+In più notiamo che $e^x$ è monotona crescente, e anche $x$ è crescente e di conseguenza $f$ è crescente e per questo sappiamo che $\exists! c \in (-1,0)$ tale che $f(c) = 0$. Infatti con il grafico notiamo che
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-2, xmax=1.5,
+    ymin=-3, ymax=6,
+    axis equal=false,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=10cm,
+    height=6cm,
+    samples=400,
+    xtick={-3,-2,-1,0,1,2},
+    ytick={-2,0,2,4}
+]
+
+    % --- Funzione f(x) = e^x + x ---
+    \addplot[blue, ultra thick, domain=-2:1.5] {exp(x) + x};
+
+    % --- Punto a = -1 ---
+    \addplot[
+        only marks,
+        mark=*,
+        red,
+        mark size=3pt
+    ]
+    coordinates {(-1, {exp(-1) - 1})};
+    \node[red] at (axis cs:-1+0.1, {exp(-1)-1 - 0.7}) {$f(a)$};
+
+    % --- Punto b = 0 ---
+    \addplot[
+        only marks,
+        mark=*,
+        red,
+        mark size=3pt
+    ]
+    coordinates {(0, {exp(0) + 0})};
+    \node[red] at (axis cs:0.25, {0.5}) {$f(b)$};
+
+% --- Zero della funzione: c ≈ -0.567143 ---
+    \addplot[only marks, mark=*, green!60!black, mark size=3pt]
+        coordinates {(-0.567143, 0)};
+    \node[green!60!black] at (axis cs:-0.567143, 0.8) {$f(c)$};
+
+    % --- Etichetta funzione ---
+    \node[blue] at (axis cs:0.6, 4.6) {$f(x)=e^x + x$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Infatti graficamente abbiamo cioò che ci aspettavamo. Per calcolare $c$ possiamo usare il metodo usato nella dimostrazione del teorema di Bolzano, che è detto \textbf{metodo di bisezione}. Facciamo qualche passo per questo esempio:
+\[
+    c_0 = \frac{-1 +0}{2} = -0.5 \implies f(c_1) = e^{-0.5} + 0.5 \approx 0.1065
+\]
+\[
+    a_1 = -1 \;\;\; b_1=-0.5 \;\;\; c_1 =-0.75 \implies f(c_1) \approx -0.2776 
+\]
+\[
+a_2 = -0.75 \;\;\; b_2=-0.5 \;\;\; c_2 =-0.625 \implies f(c_2) \approx -0.090
+\]
+ E così via. Tramite una decina di iterazioni con un computer scopriamo che $c \approx -0.5671$.
+
+
+\newpage
+
+\addcontentsline{toc}{subsection}{Teormea dei Valori Intermedi}
+\begin{teorema}{Teorema dei Valori Intermedi}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$, $f: I \to \mathbb{R}$ e $f \in C^0(I)$ allora 
+    \[
+    \left(\inf_I(f), \sup_I(f)\right) \subseteq f(I)  \subseteq \left[\inf_I(f), \sup_I(f)\right]
+    \]
+\end{teorema}
+\begin{proof}
+    In primis possiamo notare che la disequazione 
+    \[
+     f(I)  \subseteq \left[\inf_I(f), \sup_I(f)\right] \implies \inf_I(f) \leq f(I) \leq \sup_I(f)
+    \]
+    Ma questo è ovvio, per la definizione di estremo superiore e inferiore. Pertanto dobbiamo solamente dimostrare l'altra disequazione. 
+    
+    Per dimostrare il teorema è sufficiente che  $\forall y \in \left(\inf_I(f), \sup_I(f)\right)$ $\exists x \in I : y = f(x)$. Perchè vuol dire che ad ogni valore di $y$ riesco a trovare una $x$ in modo tale che $y=f(x)$, e se riesco a dimostrarlo per tutti i valori di $y$ abbiamo dimostrato il teorema. Ora quindi supponiamo di prendere $y \in \left(\inf_I(f), \sup_I(f)\right)$, riscrivendo scopriamo che
+    \[
+        \mathunderline{red}{\inf_{I}f <} y  \mathunderline{blue}{<\sup_If}
+    \]
+    Da cui scopriamo che
+    \begin{itemize}
+        \item $\mathunderline{red}{\inf_{I}f < y}$ vuol dire che $y$ NON è un minorante, dato che è più grande dell' estremo inferiore. Quindi potremmo trovare $\forall y$ $\exists a \in I$ tale che
+        \begin{equation}\label{eq:int1}
+            \inf_{I}f < f(a) < y \implies f(a) -  y < 0
+        \end{equation}
+        \item $ \mathunderline{blue}{y <\sup_If}$ vuol dire che $y$ NON è un maggiorante, dato che è più piccolo dell'estremi superiore. Quindi potremmo trovare $\forall y$ $\exists b \in I$ tale che
+        \begin{equation}\label{eq:int2}
+            y < f(b) <\sup_If\implies f(b) -  y > 0
+        \end{equation}
+    \end{itemize}
+    Per comodità supponiamo che $a<b$. Da qui definiamo $g:[a,b] \to \mathbb{R}$ come
+    \[
+        g(x) = f(x) - y \;\;\;\;\; \forall x \in [a,b]
+    \]
+    Notiamo che 
+    \begin{enumerate}[label=(\roman*)]
+        \item dato che, per ipotesi, $f(x) \in C^0(I)$ allora anche $g(x) \in C^0(I)$
+        \item  Con (\ref{eq:int1}) deduciamo che $g(a) = f(a) - y < 0$
+        \item  Con (\ref{eq:int2}) deduciamo che $g(b) = f(b) - y > 0$
+    \end{enumerate}
+    Ma queste tre condizioni rendono possibile l'applicazione del teorema di Bolzano, dato che $g(a)\cdot g(b) <0$, e quindi sappiamo che $\exists c \in (a,b)$ tale che 
+    \[
+        g(c) = 0\implies f(c) - y = 0 \implies f(c) = y
+    \]
+    Ma quindi  $\forall y \in \left(\inf_I(f), \sup_I(f)\right)$ riesco trovare un $\exists a, b \in I$, e abbiamo scoperto che $\exists c \in (a,b)$ tale che $f(c) = y$, e quindi abbiamo verificato il teorema.
+\end{proof}
+\newpage
+
+\addcontentsline{toc}{subsection}{Corollario del Teorema dei Valori Intermedi}
+\begin{corollario}{del Teorema dei Valori Intermedi}{}
+     Sia $a,b \in \mathbb{R}$, $f: [a,b] \to \mathbb{R}$ e $f \in C^0([a,b])$ allora
+    \[
+        f([a,b]) = [\min_{[a,b]}f, \max_{[a,b]}f]
+    \] 
+\end{corollario}
+\begin{proof}
+    Per il teorema dei valori intermedi sappiamo che
+    \[
+        \left(\inf_{[a,b]}(f), \sup_{[a,b]}(f)\right) \subseteq f([a,b])  \subseteq \left[\inf_{[a,b]}, \sup_{[a,b]}\right]
+    \]
+    Ma con il teorema di Weierstrass sappiamo che la funzione ammette un massimo e un minimo, per la relazione dei estrimi e massimi e minimi, allora sappiamo che se esiste un massimo o minimo allora coincide con l'estremo superiore/inferiore, quindi l'equazione sopra diventa 
+     \[
+        \left(\min_{[a,b]}(f), \max_{[a,b]}(f)\right) \subseteq f([a,b])  \subseteq \left[\min_{[a,b]} f, \max_{[a,b]} f\right]
+    \]
+    Ma dato che $\max_{[a,b]}(f) \in f([a,b])$ e $\min_{[a,b]}(f) \in f([a,b])$, allora sappiamo che
+    \[
+    \left[\min_{[a,b]}(f), \max_{[a,b]}(f)\right] \subseteq f([a,b])  \subseteq \left[\min_{[a,b]} f , \max_{[a,b]}f \right] \implies  f([a,b])  = \left[\min_{[a,b]}f, \max_{[a,b]}f\right] 
+    \]  
+\end{proof}
+
+\addcontentsline{toc}{subsection}{Continuità delle Funzioni Inverse}
+\begin{teorema}{Continuità della funzione inversa}{}
+     Sia $\varnothing \ne I \subseteq \mathbb{R}$, $f: I \to \mathbb{R}$ e $f \in C^0(I)$ e invertibile in $I$ allora 
+     \[
+     f^{-1} \in C^0(f(I)) \iff f \text{ è strettamente monotona}
+     \]  
+\end{teorema}
+Con questo teorema possiamo trovare altre funzioni continue, per esempio $f(x) = a^x$ con $a \in (0,1) \cup (1,+\infty)$, noi sappiamo che $f \in C^0(\mathbb{R})$ e in più sappiamo che $f$ è strettamente crescente per $x \in (1,+\infty)$ e decrescente per $x \in (0,1)$, e quindi da questo sappiamo che la funzione inversa: $f(x) = \log_a(x)$ è continua nel suo dominio: $(0, +\infty)$. 
+
+Poi possiamo trovare anche per le funzione trigonometriche inverse, ma dobbiamo fare delle eventuali constrizioni. Prendiamo la funzione $f(x)=\sin(x)$, è vero che è continua in $\mathbb{R}$, ma non è sempre monotona, però se noi prendiamo il seno da $[-\frac{\pi}{2}, \frac{\pi}{2}]$ allora in questo intervallo è strettamente crescente, quindi possiamo dedurre che $f(x) = \arcsin(x)$ è continua in $[-1,1]$. 
+
+Stesso ragionamento, per $f(x) =\cos(x)$ se lo prendiamo per $x\in[0, \pi]$ allora la funzione è strettamente decrescente e quindi possiamo dedurre che $f(x)= \arccos(x)$ e che $f\in C^0([-1,1])$. 
+
+ Ragionamento analogo anche per $f(x) = \tan(x)$, infatti se prendo la funzione nell'intervallo $(-\frac{\pi}{2}, \frac{\pi}{2})$, allora so che è monotona crescente e quindi $f(x) = \arctan(x)$ è continua in $\mathbb{R}$.
+ 
+ Tutto ciò si può dire anche per le funzioni iperboliche.
+
+ \newpage 
+ \section{Derivabilità}
+
+\addcontentsline{toc}{subsection}{Definizione di Derivata di una Funzione}
+ \begin{definizione}{Derivata di una funzione in un punto }{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo, $f:I \to \mathbb{R}$, $x_0\in I$, se esiste il seguente limite finito
+    \[
+        \exists \lim_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0} \in \mathbb{R}
+    \]
+    Diciamo che \textbf{$f$ è derivabile in $x_0$} e lo indichiamo con il simbolo 
+    \[
+        f'(x_0) =  \lim_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0}
+    \]
+    Se invece non esiste il limite oppure tende a $\pm \infty$ diciamo che non è derivabile.
+
+    Diciamo che $f$  è \textbf{derivabile } (oppure \textbf{differenziabile}) se è derivabile per ogni punto del suo dominio.
+ \end{definizione}
+ \textbf{N.B.} la notazione di derivata può variare, infatti ci sono varie notazioni e possono aiutare a capire il contesto, infatti potreste trovare indicata la derivata di $f(x)$ in $x_0$ come:
+ \begin{itemize}
+    \item $f'(x_0)$ che è la più classica ed usata
+    \item $\displaystyle\frac{df}{dx}(x_0)$ oppure $\displaystyle\frac{d}{dx}(f(x_0))$ nei contesti geometrici oppure nelle equazioni differenziali
+    \item $\dot{f}(x_0)$ tendenzialemente si usa in fisica
+    \item $D[f(x_0)]$ quando volgiamo indicare l'operatore derivata
+    \item $\displaystyle\frac{\partial f}{\partial x}(x_0)$ quando usiamo funzioni a più dimensioni
+ \end{itemize}
+ Quindi quando trovate uno di questi simboli indicano sempre una derivata, ma in contesti differenti. Ora proviamo a calcolare quelle fondamentali
+ \addcontentsline{toc}{subsection}{Calcolo delle Derivate Elementari}
+ \begin{esercizio}{}{}
+    Calcolare da derivata di $f(x)=c$ in $x_0 \in \mathbb{R}$ con $c \in\mathbb{R}$ 
+ \end{esercizio}
+ Usiamo la definizione di derivata
+ \[
+ f'(x_0) =  \lim_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0} =  \lim_{x\to x_0} \frac{c-c}{x-x_0} =  \lim_{x\to x_0} \frac{0}{x-x_0} = 0
+ \]
+Quindi per qualsiasi funzione costante abbiamo che la sua derivata è sempre e solo 0. Questo quando vedremo gli integrali porterà ad una proprietà unica degli integrali. 
+ \begin{esercizio}{}{}
+    Calcolare da derivata di $f(x)=x$ in $x_0 \in \mathbb{R}$  
+ \end{esercizio}
+ Usiamo sempre la definizione
+  \[
+ f'(x_0) =  \lim_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0} =  \lim_{x\to x_0} \frac{x-x_0}{x-x_0} =  1
+ \]
+ \newpage
+  \begin{esercizio}{}{}
+    Calcolare da derivata di $f(x)=x^2$ in $x_0 \in \mathbb{R}$ 
+ \end{esercizio}
+ Usiamo sempre la definizione
+  \[
+ f'(x_0) =  \lim_{x\to x_0} \frac{x^2-x^2_0}{x-x_0} =  \lim_{x\to x_0} \frac{(x-x_0)(x+x_0)}{x-x_0} = \lim_{x\to x_0}(x+x_0) = 2x_0
+ \]
+ Per ora non abbiamo ancora trovato un pattern comodo per le potenze, provamo a calcolare la potenza n-esima.
+ \begin{esercizio}{}{}
+    Calcolare da derivata di $f(x)=x^n$ in $x_0 \in \mathbb{R}$ con $n \in \mathbb{N}$ 
+ \end{esercizio}
+ Usiamo sempre la definizione
+  \[
+ f'(x_0) =  \lim_{x\to x_0} \frac{x^n-x^n_0}{x-x_0} 
+ \]
+ Per calcolarlo dobbiamo riutilizzare la formula che abbiamo usato anche per il limite $x^n\to x^n_0$ e quindi
+ \begin{align*}
+    \lim_{x\to x_0} \frac{x^n-x^n_0}{x-x_0}  &= \lim_{x\to x_0} \frac{\displaystyle(x-x_0)\left(\sum_{k=0}^{n-1}x^{n-1-k}x^k_0\right)}{x-x_0} = \lim_{x\to x_0} \left(\sum_{k=0}^{n-1}x^{n-1-k}x^k_0\right) \\
+    &= \sum_{k=0}^{n-1}x^{n-1-k}_0x^k_0 = \sum_{k=0}^{n-1}x^{n-1-k + k}_0 = \sum_{k=0}^{n-1}x^{n-1}_0 = nx_0^{n-1}
+\end{align*}
+Per le prossime derivate dobbiamo un attimino modificare la definizione di derivata, infatti se alla definizione applico un cambio di variabole con $h = x-x_0$, e quindi $x = h+x_0$, abbiamo che
+\[
+f'(x_0) = \lim_{x\to x_0} \frac{f(x)-f(x_0)}{x-x_0} =  \lim_{h\to 0} \frac{f(x_0+h)-f(x_0)}{h}
+\]
+Con questo possiamo sostituire $x_0$ con $x$ per calcolare la funzione derivata su qualsiasi punto anzichè su un punto solo. Quindi la nuova definizione di derivata (che è uguale a quella di prima ma può essere più comoda per certi conti) è
+\[
+f'(x) = \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}
+\]
+ \begin{esercizio}{}{}
+    Calcolare da derivata di $f(x)=x^\alpha$ in $x> 0$ con $\alpha \in \mathbb{R}$ 
+ \end{esercizio}
+Usiamo sempre la definizione
+ \begin{align*}
+    f'(x_0) &=  \lim_{h\to 0} \frac{(x+h)^\alpha-x^\alpha}{h} = \lim_{h\to 0} \frac{\left(x\left(1+\frac{h}{x}\right)\right)^\alpha-x^\alpha}{h} \\
+ &= \lim_{h\to 0} \frac{x^\alpha\cdot\left(1+\frac{h}{x}\right)^\alpha-x^\alpha}{h} = \lim_{h\to 0} \frac{x^\alpha\cdot\left(\left(1+\frac{h}{x}\right)^\alpha-1\right)}{h}
+ \end{align*}
+Possiamo applicare un cambio di variabile con $t = \frac{h}{x}$, e dato che $x>0$ non ci reca alcun danno.
+\[
+\lim_{h\to 0} \frac{x^\alpha\cdot\left(\left(1+\frac{h}{x}\right)^\alpha-1\right)}{h} = \lim_{t\to 0} x^\alpha\cdot \frac{(1+t)^\alpha-1}{tx} = \lim_{t\to 0} x^{\alpha-1}\cdot \frac{(1+t)^\alpha-1}{t} 
+\]
+Ora dobbiamo usare un limite notevole al contrario. Infatti noi sappiamo che 
+\[
+ e^t \sim 1+t \;\;\; \text{per } t\to0 
+\]
+E quindi nella stramagioranza degli esercizi sostituavamo $1+t$ al posto di $e^t$, ma possiamo fare anche il contrario. In effetti in questo caso ci conviene sostituire $1+t$ con $e^t$. Quindi
+\[
+\lim_{t\to 0} x^{\alpha-1}\cdot \frac{(1+t)^\alpha-1}{t} \sim \lim_{t\to 0} x^{\alpha-1}\cdot \frac{(e^t)^\alpha-1}{t} = \lim_{t\to 0} x^{\alpha-1}\cdot \frac{e^{\alpha t}-1}{t} = \alpha \cdot x^{\alpha-1}
+\]
+  
+
+
+
+\begin{esercizio}{}{}
+    Calcolare da derivata di $f(x)=\sin(x)$  
+ \end{esercizio}
+  Usiamo sempre la definizione
+\begin{align*}
+     f'(x) &=  \lim_{h\to 0} \frac{f(x+h)-f(x)}{h} = \lim_{h\to 0} \frac{\sin(x+h)-\sin(x)}{h} \\
+     &= \lim_{h\to 0} \frac{\mathunderline{red}{\sin(x+h)}-\sin(x)}{h} = \lim_{h\to 0} \frac{\mathunderline{red}{\sin(x)\cos(h)+\sin(h)\cos(x)}-\sin(x)}{h} \\
+&= \lim_{h\to 0} \left(\frac{\sin(x)\cos(h)-\sin(x)}{h} + \frac{\sin(h)\cos(x)}{h} \right)
+    \end{align*}
+    Sistemando i limiti notevoli abbiamo
+\[
+=\lim_{h\to 0} \left(\frac{\sin(x)\cos(h)-\sin(x)}{h} + \frac{\sin(h)\cos(x)}{h} \right) = \lim_{h\to 0} \left(\frac{\sin(x)(\cos(h)-1)}{h} + \frac{\sin(h)}{h} \cos(x)\right)  
+\]
+\[
+= \lim_{h\to 0} \left(\sin(x)\frac{(\cos(h)-1)}{h^2} \cdot h + \frac{\sin(h)}{h} \cos(x)\right)  = \sin(x)\cdot \left(\frac{-1}{2}\right) \cdot 0 + 1\cdot \cos(x) = \cos(x)       
+\]
+Ragionamento analogo per il coseno
+  \begin{esercizio}{}{}
+    Calcolare da derivata di $f(x)=\cos(x)$  
+ \end{esercizio}
+\begin{align*}
+     f'(x) &=  \lim_{h\to 0} \frac{f(x+h)-f(x)}{h} = \lim_{h\to 0} \frac{\cos(x+h)-\cos(x)}{h} \\
+     &= \lim_{h\to 0} \frac{\mathunderline{red}{\cos(x+h)}-\cos(x)}{h} = \lim_{h\to 0} \frac{\mathunderline{red}{\cos(x)\cos(h)-\sin(h)\sin(x)}-\cos(x)}{h} \\
+&= \lim_{h\to 0} \left(\frac{\cos(x)\cos(h)-\cos(x)}{h} - \frac{\sin(h)\sin(x)}{h} \right)
+    \end{align*}
+    Per lo stesso ragionamento di prima
+    \[
+=\lim_{h\to 0} \left(\cos(x)\frac{\cos(h)-1}{h} - \frac{\sin(h)\sin(x)}{h} \right) = \cos(x)\cdot \left(\frac{-1}{2}\right) \cdot 0 - 1\cdot \sin(x) = -\sin(x)  
+\]
+
+Attenzione quindi che la derivata del coseno è meno seno, cosa che può portare a confunsione anche perchè con gli integrali sarà il contrario, quindi attenzione
+\[
+\begin{array}{c @{\qquad}@{\qquad} c}
+    \displaystyle \frac{d}{dx}(\sin(x)) = \cos(x) &\displaystyle \frac{d}{dx}(\cos(x)) = -\sin(x)
+\end{array}
+\]
+  \begin{esercizio}{}{}
+    Calcolare da derivata di $f(x)=e^x$  
+ \end{esercizio}
+ \[
+    f'(x) =  \lim_{h\to 0} \frac{e^{x+h} - e^x}{h} = \frac{e^{x}\cdot e^h - e^x}{h} = \frac{e^{x}(e^h - 1)}{h} =e^x
+ \]
+ Una caratteristica che ci tornerà utile con le equazioni differenziali è che l'esponenziale è l'unica funzione la cui derivatà è uguale alla funzione di partenza, e vedremo come ci aiuterà a risolvere le equazioni differenziali.
+   \begin{esercizio}{}{}
+    Calcolare da derivata di $f(x)=\log(x)$  
+ \end{esercizio}
+ \begin{align*}
+    f'(x) &=  \lim_{h\to 0} \frac{\log(x+h) - \log(x)}{h} =  \lim_{h\to 0} \frac{1}{h}\cdot \log\left(\frac{x+h}{x}\right) \\
+    &= \lim_{h\to 0} \frac{1}{h}\cdot \log\left(1 + \frac{h}{x}\right) =\lim_{h\to 0} \log\left(\left(1 + \frac{h}{x}\right) ^{\frac{1}{h}}\right) 
+ \end{align*}
+ Ora è sufficiente fare un cambio di variabile con $t = \frac{h}{x}$, questo è possibile dato che $x>0$ per il dominio di $f(x)$.
+\begin{align*}
+ \lim_{h\to 0} \log\left(\left(1 + \frac{h}{x}\right) ^{\frac{1}{h}}\right)  &= \lim_{t\to 0} \log\left(\left(1 + t\right) ^{\frac{1}{tx}}\right) =  \lim_{t\to 0} \log\left(\left(\left(1 + t\right) ^{\frac{1}{t}}\right)^{\frac{1}{x}}\right)\\
+    &= \lim_{t\to 0} \frac{1}{x}\log\left(\left(1 + t\right) ^{\frac{1}{t}}\right) = \frac{1}{x} \log(e) = \frac{1}{x}
+\end{align*}
+In seguito una tabella che racchiude le principali derivate
+
+\begin{center}
+\begin{tabular}{c @{\quad} c}
+
+% prima tabella (solo tabular)
+\begin{tabular}{c|c}
+Funzione Base & Derivata              \\ \hline
+$c$           & $0$                   \\
+$\sin(x)$     & $\cos(x)$             \\
+$e^x$         & $e^x$
+\end{tabular}
+&
+% seconda tabella (solo tabular)
+\begin{tabular}{c|c}
+Funzione Base & Derivata              \\ \hline
+$x^\alpha$    & $\alpha x^{\alpha-1}$ \\
+$\cos(x)$     & $-\sin(x)$            \\
+$\log(x)$     & $\frac{1}{x}$
+\end{tabular}
+
+\end{tabular}
+\end{center}
+
+ \newpage
+
+ \addcontentsline{toc}{subsection}{Interpretazione Geometrica di Derivata}
+Ora vediamo da dove viene fuori la derivata, infatti se prendiamo una qualsiasi funzione e scegliamo un punto $x_0$ e prendiamo anche un altro punto $x_0+h$, con $h>0$, e tracciamo la retta passante per $(x_0, f(x_0))$ e $(x_0+h, f(x_0+h))$ notiamo che
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=0, xmax=4,
+    ymin=-1, ymax=2.5,
+    axis equal=false,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=10cm,
+    height=6cm,
+    samples=400,
+    xtick=\empty,
+    ytick=\empty
+]
+
+    % --- Funzione f(x) = ln(x) ---
+    \addplot[blue, ultra thick, domain=0.3:4] {ln(x)};
+\node[blue] at (axis cs:3.65,1.75) {$y=f(x)$};
+    % --- Punto x0 = 2 ---
+    \addplot[
+        only marks,
+        mark=*,
+        red,
+        mark size=2pt
+    ]
+    coordinates {(2, {ln(2)})};
+
+ --- Linea tratteggiata in x0 = 2 ---
+    \addplot[dashed, gray, thick] coordinates {(2,-0.5) (2,2.5)};
+    \node at (axis cs:2,-0.5) [below] {$x_0$};
+
+    % --- Linea tratteggiata in x0+h = 3 ---
+    \addplot[dashed, gray, thick] coordinates {(3,-0.5) (3,2.5)};
+    \node at (axis cs:3,-0.5) [below] {$x_0 + h$};
+
+    % --- Linea tratteggiata orizzontale per f(x0) = ln(2) ---
+\addplot[dashed, gray, thick] coordinates {(4, {ln(2)}) (0, {ln(2)})};
+\node at (axis cs:0, {ln(2)}) [left] {$f(x_0)$};
+
+% --- Linea tratteggiata orizzontale per f(x0+h) = ln(3) ---
+\addplot[dashed, gray, thick] coordinates {(4, {ln(3)}) (0, {ln(3)})};
+\node at (axis cs:0, {ln(3)}) [left] {$f(x_0+h)$};
+
+
+
+    % --- Punto x0 + h = 3 ---
+    \addplot[
+        only marks,
+        mark=*,
+        red,
+        mark size=2pt
+    ]
+    coordinates {(3, {ln(3)})};
+
+    % --- Retta secante tra 2 e 3 ---
+    % Pendenze: (ln(3)-ln(2)) / (3-2) = ln(3)-ln(2)
+    \addplot[red, ultra thick, domain=0:4]
+        {ln(2) + (ln(3)-ln(2))*(x-2)};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Notiamo che il limite che abbiamo calcolato fino ad ora non è altro che il coefficente angolare della retta disegnata in rosso. Infatti
+\[
+m = \frac{\Delta y}{\Delta x} = \frac{f(x_0+h) - f(x_0)}{x_0+h - x_0} = \frac{f(x_0+h) - f(x_0)}{h}
+\]
+Questo rapposto è definito anche come \textbf{rapporto incrementale}. Ma la derivata è il limite di questo rapporto, quindi con la derivata stiamo cercando di avvicinarci il più possibile alla retta tangente nel punto $x_0$, infatti più che $h\to 0$ più che la retta rossa tende alla retta tangente effettiva (quella in verde)
+\begin{center}
+\begin{tabular}{c@{\qquad}c@{\qquad}c}
+
+% ================= PRIMO GRAFICO: h = 1.5 =================
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=0, xmax=4,
+    ymin=-1, ymax=2.5,
+    axis equal=false,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=6cm,
+    height=6cm,
+    samples=400,
+    xtick=\empty,
+    ytick=\empty
+]
+    \addplot[blue, ultra thick, domain=0.3:4] {ln(x)};
+
+    % x0 = 2
+    \addplot[only marks, mark=*, red, mark size=2pt]
+    coordinates {(2, {ln(2)})};
+
+    % h = 1.5 → x0+h = 3.5
+    \addplot[dashed, gray, thick] coordinates {(2,-0.5) (2,2.5)};
+    \addplot[dashed, gray, thick] coordinates {(3.5,-0.5) (3.5,2.5)};
+    \addplot[dashed, gray, thick] coordinates {(4, {ln(2)}) (0, {ln(2)})};
+    \addplot[dashed, gray, thick] coordinates {(4, {ln(3.5)}) (0, {ln(3.5)})};
+
+    \addplot[only marks, mark=*, red, mark size=2pt]
+    coordinates {(3.5, {ln(3.5)})};
+
+% tangente in x=2
+    \addplot[green!60!black, ultra thick, domain=0:4]
+        {ln(2) + (1/2)*(x - 2)};
+
+    % secante
+    \addplot[red, ultra thick, domain=0:4]
+        {ln(2) + (ln(3.5)-ln(2))/1.5*(x-2)};
+
+    
+
+\end{axis}
+\end{tikzpicture}
+&
+% ================= SECONDO GRAFICO: h = 1 =================
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=0, xmax=4,
+    ymin=-1, ymax=2.5,
+    axis equal=false,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=6cm,
+    height=6cm,
+    samples=400,
+    xtick=\empty,
+    ytick=\empty
+]
+    \addplot[blue, ultra thick, domain=0.3:4] {ln(x)};
+
+    % x0 = 2
+    \addplot[only marks, mark=*, red, mark size=2pt]
+    coordinates {(2, {ln(2)})};
+
+    % h = 1 → x0+h = 3
+    \addplot[dashed, gray, thick] coordinates {(2,-0.5) (2,2.5)};
+    \addplot[dashed, gray, thick] coordinates {(3,-0.5) (3,2.5)};
+    \addplot[dashed, gray, thick] coordinates {(4, {ln(2)}) (0, {ln(2)})};
+    \addplot[dashed, gray, thick] coordinates {(4, {ln(3)}) (0, {ln(3)})};
+
+    \addplot[only marks, mark=*, red, mark size=2pt]
+    coordinates {(3, {ln(3)})};
+ %tangente in x=2
+    \addplot[green!60!black, ultra thick, domain=0:4]
+        {ln(2) + (1/2)*(x - 2)};
+    % secante
+    \addplot[red, ultra thick, domain=0:4]
+        {ln(2) + (ln(3)-ln(2))*(x-2)};
+
+    
+
+\end{axis}
+\end{tikzpicture}
+&
+% ================= TERZO GRAFICO: h = 0.5 =================
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=0, xmax=4,
+    ymin=-1, ymax=2.5,
+    axis equal=false,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=6cm,
+    height=6cm,
+    samples=400,
+    xtick=\empty,
+    ytick=\empty
+]
+    \addplot[blue, ultra thick, domain=0.3:4] {ln(x)};
+
+    % x0 = 2
+    \addplot[only marks, mark=*, red, mark size=2pt]
+    coordinates {(2, {ln(2)})};
+
+    % h = 0.5 → x0+h = 2.5
+    \addplot[dashed, gray, thick] coordinates {(2,-0.5) (2,2.5)};
+    \addplot[dashed, gray, thick] coordinates {(2.5,-0.5) (2.5,2.5)};
+    \addplot[dashed, gray, thick] coordinates {(4, {ln(2)}) (0, {ln(2)})};
+    \addplot[dashed, gray, thick] coordinates {(4, {ln(2.5)}) (0, {ln(2.5)})};
+
+    \addplot[only marks, mark=*, red, mark size=2pt]
+    coordinates {(2.5, {ln(2.5)})};
+\addplot[green!60!black, ultra thick, domain=0:4]
+        {ln(2) + (1/2)*(x - 2)};
+    % secante
+    \addplot[red, ultra thick, domain=0:4]
+        {ln(2) + (ln(2.5)-ln(2))/0.5*(x-2)};
+
+    % tangente
+    
+
+\end{axis}
+\end{tikzpicture}
+
+\end{tabular}
+\end{center}
+
+Di conseguenza abbiamo capito che la derivata è il limite del rapporto incrementale, e che quindi è il coefficente angolare della retta tangete in un punto ad una qualsiasi funzione $y=f(x)$. Quindi in generale la retta tangente ad una funzione in un punto è
+\[
+y = f(x_0) + f'(x_0) (x-x_0)
+\]
+
+Possiamo notare che se calcoliamo questo limite della differenza tra la funzione $f(x)$ e la sua retta tangente e lo dividiamo per $x-x_0$ notiamo che
+\[
+\lim_{x\to x_0} \frac{f(x) - (f(x_0) + f'(x_0)(x-x_0))}{x-x_0} = \lim_{x\to x_0} \left(\frac{f(x) - f(x_0) }{x-x_0} - f'(x_0)\right) 
+\]
+Ma dato che sappiamo che la funzione è derivabile (visto che esiste la retta tangente) in $x_0$ allora il limite tende a $f'(x_0)$
+\[
+\lim_{x\to x_0} \left(\frac{f(x) - f(x_0) }{x-x_0} - f'(x_0)\right)= f'(x_0) - f'(x_0) = 0
+\]
+Dato che è venuto fuori 0, allora se definiamo $a=f'(x_0)$ e $b=f(x_0) - f'(x_0)x_0$ possiamo dire
+\[
+f(x) - (ax+b) = o(x-x_0) \;\;\;\;\; \text{per } x\to x_0
+\]
+
+\addcontentsline{toc}{subsection}{Definizione di Retta Tangente}
+\begin{definizione}{Retta Tangente}{}
+    In maniera più formale, definiamo \textbf{retta tangente} a $f$ nel punto $x_0$ la retta di equazione
+    \[
+        y=ax+b \;\;\;\;\; a,b \in \mathbb{R}
+    \]
+    tale che
+    \[
+        f(x) - (ax+b) = o(x-x_0) \;\;\;\;\; \text{per } x\to x_0
+    \]
+\end{definizione}
+Con questa formula si possono ricavare, ormai già ben noti, i prodotti notevoli, infatti se prendiamo $f(x) = e^x$, allora calcoliamo la retta tangente in $x_0 = 0$
+\[
+\begin{array}{c @{\qquad}@{\qquad} c}
+    f(x_0) = e^0 = 1 & f'(x_0) = e^0 = 1
+\end{array}
+\] 
+Quindi la retta tangente ha l'equazione
+\[
+    y=1 + 1(x-0) \implies y =x+1
+\]
+E quindi dato che è la retta tangente sappiamo che
+\[
+e^x - (x+1) = o(x-x_0) \;\;\;\;\; \text{per } x\to 0
+\]
+Da cui ricaviamo
+\[
+e^x  = x+1 + o(x-x_0) \;\;\;\;\; \text{per } x\to 0
+\] 
+Che conoscevamo già. Poi si possono dimostrare anche tutti gli altri limiti notevoli.
+
+\begin{esercizio}{}{}
+    Determinare l'equazione delle due rette passanti per $(1, -3)$ e tangenti al grafico di $f(x) = x^2$
+\end{esercizio}
+Possiamo trovare la retta generale ad $f(x)=x^2$ per un punto generale $x_0$, che poi decideremo con l'altra condizione. Quindi in primis dobbiamo alcolare la derivata di $f(x)$, che con le formule che abbiamo scoperto prima abbiamo che
+\[
+    \frac{d}{dx}(x^2) = 2x
+\]
+Quindi la retta tangente sarà
+\[
+\begin{array}{c @{\qquad}@{\qquad} c}
+    f(x_0) = x^2_0 & f'(x_0) = 2x_0
+\end{array}
+\]
+\[
+y=  x^2_0 +2x_0 (x-x_0) \implies y= x^2_0 + 2x_0 x  +2x_0^2  \implies y=  2x_0 x -x^2_0 
+\]
+Ora questa è la retta generica, noi dobbiamo trovare quelle che passano per $(1,-3)$ quindi sostituiamo le coordinate
+\[
+-3 = 2x_0 \cdot  1 - x^2_0 \implies    -x^2_0 + 2x_0 +3 = 0 \implies x_{0} = -1  \lor x_{0} = 3
+\]
+Quindi le due rette sono
+\[
+\begin{array}{c @{\qquad} c}
+    y=  2(-1) x -(-1)^2 \implies y=-2x -2 & y=  2(3) x -(3)^2 \implies y=6x -9
+\end{array}
+\]
+\newpage
+\addcontentsline{toc}{subsection}{Relazione tra Continuità e Derivabilità}
+\begin{teorema}{Relazione tra Continuità e Derivabilità}{}
+    Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $f:I \to \mathbb{R}$. Se $f$ è derivabile in $x_0 \in I$ allora è anche continua.
+    \[
+    \text{Derivabilità } \implies \text{ Continuità}
+    \]
+\end{teorema}
+\begin{proof}
+    Dato che $f$ è derivabile in $x_0$ allora esiste la retta tangente nel punto $x_0$. Quindi se calcoliamo il limite di $f$ possiamo sostituirlo con la formula della retta tangente
+    \begin{align*}
+        \lim_{x\to x_0} f(x) &= \lim_{x\to x_0} \left(f(x_0) + f'(x_0) (x-x_0) + o(x-x_0)\right) \\
+        &= f(x_0) + f'(x_0) \cdot\lim_{x\to x_0} (x-x_0) +\lim_{x\to x_0}  \left(\frac{o(x-x_0)}{x-x_0} \cdot (x-x_0)\right) \\
+        &=  f(x_0) + f'(x_0) \cdot 0 + 0\cdot 0 = f(x_0)
+    \end{align*}
+\end{proof}
+Questa informazione può essere molto utile negli esercizi perchè se vediamo che un punto non è continuo, allora non sarà nemmeno derivabile. 
+ 
+\textbf{N.B.} Non è vero il contrario, infatti se prendiamo $f(x) = |x|$, per i limiti sappiamo che è continua in $\mathbb{R}$, però se proviamo a calcolare la derivata in $x=0$ notiamo che 
+\[
+    \lim_{x\to x_0} \frac{|x| -|x_0|}{x - x_0} =\lim_{x\to 0} \frac{|x| -|0|}{x - 0}=  \lim_{x\to 0} \frac{|x|}{x}
+\]
+Se proviamo a distinguere il il caso del limite destro e sinistro, usando anche la proprietà del modulo tale che se $x > 0$ allora $|x| = x$, mentre se $x < 0$ allora $|x| = -x$, quindi
+\[
+\begin{array}{c @{\qquad}@{\qquad} c}
+    \displaystyle\lim_{x\to 0^+} \frac{|x|}{x} = \lim_{x\to 0^+} \frac{x}{x} = 1 &  \displaystyle\lim_{x\to 0^-} \frac{|x|}{x} = \lim_{x\to 0^+} \frac{-x}{x} = -1
+\end{array}
+\]
+Ma quindi limite destro e sinistro sono diversi e quindi il limite non esiste e questo vuol dire che la funzione non  è derivabile in quel punto. Con questo ragionamento possiamo dedurre che
+\[
+\frac{d}{dx}(|x|)= \begin{cases}
+    1 & x>0 \\
+    -1 & x <0
+\end{cases}
+\]
+
+\addcontentsline{toc}{subsection}{Definizione di Derivata Destra e Sinistra}
+\begin{definizione}{Derivata Destra e Sinistra}{}
+    Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $f:I \to \mathbb{R}$, $x_0 \in I$ allora
+    \begin{itemize}
+        \item Se
+    \[
+        \exists \lim_{x\to x_0^+} \frac{f(x)-f(x_0)}{x-x_0} = \lim_{h\to 0^+} \frac{f(x+h)-f(x)}{h} \in \mathbb{R}
+    \]
+     diciamo che $f$ \textbf{è derivabile da destra in $x_0$} e lo indichiamo come $f'_+(x_0)$. 
+    \item Se
+    \[
+        \exists \lim_{x\to x_0^-} \frac{f(x)-f(x_0)}{x-x_0} = \lim_{h\to 0^-} \frac{f(x+h)-f(x)}{h} \in \mathbb{R}
+    \]
+     diciamo che $f$ \textbf{è derivabile da sinistra in $x_0$} e lo indichiamo come $f'_-(x_0)$. 
+    \end{itemize}
+\end{definizione}
+
+
+\addcontentsline{toc}{subsection}{Classificazione dei punti di non Derivabilità}
+\begin{definizione}{Classificazione dei punti di non Derivabilità}{}
+    Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $f:I \to \mathbb{R}$, $x_0 \in I$ punto di non derivabilità, allora 
+    \begin{itemize}
+        \item Se $f'_-(x_0) = f'_+(x_0) = +\infty$ oppure $f'_-(x_0) = f'_+(x_0) = -\infty$ allora diciamo che $f$ ha un \textbf{Flesso a tangente verticale} in $x_0$
+        \item Se $f'_-(x_0) \in \mathbb{R} \lor f'_+(x_0) \in \mathbb{R}$ (chiaramente $f'_-(x_0) \neq f'_+(x_0) $, altrimenti sarebbe derivabile), allora diciamo che $f$ ha un \textbf{punto angoloso} in $x_0$
+        \item Se $f'_-(x_0) -\infty \land f'_+(x_0) = +\infty$ oppure $f'_-(x_0) +\infty \land f'_+(x_0) = -\infty$ allora diciamo che $f$ ha una \textbf{cuspide} in $x_0$
+    \end{itemize}
+\end{definizione}
+Vediamo degli esempi, per esempio la funzione $f(x) =\sqrt[3]{x}$, possiamo calcolare la derivata con le regole di prima
+\[
+\frac{d}{dx}(\sqrt[3]{x}) = \frac{d}{dx}(x^\frac{1}{3}) = \frac{1}{3} x^{\frac{1}{3}-1} = \frac{1}{3} x^{-\frac{2}{3}} = \frac{1}{3\sqrt[3]{x^2}}
+\]
+Ora possiamo calcolare la derivata destra e sinistra in $x=0$
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+    \displaystyle\lim_{x\to 0^+} \frac{1}{3\sqrt[3]{x^2}} = +\infty & \displaystyle\lim_{x\to 0^-} \frac{1}{3\sqrt[3]{x^2}} = +\infty 
+\end{array}
+\]
+Quindi notiamo che è un flesso a tangente verticale, e vediamo graficamente che nel punto $x=0$ la funzione "impenna" drasticamente per poi riassestarsi.
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-8, xmax=8,
+    ymin=-4, ymax=4,
+    axis equal=false,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=10cm,
+    height=6cm,
+    samples=500
+]
+
+    % --- f(x) = cube root(x) (forma corretta!) ---
+    \addplot[blue, ultra thick, domain=-8:8]
+        {sign(x)*abs(x)^(1/3)};
+
+    % Etichetta funzione
+    \node[blue] at (axis cs:6,2.5) {$f(x)=\sqrt[3]{x}$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Per il punto angoloso abbiamo già visto un esempio: il valore assoluto. Infatti avevamo visto che 
+\[
+\begin{array}{c @{\qquad} c}
+    f'_-(0) = -1 & f'_+(0) = 1
+\end{array}
+\]
+E graficamente notiamo che si forma un angolo in $x=0$
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-5, xmax=5,
+    ymin=-0.5, ymax=5,
+    axis equal=false,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=10cm,
+    height=6cm,
+    samples=500
+]
+
+    % --- f(x) = |x| ---
+    \addplot[blue, ultra thick, domain=-5:5]
+        {abs(x)};
+
+    % Etichetta funzione
+    \node[blue] at (axis cs:4.5,3) {$f(x)=|x|$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\newpage
+
+Invece se prendiamo la funzione $f(x)=\sqrt{|x|}$ dobbiamo usare la definizione di derivata destra e sinistra
+\[
+\lim_{x\to 0^+} \frac{\sqrt{|x|} - \sqrt{|0|}}{x-0} = \lim_{x\to 0^+} \frac{\sqrt{x}}{x} = \lim_{x\to 0^+} \frac{1}{\sqrt{x}} = +\infty
+\]
+\[
+\lim_{x\to 0^-} \frac{\sqrt{|x|} - \sqrt{|0|}}{x-0} = \lim_{x\to 0^-} \frac{\sqrt{-x}}{-(\sqrt{-x})^2} = \lim_{x\to 0^-} \frac{1}{-\sqrt{-x}} = -\infty
+\]
+Quindi ricadiamo nella casistica della cuspide, che graficamente assomiglia ad una V (o una V rovesciata se il segno segni infiniti è invertito)
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-5, xmax=5,
+    ymin=-0.5, ymax=3,
+    axis lines=middle,
+    enlargelimits=false,
+    clip=false,
+    axis line style={-stealth, thick},
+    width=10cm,
+    height=6cm,
+    samples=500
+]
+
+    % --- f(x) = sqrt(abs(x)) ---
+    \addplot[blue, ultra thick, domain=-5:5]
+        {sqrt(abs(x))};
+
+    % Etichetta funzione
+    \node[blue] at (axis cs:3.2,2.4) {$f(x)=\sqrt{|x|}$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\addcontentsline{toc}{subsection}{Algebra delle Derivate}
+\begin{teorema}{Algebra delle Derivate}{}
+    Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $f,g:I \to \mathbb{R}$. Se $f$ e $g$ sono derivabili in $I$ allora
+    \begin{enumerate}[label=(\roman*)]
+        \item $(\alpha f\pm \beta g)(x)$ è continua in $I$ (con $\alpha, \beta \in \mathbb{R}$) e vale 
+        \[
+            \frac{d}{dx}((\alpha f\pm \beta g)(x)) = \alpha f'(x) \pm \beta g'(x)
+        \]
+        \item $(f \cdot g)(x)$ è continua in $I$ e vale 
+        \[
+            \frac{d}{dx}((f \cdot g)(x)) = f'(x)g(x) + f(x)g'(x)
+        \]
+        \item $\left(\dfrac{f}{g}\right)(x)$ è continua in $I$ se $g(x)\ne 0$ e vale 
+        \[
+            \frac{d}{dx}\left(\left(\dfrac{f}{g}\right)(x)\right) = \dfrac{f'(x)g(x)-f(x)g'(x)}{g^2 (x)}
+        \]
+    \end{enumerate}
+\end{teorema}
+\begin{proof}
+    $(i)$ quindi data la funzione $(\alpha f\pm \beta g)(x)$ usiamo la definizione di derivata
+    \begin{align*}
+        \frac{d}{dx}((\alpha f\pm \beta g)(x)) &= \lim_{x\to x_0}\dfrac{(\alpha f(x) \pm \beta g(x)) - (\alpha f(x_0) \pm \beta g(x_0))}{x-x_0} \\
+        &= \lim_{x\to x_0}\dfrac{(\alpha f(x) - \alpha f(x_0)) \pm (\beta g(x) - \beta g(x_0))}{x-x_0} \\
+    &= \lim_{x\to x_0}\alpha\cdot\dfrac{f(x) - f(x_0) }{x-x_0} \pm \beta \cdot\frac{ g(x) - g(x_0)}{x-x_0} 
+    \end{align*} 
+    \newpage 
+    Per ipotesi sappiamo che $f$ e $g$ sono derivabili e quindi vale 
+    \[
+    \begin{array}{c @{\qquad} @{\qquad} c}
+        \displaystyle f'(x_0) = \lim_{x\to x_0}\dfrac{ f(x) - f(x_0) }{x-x_0} & \displaystyle g'(x_0) = \lim_{x\to x_0}\dfrac{ g(x) - g(x_0) }{x-x_0}
+    \end{array}\]
+    Quindi usando l'algebra dei limiti scopriamo che
+    \[
+    \lim_{x\to x_0}\alpha\cdot\dfrac{ f(x) - f(x_0) }{x-x_0} \pm \beta \cdot\frac{ g(x) - g(x_0)}{x-x_0}  = \alpha f'(x_0) \pm \beta g'(x_0)
+    \]
+    Ma dato che $f$ e $g$ sono continue $\forall x \in I$, possiamo più semplicemente scrivere
+    \[
+\frac{d}{dx}((\alpha f\pm \beta g)(x))=    \alpha f'(x) \pm \beta g'(x)
+    \] 
+
+    $(ii)$ Usando la definizione di derivata abbiamo che
+    \[
+    \frac{d}{dx}((f \cdot g)(x)) = \lim_{x\to x_0} \frac{f(x)g(x) - f(x_0)g(x_0)}{x-x_0}
+    \]
+    Per dimostrare questo è sufficiente aggiungere e togliere il termine $f(x_0)g(x)$ (oppure anche $f(x)g(x_0)$) e notiamo che
+    \begin{align*}
+        \lim_{x\to x_0} \frac{f(x)g(x) - f(x_0)g(x_0)}{x-x_0} &= \lim_{x\to x_0} \frac{f(x)g(x) \color{red}{-f(x_0)g(x) +f(x_0)g(x)} \color{black}{- f(x_0)g(x_0)}}{x-x_0} \\
+        &= \lim_{x\to x_0} \frac{(f(x) -f(x_0))g(x) +f(x_0)(g(x) - g(x_0)}{x-x_0} \\
+        &=   \lim_{x\to x_0} g(x)\cdot\frac{f(x) -f(x_0)}{x-x_0} + \lim_{x\to x_0} f(x_0)\cdot\frac{g(x) -g(x_0)}{x-x_0}
+    \end{align*}
+    Per le frazioni usiamo lo stesso ragionamento di prima, per il termine $f(x_0)$ lo possiamo portare fuori dato che è una costante, invece il termine $g(x)$ dobbiamo ragionare. Infatti noi sappiamo solamente che $g$ è derivabile, però non sappiamo nulla su $\displaystyle\lim_{x\to x_0} g(x)$. Però possiamo ricordarci che se una funzione è derivabile allora è anche continua. Pertanto scopriamo che $g$ è anche continua, e che quindi vale 
+    \[
+     \lim_{x\to x_0} g(x) = g(x_0)
+    \] 
+    Quindi il limite diventa
+    \[
+     \lim_{x\to x_0} g(x)\cdot\frac{f(x) -f(x_0)}{x-x_0} + \lim_{x\to x_0} f(x_0)\cdot\frac{g(x) -g(x_0)}{x-x_0} = g(x_0)f'(x_0) + f(x_0)g'(x_0)
+    \]
+    Come prima, dato che $f$ e $g$ sono derivabili (e continue) $\forall x \in I$, possiamo riscriverlo come
+    \[
+g(x_0)f'(x_0) + f(x_0)g'(x_0) = f'(x)g(x) + f(x)g'(x)
+    \]
+
+    $(iii)$ Usiamo la definizione di derivata
+    \[
+    \frac{d}{dx}\left(\left(\dfrac{f}{g}\right)(x)\right) = \lim_{x\to x_0} \dfrac{\dfrac{f(x)}{g(x)} - \dfrac{f(x_0)}{g(x_0)}}{x-x_0}
+    \]
+    \newpage
+    Facciamo il denominatore comune
+    \[
+    \lim_{x\to x_0} \dfrac{\dfrac{f(x)}{g(x)} - \dfrac{f(x_0)}{g(x_0)}}{x-x_0} = \lim_{x\to x_0} \dfrac{\dfrac{f(x)g(x_0) - f(x_0)g(x)}{g(x)g(x_0)}}{x-x_0} = \lim_{x\to x_0} \dfrac{f(x)g(x_0) - f(x_0)g(x)}{g(x)g(x_0)(x-x_0)}  
+    \]
+    Ora possiamo fare lo stesso trucchetto di prima aggiungendo e sottraendo $f(x)g(x)$
+    \begin{align*}
+        \lim_{x\to x_0} \dfrac{f(x)g(x_0) - f(x_0)g(x)}{g(x)g(x_0)(x-x_0)} &= \lim_{x\to x_0} \dfrac{f(x)g(x_0) \color{red}{-f(x)g(x) +f(x)g(x)}\color{black}- f(x_0)g(x)}{g(x)g(x_0)(x-x_0)} \\
+        &= \lim_{x\to x_0} \dfrac{-f(x)(-g(x_0) +g(x)) +(f(x)- f(x_0))g(x)}{g(x)g(x_0)(x-x_0)} \\
+        &= \lim_{x\to x_0} -f(x)\cdot \dfrac{-g(x_0) +g(x)}{g(x)g(x_0)(x-x_0)} +\dfrac{f(x)- f(x_0)}{g(x)g(x_0)(x-x_0)}\cdot g(x)
+    \end{align*}
+    Ora possiamo usare come prima la definizione di defivata per $f$ e $g$, e anche per la continuità di $f$ e $g$ sappiamo che $f(x)\to f(x_0)$ e $g(x)\to g(x_0)$
+    \begin{align*}
+        \lim_{x\to x_0} -f(x)\cdot \dfrac{-g(x_0) +g(x)}{g(x)g(x_0)(x-x_0)} +\dfrac{f(x)- f(x_0)}{g(x)g(x_0)(x-x_0)}\cdot g(x)  &= \dfrac{-f(x_0)g'(x_0)}{g(x_0)g(x_0)} + \dfrac{f'(x_0)g(x_0)}{g(x_0)g(x_0)} \\
+&= \dfrac{f'(x)g(x) - f(x)g'(x)}{g^2(x)}
+    \end{align*}
+\end{proof}
+
+
+\addcontentsline{toc}{subsection}{Derivata di Funzioni Composte}
+\begin{teorema}{Derivata di Funzioni Composte}{}
+    Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $f$, $g$ due funzioni tali che $g \circ f : I \to \mathbb{R}$, è ben definito. Se
+    \begin{itemize}
+        \item $f$ è derivabile in $x_0 \in I$
+        \item $g$ è derivabile in $f(x_0)$ 
+    \end{itemize}
+    Allora 
+    \[
+    \dfrac{d}{dx}((g\circ f)(x)) = g'(f(x))\cdot f'(x)
+    \]
+\end{teorema}
+\begin{proof}
+    Usando la definione di retta tangente, e il cambio di variabile sappiamo che 
+    \begin{enumerate}[label=(\arabic*)]
+        \item $f(x) = f(x_0) + f'(x_0)(x-x_0) + o(x-x_0)$ per $x\to x_0$
+        \item $g(y) = g(y_0) + g'(y_0)(y-y_0) + o(y-y_0)$ per $y\to y_0$
+    \end{enumerate}
+    Quindi se scegliamo $y_0 = f(x_0)$, avremo che
+    \[
+    g(\mathunderline{red}{y}) = g(f(x_0)) + g'(f(x_0))(\mathunderline{red}{y}-f(x_0)) + o(\mathunderline{red}{y}-f(x_0)) \text{ per } \mathunderline{red}{y}\to f(x_0)
+    \]
+    Quindi ora calcolando $g(f(x))$ avremo che
+    \[
+    g(\mathunderline{red}{f(x)}) = g(f(x_0)) + g'(f(x_0))(\mathunderline{red}{f(x)}-f(x_0)) + \mathunderline{blue}{o(\mathunderline{red}{f(x)}-f(x_0))} \text{ per } \mathunderline{red}{f(x)}\to f(x_0)
+    \]
+    \newpage
+    Ora dato usando $(1)$ possiamo calcolare meglio
+    \begin{align*}
+        \mathunderline{green}{f(x)}-f(x_0) &= \mathunderline{green}{f(x_0) + f'(x_0)(x-x_0) + o(x-x_0)} - f(x_0) \\
+        &= f'(x_0)(x-x_0) + o(x-x_0) 
+    \end{align*}
+    Ora riscriviamo meglio il termine con l'o-piccolo, usando la proprietà $o(f+o(f)) =o(f)$ e quella che perde tutte le costanti moltiplicative
+    \begin{align*}
+        \mathunderline{blue}{o(f(x)-f(x_0))} &= o(f'(x_0)(x-x_0) + o(x-x_0)) \\
+        &= o\left(f'(x_0)\left((x-x_0) + \frac{o(x-x_0)}{f'(x_0)}\right)\right) \\
+        &= o(x-x_0 + o(x-x_0)) = o(x-x_0)
+    \end{align*}
+    Quindi riprendendo l'espressione con $g(f(x))$ possiamo dire che
+    \begin{align*}
+    g(f(x)) &= g(f(x_0)) + g'(f(x_0))(\mathunderline{red}{f(x)-f(x_0)}) + \mathunderline{blue}{o(f(x)-f(x_0))} \\
+     &= g(f(x_0)) + g'(f(x_0))(\mathunderline{red}{f'(x_0)(x-x_0) + o(x-x_0)}) + \mathunderline{blue}{o(x-x_0)} \\
+    &= g(f(x_0)) + g'(f(x_0))(f'(x_0)(x-x_0)) + g'(f(x_0))o(x-x_0) + o(x-x_0) \\
+    &= g(f(x_0)) + g'(f(x_0))(f'(x_0)(x-x_0)) + o(x-x_0)
+    \end{align*}
+    Portanto il termine $g(f(x_0))$ alla sinistra scopriamo che
+    \[
+    g(f(x)) - g(f(x_0)) = g'(f(x_0))(f'(x_0)(x-x_0)) + o(x-x_0) \text{ per } x\to x_0
+    \]
+    Con questa informazione possiamo usare la definizione di derivata 
+    \begin{align*}
+       \lim_{x\to x_0} \dfrac{g(f(x)) - g(f(x_0))}{x-x_0} &= \lim_{x\to x_0} \dfrac{g'(f(x_0))(f'(x_0)(x-x_0)) + o(x-x_0)}{x-x_0} \\
+     &= \lim_{x\to x_0} \left(\dfrac{g'(f(x_0))(f'(x_0)(x-x_0))}{x-x_0} + \dfrac{o(x-x_0)}{x-x_0} \right) \\
+    &= g'(f(x_0))f'(x_0) + 0\\
+    &= g'(f(x))f'(x)
+    \end{align*}
+\end{proof}
+
+
+\addcontentsline{toc}{subsection}{Esercizi sulla Derivata di Funzioni Composte}
+Vediamo qualche esercizio per impraticarci con i teoremi visti fino ad ora.
+\begin{esercizio}{}{}
+    Calcolare la dericata di 
+    \[
+        f(x) = \frac{1+x^2}{1+x}
+    \]
+\end{esercizio}
+Notiamo subito che è una frazione, quindi usiamo la regola del quoziente:
+\begin{align*}
+    \frac{d}{dx} \left(\frac{1+x^2}{1+x}\right) &= \dfrac{(1+x^2)'(1+x) - (1+x^2)(1+x)'}{(1+x)^2} \\
+&= \dfrac{(2x)(1+x) - (1+x^2)(1)}{(x+1)^2} \\
+&= \dfrac{2x + 2x^2 -1-x^2}{(x+1)^2} \\
+&= \dfrac{x^2+2x  -1}{(x+1)^2}
+\end{align*}
+
+\newpage
+\begin{esercizio}{}{}
+    Calcolare la dericata di 
+    \[
+        f(x) = \left(\frac{1+x^2}{1+x}\right)^5
+    \]
+\end{esercizio}
+Notiamo che questo esercizio è molto simile a quello precedente, però c'è la potenza 5 che rovina i piani. Quindi possiamo fare il teorema delle funzioni composte, infatti se scelgo $y= \left(\frac{1+x^2}{1+x}\right)$, in questo modo abbiamo 
+\[
+\begin{array}{c@{\qquad}@{\qquad} c}
+   \displaystyle g(y) = y^5 &\displaystyle h(x) = \frac{1+x^2}{1+x}
+\end{array}
+\]
+Dato che la funzione originale non è altro che $f(x)=g(h(x))$, la derivata di $h(x)$ la possiamo utilizzare quella dell'esercizio scorso. Quindi calcoliamo le singole derivate
+\[\begin{array}{c@{\qquad}@{\qquad} c}
+   \displaystyle g'(y) = 5y^4 &\displaystyle h'(x) = \dfrac{x^2+2x  -1}{(x+1)^2}
+\end{array}
+\]
+Di conseguenza:
+\[
+\frac{d}{dx}(f(x)) = \frac{d}{dx}(g(h(x))) = g'(h(x))\cdot h'(x) = 5\left(\frac{1+x^2}{1+x}\right)^4\cdot \dfrac{x^2+2x  -1}{(x+1)^2}
+\]
+Scrivendo meglio 
+\[
+\frac{d}{dx}(f(x)) = \dfrac{5(1+x^2)^4(x^2+2x  -1)}{(x+1)^6}
+\]
+\begin{esercizio}{}{}
+    Calcolare la dericata di 
+    \[
+        f(x) = \cot(x) = \dfrac{\cos(x)}{\sin(x)}
+    \]
+\end{esercizio}
+Questo esercizio è semplicemente una frazione
+\begin{align*}
+    \frac{d}{dx} \left(\dfrac{\cos(x)}{\sin(x)}\right) &= \dfrac{(\cos(x))'(\sin(x)) - (\cos(x))(\sin(x))'}{(\sin(x))^2} \\
+    &= \dfrac{(-\sin(x))(\sin(x)) - (\cos(x))(\cos(x))}{\sin^2(x)} \\
+    &= \dfrac{-\sin^2(x) - \cos^2(x)}{\sin^2(x)} = \dfrac{-1}{\sin^2(x)}
+\end{align*}
+
+\begin{esercizio}{}{}
+    Calcolare la dericata di 
+    \[
+        f(x) = (x\cot(x))^2 
+    \]
+\end{esercizio}
+Notiamo che sembra di essere nella situazione simile a prima, quindi posso scegliere
+\[
+\begin{array}{c@{\qquad}@{\qquad} c}
+   \displaystyle g(y) = y^2 &\displaystyle h(x) = x\cot(x)
+\end{array}
+\]
+Però notiamo che la derivata di $g(y)$ è molto semplice, infatti $g'(y) = 2y$, però la derivata di $h(x)$ dobbiamo fare qualche conto in più, infatti dobbiamo usare la regola del prodotto 
+\[
+h'(x) = (x)'\cot(x) + x(\cot(x))' = 1\cdot \frac{\cos(x)}{\sin(x)} + x \cdot \left(\frac{-1}{\sin^2(x)}\right) = \frac{\cos(x)\sin(x) - x}{\sin^2(x)}
+\]
+Ora possiamo usare la regola della composizione
+\[
+\frac{d}{dx}(f(x)) = \frac{d}{dx}(g(h(x))) = g'(h(x))h'(x) = 2(x\cot(x)) \cdot \frac{\cos(x)\sin(x) - x}{\sin^2(x)}
+\]
+Che scrivendo meglio
+\[
+\frac{d}{dx}(f(x))=  \dfrac{2x\cos(x)(\cos(x)\sin(x) - x)}{\sin^3(x)}  
+\]
+
+\begin{esercizio}{}{}
+    Calcolare la dericata di 
+    \[
+    f(x) = \sqrt{x+\sqrt{x+\sqrt{x}}}
+    \]
+\end{esercizio}
+Rimandendo con la stessa logica potremmo scegliere
+\[
+\begin{array}{c@{\qquad}@{\qquad} c}
+   \displaystyle g(y) = \sqrt{y} &\displaystyle h(x) = x+\sqrt{x+\sqrt{x}}
+\end{array}
+\]
+La derivata di $g(y)$ sappiamo che è $g'(y) = \frac{1}{2\sqrt{x}}$, ma la dobbiamo invece calcolare la derivata di $h(x)$.
+\[
+h'(x) = \frac{d}{dx}\left(x+\sqrt{x+\sqrt{x}}\right) = 1 + \left(\sqrt{x+\sqrt{x}}\right)'
+\]
+Però noi non sappiamo quale è la derivata di quella radice, quindi dobbiamo riapplicare il criterio della composta, e scegliamo
+\[
+\begin{array}{c@{\qquad}@{\qquad} c}
+   \displaystyle j(y) = \sqrt{y} &\displaystyle k(x) = x+\sqrt{x}
+\end{array}
+\] 
+Di questo possiamo calcolare la derivata 
+\[
+\begin{array}{c@{\qquad}@{\qquad} c}
+   \displaystyle j'(y) = \frac{1}{2\sqrt{y}} &\displaystyle k'(x) = 1+\frac{1}{2\sqrt{x}}
+\end{array}
+\] 
+Di conseguenza
+\[
+\frac{d}{dx}(j(k(x))) = j'(k(x))k'(x) =   \frac{1}{2\sqrt{x+\sqrt{x}}}\cdot \left(1+\frac{1}{2\sqrt{x}}\right) =  \frac{2\sqrt{x}+1}{4\sqrt{x}\sqrt{x+\sqrt{x}}} 
+\]
+Quindi ora possiamo calcolare $h'(x)$
+\[
+h'(x) = 1 + \left(\sqrt{x+\sqrt{x}}\right)' = 1 +\frac{2\sqrt{x}+1}{4\sqrt{x}\sqrt{x+\sqrt{x}}} 
+\]
+Ma quindi ora possiamo calcolare $f'(x)$
+\[
+\frac{d}{dx}(f(x)) = \frac{d}{dx}(g(h(x))) = g'(h(x)) h'(x) = \frac{1}{2\sqrt{x+\sqrt{x+\sqrt{x}}}} \cdot \left(1 +\frac{2\sqrt{x}+1}{4\sqrt{x}\sqrt{x+\sqrt{x}}} \right) 
+\]
+
+\newpage
+
+\addcontentsline{toc}{subsection}{Derivabilità della funzione Inversa}
+\begin{teorema}{Derivabilità della funzione Inversa}{}
+     Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $f:I \to \mathbb{R}$, se $f$ è derivabile e invertibile, sia $x_0 \in I$, se $f(x_0) \neq 0$ allora definiamo $y_0 = f(x_0)$ e vale
+     \[
+     \frac{d}{dx}(f^{-1}(y_0)) = \frac{1}{f'(x_0)}
+     \]
+\end{teorema}
+\begin{proof}
+    Usiamo la definizione di derivata
+    \[
+    \frac{d}{dy}(f^{-1}(y_0)) = \lim_{y\to y_0} \frac{f^{-1}(y) - f^{-1}(y_0) }{y-y_0}
+    \]
+    Ora possiamo applicare un cambio di variabile con $y=f(x)$, allora sappiamo che $y_0=f(x_0)$, e di conseguenza $x=f^{-1}(y)$ e $x_0=f^{-1}(y_0)$ allora 
+    \[
+    \lim_{y\to y_0} \frac{f^{-1}(y) - f^{-1}(y_0) }{y-y_0} = \lim_{x\to x_0} \frac{x - x_0}{f(x) - f(x_0)} = \lim_{x\to x_0} \frac{1}{\frac{f(x) - f(x_0)}{x - x_0} } = \frac{1}{f'(x_0)} = \frac{1}{f'(f^{-1}(y_0))}
+    \] 
+\end{proof}
+
+Proviamo a derivare la derivata della funzione inversa in maniera geometrica. Infatti noi sappiamo che la derivata è il limite del coefficiente angolare della retta tangente, e quindi se il coefficiente della retta lo calcoliamo con $\dfrac{\Delta y}{\Delta x}$ se lo portiamo il limite lo scriviamo come $\dfrac{dy}{dx}$, è per questo motivo che si scrive anche in questo modo la derivata. Quindi se prendiamo la funzione $f(x) = x^2$ e la sua inversa $f^{-1}(y)=\sqrt{y}$ (Consideriamo solo valori positivi di $x$).
+
+\begin{figure}[h!]
+\centering
+
+% --- Primo grafico ---
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=6.2cm,
+    height=5.3cm,
+    xmin=0, xmax=2.5,
+    ymin=0, ymax=4.5,
+    axis lines=middle,
+    axis line style={-stealth, thick},
+    samples=300,
+    xlabel={$x$}, ylabel={$y$},
+    xtick={1,2}, ytick={1,2,3,4},
+    clip=false
+]
+
+\addplot[blue, ultra thick, domain=0:2.2] {x^2};
+\node[blue] at (axis cs:1.7,4.0) {$f(x)$};
+
+\addplot[only marks, mark=*] coordinates {(1,1) (2,4)};
+
+\addplot[red, thick, domain=0.67:2.2] {3*x - 2};
+
+\draw[green!60!black, thick]
+    (1,1) -- (2,1) -- (2,4);
+
+\node[green!60!black] at (1.5,0.7) {$dx$};
+\node[green!60!black] at (2.3,2.5) {$dy$};
+
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+%
+\begin{minipage}{0.48\textwidth}
+\centering
+% --- Secondo grafico: f^{-1}(y)=sqrt(y) ---
+\begin{tikzpicture}
+\begin{axis}[
+    width=6.2cm,  
+    height=5.3cm,      % <-- più stretto
+    xmin=0, xmax=4.5,
+    ymin=0, ymax=2.5,     % <-- più basso = radice meno allungata   
+    axis lines=middle,
+    axis line style={-stealth, thick},
+    samples=300,
+    xlabel={$y$}, ylabel={$x$},
+    xtick={1,2,3,4}, ytick={1,2},
+    clip=false
+]
+
+\addplot[blue, ultra thick, domain=0:4.5] ({x}, {sqrt(x)});
+\node[blue] at (axis cs:3.0,2.1) {$f^{-1}(y)$};
+
+\addplot[only marks, mark=*] coordinates {(1,1) (4,2)};
+
+% retta secante dell'inverso estesa
+\addplot[red, thick, domain=0:4.5] ({x}, {1/3*x + 2/3});
+
+\draw[green!60!black, thick]
+    (1,1) -- (4,1) -- (4,2);
+
+\node[green!60!black] at (2.5,0.7) {$dy$};
+\node[green!60!black] at (4.3,1.5) {$dx$};
+
+\end{axis}
+\end{tikzpicture}
+
+\end{minipage}
+\end{figure}
+
+Possiamo notare che il coefficiente angolare della retta di $f^{-1}(y)$ non è altro che $\displaystyle\frac{\Delta x}{\Delta y}$, dato che gli assi sono invertiri rispetto alla funzione originale. Quindi se potiamo al limite questa informazione sappiamo che la derivata di $f^{-1}(y)$ la calcoliamo come $\displaystyle\frac{dx}{dy}$. Noi però conosciamo solamente la derivata di $f(x)$ che è $\displaystyle\frac{dy}{dx}$, quindi dato che è una frazione possiamo calcolare la derivata di $f^{-1}(y)$ come
+\[
+ (f^{-1}(y_0))' = \dfrac{dx}{dy} = \dfrac{1}{\dfrac{dy}{dx}} = \frac{1}{f'(x_0)} 
+\]
+\newpage
+Esercitiamoci con qualche funzione inversa molto importante, partiamo con
+\begin{esercizio}{}{}
+    Calcolare la derivata della funzione inversa di 
+    \[
+    f(x) = \sin(x)
+    \]
+\end{esercizio}
+In sostanza l'esercizio ci sta chiedendo di calcolare la derivata di $f^{-1}(y)=\arcsin(y)$, quindi in primis dobbiamo calcolare la derivata di $f(x)$
+\[
+f'(x) = \cos(x)
+\] 
+Quindi 
+\[
+\frac{d}{dy}(\arcsin(y)) = \frac{1}{\cos(x)}
+\]
+Però ora dobbiamo tornare alla variabile y, e quindi dovremmo sostituire al posto di $x=\arcsin(y)$, ma dopo verrebbe un denominatore troppo complesso. Quindi per semplificarci la vita, cerchiamo di riscrivere $\cos(x)$ in funzione di $\sin(x)$, in modo tale che dopo possiamo sostituire $\sin(x)=y$ (dato che prima dovevamo sostituire $x=\arcsin(y))$. Quindi usando le formule fondamentali della trigonometria abbiamo che
+\[
+\frac{d}{dy}(\arcsin(y)) = \dfrac{1}{\cos(x)} = \dfrac{1}{\sqrt{1-\sin^2(x)}} = \dfrac{1}{\sqrt{1-y^2}} 
+\]
+\begin{esercizio}{}{}
+    Calcolare la derivata della funzione inversa di 
+    \[
+    f(x) = \tan(x)
+    \]
+\end{esercizio}
+Quindi ci stanno chiedendo di calcolare la derivata di $f^{-1}(y)=\arctan(y)$, quindi in primi sobbiamo calcolare la derivata di $f(x)$
+\begin{align*}
+f'(x) = \left(\dfrac{\sin(x)}{\cos(x)}\right)' &= \dfrac{\cos(x)\cos(x) - \sin(x)(-\sin(x))}{\cos^2(x)}\\
+&= \dfrac{\cos^2(x)}{\cos^2(x)} + \dfrac{\sin^2(x)}{\cos^2(x)} \\
+&= 1+\tan^2(x)
+\end{align*}
+Ho scritto la derivata così, e non $\frac{1}{\cos^2(x)}$, per evitare di avere lo stesso problema dell'esercizio di prima. Infatti prima abbiamo dovuto riscrivere il $\cos(x)$ in funzione del $\sin(x)$ in modo dale da sostituire $y=\sin(x)$. Quindi ho già scritto la derivata di $f(x)$ in funzione di $\tan(x)$, così da evitare il passaggio che abbiamo fatto sopra (e anche perchè non era così semplice per questo esercizio) e poter sostituire subito $y=\tan(x)$. Quindi la derivata di $\arctan(y)$ è
+\[
+\dfrac{d}{dy}(\arctan(y)) = \dfrac{1}{f'(x)} = \dfrac{1}{1+\tan^2(x)} = \dfrac{1}{1+y^2}
+\]
+
+\end{document}
