@@ -22,7 +22,7 @@
     \node[shape=circle,draw=#1,inner sep=1pt] (char) {$\displaystyle #2$};
   }%
 }
-
+\usetikzlibrary{arrows.meta}
 
 
 \newtcbtheorem{teorema}{Teorema}{
@@ -86,9 +86,9 @@
 
 \logo{logos/logo.jpg}
 \uni{\textbf{Università degli Studi di Padova}}
-\ttitle{Formulario di Teoremi e relative Dimostrazioni} %title of the file
+\ttitle{Analisi 1} %title of the file
 \subject{Analisi 1} % Subject name
-\topic{Formulario di Teoremi e relative Dimostrazioni} % Topic name
+\topic{Analisi 1} % Topic name
 
 \students{Alex Gasparini} % information related to the students
 
@@ -6683,7 +6683,54 @@ Ma quindi ora possiamo calcolare $f'(x)$
 \]
 
 \newpage
+\addcontentsline{toc}{subsection}{Derivata di Potenze di Funzioni}
+\begin{teorema}{Derivata di Potenze di Funzioni}{}
+    Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $f,g: I \to \mathbb{R}$ con $f$ e $g$ derivabili in $I$, se $f(x) > 0$ $\forall x \in I$, allora
+    \[
+        \dfrac{d}{dx}\left(f(x)^{g(x)}\right) = f(x)^{g(x)}\left(g'(x)\log(f(x)) + g(x)\cdot \dfrac{f'(x)}{f(x)}\right)
+    \]
+\end{teorema}
+\begin{proof}
+    Per risolvere questi esercizi è necessario usare la così detta \textbf{differenziazione logaritmica}, infatti se definiamo 
+    \[
+    f(x)^{g(x)} = L(x)
+    \] 
+    Allora la derivata che noi cerchiamo è $L'(x)$. Per calcolarla possiamo applicare il logaritmo ad entrambi i membri e poi calcolare la derivata. 
+    \begin{align*}
+        \log\left(f(x)^{g(x)}\right) &= \log(L(x)) \\ 
+        g(x) \cdot \log(f(x)) &= \log(L(x))
+    \end{align*}
+    Ora possiamo applicare la derivata a destra e a sinistra. Ricordandoci che la derivata di $\log(f) = \dfrac{f'}{f}$, e questo lo si evince dalla regola della catena. 
+    \begin{align*}
+        \dfrac{d}{dx}\left(g\cdot \log(f)\right) &= \dfrac{d}{dx}\log(L) \\
+        g'\cdot \log(f) +  g \cdot (\log(f))'  &= \dfrac{L'}{L} \\
+        g'\cdot \log(f) +  g \cdot \dfrac{f'}{f}  &= \dfrac{L'}{L} \\
+        L\left(g'\cdot \log(f) +  g \cdot \dfrac{f'}{f}\right) &= L' \\
+        f^g\left(g'\cdot \log(f) +  g \cdot \dfrac{f'}{f}\right) &= L'
+    \end{align*}
+    Ma all'inizio avevamo detto che $L'$ è la derivata della funzione originale, e quindi abbiamo trovato la derivata di $f(x)^{g(x)}$.
+\end{proof}
 
+\begin{esercizio}{}{}
+    Calcolare la derivata di 
+    \[
+    h(x) = x^x \;\;\;\;\; \text{ per } x>0
+    \]
+\end{esercizio}
+Dato che $h(x) = x^x$, possiamo definire (rimanendo con la notazione del teorema) $f(x) = x$ e $g(x)=x$, quindi possiamo calcolare le derivate 
+\[
+\begin{array}{c @{\qquad}@{\qquad} c}
+    f'(x) = 1 & g'(x) = 1
+\end{array}
+\]
+
+E quindi usando la formula del teorema della potenza di funzioni
+\begin{align*}
+    \dfrac{d}{dx}(x^x) = f(x)^{g(x)}\left(g'(x)\log(f(x)) + g(x)\cdot \dfrac{f'(x)}{f(x)}\right) &= x^{x}\left(1\log(x) + x\cdot \dfrac{1}{x}\right) \\
+    &= x^{x}\left(\log(x) +1\right)
+\end{align*}
+
+\newpage
 \addcontentsline{toc}{subsection}{Derivabilità della funzione Inversa}
 \begin{teorema}{Derivabilità della funzione Inversa}{}
      Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $f:I \to \mathbb{R}$, se $f$ è derivabile e invertibile, sia $x_0 \in I$, se $f(x_0) \neq 0$ allora definiamo $y_0 = f(x_0)$ e vale
@@ -6817,6 +6864,1592 @@ f'(x) = \left(\dfrac{\sin(x)}{\cos(x)}\right)' &= \dfrac{\cos(x)\cos(x) - \sin(x
 Ho scritto la derivata così, e non $\frac{1}{\cos^2(x)}$, per evitare di avere lo stesso problema dell'esercizio di prima. Infatti prima abbiamo dovuto riscrivere il $\cos(x)$ in funzione del $\sin(x)$ in modo dale da sostituire $y=\sin(x)$. Quindi ho già scritto la derivata di $f(x)$ in funzione di $\tan(x)$, così da evitare il passaggio che abbiamo fatto sopra (e anche perchè non era così semplice per questo esercizio) e poter sostituire subito $y=\tan(x)$. Quindi la derivata di $\arctan(y)$ è
 \[
 \dfrac{d}{dy}(\arctan(y)) = \dfrac{1}{f'(x)} = \dfrac{1}{1+\tan^2(x)} = \dfrac{1}{1+y^2}
+\]
+
+
+\addcontentsline{toc}{subsection}{Definizione di Derivata Seconda}
+\begin{definizione}{Derivata Seconda}{}
+     Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $f:I \to \mathbb{R}$, se $f$ è derivabile, sia $x_0 \in I$, se
+     \[
+     \exists \lim_{x\to x_0} \dfrac{f'(x)-f'(x_0)}{x-x_0} = l \in \mathbb{R}
+     \] 
+     Allora tale limite si dice \textbf{Derivata Seconda di $f$ in $x_0$} e si indica come
+     \[
+     f''(x_0) = \lim_{x\to x_0} \dfrac{f'(x)-f'(x_0)}{x-x_0}
+     \]
+\end{definizione}
+Come con le derivate prime, esistono varie notazioni analoghe a quelle già viste
+\[
+\begin{array}{c@{\qquad} c @{\qquad} c}
+    f''(x_0) & \dfrac{d^2f}{dx^2} & \ddot{f}(x_0) 
+\end{array}
+\]
+\[
+\begin{array}{c@{\qquad} @{\qquad} c}
+    D^2[f(x_0)] & \dfrac{\partial^2f}{\partial x^2}
+\end{array}
+\]
+
+\addcontentsline{toc}{subsection}{Definizione di Derivata n-esima}
+\begin{definizione}{Derivata n-esima}{}
+     Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $f:I \to \mathbb{R}$, se $f$ è derivabile (n-1) volte, sia $x_0 \in I$, se
+     \[
+     \exists \lim_{x\to x_0} \dfrac{f^{(n-1)}(x)-f^{(n-1)}(x_0)}{x-x_0} = l \in \mathbb{R}
+     \] 
+     Allora tale limite si dice \textbf{Derivata n-esima di $f$ in $x_0$} e si indica come
+     \[
+     f^{(n)}(x_0) = \lim_{x\to x_0} \dfrac{f'(x)-f'(x_0)}{x-x_0}
+     \]
+\end{definizione}
+Come con le derivate prime e seconde, esistono varie notazioni 
+\[
+\begin{array}{c@{\qquad} c @{\qquad} c @{\qquad} c}
+    f^{(n)}(x_0) & \dfrac{d^nf}{dx^n}  &D^n[f(x_0)] & \dfrac{\partial^nf}{\partial x^n}
+\end{array}
+\]
+
+\textbf{N.B.} nella notazione standard, il grado della derivata va indicato tra parentesi tonde per non scambiarlo con l'elevazione alla n
+\[
+\dfrac{d^nf}{dx^n} = f^{(n)}(x_0) \neq f^{n}(x_0) = \left(f(x_0)\right)^n
+\]
+Per convenzione si è deciso che la \textbf{Derivata Zeresima} fosse la funzione originale, quindi 
+\[
+f^{(0)}(x) = f(x)
+\]
+
+\addcontentsline{toc}{subsection}{Definizione di $C^n$}
+\begin{definizione}{$C^n$}{}
+    Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $\forall n \in \mathbb{N}_0$
+    \[
+    C^n (I) = \{f:I\to \mathbb{R} :  f^{(n)} \in C^0(I)\}
+    \]
+\end{definizione}
+\textbf{N.B.}  $f$ deve essere derivabile $n-1$ volte affinchè abbia senso.
+
+\newpage
+
+\addcontentsline{toc}{subsection}{Definizione di Massimi e Minimi Globali e Locali}
+\begin{definizione}{Massimi e Minimi Globali e Locali}{}
+    Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo, $f:I \to \mathbb{R}$ allora diciamo che
+    \begin{itemize}
+        \item $x_0$ è \textbf{massimo globale} (o assoluto) se vale
+        \[
+        f(x_0) \geq f(x) \;\;\; \forall x \in I
+        \]
+         \item $x_0$ è \textbf{minimo globale} (o assoluto) se vale
+        \[
+        f(x_0) \leq f(x) \;\;\; \forall x \in I
+        \]
+        \item $x_0$ è \textbf{massimo locale} (o relativo) se $\exists \delta >0$ tale che
+        \[
+        f(x_0) \geq f(x) \;\;\; \forall x \in I \cap \{x_0-\delta, x_0 +\delta\}
+        \]
+         \item $x_0$ è \textbf{minimo locale} (o relativo) se $\exists \delta >0$ tale che
+        \[
+        f(x_0) \leq f(x) \;\;\; \forall x \in I \cap \{x_0-\delta, x_0 +\delta\}
+        \]
+        \item $x_0$ è \textbf{massimo locale stretto} se $\exists \delta >0$ tale che
+        \[
+        f(x_0) > f(x) \;\;\; \forall x \in I \cap \{x_0-\delta, x_0 +\delta\} \setminus \{0\}
+        \]
+         \item $x_0$ è \textbf{minimo locale stretto} se $\exists \delta >0$ tale che
+        \[
+        f(x_0) < f(x) \;\;\; \forall x \in I \cap \{x_0-\delta, x_0 +\delta\} \setminus \{0\}
+        \]
+         \item $x_0$ è \textbf{estremo relativo} se è punto di massimo relativo oppure minimo relativo
+         \item $x_0$ è punto \textbf{critico} (o \textbf{stazionario}) se $\exists f'(x_0) = 0$
+        
+    \end{itemize}
+\end{definizione}
+Dopo questo elenco enorme di definizioni, capiamo come sono legate tra di loro
+
+
+\addcontentsline{toc}{subsection}{Teormea di Fermat}
+\begin{teorema}{Teorema di Fermat}{}
+    Siano $a,b \in \mathbb{R}$, $a<b$, $f:(a,b) \to \mathbb{R}$, $x_0 \in (a,b)$. Se $x_0$ è un punto di estremo relativo per $f$, e $f$ è derivabile in $x_0$, allora $f'(x_0) = 0$.
+\end{teorema}
+\begin{proof}
+    Dato che per ipotesi $f$ è derivabile in $x_0$, allora sappiamo che
+    \begin{equation}\label{eq:fermat}
+    f'(x_0) = f'_+(x_0)= f'_-(x_0)        
+    \end{equation}
+
+    Dato che $x_0$ è un estremo relativo supponiamo che sia un massimo (per il minimo la dimostrazione è analoga), quindi per la definizione di massimo relativo sappiamo che $\exists \delta >0$ tale che
+    \[
+    f(x_0) \geq f(x) \;\;\; \forall x \in (x_0-\delta, x_0+\delta) 
+    \]
+    Quindi deduciamo che
+    \[
+    f(x)-f(x_0) \leq 0  \;\;\; \forall x \in (x_0-\delta, x_0+\delta) 
+    \]
+    Ora analiziamo il rapporto incrementale, e dato che $f(x)-f(x_0) \leq 0$, il segno del rapporto incrementale è dato solo ed unicamente dal denominatore ($x-x_0$). Quindi se $x>x_0$ allora il rapporto incrementale avrà segno negativo, mentre per $x<x_0$ il rapporto incrementale avrà segno positivo. Però dato che noi sappiamo che $ f(x)-f(x_0) \leq 0$ solamente per $x \in (x_0-\delta, x_0+\delta) $, allora il rapporto sarà negativo per  $x \in x>x_0 \land(x_0-\delta, x_0+\delta)$ cioè $x \in (x_0, x_0+\delta)$, ragionamento analogo per l'altra casistica. 
+    \[
+    \dfrac{f(x)-f(x_0)}{x-x_0} = \begin{cases}
+        \geq 0 & \text{per } x \in (x_0-\delta,x_0) \\
+        \leq 0 & \text{per } x \in (x_0,x_0+\delta) \\
+    \end{cases}
+    \]
+    Ma quindi per il teorema della permanenza del segno deduciamo che
+    \[
+    \begin{array}{c@{\qquad}c}
+        \displaystyle f'_-(x_0) = \lim_{x\to x_0^-} \dfrac{f(x)-f(x_0)}{x-x_0} \geq 0 &\displaystyle f'_+(x_0) = \lim_{x\to x_0^+} \dfrac{f(x)-f(x_0)}{x-x_0} \leq 0
+    \end{array}
+    \]
+    Ma per (\ref{eq:fermat}) possiamo dedurre che
+    \[
+        0 \leq f'_-(x_0) = f'(x_0) = f'_+(x_0) \leq 0
+    \]
+    \[
+    0 \leq  f'(x_0)  \leq 0 
+    \]
+    \[
+    f'(x_0)  = 0 
+    \]
+\end{proof}
+
+\addcontentsline{toc}{subsection}{Teormea di Rolle}
+\begin{teorema}{Teorema di Rolle}{}
+    Siano $a,b \in \mathbb{R}$, $a<b$, $f:[a,b] \to \mathbb{R}$, $f \in C^0([a,b])$ e derivabile su $(a,b)$. Se $f(a)=f(b)$ allora $\exists x_0 \in (a,b)$ tale che $f'(x_0)=0$
+\end{teorema}
+
+\begin{proof}
+    Dato che per ipotesi $f \in C^0([a,b])$, allora per il teorema di Weierstrass sappiamo che $\exists x_{min}, x_{max} \in [a,b]$ punti di minimo/massimo. Dividiamo in due casistiche
+    \begin{itemize}
+        \item se $x_{min} \in (a, b)$ oppure $x_{max} \in (a, b)$, allora sono punti di estremo di $f$, ma dato che $f$ è derivabile in $(a,b)$ (per ipotesi), allora per il teorema di Fermat sappiamo che 
+        \[
+        \begin{array}{c@{\qquad}c @{\qquad} c}
+            f'(x_{min}) = 0 & \text{oppure} & f'(x_{max}) = 0
+        \end{array}
+        \]
+        E quindi abbiamo verificato il teorema
+        \item se $x_{min}, x_{max} \in \{a,b\}$ allora può solamente succedere che $x_{min} = a \land x_{max} = b $ oppure $x_{min} = b \land x_{max} = a $, ma in entrambi i casi, dato che $f(a)=f(b)$ scopriamo che
+        \[
+        f(x_{min}) = f(x_{max})
+        \]
+        Ma dato che $f(x_{min})$ e $f(x_{max})$ sono gli estremi sappiamo che
+        \[
+        f(x_{min}) \leq f(x) \leq f(x_{max}) \;\;\; \forall x \in [a,b]
+        \]
+        Ma questo vuol dire che 
+        \[
+        f(x)=f(x_{min})= f(x_{max}) \;\;\; \forall x \in [a,b]
+        \]
+        Questo può accadere soltanto se $f(x)$ è costante in $[a,b]$. Ma dato che $f(x)=c \in \mathbb{R}$ allora $f'(x) = 0$ $\forall x \in [a,b]$, e quindi abbiamo verificato il teorema anche in questo caso.
+    \end{itemize}
+\end{proof}
+
+
+\addcontentsline{toc}{subsection}{Teormea di Lagrange}
+\begin{teorema}{Teorema di Lagrange}{}
+    Siano $a,b \in \mathbb{R}$, $a<b$, $f:[a,b] \to \mathbb{R}$, $f \in C^0([a,b])$ e derivabile su $(a,b)$. Allora $\exists x_0 \in (a,b)$ tale che 
+    \[
+    f'(x_0) = \frac{f(b)-f(a)}{b-a}
+    \]
+\end{teorema}
+\begin{proof}
+    Definiamo una nuova funzione $g:[a,b] \to \mathbb{R}$ definita come
+    \[
+    g(x) = f(x) - \left(f(a) + (x-a)\dfrac{f(b)-f(a)}{b-a}\right)
+    \]
+    Notiamo che $g\in C^0([a,b])$ dato che lo è anche $f(x)$ e la nuova parte è continua in $\mathbb{R}$. Per lo stesso ragionamento è anche derivabile in $(a,b)$, infatti la derivata è
+    \begin{align*}
+    g'(x) &= \left( f(x) - \left(f(a) + (x-a)\dfrac{f(b)-f(a)}{b-a}\right)\right)'\\
+    &=\left( f(x) - \left(f(a) + x\dfrac{f(b)-f(a)}{b-a} - a\dfrac{f(b)-f(a)}{b-a}\right)\right)' \\
+     &= f'(x) -\left(0 + \dfrac{f(b)-f(a)}{b-a} - 0\right) \\
+     &= f'(x) - \dfrac{f(b)-f(a)}{b-a} 
+    \end{align*}
+    Poi scopriamo anche che
+    \[
+    g(a) = f(a) - \left(f(a) + (a-a)\dfrac{f(b)-f(a)}{b-a}\right) = f(a) - f(a) + 0 = 0
+    \]
+    \[
+     g(b) = f(b) - \left(f(a) + (b-a)\dfrac{f(b)-f(a)}{b-a}\right) = f(b) - (f(a) + f(b)-f(a)) = 0
+    \]
+    Ma quindi possiamo applicare il teorema di Rolle, e quindi $\exists x_0 \in (a,b)$ tale che
+    \[
+     g'(x_0) = 0
+    \]
+    \[
+f'(x_0) - \dfrac{f(b)-f(a)}{b-a} = 0
+    \]
+\[
+    f'(x_0) = \dfrac{f(b)-f(a)}{b-a}
+    \]
+    
+\end{proof}
+
+\addcontentsline{toc}{subsection}{Corollario del T. Lagrange: Carattterizzazione delle Costanti}
+\begin{corollario}{Carattterizzazione delle Costanti}{}
+    Siano $a,b \in \mathbb{R}$, $a<b$, $f:[a,b] \to \mathbb{R}$, $f \in C^0([a,b])$ e derivabile su $(a,b)$. Allora 
+    \[
+    f'(x) = 0 \iff f(x)=c \in \mathbb{R} \;\;\; \forall x \in [a,b]
+    \]
+\end{corollario}
+\begin{proof}
+    L'implicazione $(\impliedby)$ è ovvia per l'algebra delle derivate. Mentre per l'implicazione $(\implies)$ dobbiamo usare il teorema di Lagrange. 
+    
+    Se prendiamo $x_1, x_2 \in [a, b]$, con $x_1 < x_2$, notiamo che $f \in C^0([x_1,x_2])$ e che $f$ è derivabile in $(x_1,x_2)$. Quindi possiamo applicare il teorema di Lagrange, pertanto $\exists x_0 \in (x_1, x_2)$ tale che
+    \[
+    f'(x_0) = \dfrac{f(x_2)-f(x_1)}{x_2-x_1}
+    \] 
+    Ma per ipotesi sappiamo che $f'(x) = 0$ $\forall x \in [a,b]$, quindi 
+    \[
+    \dfrac{f(x_2)-f(x_1)}{x_2-x_1} = 0
+    \]
+    \[
+    f(x_2)-f(x_1) = 0 \implies f(x_2) = f(x_1)
+    \]
+    Dato che vale $\forall x_1, x_2 \in [a,b]$ allora $f(x_2) = f(x_1)$ vale sempre, e questo può accadere solamente se $f(x) = c$, per un qualche $c\in \mathbb{R}$. 
+\end{proof}
+
+Questa caratterizzazione può aiutarci per scoprire se una funzione è costante. Infatti vediamo 
+\begin{esercizio}{}{}
+    Dimostrare che per $x>0$ vale
+    \[
+    \arctan(x) + \arctan\left(\dfrac{1}{x}\right) = \dfrac{\pi}{2}
+    \]
+\end{esercizio}
+
+Notiamo che abbiamo una funzione uguale ad una costante quindi, se fosse vero, dovremmo avere che la derivata della funzione sia 0 per ogni punto dell'intervallo. Però per ora non possiamo ancora applicare il teorema, infatti l'intervallo che abbiamo $(0, +\infty)$ è aperto, mentre per applicare il teorema è necessario che sia un intervallo chiuso. Quindi possiamo prendere $\varepsilon$ e $M$ con $0< \varepsilon < M$, con questo prendiamo l'intervallo $[\varepsilon, M]$, e dato che $f\in C^0(\mathbb{R}\setminus\{0\})$ allora sarà anche in $[\varepsilon, M]$, ragionamento analogo per la derivabilità. Ora possiamo applicare  il corollario di Lagrange.
+\begin{align*}
+    \dfrac{d}{dx}\left(\arctan(x) + \arctan\left(\dfrac{1}{x}\right)\right) &= \dfrac{1}{1+x^2} + \dfrac{1}{1+\left(\dfrac{1}{x}\right)^2} \cdot \frac{-1}{x^2} \\
+    &= \dfrac{1}{1+x^2} + \dfrac{x^2}{x^2+1} \cdot \frac{-1}{x^2} \\
+     &= \dfrac{1}{1+x^2} + \dfrac{-1}{x^2+1}  = 0
+\end{align*}
+Quindi per il corollario sappiamo che la nostra funzione è costante nell'intervallo $[\varepsilon, M]$, però dato che posso scegliere un qualsiasi $\varepsilon>0$ e $M>0$, allora la funzione è costante nell'intervallo $(0,+\infty)$. Per trovare la costante basta calcolare la funzione in un qualsiasi punto, per esempio in 1.
+\[
+\arctan(1) + \arctan\left(\dfrac{1}{1}\right) = \frac{\pi}{4} + \frac{\pi}{4} = \frac{\pi}{2}
+\]
+
+
+\addcontentsline{toc}{subsection}{Corollario del T. Lagrange: Relazione Derivata e Limite di Derivata}
+\begin{corollario}{Relazione Derivata e Limite di Derivata}{}
+    Siano $a,b \in \mathbb{R}$, $a<b$, $f:[a,b] \to \mathbb{R}$, $f \in C^0([a,b])$ e derivabile su $(a,b)$. Allora se
+    \[
+    \exists \lim_{x\to a^+} f'(x) = l \in \mathbb{R} \implies \exists f'_+(a)=l
+    \]
+\end{corollario}
+\begin{proof}
+    Notiamo che la funzione rispetta tutti le ipotesi del teorema di Lagrange, e quindi possiamo applicarlo, però anzichè applicarlo in $(a,b)$, scegliamo un $x$ variabile in $(a, b)$, e prendere l'intervallo $(a,x)$ che chiaramente anche su questo intervallo si può applicare il teorema di Lagrange dato che $(a,x) \subset (a,b)$. Quindi notiamo che $\exists z(x) \in (a,x)$ tale che 
+    \begin{equation}\label{eq:lag1}
+    f'(z(x)) = \dfrac{f(x)-f(a)}{x-a}    
+    \end{equation}
+    Notiamo che 
+    \[
+    a < z(x) < x
+    \]
+    Quindi se portiamo al limite per $x\to a^+$, per il teorema dei carabinieri sappiamo che
+    \[
+    \lim_{x\to a^+}z(x) = a
+    \]
+   Con  (\ref{eq:lag1}) possiamo notare che
+    \[
+         \lim_{x\to a^+} f(x) = l \implies \lim_{x\to a^+} f(z(x)) = l \implies \lim_{x\to a^+} \dfrac{f(x)-f(a)}{x-a}  = l \implies f'_+(a) = l    
+     \]
+\end{proof}
+
+
+\textbf{N.B.} se vi sembra ovvio questo risultato beh non lo è affatto, infatti vediamo un esempio che mostra che non è ovvio affatto.
+
+Prendiamo 
+\[
+f(x) = \begin{cases}
+    x^2\sin\left(\dfrac{1}{x}\right) & x \in (0,1] \\
+    0 & x = 0
+\end{cases}
+\]
+Possiamo notare che la funzione è continua in $[0,1]$ ed è derivabile in $(0, 1)$, infatti la sua derivata è 
+\[
+    f'(x) =2x\sin\left(\frac{1}{x}\right) -\cos\left(\frac{1}{x}\right) \;\;\; \;\; \forall x \in (0,1) 
+\]
+\[
+f'(x) = \lim_{x\to 0^+} \frac{f(x)-f(0)}{x-0} = \lim_{x\to 0^+} \frac{x^2\sin\left(\dfrac{1}{x}\right)-0}{x} = \lim_{x\to 0^+} x\sin\left(\dfrac{1}{x}\right) = 0 \;\; \text{per } x = 0
+\]
+Notiamo quindi che la derivata in $x=0$ esiste e vale proprio $f'(0)=0$. Però se facciamo il limite della derivata abbiamo che
+\[
+\lim_{x\to 0^+} f'(x) = \lim_{x\to 0^+} \left(2x\sin\left(\frac{1}{x}\right) -\cos\left(\frac{1}{x}\right)\right) = 0 -\lim_{x\to0^+}\cos\left(\frac{1}{x}\right) = \lim_{t\to+\infty} \cos(t)
+\]
+Però questo limite non esiste, dato che il coseno oscilla all'infinito. Quindi in questo caso, la funzione ha derivata finita in $x=0$, però non esiste il limite della funzione derivata per $x\to 0^+$. Difatto, esiste la derivata destra, ma non esiste il limite destro della derivata.
+
+\addcontentsline{toc}{subsection}{Teorema di Cauchy}
+\begin{teorema}{Teorema di Cauchy}{}
+    Siano $a,b \in \mathbb{R}$, $a<b$, $f,g:[a,b] \to \mathbb{R}$, $f,g \in C^0([a,b])$ e derivabili su $(a,b)$. Allora $\exists x_0 \in (a,b)$ tale che 
+    \[
+    f'(x_0)(g(b)-g(a)) = g'(x_0)(f(b)-f(a))
+    \]
+    E se $g(x_0)\neq 0$ e $g(b)\neq g(a)$ possiamo scrivere anche
+    \[
+    \dfrac{f'(x_0)}{g'(x_0)} = \dfrac{f(b)-f(a)}{g(b)-g(a)}
+    \]
+\end{teorema}
+Ora facciamo qualche esercizio sui teoremi delle derivate visti finora
+
+\begin{esercizio}{}{}
+    Siano $f,g\in C^0([0,+\infty))$ derivabili in $(0,+\infty)$. Dimostrare che, se $f(0)\geq g(0)$ e $f'(x) \geq g'(x)$ per ogni $x>0$, allora $f(x)\geq g(x)$ per ogni $x\geq 0$.
+\end{esercizio}
+
+Iniziamo definendo $h(x) = f(x)-g(x)$, che quindi $h \in C^0([0,+\infty))$ e derivabile in $(0, +\infty)$. L'idea sarebbe di applicare il teorema di Lagrange, ma l'intervallo definito è illimitato, quindi dobbiamo definire $M >0$ e usare l'intervallo $[0,M]$.  Quindi applichiamo il teorema di Lagrange, e scopriamo che $\exists c \in (0,M)$ tale che
+\begin{align*}
+    h'(c) &= \dfrac{\big[f(M)-g(M)\big] - \big[f(0)-g(0)\big]}{M-0} \\
+    f'(c) + g'(c) &=  \dfrac{\big[f(M)-g(M)\big] - \big[f(0)-g(0)\big]}{M} 
+\end{align*}
+Riarrangiando i termini scopriamo che
+\[
+f(M)-g(M) =  \left(f'(c) + g'(c)\right)M + \left(f(0)-g(0)\right)
+\]
+Dalle ipotesi sappiamo che $f'(x) \geq g'(x)$ per ogni $x>0$, ma dato che $c \in (0, M)$ possiamo dire anche che $f'(c) \geq g'(c)$ da cui $f'(c) - g'(c) \geq 0$. Poi sappiamo anche che $f(0)\geq g(0)$ da cui $f(0)- g(0)\geq 0$, e dato anche che $M>0$ possiamo dedurre che
+\[
+f(M)-g(M) =  \left(f'(c) + g'(c)\right)M + \left(f(0)-g(0)\right) \geq 0
+\]
+\[
+f(M)-g(M)  \geq 0
+\]
+\[
+f(M) \geq g(M)
+\]
+Dato che possiamo fare questo ragionamento per $\forall M > 0$, allora possiamo dire che
+\[
+f(x) \geq g(x) \;\;\;\;\; \forall x \in (0,+\infty)
+\]
+Ma dato che per ipotesi sappiamo anche che $f(0)\geq g(0)$ allora
+\[
+f(x) \geq g(x) \;\;\;\;\; \forall x \in [0,+\infty)
+\]
+
+\newpage 
+\begin{esercizio}{}{}
+    Siano $a,b \in \mathbb{R}$, con $a<b$, e sia $f \in C^0([a,b])$ derivabile in $(a,b)$. Dimostrare che $f$ è affine  se e solo se $f'$ è costante su $(a,b)$.
+\end{esercizio}
+
+Quindi riscrivendo la domanda, ci stanno chiedendo di verificare che
+\[
+f(x) = mx+q \iff f'(x) = c \;\;\;\;\; m,q,c \in \mathbb{R}
+\]
+
+l'implicazione $(\implies)$ è semplice e basta usare l'algebra delle derivate. Mentre per l'implicazione $(\impliedby)$ dobbiamo usare il teorema di Lagrange. Se scegliamo $x, x_0 \in (a,b)$ con $x<x_0$ possiamo applicare il teorema di Fermat nell'intervallo $[x,x_0]$, e che quindi $\exists k \in (x, x_0)$ tale che
+\[
+f'(k) = \dfrac{f(x) - f(x_0)}{x-x_0}
+\]
+Ma dato che $f'(x) = c$ per ogni $x \in (a,b)$ e $k \in (x, x_0) \subset (a,b)$ allora $f'(k) = c$
+\begin{align*}
+    c &= \dfrac{f(x) - f(x_0)}{x-x_0} \\
+    c(x-x_0) &=  f(x) - f(x_0) \\
+    cx-cx_0 + f(x_0) &=  f(x) 
+\end{align*}
+Quindi se scegliamo $a = c$ e $b = -cx_0 + f(x_0)$ abbiamo che
+\[
+f(x) = ax+b
+\]
+Quindi $f$ è una funzione affine
+
+\begin{esercizio}{}{}
+    Siano $a,b \in \mathbb{R}$, con $a<b$, e sia $f \in C^0([a,b])$ derivabile in $(a,b)$. Dimostrare che $f$ è quadratica  se e solo se $f'$ è affine su $(a,b)$.
+\end{esercizio}
+Come l'esercizio precedente riscriviamo la richiesta
+\[
+f(x) = ax^2+bx+c \iff f'(x) = mx+q \;\;\;\;\; a,b,c,m,q \in \mathbb{R}
+\]
+Come prima l'implicazione $(\implies)$ la si evince dall'algebra delle derivate. Per l'implicazione $(\impliedby)$ si usa il teorema di Lagrange. Quindi come prima scegliamo $x, x_0 \in (a,b)$ e applicando il teorema all'intervallo $[x,x_0]$ sappiamo che $\exists k \in (x,x_0)$ tale che
+\[
+f'(k) = \dfrac{f(x)-f(x_0)}{x-x_0}
+\]
+Dato che $f'(x)=mx+q$ per ogni $x \in (a,b)$, allora sappiamo che
+\begin{align*}
+    mx+q &= \dfrac{f(x)-f(x_0)}{x-x_0} \\
+    (mx+q)(x-x_0) &= f(x)-f(x_0) \\
+     mx^2+qx -x_0mx -qx_0 &= f(x)-f(x_0) \\
+     mx^2+qx -x_0mx -qx_0 + f(x_0) &= f(x)
+\end{align*}
+Ora se scegliamo $a=m$, $b=q-x_0m$,$c=-qx_0 + f(x_0)$ abbiamo che
+\[
+f(x) = ax^2+bx+c
+\]
+
+\newpage
+
+\addcontentsline{toc}{subsection}{Relazione tra Derivata e Monotonia}
+\begin{teorema}{Relazione tra Derivata e Monotonia}{}
+    Siano $a,b \in \mathbb{R}$, $a<b$, $f,g:[a,b] \to \mathbb{R}$, $f,g \in C^0([a,b])$ e derivabili su $(a,b)$. Allora
+    \begin{enumerate}[label=(\roman*)]
+        \item $f$ è crescente in $[a,b] \iff f'(x) \geq 0 \;\; \forall x \in (a,b)$
+        \item $f$ è strettamente crescente in $[a,b] \iff f'(x) \geq 0 \;\; \forall x \in (a,b)$ e non esiste un intervallo $(c,d) \subset (a,b)$ tale che  $f'(x) = 0\;\; \forall x \in (c,d)$
+        \item $f$ è decrescente in $[a,b] \iff f'(x) \leq 0 \;\; \forall x \in (a,b)$ 
+        \item $f$ è strettamente decrescente in $[a,b] \iff f'(x) \leq 0 \;\; \forall x \in (a,b)$ e non esiste un intervallo $(c,d) \subset (a,b)$ tale che  $f'(x) = 0\;\; \forall x \in (c,d)$
+    \end{enumerate}
+\end{teorema}
+
+\begin{proof}
+    $(i)$, in primis dimostriamo $(\implies)$. Scelgo $x_0 \in (a,b)$, notiamo che se $x > x_0$ allora $x-x_0>0$. E dato che la funzione è monotona crescente, se $x>x_0$ allora $f(x)\geq f(x_0)$ e quindi $f(x)-f(x_0)\geq 0$. Discorso analogo per $x<x_0$, e notiamo che il rapporto incrementale
+    \[
+    \dfrac{f(x)-f(x_0)}{x-x_0} = \begin{cases}
+        \geq 0 & x>x_0 \\
+        \geq 0 & x<x_0 
+    \end{cases}
+    \]
+    Da cui se portiamo al limite, per il teorema della permanenza del segno abbiamo che
+    \[
+    f'(x_0) = \lim_{x\to x_0}\dfrac{f(x)-f(x_0)}{x-x_0} \geq 0
+    \]
+
+    $(\impliedby)$ Prendiamo $x_1,x_2$ tali che $a < x_1 < x_2 < b$. Applichiamo il teoreama di Lagrange nell'intervallo $[x_1,x_2]$. Ora per il teorema della permanenza del segno e dato che $f'(x_0) \geq 0$ per ipotesi, allora anche il rapporto incrementale sarà positivo. In più dato che $x_1 < x_2$ allora $x_2-x_1 > 0$ e quindi
+    \[
+    \dfrac{f(x_2)-f(x_1)}{x_2-x_1} \geq 0 
+    \]
+    \[
+    f(x_2)-f(x_1) \geq 0  \iff f(x_2)\geq f(x_1)
+    \]
+    Ma dato che vale $\forall x_1,x_2 \in (a,b)$ allora la funzione è monotona crescente in $(a,b)$.
+
+    $(ii)$ Una funzione è strettamente crescente  se e solo se è monotona crescente e non è mai costante nell'intervallo. Ma come abbiamo visto nel primo corollario del teorema di Fermat, sappiamo che una funzione è costante se e solo se $f'(x) = 0$ per ogni valore nell'intervallo. Quindi per controllare se una funzione è strettamente crescente basta controllare se è crescente, e quindi $f'(x) \ge 0$, e che non ci sia mai un intervallo su cui vale $f(x) = 0$ per ogni valore del sotto intervallo.
+    \[
+    f(x) \text{ strettamente crescente } = \begin{cases}
+        f(x) \text{ crescente } \\
+        f(x) \text{ non è costante}
+    \end{cases} =
+    \begin{cases}
+        f'(x)\ge 0 \\
+        \nexists\text{un intervallo} : f'(x)=0 
+    \end{cases}
+    \] 
+    $(iii)$ e $(iv)$ sono analoghi ad $(i)$ e $(ii)$
+\end{proof}
+
+\newpage 
+\begin{esercizio}{}{}
+    Discutere l'esistenza di valori di $x \in \mathbb{R}$ che risolvono la seguente disequazione
+    \[
+    e^x = x+2
+    \]
+\end{esercizio}
+In primi definiamo 
+\[
+f(x) = e^x - x -2
+\]
+Con il teorema di Bolzano notiamo che $f(1) = e - 1 -2 < 0$ e che $f(2)=e^2-2-2>0$, e che quindi c'è almeno uno zero nell'intervallo $(1,2)$. Però è necessario studiare la monotonia della funzione, quindi possiamo studiare il segno della derivata
+\begin{align*}
+f'(x) &\geq 0 \\
+e^x - 1 &\geq 0 \\
+e^x   &\geq 1 \\
+x &\geq 0
+\end{align*}
+Quindi scopriamo che la funzione è monotona crescente per $x>0$ e decrescente per $x<0$. Quindi lo zero è unico nell'intervallo $(1,2)$. Però abbiamo detto che la funzione è decrescente per $x<0$, quindi dobbiamo controllare se c'è qualche zero anche per $x<0$. Infatti si può notare che $f(-2) = e^{-2} -2 +2 >0$ e che quindi esiste uno zero anche in $(-2,1)$ (e questo lo deduciamo dal teorema di Bolzano) e dato che in quell'intervallo è monotona allora sappiamo che quello zero è unico.
+
+\begin{esercizio}{}{}
+    Trovare il più grande $a \in \mathbb{R}$ tale che $f(x)=-2x^3+3x^2+12x+100$ sia crescente su $[0,a]$
+\end{esercizio}
+Se ci chiedono di studiare quando è crescente, allora dovremo studiare quando la derivata prima della funzione è positiva.
+\begin{align*}
+\dfrac{d}{dx}(f(x)) = -6x^2+6x+12 &\geq 0 \\
+x^2-x-2 &\leq 0 \\
+(x+1)(x-2) &\leq 0 \\
+-1\leq x &\leq 2
+\end{align*}
+
+Quindi vuol dire che la nostra è crescente in $[-1,2]$ e decrescente in $\mathbb{R} \setminus [-1,2]$. 
+
+
+    \begin{center}
+        
+\begin{tikzpicture}[scale=1.5]
+
+    % 1. Disegna la retta dei numeri con la freccia e l'etichetta R
+    \draw[->, very thick, >=Stealth] (-3, 0) -- (4, 0) node[right, font=\Huge] {$\mathbb{R}$};
+
+    % 2. Definisci i punti e le etichette
+    \def\ptA{-1} % Punto A
+    \def\ptB{2}  % Punto B
+    \def\tickheight{0.2} % Altezza dei trattini
+
+    % Trattino verticale per -1
+    \draw[very thick] (\ptA, -\tickheight) -- (\ptA, \tickheight);
+    % Etichetta per -1 (sopra il trattino)
+    \node[above, font=\Large] at (\ptA, \tickheight) {$-1$};
+
+    % Trattino verticale per 2
+    \draw[very thick] (\ptB, -\tickheight) -- (\ptB, \tickheight);
+    % Etichetta per 2 (sopra il trattino)
+    \node[above, font=\Large] at (\ptB, \tickheight) {$2$};
+    
+    % 3. Disegna le frecce direzionali (come nel tuo disegno)
+
+    % Freccia Blu Sinistra (Intervallo x < -1)
+    \draw[->, blue, very thick, line cap=round]   (-3, -0.5) -- (-1.5, -1.5); 
+    
+    % Freccia Rossa Centrale (Intervallo -1 <= x <= 2 o qualcosa che va verso il 2)
+    % Usiamo un percorso che sale verso il punto 2
+    \draw[->, red, very thick, line cap=round] (-0.3, -1.5) -- (\ptB - 0.5, -0.4); 
+    
+    % Freccia Blu Destra (Intervallo x > 2)
+    \draw[->, blue, very thick, line cap=round] (2.5, -0.5) -- (3.5, -1.5); 
+
+\end{tikzpicture}
+    \end{center}
+Quindi $a=2$, dato che per $x>a$ la funzione è decrescente.  
+
+\newpage
+\begin{esercizio}{}{}
+    Trovare il più piccolo $a \in \mathbb{R}$ tale che $f(x) = x^{\sqrt{x}}$ sia invertibile su $[a, +\infty)$
+\end{esercizio}
+
+Una funzione è invertibile solo se è monotona (crescente o decrescente non importa) in modo tale che sia iniettiva. Quindi studiamo il segno della derivata. Prima però notiamo che il dominio della funzione è $x>0$ dato che la base di un esponenziale non può essere negativa e l'argomento della radice deve essere positivo.
+\begin{align*}
+    x^{\sqrt{x}} &= L \\
+    \log\left(x^{\sqrt{x}}\right) &= \log(L) \\
+    \sqrt{x}\log(x) &= \log(L) \\
+    \dfrac{d}{dx}\left(\sqrt{x}\log(x)\right) &= \dfrac{d}{dx}\left(\log(L)\right) \\
+    \dfrac{1}{2\sqrt{x}}\log(x) + \sqrt{x}\cdot \dfrac{1}{x}&= \dfrac{1}{L} \cdot L'\\
+    L\left(\dfrac{1}{2\sqrt{x}}\log(x) + \dfrac{1}{\sqrt{x}}\right) &= L' \\
+    x^{\sqrt{x}}\left[\dfrac{1}{2\sqrt{x}}\left(\log(x)+2\right)\right]&= L'
+\end{align*}
+
+Ora studiamo quando è positiva
+\[
+x^{\sqrt{x}}\left[\dfrac{1}{2\sqrt{x}}\left(2-\log(x)\right)\right] \geq 0
+\]
+Ora possiamo notare che $x^{\sqrt{x}}$ è positiva per ogni punto del suo dominio (dato che è un esponenziale). In più anche $\sqrt{x}$ è sempre positiva nel suo domionio, e quindi possiamo toglierle dato che non influenzano nello studio del segno della derivata
+\begin{align*}
+\log(x)+2 &\geq 0 \\
+\log(x) &\geq -2 \\
+x &\geq e^{-2} 
+\end{align*}
+Quindi notiamo che la nostra funzione è crescente per $x> e^{-2}$, quindi 
+\begin{center}
+    
+\begin{tikzpicture}[scale=1.5] % Uso una scala moderata per un buon centraggio
+
+    % Definiamo coordinate arbitrarie per i punti (non in scala reale)
+    \def\StartLine{0}  % La linea inizia in 0
+    \def\EndLine{5}    % La linea finisce in 5
+    
+    \def\ptA{0}        % Punto A: 0
+    \def\ptB{2.5}      % Punto B: e^-2 (posizionato a metà della linea per centrarlo)
+    \def\tickheight{0.2} % Altezza dei trattini
+
+    % 1. Disegna la retta dei numeri partendo da 0 fino a EndLine
+    \draw[->, very thick, >=Stealth] (\StartLine, 0) -- (\EndLine, 0) node[right, font=\Huge] {$\mathbb{R}$};
+
+    % 2. Punti e Etichette
+    
+    % Trattino verticale per 0 (inizio linea)
+    \draw[very thick] (\ptA, -\tickheight) -- (\ptA, \tickheight);
+    % Etichetta per 0 
+    \node[above, font=\Large] at (\ptA, \tickheight) {$0$};
+
+    % Trattino verticale per e^(-2) (centrato)
+    \draw[very thick] (\ptB, -\tickheight) -- (\ptB, \tickheight);
+    % Etichetta per e^(-2) 
+    \node[above, font=\Large] at (\ptB, \tickheight) {$e^{-2}$};
+    
+    % 3. Frecce direzionali (adattate alle nuove coordinate)
+
+    % Freccia Blu (parte da 0 e va in basso)
+    \draw[->, blue, very thick, line cap=round] (\ptA+0.8, -0.3) -- (\ptA+1.8, -0.7); 
+    
+    % Freccia Rossa Destra (parte tra e^-2 e la fine e va a destra)
+    % Inizia circa a metà strada tra e^-2 (2.5) e la fine (5)
+    \draw[->, red, very thick, line cap=round] (3.3, -0.7) -- (4.3, -0.3); 
+
+\end{tikzpicture}
+\end{center}
+
+Quindi $f(x)$ è invertibile negli intervalli $(0,e^{-2}]$ e $[e^{-2},+\infty)$, e quindi stando alla consegna $a=e^{-2}$
+
+\newpage 
+
+\addcontentsline{toc}{subsection}{Classificazione dei Punti Stazionari}
+\begin{definizione}{Classificazione dei Punti Stazionari}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo $f:I\to \mathbb{R}$, $f\in C^0(I)$, $x_0 \in I$, se $f$ è derivabile in $x_0$ e vale $f'(x_0) = 0$ allora diciamo 
+    \begin{itemize}
+        \item $x_0$ è un punto di \textbf{Flesso a Tangente Orizzontale} se $\exists U$ intorno di $x_0$ tale che
+        \[
+            f'(x)\geq 0 \;\;\; \forall x \in U \;\;\; \lor \;\;\; f'(x)\leq 0 \;\;\; \forall x \in U 
+        \]
+         \item $x_0$ è un punto di \textbf{Massimo Locale} se $\exists U_{sx}$ intorno sinistro di $x_0$, e $\exists U_{dx}$ intorno destro di $x_0$ tale  che
+        \[
+            f'(x)\geq 0 \;\;\; \forall x \in U_{sx} \;\;\; \land \;\;\; f'(x)\leq 0 \;\;\; \forall x \in U_{dx}
+        \]
+        \item $x_0$ è un punto di \textbf{Minimo Locale} se $\exists U_{sx}$ intorno sinistro di $x_0$, e $\exists U_{dx}$ intorno destro di $x_0$ tale  che
+        \[
+            f'(x)\leq 0 \;\;\; \forall x \in U_{sx} \;\;\; \land \;\;\; f'(x)\geq 0 \;\;\; \forall x \in U_{dx}
+        \]
+    \end{itemize}
+\end{definizione}
+
+Con dei grafici notiamo che il flesso a tangente verticale lo abbiamo quando le linee dei segno sono di questo tipo
+\begin{center}
+\begin{tikzpicture}[scale=1, line cap=round]
+
+%%%%%%%%%%%%%%%%%%%%%%
+% SINISTRA (frecce rosse)
+%%%%%%%%%%%%%%%%%%%%%%
+
+% Retta
+\draw[->, very thick] (0,0) -- (5,0);
+
+% Tacca e w0
+\draw[very thick] (2.5,-0.25) -- (2.5,0.25);
+\node[above] at (2.5,0.25) {$x_0$};
+
+% Freccia rossa a sinistra
+\draw[->, very thick, red] (0.8,-0.8) -- (1.8,-0.2);
+
+% Freccia rossa a destra
+\draw[->, very thick, red] (3.2,-0.8) -- (4.2,-0.2);
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+% DESTRA (frecce blu)
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{scope}[xshift=6cm] % sposto il secondo schema
+
+% Retta
+\draw[->, very thick] (0,0) -- (5,0);
+
+% Tacca e w0
+\draw[very thick] (2.5,-0.25) -- (2.5,0.25);
+\node[above] at (2.5,0.25) {$x_0$};
+
+% Freccia blu a sinistra
+\draw[->, very thick, blue] (0.8,-0.2) -- (1.8,-0.8);
+
+% Freccia blu a destra
+\draw[->, very thick, blue] (3.2,-0.2) -- (4.2,-0.8);
+
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+Dei grafici con un flesso a tangente orizzontale sono: $f(x)=x^3$ e $g(x)=-x^3$ in $x_0=0$
+
+\begin{figure}[h!]
+\centering
+
+% --- Primo grafico ---
+\begin{minipage}{0.48\textwidth}
+\centering
+
+
+\begin{tikzpicture}
+
+% -----------------------------------------------------------
+% FIRST GRAPH: f(x) = x^3
+% -----------------------------------------------------------
+\begin{axis}[
+    name=leftplot,
+    xmin=-2, xmax=2,
+    ymin=-1.2, ymax=1.2,
+    width=6cm,
+    height=4cm,
+    axis lines=middle,
+    axis line style={-stealth, thick},
+    xtick=\empty,
+    ytick=\empty,
+    samples=300,
+    clip=false
+]
+
+    % f(x)
+    \addplot[red!60!black, ultra thick, domain=-2:2] {0.125*x^3};
+
+    % inflection point
+    \addplot[only marks, mark=*, green, mark size=2pt] coordinates {(0,0)};
+
+    % vertical line x=0
+    \addplot[green, very thin] coordinates {(-2,0) (2,0)};
+
+    % label
+    \node at (axis cs:0,-1.2) [below] {$f(x)=x^3$};
+
+\end{axis}
+
+
+\end{tikzpicture}
+
+\end{minipage}
+%
+\begin{minipage}{0.48\textwidth}
+\centering
+% --- Secondo grafico: f^{-1}(y)=sqrt(y) ---
+
+
+\begin{tikzpicture}
+    
+% -----------------------------------------------------------
+% SECOND GRAPH: g(x) = -x^3
+% -----------------------------------------------------------
+\begin{axis}[
+    at={(leftplot.outer east)},  % <-- PERFECT ALIGNMENT
+    xshift=3cm,                  % spacing between the plots
+    xmin=-2, xmax=2,
+    ymin=-1.2, ymax=1.2,
+    width=6cm,
+    height=4cm,
+    axis lines=middle,
+    axis line style={-stealth, thick},
+    xtick=\empty,
+    ytick=\empty,
+    samples=300,
+    clip=false
+]
+
+    % g(x)
+    \addplot[blue!60!black, ultra thick, domain=-2:2] {-0.125*x^3};
+
+      % inflection point
+    \addplot[only marks, mark=*, green, mark size=2pt] coordinates {(0,0)};
+
+    % vertical line x=0
+    \addplot[green, very thin] coordinates {(-2,0) (2,0)};
+
+
+    % label
+    \node at (axis cs:0,-1.2) [below] {$g(x)=-x^3$};
+
+\end{axis}
+
+\end{tikzpicture}
+
+
+\end{minipage}
+\end{figure}
+
+
+Invece per un massimo locale abbiamo la seguente linea dei segni
+
+\begin{center}
+\begin{tikzpicture}[scale=1, line cap=round]
+
+%%%%%%%%%%%%%%%%%%%%%%
+% SINISTRA (frecce rosse)
+%%%%%%%%%%%%%%%%%%%%%%
+
+% Retta
+\draw[->, very thick] (0,0) -- (5,0);
+
+% Tacca e w0
+\draw[very thick] (2.5,-0.25) -- (2.5,0.25);
+\node[above] at (2.5,0.25) {$x_0$};
+
+% Freccia rossa a sinistra
+\draw[->, very thick, red] (0.8,-0.8) -- (1.8,-0.2);
+
+% Freccia blu a destra
+\draw[->, very thick, blue] (3.2,-0.2) -- (4.2,-0.8);
+
+
+\end{tikzpicture}
+\end{center}
+
+Un grafico con un massimo è: $f(x)=1-x^2$  in $x_0=0$
+\begin{center}
+    
+\begin{tikzpicture}
+    
+% -----------------------------------------------------------
+% SECOND GRAPH: g(x) = -x^3
+% -----------------------------------------------------------
+\begin{axis}[
+    xmin=-2, xmax=2,
+    ymin=-1.5, ymax=1.5,
+    width=6cm,
+    height=4cm,
+    axis lines=middle,
+    axis line style={-stealth, thick},
+    xtick=\empty,
+    ytick=\empty,
+    samples=300,
+    clip=false
+]
+
+    % g(x)
+    \addplot[red!60!black, ultra thick, domain=-1.5:0] {1-x^2};
+    % g(x)
+    \addplot[blue!60!black, ultra thick, domain=0:1.5] {1-x^2};
+
+      % inflection point
+    \addplot[only marks, mark=*, green, mark size=2pt] coordinates {(0,1)};
+
+    % vertical line x=
+
+
+    % label
+    \node at (axis cs:0,-1.2) [below] {$f(x)=1-x^2$};
+
+\end{axis}
+
+\end{tikzpicture}
+
+\end{center}
+
+
+Invece per un minimo locale abbiamo la seguente linea dei segni
+
+\begin{center}
+\begin{tikzpicture}[scale=1, line cap=round]
+
+%%%%%%%%%%%%%%%%%%%%%%
+% SINISTRA (frecce rosse)
+%%%%%%%%%%%%%%%%%%%%%%
+
+% Retta
+\draw[->, very thick] (0,0) -- (5,0);
+
+% Tacca e w0
+\draw[very thick] (2.5,-0.25) -- (2.5,0.25);
+\node[above] at (2.5,0.25) {$x_0$};
+
+% Freccia rossa a sinistra
+\draw[->, very thick, blue] (0.8,-0.2) -- (1.8,-0.8);
+
+% Freccia blu a destra
+\draw[->, very thick, red] (3.2,-0.8) -- (4.2,-0.2);
+
+
+\end{tikzpicture}
+\end{center}
+
+Un grafico con un massimo è: $f(x)=x^2-1$  in $x_0=0$
+\begin{center}
+    
+\begin{tikzpicture}
+    
+% -----------------------------------------------------------
+% SECOND GRAPH: g(x) = -x^3
+% -----------------------------------------------------------
+\begin{axis}[
+    xmin=-2, xmax=2,
+    ymin=-1.5, ymax=1.5,
+    width=6cm,
+    height=4cm,
+    axis lines=middle,
+    axis line style={-stealth, thick},
+    xtick=\empty,
+    ytick=\empty,
+    samples=300,
+    clip=false
+]
+
+    % g(x)
+    \addplot[blue!60!black, ultra thick, domain=-1.5:0] {x^2-1};
+    % g(x)
+    \addplot[red!60!black, ultra thick, domain=0:1.5] {x^2-1};
+
+      % inflection point
+    \addplot[only marks, mark=*, green, mark size=2pt] coordinates {(0,-1)};
+
+    
+
+    % label
+    \node at (axis cs:0,-1.2) [below] {$f(x)=x^2-1$};
+
+\end{axis}
+
+\end{tikzpicture}
+
+\end{center}
+
+
+\addcontentsline{toc}{subsection}{Teorema di De l'Hôpital}
+\begin{teorema}{Teorema di De l'Hôpital}{}
+    Siano $a,b \in \mathbb{R}\cup\{\pm \infty\}$, $a<b$. Siano $f,g:[a,b]\to \mathbb{R}$ e $f,g \in C^1((a,b))$. Supponiamo che $f$ e $g$ siano entrambe infinitesime (cioè tendono a 0) oppure entrambe infinite (cioè che tendono a $\infty$) per $x\to a^+$. Se vale
+    \begin{enumerate}[label=(\roman*)]
+        \centering
+        \item $g'(x) \ne 0\;\;\forall x \in (a,b)$
+        \item $\displaystyle\exists \lim_{x\to a^+}\dfrac{f'(x)}{g'(x)} = l \in \mathbb{R} \cup \{\pm \infty\} $
+    \end{enumerate}
+    Allora valgono 
+    \begin{enumerate}[label=(\roman*)]
+        \centering
+        \item $g(x) \ne 0\;\;\forall x \in (a,b)$
+        \item $\displaystyle\exists \lim_{x\to a^+}\dfrac{f(x)}{g(x)} = l$
+    \end{enumerate}
+    Discorso analogo per $x\to b^-$
+\end{teorema}
+Vediamo un esempio di applicazione
+\begin{esercizio}{}{}
+    Calcolare il seguente limite
+    \[
+    \lim_{x\to 0^+} x\log(x)
+    \]
+\end{esercizio}
+Si vede subito che questo limite è della forma indeterminata di $\bigr[0\cdot \infty\bigl]$, quindi per ora non sono rispettate le ipotesi del teorema di De l'Hôpital. Però possiamo fare un trick per far sbucare fuori una forma $\bigr[\frac{\infty}{\infty}\bigl]$ (che è richiesta dal teorema)
+\[
+    \lim_{x\to 0^+} x\log(x) = \lim_{x\to0^+}\dfrac{\log(x)}{\frac{1}{x}} = \bigr[\frac{\infty}{\infty}\bigl]
+    \]
+Ora rientramo nelle ipotesi del teorema. Ora dobbiamo controllare se $g'(x)\ne 0$ e notiamo che $g'(x) =\dfrac{-1}{x^2}$ il che è diverso da zero in $(0,+\infty)$, e quindi va bene per ogni $b>0$. 
+
+Ora dobbiamo controllare se esiste il limite del rapporto delle derivate 
+\[
+\lim_{x\to 0^+} \dfrac{\dfrac{1}{x}}{\dfrac{-1}{x^2}} = \lim_{x\to 0^+} -x = 0
+\]
+Ora tutte le ipotesi del teorema sono soddisfatte e quindi scopriamo che
+\[
+\lim_{x\to 0^+} x\log(x) = 0
+\]
+
+\begin{esercizio}{}{}
+    Calcolare il seguente limite
+    \[
+    \lim_{x\to0^+} \dfrac{\log(1+x) - x}{x^2}
+    \]
+\end{esercizio}
+Ad primo impatto potrebbe venirvi in mente di calcolare tramite gli o-piccoli, però notiamo che non funzionano in questo esercizio
+\[
+\lim_{x\to0^+} \dfrac{\log(1+x) - x}{x^2} = \lim_{x\to0^+} \dfrac{x + o(x) - x}{x^2} = \lim_{x\to0^+} \dfrac{o(x)}{x^2} = \lim_{x\to0^+} \dfrac{o(x)}{x} \cdot \dfrac{1}{x} = \bigl[0\cdot \infty\bigr] 
+\] 
+Infatti ci viene fuori una forma indeterminata. Tra poco vedremo anche che si può risolvere con gli sviluppi di Taylor. Ora però proviamo ad applicare il teorema di De L'Hôpital. Quindi sappiamo che $f(x)=\log(1+x) - x \in C^1((0,+\infty))$ e anche che $g(x)=x^2\in C^1(\mathbb{R})$. Possiamo vedere che $g'(x)=2x$ è diverso da zero nell'intervallo $(0,+\infty)$, quindi come prima possiamo scegliere un qualsiasi $b >0$. Ora proviamo a calcolare il limite del rapporto.
+\begin{equation}\label{eq:hop}
+\lim_{x\to0^+} \dfrac{\dfrac{1}{1+x} \cdot 1 -1}{2x} = \bigl[\dfrac{0}{0}\bigr]    
+\end{equation}
+
+Però è venuta fuori un'altra forma indeterminata della forma $\bigl[\dfrac{0}{0}\bigr]$. Però non sappiamo se esiste o è un valore, quindi possiamo riapplicare il teorema di De l'Hôpital ma all limite (\ref{eq:hop}). Così se scopriamo che tende ad un valore, allora tenderà anche il limite (\ref{eq:hop}), che a sua volta verifica il limite dell'esercizio. Si può notare che $f'(x)=\dfrac{1}{1+x} -1$ e $g'(x)=2x$ rispettano il teorema e quindi possiamo applicarlo
+\[
+\lim_{x\to0^+} \dfrac{f''(x)}{g''(x)} = \lim_{x\to0^+} \dfrac{\dfrac{-1}{(1+x)^2} \cdot 1}{2} =  \dfrac{\dfrac{-1}{(1+0)^2} }{2} = -\dfrac{1}{2}
+\]
+Quindi con questo abbiamo scoperto che anche 
+\[
+\lim_{x\to0^+} \dfrac{\dfrac{1}{1+x} -1}{2x} = -\dfrac{1}{2} 
+\]
+Ma a sua volta questo ci permette di scoprire che
+\[
+    \lim_{x\to0^+} \dfrac{\log(1+x) - x}{x^2} = -\dfrac{1}{2} 
+    \]
+
+    \newpage
+
+\addcontentsline{toc}{subsection}{Definizione di Concavità e Convessità}
+    \begin{definizione}{Concavità e Convessità}{}
+        Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo $f:I\to \mathbb{R}$ diciamo che
+        \begin{itemize}
+            \item $f$ è \textbf{Convessa} se $\forall t \in [0,1] \; \forall x_1, x_2 \in I$ vale
+            \[
+            f((1-t)x_1+tx_2) \leq (1-t)f(x_1) + tf(x_2)
+            \]
+            \item $f$ è \textbf{Concava} se $\forall t \in [0,1] \; \forall x_1, x_2 \in I$ vale
+            \[
+            f((1-t)x_1+tx_2) \geq (1-t)f(x_1) + tf(x_2)
+            \]
+        \end{itemize}
+    \end{definizione}
+    Cerchiamo di capire geometricamente cosa vuol dire questo. Prendiamo una qualsiasi funzione e fissiamo due punti $x_1,x_2$ tracciamo la retta passante per quei punti.
+\begin{center}
+    \begin{tikzpicture}
+\begin{axis}[
+    width=8cm,
+    height=6cm,
+    xmin=0, xmax=3.0,
+    ymin=0, ymax=4.0,
+    axis lines=middle,
+    axis line style={-stealth, thick},
+    samples=300,
+    xlabel={$x$}, ylabel={$y$},
+    xtick={0.5, 2}, xticklabels={$x_1$, $x_2$}, % Etichette personalizzate sugli assi
+    ytick=\empty, % Asse Y pulito
+    clip=false
+]
+
+% 1. La funzione f(x) = (x-1)^2 + 1
+\addplot[blue, ultra thick, domain=0:2.8] {(x-1)^2 + 1};
+\node[blue] at (axis cs:2.3, 3.5) {$f(x)$};
+
+% 2. Calcolo della retta passante per i punti
+% P1(0.5, 1.25) e P2(2, 2)
+% m = (2 - 1.25) / (2 - 0.5) = 0.75 / 1.5 = 0.5
+% Eq: y - 2 = 0.5(x - 2) => y = 0.5x + 1
+\addplot[green!60!black, thick, domain=0:2.5] {0.5*x + 1};
+
+% 3. I "pallini verdi" sui punti richiesti
+\addplot[only marks, mark=*, green!60!black, mark size=2.5pt] coordinates {(0.5, 1.25) (2, 2)};
+
+% 4. Linee tratteggiate di proiezione sull'asse x (opzionale, per chiarezza)
+\draw[dashed, gray!50] (axis cs:0.5, 0) -- (axis cs:0.5, 1.25);
+\draw[dashed, gray!50] (axis cs:2, 0) -- (axis cs:2, 2);
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+La retta tangente ha equazione 
+\[
+y=f(x_1) + (\mathunderline{red}{x}-x_1)\dfrac{f(x_2)-f(x_1)}{x_2-x_1}
+\]
+Mentre il termine $(1-t)x_1+tx_2$ con $\forall t \in [0,1]$ permette di prendere tutti i valori (al variare di $t$) tra $x_1$ e $x_2$. Quindi potete vederlo come uno slider che parte da $x_1$ e $x_2$. Quindi $f((1-t)x_1+tx_2)$ non è altro che un punto di $f(x)$ con un valore compreso tra $x_1$ e $x_2$. Mentre per capire cos'è $(1-t)f(x_1) + tf(x_2)$ dobbiamo fare qualche conto. Infatti proviamo a mettere $(1-t)x_1+tx_2$ nella retta secante. 
+\begin{align*}
+    f(x_1) + (\mathunderline{red}{(1-t)x_1+tx_2}-x_1)\dfrac{f(x_2)-f(x_1)}{x_2-x_1} &= f(x_1) + (x_1-tx_1+tx_2-x_1)\dfrac{f(x_2)-f(x_1)}{x_2-x_1} \\
+    &= f(x_1) + t(x_2-x_1)\dfrac{f(x_2)-f(x_1)}{x_2-x_1} \\
+    &= f(x_1) + t(f(x_2)-f(x_1)) \\
+    &=  (1-t)f(x_1) + tf(x_2)
+\end{align*}
+
+Quindi abbiamo scoperto che il termine $(1-t)f(x_1) + tf(x_2)$ non è altro che il valore che assume la retta nel punto generico $(1-t)x_1+tx_2$. Quindi una funzione convessa (come quella in figura sopra) è inferiore alla retta passante per due punti della funzione. Se una funzione è convessa dal punto di vista grafico assomiglia ad una U (come nel grafico sopra), mentre se una funzione è convessa (e quindi la funzione sarà sempre sopra alla retta secante) avrà una forma simile ad una U rovesciata.
+
+\newpage
+Il concetto di Concavità e Convessità si riferisce a tutto il dominio della funzione, ma funzioni come il seno non sono perennemente concave (o perennemente convesse), ma lo sono a tratti. Infatti se prendiamo l'intervallo $[0,\pi]$ la funzione $f(x) = \sin(x)$ è concava (ed infatti assomiglia ad una parabola triste), mentre  nell'intervallo $[\pi, 2\pi]$  è convessa (e quindi assomiglia ad una parabola felice).
+\begin{center}
+    
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    % Impostiamo il formato in radianti per facilitare i calcoli
+    trig format plots=rad,
+    xmin=0, xmax=6.5, % Un po' più di 2pi (6.28)
+    ymin=-1.5, ymax=1.5,
+    axis lines=middle,
+    axis line style={-stealth, thick},
+    xlabel={$x$}, ylabel={$y$},
+    % Imposto i tick esattamente sui valori di pi greco
+    xtick={1.5708, 3.14159, 4.71239, 6.28318},
+    xticklabels={$\frac{\pi}{2}$, $\pi$, $\frac{3\pi}{2}$, $2\pi$},
+    ytick={-1, 1},
+    samples=300,
+    clip=false
+]
+
+% 1. La funzione seno (Blu)
+\addplot[blue, ultra thick, domain=0:6.28] {sin(x)};
+
+% 2. Parabola tangente in pi/2 (Massimo)
+% Taylor grado 2: f(x) ~ 1 - 1/2(x - pi/2)^2
+% Dominio limitato per estetica
+\addplot[red, thick, domain=0:3.5] {1 - 0.5*(x - 1.5708)^2};
+
+% 3. Parabola tangente in 3pi/2 (Minimo)
+% Taylor grado 2: f(x) ~ -1 + 1/2(x - 3pi/2)^2
+\addplot[green!60!black, thick, domain=2.71:6.71] {-1 + 0.5*(x - 4.7124)^2};
+
+% 4. Pallini sui punti di tangenza
+\addplot[red, only marks, mark=*, mark size=2pt] coordinates {
+    (1.5708, 1) 
+    
+};
+\addplot[green, only marks, mark=*, mark size=2pt] coordinates {
+    (4.7124, -1)
+    
+};
+
+% Linee tratteggiate di riferimento (opzionali, per pulizia le ho omesse o fatte leggerissime)
+\draw[dotted, gray] (axis cs:1.5708, 0) -- (axis cs:1.5708, 1);
+\draw[dotted, gray] (axis cs:4.7124, 0) -- (axis cs:4.7124, -1);
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Per questo spesso si indica la concavità e convessità ad intervalli, anche perchè sono poche le funzioni completamente concave o completamente convesse.
+
+\addcontentsline{toc}{subsection}{Caratterizzazione della Convessità e Concavità }
+\begin{teorema}{Caratterizzazione della Convessità e Concavità }{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo $f:I\to \mathbb{R}$, se $f$ è derivabile  allora
+    \begin{enumerate}[label=(\roman*)]
+        \item $f \text{ è convessa su } I \iff f' \text{ è crescente su } I$
+        \item $f \text{ è concava su } I \iff f' \text{ è decrescente su } I$ 
+         \item $f \text{ è convessa su } I \iff f(x) \geq f(x_0) + f'(x_0)(x-x_0) \;\;\; \forall x \in I$
+         \item $f \text{ è concava su } I \iff f(x) \leq f(x_0) + f'(x_0)(x-x_0) \;\;\; \forall x \in I$ 
+    \end{enumerate}
+\end{teorema}
+
+Dal punto $(i)$ e $(ii)$ se ne deduce un corollario molto utile per lo studio di funzione
+\addcontentsline{toc}{subsection}{Relazione Derivata Seconda e Concavità e Convessità }
+\begin{corollario}{Relazione Derivata Seconda e Concavità e Convessità }{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo $f:I\to \mathbb{R}$, se $f$ è derivabile  allora
+    \begin{enumerate}[label=(\roman*)]
+        \item $f \text{ è convessa su } I \iff f''(x) \geq 0 \;\;\; \forall x \in I$
+        \item $f \text{ è concava su } I \iff f''(x) \leq 0 \;\;\; \forall x \in I$
+    \end{enumerate}
+\end{corollario}
+Rimanendo quindi con l'esempio del seno, se proviamo a fare la derivata seconda
+\[
+\dfrac{d^2}{dx^2}(\sin(x)) = \dfrac{d}{dx}\left(\dfrac{d}{dx}(\sin(x))\right) =  \dfrac{d}{dx}(\cos(x)) = -\sin(x)
+\]
+Quindi se proviamo a vedere quando $f''(x)\geq 0$ notiamo che
+\[
+f''(x) \geq 0 \implies -\sin(x) \geq 0 \implies \sin(x) \leq 0 \implies \pi + 2k\pi \leq x \leq 2\pi + 2k\pi \;\;\; \forall k \in \mathbb{Z}
+\]
+Di conseguenza con questo scopriamo che il seno è convesso per $x \in [\pi,2\pi]$ (più le ripetizioni),  proprio come avevamo individuato con il grafico. Chiaramente $f''\leq 0$ per $x\in [0, \pi]$, e quindi il seno è concavo in questo intervallo, come avevamo già individuato. 
+\addcontentsline{toc}{subsection}{Definizione di punti di Flesso}
+\begin{definizione}{Punti di Flesso}{}
+Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo $f:I\to \mathbb{R}$, $x_0 \in I$. Diciamo che $x_0$ è un punto di \textbf{Flesso} se $f''(x_0)=0$ e se è concava in un intordo sinitro e convessa in un intorno destro, oppure se è convessa in un intorno sinistro e concava in un intorno destro.
+\end{definizione}
+
+Quindi come abbiamo visto prima con il seno, scopriamo che $x=\pi$ è un punto di flesso, dato che prima di esso la funzione è concava, mentre dopo la funzione è convessa. Un altro esempio  è la gaussiana, ovvero la funzione $f(x)=e^{-x^2}$. Infatti se calcoliamo la derivata seconda abbiamo che
+\begin{align*}
+   \dfrac{d}{dx}\left(\dfrac{d}{dx}(e^{-x^2})\right) = \dfrac{d}{dx}\left(e^{-x^2}\cdot (-2x)\right) &= (e^{-x^2})'\cdot (-2x) + (e^{-x^2})\cdot (-2x)' \\
+   &=(e^{-x^2}\cdot (-2x))\cdot (-2x) + (e^{-x^2})\cdot (-2) \\
+   &= e^{-x^2}(4x^2-2)
+\end{align*}
+
+Vediamo quando è positiva 
+\[
+f''(x) \geq 0 \implies e^{-x^2} (4x^2-2) \geq 0
+\]
+Però $e^{-x^2}$ è sempre positiva, quindi non va a influire sul segno
+\[
+(4x^2-2) \geq 0 \implies x^2 \geq \dfrac{1}{2} \implies x\leq -\dfrac{1}{\sqrt{2}} \lor x \geq \dfrac{1}{\sqrt{2}}
+\]
+Quindi notiamo che $f(x)$ è concava per $x \in (-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$ e convessa nel resto del dominio. Di conseguenza i punti $x=\pm\frac{1}{\sqrt{2}}$ sono punti di flesso. Quindi quando $x\in(-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$ la funzione assomiglierà ad una parabola triste (quella in rosso), mentre per il restante assomiglierà ad una parabola felice (quelle in verde).  
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[
+        width=12cm, height=8cm,
+        axis lines=middle,
+        xlabel={$x$}, ylabel={$y$},
+        xmin=-2.5, xmax=2.5,
+        ymin=-0.5, ymax=1.3,
+        grid=none, 
+        clip=false
+        % Legenda rimossa completamente
+    ]
+
+    % --- 1. La Gaussiana principale ---
+    \addplot[
+        blue, ultra thick,
+        domain=-2.5:2.5,
+        samples=200,
+        smooth
+    ] {exp(-x^2)};
+
+    % --- 2. Parabola tangente in x=0 (Rossa) ---
+    \addplot[
+        red, thick,
+        domain=-1.2:1.2,
+        samples=100
+    ] {1 - x^2};
+    
+    % Mark x=0
+    \addplot[only marks, mark=*, red, mark size=2pt] coordinates {(0,1)};
+
+
+    % --- 3. Parabola tangente in x = +1.2 (Verde) ---
+    \pgfmathsetmacro{\a}{1.2} 
+    \pgfmathsetmacro{\fa}{exp(-\a*\a)} 
+    \pgfmathsetmacro{\fpa}{-2*\a*exp(-\a*\a)} 
+    \pgfmathsetmacro{\fppa}{2*exp(-\a*\a)*(2*\a*\a - 1)} 
+    
+    \addplot[
+        green!60!black, thick,
+        domain=0.3:2.7, 
+        samples=100
+    ] {\fa + \fpa*(x-\a) + 0.5*\fppa*(x-\a)^2};
+
+    % Mark x=1.2
+    \addplot[only marks, mark=*, green!60!black, mark size=2pt] coordinates {(1.2, \fa)};
+
+
+    % --- 4. Parabola tangente in x = -1.2 (Verde) ---
+    \pgfmathsetmacro{\b}{-1.2} 
+    \pgfmathsetmacro{\fb}{exp(-\b*\b)} 
+    \pgfmathsetmacro{\fpb}{-2*\b*exp(-\b*\b)} 
+    \pgfmathsetmacro{\fppb}{2*exp(-\b*\b)*(2*\b*\b - 1)} 
+    
+    \addplot[
+        green!60!black, thick,
+        domain=-2.7:-0.3, 
+        samples=100
+    ] {\fb + \fpb*(x-\b) + 0.5*\fppb*(x-\b)^2};
+
+    % Mark x=-1.2
+    \addplot[only marks, mark=*, green!60!black, mark size=2pt] coordinates {(-1.2, \fb)};
+
+
+    % --- 5. Punti di flesso (Neri) ---
+    \pgfmathsetmacro{\xinf}{1/sqrt(2)}
+    \pgfmathsetmacro{\yinf}{exp(-0.5)}
+
+    \addplot[
+        only marks,
+        mark=*,
+        black,
+        mark size=2.5pt
+    ] coordinates {(-\xinf, \yinf) (\xinf, \yinf)};
+
+    % Etichette flessi
+    \node[black, above] at (axis cs:-\xinf-0.3, \yinf) {$Flesso$};
+    \node[black, above] at (axis cs:\xinf+0.3, \yinf) {$Flesso$};
+
+    \end{axis}
+\end{tikzpicture}    
+
+\end{center}
+
+
+\newpage
+\addcontentsline{toc}{subsection}{Definizione di Asintoti}
+\begin{definizione}{Asintoti}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo $f:I\to \mathbb{R}$. $x_0$ punto di accumulazione di $I$ 
+    \begin{itemize}
+        \item Se $\displaystyle\lim_{x\to x_0^-} f(x) \in \{\pm\infty\}$ allora diciamo che $x=x_0$ è \textbf{asintoto verticale sinistro}, se invece  $\displaystyle\lim_{x\to x_0^+} f(x) \in \{\pm\infty\}$ diciamo che $x=x_0$ è \textbf{asintoto verticale destro}, mentre se $x=x_0$ è sia asintoto verticale destro che sinistro di dice \textbf{bilatero}.
+        \item Se $\displaystyle\lim_{x\to \pm \infty} f(x) = l \in \mathbb{R}$ allora diciamo che $y=l$ è \textbf{asintoto orizzontale}.
+        \item Se $\displaystyle\lim_{x\to \pm \infty} (f(x)-(ax+b)) = 0$ allora diciamo che $y=ax+b$ è \textbf{asintoto obliquo}, per qualche $a \in \mathbb{R}\setminus \{0\}$, $b \in \mathbb{R}$.
+    \end{itemize}
+\end{definizione}
+
+Per capire cosa sono dal punto di vista grafico gli asintoti. Vediamo che per $f(x)=e^{\frac{1}{x-1}}$ abbiamo un asintoto verticale destro per $x=1$. Mentre la funzione $g(x) = \frac{1}{x-2}$ ha un asintoto verticale bilatero per $x=2$. Vediamo il grafico
+
+\begin{figure}[h]
+    \centering
+    
+    % --- GRAFICO 1: e^(1/(x-1)) ---
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=6.5cm, height=4.5cm,
+                axis lines=middle,
+                xlabel={$x$}, ylabel={$y$},
+                xmin=-2, xmax=4,
+                ymin=-1, ymax=6,
+                samples=200,
+                grid=none,
+                clip=true,
+                % FONDAMENTALE: Impedisce l'errore di overflow limitando il calcolo
+                restrict y to domain=-5:20 
+            ]
+            
+            % Asintoto verticale x=1 in ROSSO
+            \draw[red, thick,dashed] (axis cs:1, -1) -- (axis cs:1, 6);
+
+            % Ramo Sinistro (x < 1) -> tende a 0
+            \addplot[blue, thick, domain=-2:0.95] {exp(1/(x-1))};
+
+            % Ramo Destro (x > 1) -> tende a infinito
+            \addplot[blue, thick, domain=1.01:4] {exp(1/(x-1))};
+
+            % Pallino vuoto in (1,0)
+            \addplot[only marks, mark=o, thick, mark size=2.5pt, black, fill=white] coordinates {(1,0)};
+            
+            % Etichetta funzione
+            \node[blue, anchor=west] at (axis cs:1.9, 3) {$f(x)$};
+            \node[red, anchor=west] at (axis cs:1.1, 1.3) {$x=1$};
+
+            \end{axis}
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    % --- GRAFICO 2: 1/(x-2) ---
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=6.5cm, height=5cm,
+                axis lines=middle,
+                xlabel={$x$}, ylabel={$y$},
+                xmin=-1, xmax=5,
+                ymin=-5, ymax=5,
+                samples=200,
+                grid=none,
+                clip=true,
+                restrict y to domain=-10:10
+            ]
+            
+            % Asintoto verticale x=2 in ROSSO tratteggiato
+            \draw[red, thick, dashed] (axis cs:2, -10) -- (axis cs:2, 10);
+
+            % Ramo Sinistro (x < 2)
+            \addplot[blue, thick, domain=-1:1.9] {1/(x-2)};
+
+            % Ramo Destro (x > 2)
+            \addplot[blue, thick, domain=2.1:5] {1/(x-2)};
+            
+            % Etichetta funzione
+            \node[blue] at (axis cs:3.2, 2) {$g(x)$};
+            \node[red, anchor=west] at (axis cs:2.2, -2.2) {$x=2$};
+
+            \end{axis}
+        \end{tikzpicture}
+    \end{minipage}
+
+\end{figure}
+
+Invece notiamo che la funzione $f(x)=|\arctan(x)|$ ha un asintoto orizzontale per $y=\frac{\pi}{2}$
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=12cm,        % Diagramma allargato
+            height=5cm,
+            axis lines=middle,
+            xlabel={$x$}, ylabel={$y$},
+            xmin=-10, xmax=10, % Dominio x esteso
+            ymin=-0.5, ymax=2,
+            samples=300,       % Campionamento alto per rendere bene la punta in 0
+            grid=none,
+            clip=false,
+            trig format plots=rad % Calcoli in radianti
+        ]
+        
+        % 1. Asintoto ORIZZONTALE y = pi/2 (Rosso tratteggiato)
+        \addplot[red, thick, dashed, domain=-10:10] {pi/2};
+        
+        % Etichetta asintoto
+        \node[red, anchor=south east] at (axis cs:10, 1.57) {$y=\frac{\pi}{2}$};
+
+        % 2. Funzione f(x) = |arctan(x)|
+        % abs() è la funzione valore assoluto
+        \addplot[blue, ultra thick, domain=-10:10] {abs(atan(x))};
+        
+        % Etichetta funzione
+        \node[blue] at (axis cs:4, 0.8) {$f(x)$};
+
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+
+
+In fine, si può osservare che la funzione $f(x)=\sqrt{x^2+1}$ ha due asintoti obliqui: $y=x$ per $x\to +\infty$, e $y=-x$ per $x\to -\infty$
+
+
+
+\begin{center}
+    
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=10cm, height=5cm,
+            axis lines=middle,
+            xlabel={$x$}, ylabel={$y$},
+            xmin=-5, xmax=5,
+            ymin=-0.5, ymax=5.5,
+            samples=200,
+            grid=none,
+            clip=false,
+            % Opzionale: assicura che x e y abbiano la stessa scala visiva
+            % per far sembrare gli asintoti davvero a 45 gradi
+            axis equal image 
+        ]
+        
+        % 1. Asintoto Obliquo Destro y=x (Rosso tratteggiato)
+        \addplot[red, thick, dashed, domain=-1:5] {x};
+        \node[red, anchor=south east] at (axis cs:4.5, 4.5) {$y=x$};
+
+        % 2. Asintoto Obliquo Sinistro y=-x (Rosso tratteggiato)
+        \addplot[red, thick, dashed, domain=-5:1] {-x};
+        \node[red, anchor=south west] at (axis cs:-4.5, 4.5) {$y=-x$};
+
+        % 3. Funzione f(x) = sqrt(x^2 + 1)
+        \addplot[blue, ultra thick, domain=-5:5] {sqrt(x^2+1)};
+        
+        % Etichetta funzione (posizionata al vertice per chiarezza)
+        \node[blue, anchor=south] at (axis cs:2.2, 3) {$f(x)$};
+
+        % (Opzionale) Evidenziare il minimo in (0,1)
+        %\addplot[only marks, mark=*, mark size=1.5pt] coordinates {(0,1)};
+
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\newpage
+
+\addcontentsline{toc}{subsection}{Definizione di Polinomio di Taylor}
+\begin{definizione}{Polinomio di Taylor}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo $f:I\to \mathbb{R}$. $x_0\in I$, se $f$ è derivabile n volte allora si dice \textbf{polinomio di Taylor di grado n centrato in $x_0$} (e si indica con $T_{n,x_0}$) il seguente polinomio
+    \[
+        T_{n,x_0}[f](x) = \sum_{k=0}^{n} \dfrac{f^{(k)}(x_0)}{k!}(x-x_0)^k    
+    \] 
+\end{definizione}
+Vediamo un paio di esempi. Prendiamo $f(x) = e^x$ con $x_0=0$. Proviamo a calcolare le prime derivate per vedere se esiste un qualche pattern
+\[
+\dfrac{d^0}{dx^0}(f(x)) = e^x \implies e^0 = 1
+\]\[
+\dfrac{d^1}{dx^1}(f(x)) = e^x \implies e^0 = 1
+\]\[
+\dfrac{d^2}{dx^2}(f(x)) = e^x \implies e^0 = 1
+\]\[
+\dfrac{d^3}{dx^3}(f(x)) = e^x \implies e^0 = 1
+\]
+Notiamo quindi che la derivata di $e^x$ è sempre $1$, quindi scopriamo che il polinomio di taylor per $e^x$ centrato in $x=0$ di grado n è
+\[
+T_{n,0}[e^x](x) = \sum_{k=0}^{n} \dfrac{x^k}{k!} 
+\]
+Quindi facendo qualche esempio abbiamo che
+\[
+\begin{array}{c@{\qquad}c}
+    T_{0,0}[e^x](x) = 1  & T_{2,0}[e^x](x) = 1 + x + \frac{1}{2}x^2 \\
+ T_{1,0}[e^x](x) = 1 + x & T_{3,0}[e^x](x) = 1 + x + \frac{1}{2}x^2+ \frac{1}{6}x^3 
+\end{array}
+\]
+E così via. Vediamo altri sviluppi di Taylor interessanti. Vediamo $f(x)=\sin(x)$ in $x=0$
+\[
+\renewcommand{\arraystretch}{2.5} % <--- QUESTO è il comando magico che distanzia le righe
+\begin{array}{l @{\hspace{1cm}} l} 
+\dfrac{d^0}{dx^0}(f(0)) = \sin(0) = 0  & \dfrac{d^4}{dx^4}(f(0)) = \sin(0) = 0 \\
+\dfrac{d^1}{dx^1}(f(0)) = \cos(0) = 1 & \dfrac{d^5}{dx^5}(f(0)) = \cos(0) = 1 \\
+\dfrac{d^2}{dx^2}(f(0)) = -\sin(0) = 0 & \dfrac{d^6}{dx^6}(f(0)) = -\sin(0) = 0  \\
+\dfrac{d^3}{dx^3}(f(0)) = -\cos(0) = -1 & \dfrac{d^7}{dx^7}(f(0)) = -\cos(0) = -1\\
+\end{array}
+\]
+Notiamo che il seno segue un andamento "ciclico", infatti ad ogni derivata pari vale 0, e quindi nel polinomio di taylor non ci sarà. E poi quelle dispari hanno un segno alterno. Quindi il polinomio di taylor sarà
+\[
+T_{2n+1,0}[\sin(x)](x) = \sum_{k=0}^{n} (-1)^k\dfrac{x^{2k+1}}{(2k+1)!} 
+\]
+\addcontentsline{toc}{subsection}{Proprietà del Polinomio di Taylor}
+\begin{teorema}{Proprietà del Polinomio di Taylor}{}
+     Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo $f,g:I\to \mathbb{R}$, $x_0\in I$, se $f$ e $g$ sono derivabili n volte  allora 
+     \begin{enumerate}[label=(\roman*)]
+        \item $T_{n,x_0}[\alpha f + \beta g](x) = \alpha T_{n,x_0}[f](x) + \beta T_{n,x_0}[g](x) \;\;\; \forall \alpha, \beta \in \mathbb{R}$
+        \item $T_{n-1,x_0}[f'](x) = (T_{n,x_0}[f](x))'$
+        \item $\dfrac{d^k}{dx^k}\left(T_{k,x_0}[f](x)\right) =  f^{(k)}(x_0) \;\;\; \forall k \leq n$
+     \end{enumerate}
+\end{teorema}
+\begin{proof}
+    $(i)$ Usando la definizione di polinomio di taylor e la linearlità di derivate e sommatorie abbiamo 
+    \begin{align*}
+        T_{n,x_0}[\alpha f + \beta g](x) &=  \sum_{k=0}^{n} \dfrac{(\alpha f(x_0) + \beta g(x_0))^{(k)}}{k!}(x-x_0)^k\\
+        &=  \sum_{k=0}^{n} \dfrac{\alpha f^{(k)}(x_0) + \beta g^{(k)}(x_0)}{k!}(x-x_0)^k  \\
+          &=  \sum_{k=0}^{n} \dfrac{\alpha f^{(k)}(x_0)}{(x_0)}{k!}(x-x_0)^k + \sum_{k=0}^{n} \dfrac{\beta g^{(k)}(x_0)}{k!}(x-x_0)^k  \\ 
+          &= \alpha\sum_{k=0}^{n} \dfrac{ f^{(k)}(x_0)}{(x_0)}{k!}(x-x_0)^k + \beta \sum_{k=0}^{n} \dfrac{g^{(k)}(x_0)}{k!}(x-x_0)^k  \\ 
+    &= \alpha T_{n,x_0}[f](x) + \beta T_{n,x_0}[g](x)
+        \end{align*}
+
+    $(ii)$ Proviamo a calcolare l'espressione alla destra 
+    \begin{align*} 
+        (T_{n,x_0}[f](x))' &= \left(\sum_{k=0}^{n} \dfrac{f^{(k)}(x_0)}{k!}(x-x_0)^k \right)'  \\
+    &= \left(f(x_0)+f'(x_0)(x-x_0) + \dfrac{f''(x_0)}{2!} (x-x_0)^2  + ... +  \dfrac{f^{(n)}(x_0)}{n!} (x-x_0)^n   \right)'\\
+    &=     \hspace{0.7cm}0 \hspace{0.21cm}+\hspace{0.21cm}f'(x_0)\hspace{0.475cm} + \hspace{0.475cm}\dfrac{f''(x_0)}{2!} (x-x_0)^1 \cdot 2  + ... +  \dfrac{f^{(n)}(x_0)}{n!} (x-x_0)^{n-1} \cdot n   \\
+    &=     f'(x_0) + \dfrac{f''(x_0)}{1!} (x-x_0)^1   + ... +  \dfrac{f^{(n)}(x_0)}{(n-1)!} (x-x_0)^{n-1}  
+\end{align*}
+    Se ora proviamo a sostituire $g(x) = f'(x)$ avremmo che
+    \[
+    (T_{n,x_0}[f](x))' = g(x_0)+ \dfrac{g'(x_0)}{1!} (x-x_0)^1   + ... +  \dfrac{g^{(n-1)}(x_0)}{(n-1)!} (x-x_0)^{n-1} 
+    \]
+    Ora si può notare che questo è il polinomio di Taylor di $g(x)$ di grado $n-1$ in $x_0$, quindi 
+    \[
+    (T_{n,x_0}[f](x))' = T_{n-1,x_0}[g](x)
+    \]
+    Ma dato che $g(x)=f'(x)$ abbiamo che
+    \[
+    (T_{n,x_0}[f](x))' = T_{n-1,x_0}[f'](x)
+    \]
+
+    \newpage 
+    $(iii)$ Dimostriamo questo punto con l'induzione. Quindi controlliamo per $k=0$, ricordandoci che la derivata zeresima è la funzione stessa.
+    \begin{align*}
+        \dfrac{d^0}{dx^0}\left(T_{0,x_0}[f](x)\right) &=  f^{(0)}(x_0) \\
+        T_{0,x_0}[f](x)&=f(x_0) \\
+        \dfrac{f^{(0)}(x_0)}{0!}(x-x_0)^0 &=f(x_0) \\
+f(x_0)&=f(x_0)
+    \end{align*}
+    Quindi è verificato il caso base. Ora diamo per vera la proposiazione $P(k)$, cioè
+    \[
+    P(k) : \dfrac{d^k}{dx^k}\left(T_{k,x_0}[f](x)\right) =  f^{(k)}(x_0)
+    \]
+    Controlliamo se è vera $P(k+1)$
+    \[
+        \dfrac{d^{k+1}}{dx^{k+1}}\left(T_{k+1,x_0}[f](x)\right) =  f^{(k+1)}(x_0) 
+    \] \[    \dfrac{d^{k+1}}{dx^{k+1}}\left(T_{k,x_0}[f](x) + \dfrac{f^{(k+1)}(x_0)}{(k+1)!}(x-x_0)^{k+1}\right) =  f^{(k+1)}(x_0) 
+     \] \[    \dfrac{d^{k+1}}{dx^{k+1}}\left(T_{k,x_0}[f](x)\right) + \dfrac{d^{k+1}}{dx^{k+1}}\left(\dfrac{f^{(k+1)}(x_0)}{(k+1)!}(x-x_0)^{k+1}\right) = f^{(k+1)}(x_0)
+     \] \[    \dfrac{d}{dx}\left(\dfrac{d^{k}}{dx^{k}}\left(T_{k,x_0}[f](x)\right)\right)  +\dfrac{f^{(k+1)}(x_0) }{(k+1)!}\cdot\dfrac{d^{k+1}}{dx^{k+1}}\left((x-x_0)^{k+1}\right) =  f^{(k+1)}(x_0)
+    \]
+    Notiamo che $\dfrac{d^{k}}{dx^{k}}\left(T_{k,x_0}[f](x)\right)=f^{(k)}(x_0) \in \mathbb{R}$ dato che $P(k)$ è vero. Poi notiamo che 
+    \[
+    \dfrac{d}{dx}\left((x-x_0)^{k+1}\right)  = (k+1)\cdot (x-x_0)^{k}
+    \]
+    \[
+    \dfrac{d^2}{dx^2}\left((x-x_0)^{k+1}\right)  = \dfrac{d}{dx}\left((k+1)\cdot (x-x_0)^{k}\right) = (k+1)\cdot k \cdot (x-x_0)^{k-1}
+    \]
+    \[
+    \dfrac{d^{n+1}}{dx^{n+1}}\left((x-x_0)^{k+1}\right) = (k+1)\cdot k \cdot (k-1)\cdot ... \cdot 2\cdot 1 \cdot (x-x_0)^0 = (k+1)!
+    \]
+    Quindi 
+    \[    \dfrac{d}{dx}\left(\mathunderline{red}{\dfrac{d^{k}}{dx^{k}}\left(T_{k,x_0}[f](x)\right)}\right)  +\dfrac{f^{(k+1)}(x_0) }{(k+1)!}\cdot\mathunderline{blue}{\dfrac{d^{k+1}}{dx^{k+1}}\left((x-x_0)^{k+1}\right)} =  f^{(k+1)}(x_0)
+    \]
+    \[    \dfrac{d}{dx}\left(\mathunderline{red}{f^{(k)}(x_0)}\right)  +\dfrac{f^{(k+1)}(x_0) }{(k+1)!}\cdot \mathunderline{blue}{(k+1)!} =  f^{(k+1)}(x_0) 
+    \]
+    \[
+    0 + f^{(k+1)}(x_0) = f^{(k+1)}(x_0)
+    \]
+    \[
+    f^{(k+1)}(x_0) = f^{(k+1)}(x_0)
+    \]
+\end{proof}
+
+\addcontentsline{toc}{subsection}{Formula di Taylor con Resto di Peano}
+\begin{teorema}{Formula di Taylor con Resto di Peano}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo $f:I\to \mathbb{R}$, $x_0\in I$, se $f$ è derivabile n-1 volte su $I$ e derivabile n volte in $x_0$ allora 
+    \begin{enumerate}[label=(\roman*)]
+        \item $\displaystyle f(x)= T_{n,x_0}[f](x) + o(|x-x_0|^n)$ per $x\to x_0$
+        \item $T_{n,x_0}[f](x)$ è l'unico polinomio di grado minore o uguale a $n$ che soddisfa $(i)$.
+    \end{enumerate} 
+\end{teorema}
+
+\begin{proof}
+    Segue solo la dimostrazione di $(i)$.
+
+    Procediamo per induzione, controlliamo per $n=0$
+   \begin{align*}
+    f(x)&= T_{0,x_0}[f](x) + o(|x-x_0|^0) \text{ per  } x\to x_0\\
+    f(x)&= f(x_0) + o(1)  \text{ per  } x\to x_0
+   \end{align*}
+   Se portiamo al limite notiamo che
+   \begin{align*}
+    \lim_{x\to x_0} f(x) &= \lim_{x\to x_0} \left(f(x_0) + o(1)\right)\\
+    \lim_{x\to x_0} f(x) &= f(x_0) + 0\\
+    \lim_{x\to x_0} f(x) &= f(x_0)
+   \end{align*}
+   Ma questo vuol dire che $f$ è continua in $x_0$, ma dato che è derivabile per ipotesi, allora è anche continua. Quindi il passo baso è verificato, ora data la proposizione $P(n)$ definita come
+   \[
+   P(n) : f(x)= T_{n,x_0}[f](x) + o(|x-x_0|^n) \text{ per  } x\to x_0 
+   \]
+   Da cui deduciamo per la definizione di o-piccolo
+   \[
+   f(x)= T_{n,x_0}[f](x) + o(|x-x_0|^n) \text{ per  } x\to x_0  \iff  \lim_{x\to x_0} \dfrac{f(x)-T_{n,x_0}[f](x)}{|x-x_0|^n} = 0
+   \]
+   Ora dobbiamo controllare che $P(n+1)$ sia vera, quindi 
+   \[
+   f(x)= T_{n+1,x_0}[f](x) + o(|x-x_0|^{n+1}) \text{ per  } x\to x_0  \iff  \lim_{x\to x_0} \dfrac{f(x)-T_{n+1,x_0}[f](x)}{|x-x_0|^{n+1}} = 0
+   \]
+   Quindi basta che controlliamo se il limite tende a 0. Si può notare che il limite in questione soddisfa i requisiti del teorema di  De l'Hôpital, quindi vediamo se esiste il limite del rapporto delle derivate
+   \[
+   \lim_{x\to x_0} \dfrac{(f(x)-T_{n+1,x_0}[f](x))'}{(|x-x_0|^{n+1})'} = \lim_{x\to x_0} \dfrac{f'(x)-(T_{n+1,x_0}[f](x))'}{(n+1)|x-x_0|^{n}} =\lim_{x\to x_0} \dfrac{f'(x)-(T_{n,x_0}[f'](x))}{(n+1)|x-x_0|^{n}}
+   \]
+   Ma dato che $P(n)$ è vera scopriamo che
+   \[
+   \lim_{x\to x_0} \dfrac{f'(x)-(T_{n,x_0}[f'](x))}{(n+1)|x-x_0|^{n}} = \dfrac{1}{n+1}\cdot \lim_{x\to x_0} \dfrac{f'(x)-(T_{n,x_0}[f'](x))}{|x-x_0|^{n}} = \dfrac{1}{n+1}\cdot 0 = 0
+   \]
+   Quindi il limite tende a 0, come volevamo, e quindi anche il passo induttivo è verificato e quindi è verificato il teorema.
+\end{proof}
+\newpage
+Segue una tabella con i principali sviluppi di Taylor 
+
+\textbf{N.B.} tutti gli sviluppi sono per $x\to 0$
+
+\addcontentsline{toc}{subsection}{Tabella principali Sviluppi di Taylor}
+\begin{table}[!h]
+    \centering
+\begin{tabular}{c|c|c}
+Funzione       & Formula di Taylor     & Espansione ai primi termini \\ \hline
+$e^x$          & $\displaystyle\sum_{k=0}^{n}\dfrac{x^k}{k!} + o(x^n)$  &   $1+x+\dfrac{x^2}{2} + \dfrac{x^3}{6} + o(x^3) $                          \\
+$\log(1+x)$    & $\displaystyle\sum_{k=1}^{n}(-1)^{k+1}\dfrac{x^k}{k} + o((x^n))$ &            $x-\dfrac{x^2}{2} + \dfrac{x^3}{3} -\dfrac{x^4}{4} + o(x^4)$                  \\
+$(1+x)^\alpha$ & $\displaystyle\sum_{k=1}^{n}\binom{\alpha}{k}x^k + o(x^n)$             &     $1+\alpha x + \dfrac{\alpha(\alpha-1)}{2}x^2 + o(x^3)$                       \\
+$\sin(x)$      & $\displaystyle\sum_{k=0}^{n}(-1)^{k}\dfrac{x^{2k+1}}{(2k+1)!} + o(x^{2n+1})$            &   $x - \dfrac{x^3}{6} +  \dfrac{x^5}{5!} - \dfrac{x^7}{7!} + o(x^7) $                        \\
+$\cos(x)$      & $\displaystyle\sum_{k=0}^{n}(-1)^{k}\dfrac{x^{2k}}{(2k)!} + o(x^{2n})$                 &  $1- \dfrac{x^2}{2} +  \dfrac{x^4}{24} - \dfrac{x^6}{6!} + o(x^6)$                            \\
+$\sinh(x)$     & $\displaystyle\sum_{k=0}^{n}\dfrac{x^{2k+1}}{(2k+1)!} + o(x^{2n+1})$           &        $x + \dfrac{x^3}{6} +  \dfrac{x^5}{5!} + \dfrac{x^7}{7!} + o(x^7) $                     \\
+$\cosh(x)$     &  $\displaystyle\sum_{k=0}^{n}\dfrac{x^{2k}}{(2k)!} + o(x^{2n})$                       &   $1+ \dfrac{x^2}{2} +  \dfrac{x^4}{24} + \dfrac{x^6}{6!} + o(x^6)$                          \\
+$\arctan(x)$   &   $\displaystyle\sum_{k=0}^{n}(-1)^{k}\dfrac{x^{2k+1}}{2k+1} + o(x^{2n+1})$                     &        $x - \dfrac{x^3}{3} +  \dfrac{x^5}{5} - \dfrac{x^7}{7} + o(x^7) $                   
+\end{tabular}
+\end{table}
+\textbf{N.B.} il simbolo $\binom{\alpha}{n}$ è l'estensione nei reali del binomio di Newton, e funziona come il binomio classico ma $\alpha \in \mathbb{R}^+$ e  quindi sarà
+\[
+\binom{\alpha}{n}  = \dfrac{\alpha(\alpha-1)(\alpha-2) \cdot ... \cdot (\alpha - n +1 ) (\alpha - n)}{n!}
+\]
+Chiaramente $\alpha \leq n$, altrimenti non ha senso.
+
+Taylor ha una applicazione nei limiti, infatti proviamo a rifare un limite che abbiamo dovuto risolvere con  De l'Hôpital (che lo abbiamo dovuto applicare 2 volte), ora proviamo a risolverlo con Taylor, e vediamo che fa risparmiare molto tempo.
+\begin{esercizio}{}{}
+    Calcolare il seguente limite
+    \[
+    \lim_{x\to 0} \dfrac{\log(1+x) - x}{x^2}
+    \]
+\end{esercizio}
+Infatti abbiamo appena scoperto con Taylor che 
+\[
+\log(1+x) = x-\dfrac{x^2}{2} + \dfrac{x^3}{3} -\dfrac{x^4}{4} + o(x^4)
+\]
+Noi però ci possiamo fermare al termine $x^2$ , di conseguenza il limite diventa 
+\[
+\lim_{x\to 0} \dfrac{\log(1+x) - x}{x^2} = \lim_{x\to 0} \dfrac{x-\dfrac{x^2}{2}+ o(x^2) - x}{x^2} = \lim_{x\to 0} \dfrac{-\dfrac{x^2}{2}}{x^2} +\dfrac{ o(x^2) }{x^2}  = -\dfrac{1}{2} + 0 = -\dfrac{1}{2}
 \]
 
 \end{document}
