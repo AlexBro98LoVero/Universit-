@@ -6,6 +6,7 @@
 \usepackage{amsthm} 
 \usepackage{amssymb}
 \usepackage{cancel}
+\usepackage{polynom}
 
 \usepackage{enumitem}
 \usepackage[most, theorems]{tcolorbox}
@@ -23,7 +24,7 @@
   }%
 }
 \usetikzlibrary{arrows.meta}
-
+\usetikzlibrary{matrix, positioning}
 
 \newtcbtheorem{teorema}{Teorema}{
   colback=blue!5!white,
@@ -4979,6 +4980,54 @@ E quindi per condizione necessaria sappiamo che con $\alpha = e$ la serie diverg
         Difatti abbiamo ritrovato lo stesso risultato trovato precedentemente.
         \newpage
 
+    \begin{esercizio}{}{}
+    Definire il carattere della seguente serie al variare di $\alpha \in \mathbb{R}^+$
+    \[
+        \sum_{n=3}^{+\infty} \dfrac{1}{n\log_{2}(n)\log^\alpha_{2}(\log_2(n))}
+    \]
+\end{esercizio}
+Applichiamo il criterio di condensazione
+\[
+    \sum_{n=3}^{+\infty} \dfrac{1}{n\log_{2}(n)\log^\alpha_{2}(\log_2(n))} \implies \sum_{n=3}^{+\infty} \dfrac{2^n}{2^n\log_{2}(2^n)\log^\alpha_{2}(\log_2(2^n))} = \sum_{n=3}^{+\infty} \dfrac{1}{n\log^\alpha_{2}(n)}
+    \]
+Ora possiamo riapplicare il criterio
+\[
+\sum_{n=3}^{+\infty} \dfrac{1}{n\log^\alpha_{2}(n)} \implies \sum_{n=3}^{+\infty} \dfrac{2^n}{2^n\log^\alpha_{2}(2^n)} = \sum_{n=3}^{+\infty} \dfrac{1}{n^\alpha} \implies \begin{cases}
+    \text{Convergente} & \alpha > 1 \\
+    \text{Divergente} & \alpha \leq 1 
+\end{cases}
+\]
+\begin{esercizio}{}{}
+    Definire il carattere della seguente serie al variare di $p,q \in \mathbb{R}^+$
+    \[
+        \sum_{n=2}^{+\infty} \dfrac{1}{n^p\log^q_{2}(n)}
+    \]
+\end{esercizio}
+Applichiamo il criterio di condensazione
+\[
+\sum_{n=2}^{+\infty} \dfrac{1}{n^p\log^q_{2}(n)} \implies \sum_{n=2}^{+\infty} \dfrac{2^n}{(2^n)^p\log^q_{2}(2^n)} = \sum_{n=2}^{+\infty} \dfrac{1}{2^{(p-1)n}(n\log_{2}(2))^q} = \sum_{n=2}^{+\infty} \dfrac{1}{2^{(p-1)n}n^q}
+\]
+A questa nuova serie applichiamo il teorema del rapporto 
+\[
+\lim_{n\to+\infty} \dfrac{2^{(p-1)n}n^q}{2^{(p-1)(n+1)}(n+1)^q} = \lim_{n\to+\infty} \dfrac{1}{2^{p-1}} \cdot \dfrac{n^q}{(n+1)^q} = \dfrac{1}{2^{p-1}} 
+\]
+Quindi se 
+\[
+\dfrac{1}{2^{p-1}} > 1 \implies 2^{p-1} < 1 \implies p-1 < 0  \implies p< 1 \implies \text{ Divergente}
+\]
+\[
+\dfrac{1}{2^{p-1}} < 1 \implies 2^{p-1} > 1 \implies p-1 > 0  \implies p> 1 \implies \text{ Convergente}
+\]
+Ci manca da studiare il caso $p=1$, quindi possiamo riapplicare il criterio di condensazione
+\[
+\sum_{n=2}^{+\infty} \dfrac{1}{n\log^q_{2}(n)} \implies \sum_{n=2}^{+\infty} \dfrac{2^n}{2^n\log^q_{2}(2^n)} = \sum_{n=2}^{+\infty} \dfrac{1}{n^q} \implies \begin{cases}
+    \text{Convergente} & q > 1 \\
+    \text{Divergente} & q \leq 1 
+\end{cases}
+\]
+
+
+\newpage
 \addcontentsline{toc}{subsection}{Definizione Serie a Segno Alterno}
         \begin{definizione}{Serie a Segno Alterno}{}
             Una serie a \textbf{segno alterno} è detta una qualsiasi serie esprimibile come
@@ -5003,12 +5052,10 @@ E quindi per condizione necessaria sappiamo che con $\alpha = e$ la serie diverg
             è convergente.
         \end{teorema}
 
-        \begin{esempio}{}{}
             Studiamo il caso
             \[
             \sum_{n=1}^{+\infty} \frac{(-1)^n}{n^\alpha}
             \]
-        \end{esempio}
         Ora per il criterio con il valore assoluto sappiamo Che
         \[
             \sum_{n=1}^{+\infty} \left|\frac{(-1)^n}{n^\alpha}\right| = \sum_{n=1}^{+\infty} \frac{1}{n^\alpha}
@@ -7190,8 +7237,8 @@ Ora facciamo qualche esercizio sui teoremi delle derivate visti finora
 
 Iniziamo definendo $h(x) = f(x)-g(x)$, che quindi $h \in C^0([0,+\infty))$ e derivabile in $(0, +\infty)$. L'idea sarebbe di applicare il teorema di Lagrange, ma l'intervallo definito è illimitato, quindi dobbiamo definire $M >0$ e usare l'intervallo $[0,M]$.  Quindi applichiamo il teorema di Lagrange, e scopriamo che $\exists c \in (0,M)$ tale che
 \begin{align*}
-    h'(c) &= \dfrac{\big[f(M)-g(M)\big] - \big[f(0)-g(0)\big]}{M-0} \\
-    f'(c) + g'(c) &=  \dfrac{\big[f(M)-g(M)\big] - \big[f(0)-g(0)\big]}{M} 
+    h'(c) &= \dfrac{h(M) - h(0)}{M-0} \\
+    f'(c) - g'(c) &=  \dfrac{\big[f(M)-g(M)\big] - \big[f(0)-g(0)\big]}{M} 
 \end{align*}
 Riarrangiando i termini scopriamo che
 \[
@@ -7199,7 +7246,7 @@ f(M)-g(M) =  \left(f'(c) + g'(c)\right)M + \left(f(0)-g(0)\right)
 \]
 Dalle ipotesi sappiamo che $f'(x) \geq g'(x)$ per ogni $x>0$, ma dato che $c \in (0, M)$ possiamo dire anche che $f'(c) \geq g'(c)$ da cui $f'(c) - g'(c) \geq 0$. Poi sappiamo anche che $f(0)\geq g(0)$ da cui $f(0)- g(0)\geq 0$, e dato anche che $M>0$ possiamo dedurre che
 \[
-f(M)-g(M) =  \left(f'(c) + g'(c)\right)M + \left(f(0)-g(0)\right) \geq 0
+f(M)-g(M) =  \left(f'(c) - g'(c)\right)M + \left(f(0)-g(0)\right) \geq 0
 \]
 \[
 f(M)-g(M)  \geq 0
@@ -8452,4 +8499,1841 @@ Noi però ci possiamo fermare al termine $x^2$ , di conseguenza il limite divent
 \lim_{x\to 0} \dfrac{\log(1+x) - x}{x^2} = \lim_{x\to 0} \dfrac{x-\dfrac{x^2}{2}+ o(x^2) - x}{x^2} = \lim_{x\to 0} \dfrac{-\dfrac{x^2}{2}}{x^2} +\dfrac{ o(x^2) }{x^2}  = -\dfrac{1}{2} + 0 = -\dfrac{1}{2}
 \]
 
+
+
+
+
+
+
+\section{Integrabilità}
+
+\begin{definizione}{Partizione}{}
+    Sia $a,b \in \mathbb{R}$, $a<b$, si dice una \textbf{Partizione di} $[a,b]$ un insieme della forma
+    \[
+    P = \{x_0, x_1,x_2, ..., x_{n-1}, x_n\}
+    \]
+    per un qualche $n \in \mathbb{N}$ tale che
+    \[
+    \begin{array}{c@{\qquad}@{\qquad}c@{\qquad}@{\qquad}c}
+        x_0 = a & x_{i-1} < x_{i}\;\;\; \forall i = 1,2,...,n & x_n = b
+    \end{array}
+    \]
+    Poi si definisce \textbf{Ampiezza} della partizione $P$ la quantità:
+    \[
+    \text{amp}(P) = \max \{x_i-x_{i-1} : i = 1,2,...,n\}
+    \]
+\end{definizione}
+Per esempio se prendiamo l'insieme $[1,5]$, una possibile partizione è 
+\[
+P_1 = \{1,2,3,4,5\}
+\]
+E la sua ampiezza è amp$(P) = 1$, ma un altra partizione possibile era
+\[
+P_2 = \{1,0.1,0.2,0.3, 5\}
+\]
+Ora però il concetti di partizione ci serve per capire gli integrali, ma facciamo un passo alla volta. Supponiamo che data una funzione $y=f(x)$, io voglia calcolare l'area tra il grafico della funzione, l'asse x e due rette $x=a$, $x=b$.
+\begin{figure}[h]
+    \centering
+    
+    % Definizione della funzione
+    \def\func(#1){(0.4*((2*(#1))/3)^3 - 2.5*((2*(#1))/3)^2 + 4*((2*(#1))/3) + 2)}
+
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=8cm, height=5cm,
+            axis lines=middle,
+            xlabel={$x$}, ylabel={$y$},
+            xmin=-0.5, xmax=7,
+            ymin=-0.5, ymax=5,
+            % Nasconde i numeri sull'asse Y
+            ytick=\empty,
+            % Imposta i tick sull'asse X solo dove serve e sostituisce i numeri con lettere
+            xtick={1,6},
+            xticklabels={$a$, $b$},
+            samples=200,
+            grid=none,
+            clip=false
+        ]
+
+        % 1. RIEMPIMENTO AREA (Rosso chiaro)
+        \addplot [
+            draw=none, 
+            fill=green!30, 
+            domain=1:6
+        ] {\func(x)} \closedcycle;
+
+        % 2. LINEE VERTICALI TRATTEGGIATE (su a e b)
+        \draw[dashed, thick] (axis cs:1,0) -- (axis cs:1,{\func(1)});
+        \draw[dashed, thick] (axis cs:6,0) -- (axis cs:6,{\func(6)});
+
+        % 3. FUNZIONE (Nero, spesso)
+        \addplot[black, thick, domain=-0.2:6.8] {\func(x)};
+        
+        % 4. ETICHETTA y=f(x) (In alto a destra)
+        \node[right] at (axis cs:4.5, 4.5) {$y=f(x)$};
+
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+Un modo che possiamo usare per calcolare l'area è di \textbf{approssimare}, quindi possiamo partizionare l'asse x, e formare dei rettangoli nella maniera seguente
+
+\begin{figure}[h]
+    \centering
+    
+    % Definizione della funzione
+    \def\func(#1){(0.4*((2*(#1))/3)^3 - 2.5*((2*(#1))/3)^2 + 4*((2*(#1))/3) + 2)}
+
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=8cm, height=5cm,
+            axis lines=middle,
+            xlabel={$x$}, ylabel={$y$},
+            xmin=-0.5, xmax=7,
+            ymin=-0.5, ymax=5,
+            % Nasconde i numeri sull'asse Y
+            ytick=\empty,
+            % Definiamo i tick per ogni intervallo unitario da 1 a 6
+            xtick={1,2,3,4,5,6},
+            % Etichette generiche per mantenere lo stile "senza numeri"
+            xticklabels={$a$, $x_1$, $x_2$, $x_3$, $x_4$, $b$},
+            samples=200,
+            grid=none,
+            clip=false
+        ]
+
+        % --- RETTANGOLI (Somme sinistre) ---
+        % Intervallo [1,2], altezza f(1)
+        \draw[fill=green!30, draw=green] (axis cs:1,0) rectangle (axis cs:2, {\func(1)});
+        
+        % Intervallo [2,3], altezza f(2)
+        \draw[fill=green!30, draw=green] (axis cs:2,0) rectangle (axis cs:3, {\func(2)});
+        
+        % Intervallo [3,4], altezza f(3)
+        \draw[fill=green!30, draw=green] (axis cs:3,0) rectangle (axis cs:4, {\func(3)});
+        
+        % Intervallo [4,5], altezza f(4)
+        \draw[fill=green!30, draw=green] (axis cs:4,0) rectangle (axis cs:5, {\func(4)});
+        
+        % Intervallo [5,6], altezza f(5)
+        \draw[fill=green!30, draw=green] (axis cs:5,0) rectangle (axis cs:6, {\func(5)});
+
+        % --- FUNZIONE ---
+        \addplot[black, thick, domain=-0.2:6.8] {\func(x)};
+        
+        % --- ETICHETTA ---
+        \node[right] at (axis cs:5.2, 4.2) {$y=f(x)$};
+
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+In questa maniera in più la partizione è "fitta", più l'approssizione è corretta.
+\newpage
+Quindi con questa idea possiamo creare una \textbf{approssimazione per difetto} e una \textbf{approssimazione per eccesso}. Per creare l'approssimazione per difetto prenderemo l'altezza più piccola in quell'intervallo, mentre per l'approssimazione per eccesso prenderemo l'altezza maggiore. Quindi rimanendo con il grafico di prima le due approssi sono
+\begin{figure}[h]
+    \centering
+    
+    % --- DEFINIZIONE DELLA NUOVA FUNZIONE ---
+    % La funzione originale era f(t) = 0.4t^3 - 2.5t^2 + 4t + 2
+    % La nuova funzione è g(x) = f(2x/3).
+    % Sostituiamo l'input (#1) con ((2*(#1))/3) nella macro.
+    \def\func(#1){(0.4*((2*(#1))/3)^3 - 2.5*((2*(#1))/3)^2 + 4*((2*(#1))/3) + 2)}
+
+    % --- GRAFICO 1: SOMME INFERIORI (Blue) ---
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=7.5cm, height=5cm,
+                axis lines=middle,
+                xlabel={$x$}, ylabel={$y$},
+                xmin=-0.5, xmax=6.5,
+                % Adattiamo i limiti Y alla nuova forma della funzione in questo intervallo
+                ymin=0, ymax=4.5, 
+                ytick=\empty,
+                xtick={1,2,3,4,5,6},
+            % Etichette generiche per mantenere lo stile "senza numeri"
+            xticklabels={$a$, $x_1$, $x_2$, $x_3$, $x_4$, $b$},
+                samples=100,
+                grid=none,
+                clip=true,
+                title=\textbf{Approssimazione per Difetto}
+            ]
+
+            % Disegno dei rettangoli INFERIORI (Blue - Minimi)
+            
+            % [1,2]: Contiene il massimo locale. Funzione cresce poi decresce.
+            % Il minimo è all'estremo sinistro x=1.
+            \draw[fill=blue!30, draw=blue] (axis cs:1,0) rectangle (axis cs:2, {\func(1)});
+            
+            % [2,3]: Funzione decrescente. Minimo a destra x=3.
+            \draw[fill=blue!30, draw=blue] (axis cs:2,0) rectangle (axis cs:3, {\func(3)});
+            
+            % [3,4]: Funzione decrescente. Minimo a destra x=4.
+            \draw[fill=blue!30, draw=blue] (axis cs:3,0) rectangle (axis cs:4, {\func(4)});
+            
+            % [4,5]: Contiene il minimo locale (a x approx 4.62).
+            % Usiamo il valore del minimo locale (y approx 2.29).
+            \draw[fill=blue!30, draw=blue] (axis cs:4,0) rectangle (axis cs:5, 2.29);
+            
+            % [5,6]: Funzione crescente. Minimo a sinistra x=5.
+            \draw[fill=blue!30, draw=blue] (axis cs:5,0) rectangle (axis cs:6, {\func(5)});
+
+            % Funzione in Nero
+            \addplot[black, thick, domain=-0.2:6.2] {\func(x)};
+            
+            \node[anchor=north] at (axis cs:3.5, -0.5) {\textbf{Somme Inferiori}};
+
+            \end{axis}
+        \end{tikzpicture}
+        
+    \end{minipage}
+    \hfill
+    % --- GRAFICO 2: SOMME SUPERIORI (Rosse) ---
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=7.5cm, height=5cm,
+                axis lines=middle,
+                xlabel={$x$}, ylabel={$y$},
+                xmin=-0.5, xmax=6.5,
+                ymin=0, ymax=4.5,
+                ytick=\empty,
+                xtick={1,2,3,4,5,6},
+            % Etichette generiche per mantenere lo stile "senza numeri"
+            xticklabels={$a$, $x_1$, $x_2$, $x_3$, $x_4$, $b$},
+                samples=100,
+                grid=none,
+                clip=true,
+                title=\textbf{Approssimazione per Eccesso}
+            ]
+
+            % Disegno dei rettangoli SUPERIORI (Rossi - Massimi)
+
+            % [1,2]: Contiene il massimo locale (a x approx 1.62).
+            % Usiamo il valore del massimo locale (y approx 3.91).
+            \draw[fill=red!30, draw=red] (axis cs:1,0) rectangle (axis cs:2, 3.91);
+            
+            % [2,3]: Funzione decrescente. Massimo a sinistra x=2.
+            \draw[fill=red!30, draw=red] (axis cs:2,0) rectangle (axis cs:3, {\func(2)});
+            
+            % [3,4]: Funzione decrescente. Massimo a sinistra x=3.
+            \draw[fill=red!30, draw=red] (axis cs:3,0) rectangle (axis cs:4, {\func(3)});
+            
+            % [4,5]: Contiene il minimo locale. Il massimo è agli estremi.
+            % f(4) > f(5). Massimo a sinistra x=4.
+            \draw[fill=red!30, draw=red] (axis cs:4,0) rectangle (axis cs:5, {\func(4)});
+            
+            % [5,6]: Funzione crescente. Massimo a destra x=6.
+            \draw[fill=red!30, draw=red] (axis cs:5,0) rectangle (axis cs:6, {\func(6)});
+
+            % Funzione in Nero
+            \addplot[black, thick, domain=-0.2:6.2] {\func(x)};
+            
+            \node[anchor=north] at (axis cs:3.5, -0.5) {\textbf{Somme Superiori}};
+
+            \end{axis}
+        \end{tikzpicture}
+    \end{minipage}
+
+\end{figure}
+
+Chiaramente per come le abbiamo definite, l'area blu sarà sempre minore di quella rossa, dato che quella blue sarà sempre minore dell'area effettiva, mentre quella rossa sarà sempre maggiore di dell'area esatta. Ora dobbiamo trovare un metodo per alcolarle. Quindi per l'approssimazione, dovremo calcolare l'altezza più piccola di ogni intervallo (che sarà $\displaystyle \inf_{[x_{i-1},x_i]} f$) moltiplicato per la base del rettangolo (cioè $x_i - x_{i-1}$) e poi sommarle per tutti i rettangoli. Per l'area in eccesso fare lo stesso ragionamento ma con $\displaystyle  \sup_{[x_{i-1},x_i]} f$.
+\begin{definizione}{Somma inferiore e superiore}{}
+    Sia $a,b \in \mathbb{R}$, $f:[a,b]\to \mathbb{R}$ limitata e data una partizione $P=\{x_0,x_1,...,x_n\}$ di $[a,b]$ con $n \in \mathbb{N}$. allora definiamo
+    \begin{itemize}
+        \item \textbf{Somma Inferiore} (indicata come $L(f,P)$) nel seguente modo
+        \[
+        L(f,P) = \sum_{i=1}^{n} \inf_{[x_{i-1}, x_i]} (f) \cdot (x_i-x_{i-1})
+        \]
+        \item \textbf{Somma Superiore} (indicata come $U(f,P)$) nel seguente modo
+        \[
+        U(f,P) = \sum_{i=1}^{n} \sup_{[x_{i-1}, x_i]}(f) \cdot (x_i-x_{i-1})
+        \]
+    \end{itemize}
+\end{definizione}
+\textbf{N.B.} la scelta delle lettere $L$ e $U$, deriva dall'inglese \textit{Lower} e \textit{Upper}.
+
+Si può notare subito che per qualsiasi partizione $P$ noi scegliamo, vale
+\[
+L(f, P) \leq U(f, P) \;\;\;\;\; \forall P
+\]
+\newpage 
+Ora capiamo un procedimento fondamentale, ovvero che più rendiamo fitta la partizione più il valore dell'area si avvicina al valore effettivo. Questo vale sia per l'approssimazione per difetto che per eccesso. Segue un esempio di approssimazione per difetto in cui si addenssa maggioremente la partizione. In rosso è segnato lo scarto dal valore effettivo.
+\begin{figure}[h]
+    \centering
+    % --- DEFINIZIONE DELLA FUNZIONE ---
+    \def\func(#1){(0.4*((2*(#1))/3)^3 - 2.5*((2*(#1))/3)^2 + 4*((2*(#1))/3) + 2)}
+    
+    % --- STILE ASSI CORRETTO ---
+    \pgfplotsset{
+        myaxisstyle/.style={
+            % MODIFICA IMPORTANTE: 
+            % Usa \linewidth per riempire la minipage in cui si trova il grafico
+            width=\linewidth, 
+            height=4cm,        
+            axis lines=middle,
+            xlabel={$x$}, ylabel={$y$},
+            xmin=0.5, xmax=6.5,
+            ymin=0, ymax=4.8,
+            ytick=\empty,
+            xtick={1,6},
+            xticklabels={$a$, $b$},
+            samples=100,
+            grid=none,
+            clip=false,
+            title style={font=\small\bfseries, yshift=-1ex} % Titolo leggermente più in basso
+        }
+    }
+
+    % --- GRAFICO 1: Delta x = 1 ---
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[myaxisstyle, title={5 Intervalli}]
+                % Sfondo ROSSO
+                \addplot [draw=none, fill=red!80, domain=1:6] {\func(x)} \closedcycle;
+
+                % Rettangoli VERDI (Manuali)
+                \draw[fill=green!30, draw=green!60!black] (axis cs:1,0) rectangle (axis cs:2, {\func(1)});
+                \draw[fill=green!30, draw=green!60!black] (axis cs:2,0) rectangle (axis cs:3, {\func(3)});
+                \draw[fill=green!30, draw=green!60!black] (axis cs:3,0) rectangle (axis cs:4, {\func(4)});
+                \draw[fill=green!30, draw=green!60!black] (axis cs:4,0) rectangle (axis cs:5, 2.288);
+                \draw[fill=green!30, draw=green!60!black] (axis cs:5,0) rectangle (axis cs:6, {\func(5)});
+
+                % Funzione
+                \addplot[black, thick, domain=0.8:6.2] {\func(x)};
+            \end{axis}
+        \end{tikzpicture}
+    \end{minipage}%
+    \hfill
+    % --- GRAFICO 2: Delta x = 0.5 ---
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[myaxisstyle, title={10 Intervalli}]
+                % Sfondo ROSSO
+                \addplot [draw=none, fill=red!80, domain=1:6] {\func(x)} \closedcycle;
+
+                % Rettangoli VERDI (Ciclo)
+                \foreach \x in {1, 1.5, ..., 5.5} {
+                    \pgfmathsetmacro{\xn}{\x + 0.5}
+                    \pgfmathsetmacro{\yleft}{\func(\x)}
+                    \pgfmathsetmacro{\yright}{\func(\xn)}
+                    \pgfmathsetmacro{\hmin}{min(\yleft, \yright)}
+                    
+                    % Espansione variabili per evitare errori nel loop
+                    \edef\temp{
+                        \noexpand\draw[fill=green!30, draw=green!60!black] (axis cs:\x,0) rectangle (axis cs:\xn, \hmin);
+                    }
+                    \temp
+                }
+
+                % Funzione
+                \addplot[black, thick, domain=0.8:6.2] {\func(x)};
+            \end{axis}
+        \end{tikzpicture}
+    \end{minipage}%
+    \hfill
+    % --- GRAFICO 3: Delta x = 0.25 ---
+    \begin{minipage}[t]{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[myaxisstyle, title={20 Intervalli}]
+                % Sfondo ROSSO
+                \addplot [draw=none, fill=red!80, domain=1:6] {\func(x)} \closedcycle;
+
+                % Rettangoli VERDI (Ciclo)
+                \foreach \x in {1, 1.25, ..., 5.75} {
+                    \pgfmathsetmacro{\xn}{\x + 0.25}
+                    \pgfmathsetmacro{\yleft}{\func(\x)}
+                    \pgfmathsetmacro{\yright}{\func(\xn)}
+                    \pgfmathsetmacro{\hmin}{min(\yleft, \yright)}
+                    
+                    % Espansione variabili
+                    \edef\temp{
+                        \noexpand\draw[fill=green!30, draw=green!60!black, thin] (axis cs:\x,0) rectangle (axis cs:\xn, \hmin);
+                    }
+                    \temp
+                }
+
+                % Funzione
+                \addplot[black, thick, domain=0.8:6.2] {\func(x)};
+            \end{axis}
+        \end{tikzpicture}
+    \end{minipage}
+
+\end{figure}
+ 
+Con questo scopriamo che
+\begin{teorema}{Relazione tra Sotto-Partizioni e Partizioni}{}
+   Sia $P_1$, $P_2$ partizioni di un intervallo $[a,b]$ e $f:[a,b]\to \mathbb{R}$, allora vale
+ \[
+ P_1 \subseteq P_2 \implies L(f, P_1) \leq L(f, P_2)
+ \] 
+ Dato che $P_2$ è più "densa" di $P_1$. Per il ragionamento specchiato sappiamo che 
+ \[
+  P_1 \subseteq P_2 \implies U(f, P_1) \geq U(f, P_2)
+ \] 
+\end{teorema}
+ 
+Da questo scopriamo un altro teorema importante:
+\begin{teorema}{Relazione tra diverse Partizioni}{}
+   Sia $P_1$, $P_2$ partizioni di un intervallo $[a,b]$ e $f:[a,b]\to \mathbb{R}$, allora vale
+ \[
+ L(f, P_1) \leq U(f, P_2)
+ \] 
+\end{teorema}
+\begin{proof}
+    Definiamo una nuova partizione $P$ tale che $P_1 \subseteq P$ e $P_2 \subseteq P$. In questo modo con il teorema precedente scopriamo che
+    \[
+    \begin{array}{c@{\qquad}@{\qquad}c}
+        L(f, P_1) \leq L(f, P) & U(f, P_1) \geq U(f, P)
+    \end{array}
+    \]
+    Ma per come abbiamo costruito la somma superiore e somma inferiore sappiamo che 
+    \[
+    L(f, P) \leq U(f, P) 
+    \]
+    Da cui
+    \[
+     L(f, P_1) \leq  L(f, P) \leq U(f, P) \leq U(f, P_2)
+    \]
+    \[
+    L(f, P_1) \leq U(f, P_2)
+    \]
+    Questo vale per qualsiasi partizione $P_1$ e $P_2$ scegliamo. 
+\end{proof}
+
+\newpage 
+\begin{definizione}{Integrale Inferiore e Superiore}{}
+    Sia $a,b \in \mathbb{R}$, $f:[a,b]\to \mathbb{R}$ limitata, allora definiamo
+    \begin{itemize}
+        \item \textbf{Integrale Inferiore} (indicato come $L(f)$) nel seguente modo
+        \[
+        L(f) = \sup\{L(f, P) : \forall P \text{ partizione di } [a,b]\}
+        \]
+        \item \textbf{Integrale Superiore} (indicato come $U(f)$) nel seguente modo
+        \[
+        U(f) = \inf\{U(f, P) : \forall P \text{ partizione di } [a,b]\}
+        \]
+    \end{itemize}
+    
+\end{definizione}
+
+\textbf{N.B.} Dato che $(f, P_1) \leq U(f, P_2)$ per qualsiasi partizioni $P_1,P_2$ abbiamo che 
+\[
+L(f) \leq U(f)
+\]
+
+\begin{definizione}{Funzione Integrale secondo Riemann}{}
+    Sia $a,b \in \mathbb{R}$, $f:[a,b]\to \mathbb{R}$ limitata, si dice \textbf{integrabile} se 
+    \[
+    L(f) = U(f)
+    \]
+    In tal caso, tale valore si dice \textbf{integrale di $f$ da $a$ a $b$} e si indica con il seguente simbolo
+    \[
+    \int_{a}^{b} f(x) \,dx =  L(f) = U(f) \in \mathbb{R}
+    \] 
+\end{definizione}
+Per come abbiamo definito il concetto di integrale dobbiamo stare attenti ad una cosa, vediamo il seguente grafico.
+\begin{figure}[!h]
+    \centering
+\begin{tikzpicture}
+    % --- DEFINIZIONE DELLA FUNZIONE ---
+    % f(x) = 0.4(x-0.5)(x-3)(x-5)
+    \def\func(#1){(0.2*((#1)-0.5)*((#1)-3)*((#1)-5))}
+
+    \begin{axis}[
+        width=12cm, height=8cm,
+        axis lines=middle,
+        xlabel={$x$}, ylabel={$y$},
+        xmin=0.5, xmax=6.5,
+        ymin=-1.5, ymax=4, % Adattato per focalizzare sulla curva
+        ytick=\empty,
+        xtick={1,6},
+        xticklabels={$a$, $b$},
+        samples=100,
+        grid=none,
+        clip=false
+    ]
+
+    % --- GENERAZIONE AUTOMATICA RETTANGOLI (VERDI) ---
+    % Ciclo da 1 a 5.75 con passo 0.25
+    \foreach \x in {1, 1.25, ..., 5.75} {
+        
+        % Definiamo l'estremo destro dell'intervallo corrente
+        \pgfmathsetmacro{\xn}{\x + 0.25}
+        
+        % Calcoliamo il valore della funzione agli estremi e nel mezzo
+        % per trovare il vero minimo (utile vicino al vertice della parabola)
+        \pgfmathsetmacro{\yLeft}{\func(\x)}
+        \pgfmathsetmacro{\yRight}{\func(\xn)}
+        \pgfmathsetmacro{\yMid}{\func(\x+0.125)}
+        
+        % L'altezza è il minimo tra i punti campionati (Somma Inferiore)
+        \pgfmathsetmacro{\hRect}{min(\yLeft, min(\yRight, \yMid))}
+
+        % Disegno del rettangolo (uso \edef per espandere i valori numerici)
+        \edef\temp{
+            \noexpand\draw[fill=green!30, draw=green!60!black, thin] 
+            (axis cs:\x,0) rectangle (axis cs:\xn, \hRect);
+        }
+        \temp
+    }
+
+    % --- LINEE DI DELIMITAZIONE (a e b) ---
+    \draw[dashed] (axis cs:1,0) -- (axis cs:1,{\func(1)});
+    \draw[dashed] (axis cs:6,0) -- (axis cs:6,{\func(6)});
+
+    % --- GRAFICO DELLA FUNZIONE ---
+    \addplot[black, thick, domain=0.5:6.1] {\func(x)};
+
+    % Etichetta
+    \node[right] at (axis cs:5.8, 3.5) {$f(x)$};
+
+    \end{axis}
+\end{tikzpicture}
+\end{figure}
+Con questo grafico notiamo che c'è una porzione di funzione che va sotto l'asse x, e ne calcola l'area come abbiamo sempre visto. Però, per come abbiamo definito la somma superiore e inferiore, abbiamo che l'altezza dei rettangoli ($f(x_i)$) i quei intervalli avrà segno negativo e quindi in quell'intervallo l'avrea complessiva avrà segno negativo, e questo è voluto! Quindi, migliorando la definizione, l'integrale è l'\textbf{area segnata} (che vuol dire che si tiene conto del segno) tra la funzione e l'asse x.
+
+\newpage
+Con questo possiamo dedurre che $\displaystyle\int_{0}^{2\pi} \sin(x)\,dx = 0$, dato che l'area sopra l'asse x è uguale (di valore) a quella sotto l'asse x, ma per questa caratteristica dell'integrale avranno segno opposto e si cancelleranno.
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,   % Assi centrati nell'origine
+        xlabel = $x$,
+        ylabel = $y$,
+        % Impostiamo i limiti degli assi con un po' di margine
+        xmin = -0.5, xmax = 7, % un po' più di 2*pi (che è circa 6.28)
+        ymin = -1.2, ymax = 1.2,
+        % --- Configurazione Tacche Asse X (Radianti) ---
+        % Definiamo le posizioni numeriche delle tacche
+        xtick = {0, 1.5708, 3.14159, 4.7123, 6.28318},
+        % Sostituiamo i numeri con le etichette simboliche
+        xticklabels = {$0$, $\frac{\pi}{2}$, $\pi$, $\frac{3\pi}{2}$, $2\pi$},
+        % Posizioniamo le etichette dell'asse x sotto l'asse
+        xticklabel style={anchor=north},
+        % -----------------------------------------------
+        samples = 200,         % Aumentiamo i campioni per una curva liscia
+        grid =none,
+        width=10cm, height=5.5cm, % Dimensioni del grafico
+        % IMPORTANTE: Specifica che le funzioni trig usano i radianti
+        trig format plots=rad,
+        clip=false             % Evita di tagliare etichette vicine ai bordi
+    ]
+
+    % 1. Area Rossa (da 0 a pi)
+    % Usiamo draw=none perché vogliamo solo il riempimento
+    % \closedcycle chiude il tracciato sull'asse x per riempire l'area
+    \addplot [
+        draw=none,      
+        fill=red!30,    % Colore rosso chiaro
+        opacity=0.7,    % Leggera trasparenza per vedere la griglia
+        domain=0:pi,    
+    ] {sin(x)} \closedcycle;
+
+    % 2. Area Blu (da pi a 2*pi)
+    \addplot [
+        draw=none,
+        fill=blue!30,   % Colore blu chiaro
+        opacity=0.7,
+        domain=pi:2*pi, 
+    ] {sin(x)} \closedcycle;
+
+    % 3. La curva principale della funzione (disegnata sopra le aree)
+    \addplot [
+        thick,
+        color=black,
+        domain=0:2*pi
+    ] {sin(x)};
+
+    % Aggiungiamo l'etichetta della funzione
+    \node at (axis cs: 5, 0.8) {$y=\sin(x)$};
+
+    \end{axis}
+\end{tikzpicture}
+\end{figure}
+
+Ora dopo tutto questo proviamo a calcolare il nostro primo integrale.
+\begin{esercizio}{}{}
+    Sia $a,b \in \mathbb{R}$, $a<b$, $f:[a,b]\to \mathbb{R}$, $k \in \mathbb{R}$, $f(x) = k$ $\forall x \in [a,b]$. Calcolare
+    \[
+    \int_{a}^{b}f(x) \,dx 
+    \]
+\end{esercizio}
+Definiamo una qualsiasi partizione $P = \{x_0, x_1, ... , x_n\}$ di $[a,b]$. Allora calcoliamo la somma superiore e inferiore. Per farlo dobbiamo ricardarci che, dato che la funzione è costante, averemo che
+\[
+\inf_{I}(f) = \sup_{I}(f) = k \;\;\;\; \forall I \subseteq [a,b]
+\]
+Quindi
+\begin{align*}
+   L(f, P) &= \sum_{i=1}^{n} \inf_{[x_{i-1}, x_i]}(f) \cdot (x_{i} - x_{i-1} ) \\
+   &= \sum_{i=1}^{n} k \cdot (x_{i} - x_{i-1} ) \\
+   &= k \sum_{i=1}^{n} (x_{i} - x_{i-1} )
+\end{align*}
+Ricordiamo che $\displaystyle\sum_{i=1}^{n} (x_{i} - x_{i-1} )$ è una serie telescopica, e che per definizione di partizione abbiamo che $x_0 = a$ e $x_n= b$
+\begin{align*}
+    L(f, P) &= k\cdot (x_{n} - x_0) \\
+    &= k\cdot (b - a)
+\end{align*}
+Ragionamento analogo per la somma superiore
+\begin{align*}
+   U(f, P) &= \sum_{i=1}^{n} \sup_{[x_{i-1}, x_i]}(f) \cdot (x_{i} - x_{i-1} ) \\
+   &= \sum_{i=1}^{n} k \cdot (x_{i} - x_{i-1} ) \\
+   &= k\cdot (x_{n} - x_0) \\
+   &= k\cdot (b - a)
+\end{align*}
+Ma dato che questi conti sono uguali per ogni partizione $P$ di $[a,b]$ abbiamo che
+\[
+L(f) = \sup\{L(f,P) : \forall P\} = L(f,P) = k(b-a)
+\]
+\[
+U(f) = \inf\{U(f,P) : \forall P\} = U(f,P) = k(b-a)
+\]
+Dato che $L(f) = U(f)$ abbiamo che
+\[
+\int_{a}^{b}k \,dx = k(b-a)
+\]
+Questo risultato era intuibile anche graficamente, infatti $f(x)$ è una funzione costante e presi $a,b \in \mathbb{R}$ notiamo che
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = $x$,
+        ylabel = $y$,
+        % Impostiamo i limiti per vedere bene il rettangolo
+        xmin = -0.5, xmax = 6.5,
+        ymin = -0.5, ymax = 3.5,
+        % Tacche sull'asse X: posizionate a 1 e 5, etichettate a e b
+        xtick = {1, 5},
+        xticklabels = {$a$, $b$},
+        % Tacche sull'asse Y: posizionata a 2, etichettata k
+        ytick = {2},
+        yticklabels = {$k$},
+        width=8cm, height=5cm,
+        grid=none,
+        clip=false
+    ]
+
+    % 1. AREA VERDE (Il rettangolo)
+    % Disegniamo l'area tra la funzione y=2 e l'asse x, da 1 a 5
+    \addplot [
+        draw=none, 
+        fill=green!30, 
+        domain=1:5
+    ] {2} \closedcycle;
+
+    % 2. LINEE TRATTEGGIATE DI RIFERIMENTO
+    % Linee verticali da a e b fino alla funzione
+    \draw[dashed] (axis cs:1,0) -- (axis cs:1,2);
+    \draw[dashed] (axis cs:5,0) -- (axis cs:5,2);
+
+    % 3. FUNZIONE COSTANTE
+    % Disegnata su tutto il dominio visibile
+    \addplot [
+        thick,
+        black,
+        domain=0:6.5
+    ] {2};
+
+    % 4. ETICHETTA FUNZIONE
+    \node[above] at (axis cs:3, 2) {$f(x)=k$};
+
+    \end{axis}
+\end{tikzpicture}
+\end{figure}
+
+Si nota che l'area che volevamo calcolare non è altro che un rettangolo, quindi l'area è base per altezza. In questo caso l'altezza è $k$ e la base $b-a$, quindi l'area è $k(b-a)$ come abbiamo trovato con l'integrale. In più, rimarcando sul concetto di area segnata, se $k<0$ abbiamo che il grafico è 
+\begin{figure}[!h]
+    \centering
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = $x$,
+        ylabel = $y$,
+        xmin = -0.5, xmax = 6.5,
+        ymin = -3.5, ymax = 1.5,
+        xtick = {1, 5},
+        xticklabels = {$a$, $b$},
+        % Opzione per spostare le lettere sopra l'asse:
+        xticklabel style={anchor=south, yshift=2pt},
+        ytick = {-2},
+        yticklabels = {$k$},
+        width=8cm, height=5cm,
+        grid=none,
+        clip=false
+    ]
+
+    % 1. Area Purple (Sotto l'asse)
+    \addplot [
+        draw=none, 
+        fill=purple!30, 
+        domain=1:5
+    ] {-2} \closedcycle;
+
+    % 2. Linee tratteggiate
+    \draw[dashed] (axis cs:1,0) -- (axis cs:1,-2);
+    \draw[dashed] (axis cs:5,0) -- (axis cs:5,-2);
+
+    % 3. Funzione costante
+    \addplot [
+        thick,
+        black,
+        domain=0:6.5
+    ] {-2};
+
+    % 4. Etichetta
+    \node[below] at (axis cs:3, -2) {$f(x)=k$};
+
+    \end{axis}
+\end{tikzpicture}
+\end{figure}
+L'area è sotto l'asse x, e quindi l'integrale dovrà essere negativo. Ma dato che $k<0$ e $b-a>0$ (questo perchè abbiamo scelto $a<b$) abbiamo che il valore dell'integrale è negativo, cioè $k(b-a) < 0$ come volevamo.
+\newpage
+
+\begin{teorema}{Caratterizzazione dell'Integrabilità}{}
+    Siano $a,b \in \mathbb{R}$, $a<b$, $f:[a,b]\to \mathbb{R}$ limitata. Tutte le seguenti affermazioni sono equivalenti:
+    \begin{enumerate}[label=(\roman*)]
+        \item $f$ è integrabile su $[a,b]$
+        \item $\exists ! c \in \mathbb{R}$ tale che
+        \[
+        L(f,P) \leq c \leq U(f,P) \;\;\; \forall P \text{ partizione di } [a,b]
+        \]
+        \item $\forall \varepsilon >0 \exists P_\varepsilon$ partizione di $[a,b]$ tale che
+        \[
+            U(f, P_\varepsilon) - L(f, P_\varepsilon) < \varepsilon
+        \]
+        \item $\exists (P_n)_{n\in \mathbb{N}}$ successione di partizioni di $[a,b]$ tale che
+        \[
+            \lim_{n\to+\infty} \left(U(f,P_n) - L(f, P_n)\right) = 0
+        \]
+        Si può scrivere anche come
+        \[
+        \exists\lim_{n\to+\infty} L(f, P_n) =  \lim_{n\to+\infty} U(f, P_n)  = c \in\mathbb{R}
+        \]
+        \item $\exists c \in \mathbb{R}$ tale che $\forall \varepsilon > 0$ $\exists \delta > 0$ tale che
+        \[
+        \text{amp}(P) < \delta \implies \begin{cases}
+            c-\varepsilon < L(f, P) \\
+            c+\varepsilon < U(f, P) \\
+        \end{cases}
+        \] 
+    \end{enumerate}
+    In tutti i casi vale che 
+    \[
+    c = \int_{a}^{b} f(x) \, dx
+    \]
+\end{teorema}
+Con queste caratterizzazioni possiamo scoprire varie proprietà degli integrali:
+\begin{teorema}{Integrale di Funzioni pari e Dispari}{}
+    Sia $a \in \mathbb{R}$, $f:[-a,a]\to \mathbb{R}$ limitata. Allora:
+    \begin{itemize}
+        \item Se $f$ è pari allora vale
+        \[
+        \int_{-a}^{a} f(x)=2\int_{0}^{a} f(x)
+        \]
+        \item Se $f$ è dispari allora vale
+        \[
+        \int_{-a}^{a} f(x)=0
+        \]
+    \end{itemize}
+    
+\end{teorema}
+\begin{esercizio}{}{}
+    Sia $k > 0$, $f:[0,1]\to \mathbb{R}$ definita come $f(x)=kx$, calcolare
+    \[
+    \int_{0}^{1} f(x) \,dx
+    \]
+\end{esercizio}
+Usiamo la caratterizzazione $(iv)$. Quindi creiamo la successione di partizioni con $n\in\mathbb{N}$
+\[
+P_n = \left\{ 0, \dfrac{1}{n}, \dfrac{2}{n}, \dfrac{3}{n}, \dots, \dfrac{n-1}{n}, 1 \right\}
+\]
+Calcoliamo la somma superiore e inferiore, ficordandoci che $f(x)$ è una retta con coefficente angolare positivo, e quindi l'estremo inferiore sarà sempre la funzione calcolata nel punto sinistro dell'intervallo, mentre l'estremo superiore è la funzione calcolata nel punto destro dell'intervallo. Della partizione possiamo dire che i-esimo numero (cioè $x_i$) è $\dfrac{i}{n}$, e per questo distanza tra due punti della partizione ($x_i-x_{i-1}$) è sempre $\dfrac{1}{n}$. Quindi
+\begin{align*}
+    L(f,P_n) &= \sum_{i=1}^{n} \inf_{[\frac{i-1}{n}, \frac{i}{n}]}(f) \cdot (x_{i}-x_{i-1}) \\
+    &= \sum_{i=1}^{n} f\left(\dfrac{i-1}{n}\right) \cdot \dfrac{1}{n} \\
+    &= \sum_{i=1}^{n} k \cdot \dfrac{i-1}{n} \cdot \dfrac{1}{n} \\
+    &= \dfrac{k}{n^2} \sum_{i=1}^{n}  (i-1)  \\
+    &= \dfrac{k}{n^2}\left(\dfrac{n(n+1)}{2}  - n\right) \\
+    &= \dfrac{k}{n^2}\cdot \dfrac{n^2-n}{2} \\
+    &= \dfrac{k}{2}\cdot \dfrac{n-1}{n}
+\end{align*}
+Ragionamento anagloro per la somma superiore
+\begin{align*}
+    U(f,P_n) &= \sum_{i=1}^{n} \sup_{[\frac{i-1}{n}, \frac{i}{n}]}(f) \cdot (x_{i}-x_{i-1}) \\
+    &= \sum_{i=1}^{n} k \cdot \dfrac{i}{n} \cdot \dfrac{1}{n} \\
+    &= \dfrac{k}{n^2} \sum_{i=1}^{n}  i  \\
+    &= \dfrac{k}{n^2}\cdot \dfrac{n(n+1)}{2} \\
+    &= \dfrac{k}{2}\cdot \dfrac{n+1}{n}
+\end{align*}
+Ora notiamo che se calcoliamo i limiti di queste somme
+\[
+\begin{array}{c@{\qquad}@{\qquad} c}
+    \displaystyle\lim_{n\to +\infty} L(f,P_n) = \lim_{n\to +\infty} \dfrac{k}{2}\cdot \dfrac{n-1}{n} = \dfrac{k}{2} & \displaystyle\lim_{n\to +\infty} U(f,P_n) = \lim_{n\to +\infty} \dfrac{k}{2}\cdot \dfrac{n+1}{n} = \dfrac{k}{2}
+\end{array}
+\]
+Notiamo che i limiti sono uguali, e quindi per la $(iv)$ caratterizzazione scopriamo che
+\[
+\int_{0}^{1} kx \, dx = \dfrac{k}{2}
+\]
+Proviamo a vedere se anche graficamente saremmo riusciti a trovare questo integrale. Quindi vediamo il grafico di $f(x)$
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,   % Assi centrati nell'origine
+        xlabel = $x$,          % Etichetta asse x
+        ylabel = $y$,          % Etichetta asse y
+        xmin = -1, xmax = 2, % Limiti visualizzazione asse x
+        ymin = -0.5, ymax = 4, % Limiti visualizzazione asse y
+        grid = none,          % Griglia leggera di sfondo
+        ytick = {2},
+        yticklabels = {$k$},
+        width=7cm, height=5cm, % Dimensioni del grafico
+        clip = false           % Evita di tagliare elementi vicino ai bordi
+    ]
+
+    % --- 1. L'area verde sottesa ---
+    % La disegniamo per prima così rimane sullo sfondo.
+    % 'domain=0:1' definisce l'intervallo dell'area.
+    % '\closedcycle' chiude il percorso tornando all'asse x.
+    \addplot [
+        draw=none,      % Non disegnare il bordo della linea qui
+        fill=green!30,  % Colore di riempimento (verde chiaro)
+        domain=0:1,     % Intervallo di integrazione
+    ] {2*x} \closedcycle;
+
+
+    % --- 2. La linea tratteggiata su x=1 ---
+    % Disegniamo una linea dal punto (1,0) al punto (1, f(1)), cioè (1,2)
+    % Usiamo 'axis cs:' per specificare che usiamo le coordinate del grafico.
+    \draw [dashed, thick, black] (axis cs:1, 0) -- (axis cs:1, 2);
+
+
+    % --- 3. Il grafico della funzione f(x)=2x ---
+    % Disegnata per ultima per stare in primo piano.
+    \addplot [
+        thick,          % Linea spessa
+        color=blue,     % Colore blu
+        domain=-0.5:1.8 % Dominio visibile della retta
+    ] {2*x};
+
+    % (Opzionale) Aggiungiamo un'etichetta per la funzione
+    \node at (axis cs:2, 4) [anchor=west] {$f(x)=kx$};
+
+    \node at (axis cs:1, 1.9) [anchor=west] {$(1,k)$};
+
+    \end{axis}
+\end{tikzpicture}
+\end{figure}
+
+Notiamo quindi che l'area tra la funzione e l'asse x è un triangolo, la cui base è 1 e l'altezza $k$, quindi per calcolare l'area sarà $\frac{1 \cdot k}{2} = \frac{k}{2}$ che è lo stesso risultato dell'integrale.
+
+\begin{teorema}{Proprietà dell'integrale}{}
+    Date $a,b \in \mathbb{R}$, $a<b$, $f,g:[a,b]\to \mathbb{R}$ limitate e integrabili su $[a,b]$ allora
+    \begin{itemize}
+        \item $(\alpha f + \beta g)(x)$ è integrabile su $[a,b]$ $\forall \alpha, \beta \in \mathbb{R}$ e vale
+        \[
+        \int_{a}^{b}(\alpha f + \beta g)(x) \, dx = \alpha\int_{a}^{b}f(x)\,dx + \beta\int_{a}^{b}g(x)\,dx
+        \]
+        \item $(f\cdot g)(x)$ è integrabile su $[a,b]$ ma non esiste una formula per calcolarlo l'integrale
+        \item sia $c \in [a,b]$ allora $f$ è integrabile su $[a,c]$ e $[c,b]$ e vale
+        \[
+         \int_{a}^{b} f(x)\,dx = \int_{a}^{c} f(x)\,dx + \int_{c}^{b} f(x)\,dx
+        \]
+        \item (Monotonia dell'integrale) se $f(x) \leq g(x)$ $\forall x \in [a,b]$ allora
+        \[
+        \int_{a}^{b} f(x)\,dx \leq \int_{a}^{b} g(x)\,dx
+        \]
+        \item $|f|:[a,b]\to \mathbb{R}$ è integrabile su $[a,b]$ e vale
+        \[
+        \int_{a}^{b} |f(x)|\,dx \geq \left|\int_{a}^{b} f(x)\,dx\right|
+        \]
+    \end{itemize}
+\end{teorema}
+\newpage
+\begin{teorema}{Classi di Funzioni Integrabili}{}
+    Date $a,b \in \mathbb{R}$, $a<b$, $f:[a,b]\to \mathbb{R}$ limitata allora
+   \begin{itemize}
+    \item se $f$ è monotona su $[a,b] \implies f$ è integrabile su $[a,b]$ 
+    \item Se esistono $a=x_0 < x_1 < x_2 < ... <x_{n-1} < x_n=b$ con $n \in \mathbb{N}$ tali che $f \in C^0((x_{i-1},x_i))$ per ogni $i = 1,2,...,n$ allora $f$ è integrabile su $[a,b]$.   
+   \end{itemize}
+\end{teorema}
+Analiziamo meglio il secondo punto. Infatti questo vuol dire che noi possiamo avere delle discontinuità di eliminabili o di prima specie (non di seconda specie perchè in quei casi la funzione tende all'infinito e quindi non è  limitata, come richiesto dal teorema) possiamo calcolare lo stesso l'area.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=12cm, height=8cm, % Dimensioni fisse per evitare lo schiacciamento
+            axis lines = middle,
+            xlabel = $x$,
+            ylabel = $y$,
+            xmin = -0.5, xmax = 11,
+            ymin = -0.5, ymax = 6.5,
+            xtick = {1, 3, 5, 8, 9.5},
+            xticklabels = {$a$, $x_1$, $x_2$, $x_3$, $b$},
+            ytick = \empty,
+            grid = none,
+            clip = false
+        ]
+
+        % --- DEFINIZIONI FUNZIONI ---
+        % 1. Parabola (0 a 2)
+        \def\funcOne(#1){0.4*(#1-1)^2 + 1}
+        
+        % 2. Retta discendente (2 a 5)
+        \def\funcTwo(#1){-0.3*(#1-2) + 5}
+
+        % 3. ESPONENZIALE DECRESCENTE (5 a 8)
+        % Parte da y=4.1 (x=5) e deve arrivare a y=1 (x=8)
+        % y = 4.1 * e^(-0.47 * (x-5))
+        \def\funcThree(#1){4.1 * exp(-0.4703*((#1)-5))}
+
+        % 4. Retta finale crescente (8 a 9.5)
+        % Adattata per ripartire da y=1
+        \def\funcFour(#1){1.0*((#1)-8) + 1}
+
+
+        % --- AREE COLORATE (Sfondo) ---
+        \addplot [draw=none, fill=cyan!30, domain=1:3] {\funcOne(x)} \closedcycle;
+        \addplot [draw=none, fill=cyan!30, domain=3:5] {\funcTwo(x)} \closedcycle;
+        \addplot [draw=none, fill=cyan!30, domain=5:8] {\funcThree(x)} \closedcycle;
+        \addplot [draw=none, fill=cyan!30, domain=8:9.5] {\funcFour(x)} \closedcycle;
+
+
+        % --- LINEE TRATTEGGIATE ---
+        \draw[dashed, gray] (axis cs:3,0) -- (axis cs:3,4.7);       % x1
+        \draw[dashed, gray] (axis cs:5,0) -- (axis cs:5,4.1);     % x2
+        \draw[dashed, gray] (axis cs:8,0) -- (axis cs:8,5);       % x3 (fino al punto isolato)
+
+
+        % --- GRAFICI FUNZIONI (Blu Spesso) ---
+        \addplot [thick, blue, domain=1:3] {\funcOne(x)};
+        \addplot [thick, blue, domain=3:5] {\funcTwo(x)};
+        \addplot [thick, blue, domain=5:8] {\funcThree(x)};
+        \addplot [thick, blue, domain=8:9.5] {\funcFour(x)};
+
+
+        % --- PUNTI DI DISCONTINUITÀ ---
+
+        % x1: Salto (I Specie)
+        \addplot[only marks, mark=*, mark options={fill=blue}, color=blue] coordinates {(3, 2.6)}; 
+        \addplot[only marks, mark=o, mark options={thick, fill=white}, color=blue] coordinates {(3, 4.7)};
+
+        % x2: Buco (III Specie - Eliminabile)
+        \addplot[only marks, mark=o, mark options={thick, fill=white}, color=blue] coordinates {(5, 4.1)};
+
+        % x3: Punto isolato (III Specie)
+        % Il cerchio vuoto ora è basso a (8, 1)
+        \addplot[only marks, mark=o, mark options={thick, fill=white}, color=blue] coordinates {(8, 1)};
+        % Il punto pieno rimane alto (o dove vuoi tu) a (8, 5)
+        \addplot[only marks, mark=*, mark options={fill=blue}, color=blue] coordinates {(8, 5)};
+
+        % Etichetta
+        \node[right] at (axis cs:9.5, 2.5) {$f(x)$};
+
+        \draw[dashed] (axis cs:9.5,0) -- (axis cs:9.5,2.55);
+        \draw[dashed] (axis cs:1,0) -- (axis cs:1,1);
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+
+Quindi notiamo che possiamo calcolare l'integrale di una funzione affinchè la funzione abbiamo un limite finito di discontinuità, perchè in quel caso sia $X=\{x_0, x_1, x_2, ..., x_n\}$ l'insieme di tutte le discontinuità in $[a,b]$ di $f$ abbiamo che
+\[
+\int_{a}^{b}f(x)\,dx = \sum_{i = 1}^{n}\int_{x_{i-1}}^{x_i}f(x)\,dx
+\]
+Per ora sembra che tutte le funzioni limitate sono integrabili, ma andiamo c'è una funzione che non è integrabile secondo Riemann: la funzione di Dirichlet. Infatti se proviamo una qualsiasi partizione $P$ dell'intervallo $[a,b]$, e calcoliamo la somma superiore noteremo che per qualsiasi intervallo $[x_{i-1},x_i]$ della partizione potremo sempre trovare un numero razionale (per il teorema della densità dei numeri razionali), e quindi l'estremo superiore sarè sempre 1. Quindi
+\[
+U(f_D,P) = \sum_{i=1}^{n} \sup_{[x_{i-1},x_i]} (f_D) (x_i-x_{i-1}) = \sum_{i=1}^{n}1\cdot (x_i-x_{i-1}) = x_{n} - x_0 = b-a
+\]
+Ragionamento analogo per la somma inferiore, solo che per ogni intervallo troveremo un numero irrazionale e quindi l'estremo inferiore sarà 0
+\[
+L(f_D,P) = \sum_{i=1}^{n} \inf_{[x_{i-1},x_i]} (f_D) (x_i-x_{i-1}) = \sum_{i=1}^{n}0\cdot (x_i-x_{i-1}) = 0
+\]
+Quindi notiamo che le due somme fanno sempre $b-a$ e $0$ per ogni partizione, quindi affinchè sia integrabile bisogna che siano uguali
+\[
+L(f_D) = U(f_D) \implies 0 = b-a \implies b=a
+\]
+Quindi notiamo che è integrabile se $b=a$, ma quando abbiamo definito l'intervallo $[a,b]$, affinchè sia un intervallo deve essere $a<b$, e quindi il valore che abbiamo trovato non è valido, e quindi la funzione di Dirichlet non è integrabile.
+
+\begin{teorema}{Teorema della Media Integrale}{}
+     Sia $a,b \in \mathbb{R}$, $a<b$, $f:[a,b]\to \mathbb{R}$ limitata e integrabile, poniamo
+     \[
+\begin{array}{c@{\qquad}@{\qquad}c}
+    \displaystyle m = \inf_{[a,b]}f & \displaystyle M = \sup_{[a,b]}f
+\end{array}
+     \]
+     Allora vale
+     \[
+     m(b-a) \leq \int_{a}^{b}f(x)\,dx \leq M(b-a)
+     \]
+     Inoltre se $f \in C^0([a,b])$ allora $\exists c \in [a,b]$ tale che
+     \[
+     f(c) = \dfrac{\int_{a}^{b}f(x)\,dx}{b-a}
+     \]
+\end{teorema}
+\begin{proof}
+    Per definizione di estremo superiore e inferiore vale
+    \[
+    m \leq f(x) \leq M
+    \]
+    Da qui usiamo la monotonia dell'integrale
+    \[
+     \int_{a}^{b}m \,dx \leq \int_{a}^{b} f(x) \,dx\leq \int_{a}^{b}M\,dx
+    \]
+    Dato che $m$,$M$ sono delle costanti, possiamo calcolare l'integrale
+    \[
+    m(b-a) \leq \int_{a}^{b}f(x)\,dx \leq M(b-a)
+    \]
+    Da questo deduciamo che
+    \begin{equation}\label{eq:media}
+    m \leq \dfrac{\displaystyle\int_{a}^{b}f(x)\,dx}{b-a} \leq M
+    \end{equation}
+    
+    Ora se $f\in C^0([a,b])$ allora per il teorema dei valori intermedi sappiamo che per ogni valore dell'immagine della funzione nell'intervallo ha una controimmagine. Ma dato che (\ref{eq:media}) è compreso tra l'immagine della funzione in $[a,b]$ avremo che $\exists c \in [a,b]$ tale che
+    \[
+    f(c) = \dfrac{1}{b-a}\int_{a}^{b}f(x)\,dx
+    \]
+\end{proof}
+
+\begin{teorema}{Teorema Fondamentale del Calcolo Integrale}{}
+    Sia $a,b \in \mathbb{R}$, $a<b$, $f:[a,b]\to \mathbb{R}$ limitata e integrabile su $[a,b]$. Definiamo $F:[a,b]\to \mathbb{R}$ ponendo
+    \[
+    F(x) = \int_{a}^{x}f(t)\,dt
+    \]
+    Se $f$ è continua su $x_0 \in (a,b)$ allora $F$ è derivabile in $x_0$ e vale
+    \[
+    F'(x_0) = f(x_0) 
+    \] 
+\end{teorema}
+\begin{proof}
+    Per dimostrare questo teorema dobbiamo verificare che
+    \[
+    F'(x_0) = \lim_{x\to x_0} \dfrac{F(x)-F(x_0)}{x-x_0} = f(x_0)
+    \]
+    Che usando la caratterizzazione $\varepsilon-\delta$ abbiamo che
+    \begin{equation}\label{eq:fond}
+        \dfrac{F(x)-F(x_0)}{x-x_0} \in (f(x_0)-\varepsilon,f(x_0)+\varepsilon)\;\;\; \forall x \in (x_0-\delta,x_0+\delta)
+    \end{equation}
+    Quindi se riusciamo a dimostrare che (\ref{eq:fond}) è vera, allora abbiamo dimostrato il teorema. 
+    
+    Quindi iniziamo analizzando il rapporto incrementale
+\begin{align}
+    \dfrac{F(x)-F(x_0)}{x-x_0} &= \dfrac{\mathunderline{red}{\int_{a}^{x}f(t)\,dt}-\int_{a}^{x_0}f(t)\,dt}{x-x_0} \nonumber \\
+    &= \dfrac{\mathunderline{red}{\int_{a}^{x_0}f(t)\,dt+\int_{x_0}^{x}f(t)\,dt}-\int_{a}^{x_0}f(t)\,dt}{x-x_0} \nonumber \\
+    &= \dfrac{\int_{x_0}^{x}f(t)\,dt}{x-x_0} =\dfrac{1}{x-x_0} \int_{x_0}^{x}f(t)\,dt \label{eq:fond2}
+\end{align}
+Quindi abbiamo scoperto che il rapporto incrementale non è altro che la media integrale sull'intervallo $[x_0,x]$. Ora analiziamo un altro punto, ovvero che per ipotesi sappiamo che $f$ è continua, quindi possiamo usare la caratterizzazione $\varepsilon-\delta$ in $x_0$, quindi sappiamo che $\forall \varepsilon >0$, $\exists\delta >0$ tale che
+\[
+f(x) \in (f(x_0) - \varepsilon, f(x_0)+\varepsilon) \;\;\;\;\; \forall x \in (x_0-\delta, x_0+\delta)
+\]
+\[
+f(x_0) - \varepsilon < f(x)< f(x_0)+\varepsilon \;\;\;\;\; \forall x \in (x_0-\delta, x_0+\delta)
+\]
+Da cui per monotonia dell'integrale sappiamo che
+\[
+\int_{x_0}^{x}(f(x_0) - \varepsilon) \,dt< \int_{x_0}^{x}f(t)\,dt< \int_{x_0}^{x}(f(x_0)+\varepsilon) \,dt\;\;\;\;\; \forall x \in (x_0-\delta, x_0+\delta)
+\]
+Dato che $(f(x_0) - \varepsilon)$ e  $(f(x_0) + \varepsilon)$ sono costanti abbiamo che
+\[
+(f(x_0) - \varepsilon)(x-x_0)< \int_{x_0}^{x}f(t)\,dt<(f(x_0)+ \varepsilon)(x-x_0)
+\]
+\newpage 
+Ora per dividiamo per $x-x_0$, però dobbiamo dividere in due casi $x<x_0$ e $x>x_0$.  
+
+
+caso $x>x_0$
+\[
+f(x_0) - \varepsilon <\dfrac{1}{x-x_0}\int_{x_0}^{x}f(t)\,dt< f(x_0) + \varepsilon
+\]
+Mentre per $x<x_0$
+\[
+f(x_0) - \varepsilon > \dfrac{1}{x-x_0}\int_{x_0}^{x}f(t)\,dt> f(x_0) + \varepsilon
+\]
+Ma entrambi i casi li possiamo riscrivere come
+\[
+\left|\dfrac{1}{x-x_0}\int_{x_0}^{x}f(t)\,dt - f(x_0)\right| < \varepsilon \;\;\;\;\; \forall x \in (x_0-\delta, x_0+\delta)
+\]
+Ma per (\ref{eq:fond2}) sappiamo che 
+\[
+\left|\dfrac{F(x)-F(x_0)}{x-x_0} - f(x_0)\right| < \varepsilon \;\;\;\;\; \forall x \in (x_0-\delta, x_0+\delta)
+\]
+Ma questo verifica (\ref{eq:fond}), e quindi abbiamo verifica il teorema
+\end{proof}
+
+\begin{corollario}{Corollario del TFCI}{}
+    Se $f\in C^0([a,b])$, ed $F$ è definita come sopra, allora 
+    \begin{enumerate}[label=(\roman*)]
+        \item $F \in C^1([a,b])$
+        \item $\displaystyle \int_{c}^{b} f(x)\,dx = F(b) - F(c) \;\;\;\;\; \forall c \in [a,b]$
+    \end{enumerate}
+\end{corollario}
+\begin{proof}
+    $(i)$ Per ipotesi sappiamo che $f\in C^0([a,b])$, ma per il TFCI\footnote{TFCI: acronimo di  \textit{Teorema fondamentale del Calcolo Integrale}} sappiamo che $F'(x) = f(x)$ ma allora 
+    \[
+    f\in C^0([a,b]) \implies F' \in C^0([a,b]) \implies F \in C^1([a,b])
+    \]
+    $(ii)$ Utiliaziamo la definizione che abbiamo dato a $F(x)$ e prendendo un punto $c \in [a,x]$ abbiamo  
+    \begin{align*}
+       \int_{a}^{x}f(t)\,dt =\int_{a}^{c}f(t)\,dt + \int_{c}^{x}f(t)\,dt \implies \int_{c}^{x}f(t)\,dt &=\int_{a}^{x}f(t)\,dt-\int_{a}^{c}f(t)\,dt \\
+     \int_{c}^{x}f(t)\,dt&=  F(x) - F(c) 
+    \end{align*}
+    Quindi se scegliamo $x=b$ abbiamo che
+    \[
+    \int_{c}^{b} f(x)\,dx = F(b) - F(c) \;\;\;\;\; \forall c \in [a,b]
+    \]
+\end{proof}
+\newpage
+\begin{definizione}{Primitiva}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ intervallo, $f:I\to \mathbb{R}$. Si dice \textbf{Primitiva di  $f$ su $I$} una funzione $F:I\to \mathbb{R}$ tale che
+    \[
+    F'(x) = f(x) \;\;\;\;\; \forall x \in I
+    \]
+\end{definizione}
+Con questa definizione notiamo che esistono più primitive di una funzione infatti se prendiamo le seguenti funzioni
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+    \dfrac{d}{dx}(x^2) = 2x &  \dfrac{d}{dx}(x^2+5) = 2x 
+\end{array}
+\]
+Notiamo che entrambe hanno come derivata $2x$ e quindi entrambe sono primitive di $2x$. Ma non ci sono solo queste, infatti anche $x^2+3$, $x^2-7$ e $x^2+3\pi$ sono primitive però differiscono tutte di una costante. Quindi generalizzando abbiamo il seguente teorema
+\begin{teorema}{Relazione tra le Primitive di una Funzione}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ intervallo, $f:I\to \mathbb{R}$. Siano $F;G:I\to\mathbb{R}$ primitive di $f$ su $I$ allora $\exists c \in \mathbb{R}$ tale che
+    \[
+    G(x) = F(x) + c \;\;\;\;\; \forall x \in I
+    \]
+\end{teorema}
+\begin{proof}
+    Definiamo una funzione $H:I \to \mathbb{R}$ definita come $H(x)=G(x)-F(x)$, notiamo che $H$ è derivabile su $I$ dato che è la composizione di funzioni derivabili. Poi notiamo anche che 
+    \[
+    H'(x) = (G(x)-F(x))' = f(x) - f(x) = 0\;\;\;\;\; \forall x \in I
+    \] 
+    Per la caratterizzazione delle costanti (corollario del teorema di Lagrange) sappiamo che $\exists c \in \mathbb{R}$ tale che
+    \[
+    H'(x) = 0 \iff H(x) = c\;\;\;\;\; \forall x \in I
+    \]
+    Ma allora 
+    \[
+    H(x) = c \implies  G(x)-F(x) = c \implies G(x)=F(x)+c\;\;\;\;\; \forall x \in I
+    \]
+\end{proof}
+\begin{definizione}{Integrale Indefinito}{}
+    Chiamiamo \textbf{integrale Indefinito di $f$} l'insieme di tutte e sole le primitive di $f:I\to \mathbb{R}$, e lo indichiamo come
+    \[
+    \int f(x)\,dx = \{F : F'(x)=f(x)\}
+    \] 
+\end{definizione}
+Vediamo qualche esempio:
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+    \displaystyle\int k\,dx = \{kx + c : \forall c \in \mathbb{R}\} &  \displaystyle\int x^\alpha \,dx = \left\{\frac{x^{\alpha+1}}{\alpha+1} + c : \forall c \in \mathbb{R}\right\} \\
+    \displaystyle\int e^x\,dx = \{e^x + c : \forall c \in \mathbb{R}\} &  \hspace{0.6cm}\displaystyle\int \cos(x) \,dx = \{\sin(x) + c : \forall c \in \mathbb{R}\} \\
+\end{array}
+\]
+\newpage
+Notiamo che per calcolare il un integrale definito, possiamo prendere una qualsiasi primitiva, infatti noi sappiamo che per calcolare l'integrale indefinito usiamo la formula 
+\[
+\int_{a}^{b} f(x) \,dx = F(b)-F(a)
+\]
+Però posso usare una qualsiasi primitiva, infatti se avessimo usato la primita $G(x)=F(x)+c$ avremmo avuto
+\[
+\int_{a}^{b} f(x) \,dx = G(b)-G(a) = (F(b)+c) - (F(a)+c) =  F(b)-F(a)
+\]
+Quindi notiamo che non cambia nulla nel risultato.
+
+Vediamo le principali primitive
+\begin{table}[!h]
+    \centering
+    % Questo comando aumenta lo spazio verticale tra le righe (2.5 è un buon valore per le frazioni)
+    \renewcommand{\arraystretch}{2.5}
+    \begin{tabular}{l|c}
+        \multicolumn{1}{c|}{Funzione}  & Primitiva \\ \hline
+        $\displaystyle\int k\,dx\;\;\; k \in \mathbb{R}$ & $\displaystyle kx+c$ \\
+        $\displaystyle\int x^\alpha\,dx \;\;\;\alpha \ne -1$ & $\displaystyle\dfrac{x^{\alpha+1}}{\alpha+1} + c$ \\
+        $\displaystyle\int \dfrac{1}{x}\,dx$ & $\displaystyle\log|x| + c$ \\
+        $\displaystyle\int \cos(x)\,dx$ & $\displaystyle\sin(x) + c$ \\
+        $\displaystyle\int \sin(x)\,dx$ & $\displaystyle-\cos(x) + c$ \\
+        $\displaystyle\int \dfrac{1}{1+x^2}\,dx$ & $\displaystyle\arctan(x) + c$ \\
+        $\displaystyle\int \dfrac{1}{\sqrt{1-x^2}}\,dx$ & $\displaystyle\arcsin(x) + c$ \\
+        $\displaystyle\int e^x \,dx$ & $\displaystyle e^x+c$ \\
+        $\displaystyle\int \sinh(x)\,dx$ & $\displaystyle\cosh(x) + c$ \\
+        $\displaystyle\int \cosh(x) \,dx$ & $\displaystyle\sinh(x)+c$
+    \end{tabular}
+\end{table}
+
+\newpage
+\begin{teorema}{Integrazione per Parti}{}
+    Sia $a,b \in \mathbb{R}$, $a<b$, $f,g:[a,b]\to \mathbb{R}$, $f$ e $g$ derivabili, allora vale
+    \[
+    \int fg' \, dx = fg - \int f'g \,dx
+    \] 
+    La versione definita:
+    \[
+    \int_{a}^{b} fg' \, dx = \left.fg\right|_{x=a}^{x=b} - \int_{a}^{b}  f'g \,dx
+    \] 
+\end{teorema}
+\begin{proof}
+    Ricordiamo la formula del prodotto di derivate
+    \[
+    (fg)' = f'g + fg'
+    \]
+    Applichiamo l'integrale parte per parte
+    \[
+    \int(fg)'\,dx = \int f'g\,dx + \int fg'\,dx
+    \]
+    Per TFCI sappiamo che l'integrale è la funzione inversa della derivata e quindi 
+    \[
+    fg= \int f'g\,dx + \int fg'\,dx \implies \int fg' \, dx = fg - \int f'g \,dx
+    \]
+    Ragionamento analogo per la forma determinata. 
+\end{proof}
+
+Per ricordare questa formula, vi consiglio di usare la tecnica denominata \textbf{DI Method}. In sostanza dobbiamo creare una tabella 2x2, dove nella prima colonna mettiamo la funzione da derivare, mentre nella seconda si mette la funzione da integrare. Nella seconda riga si calcola la derivata/integrale della funzione sopra. Poi per scrivere la soluzione dobbiamo calcolare il prodotto della diagonale, che sarà fuori dall'integrale, mentre il prodotto dell'ultima riga sarà dentro l'integrale. In più la prima riga parte con un segno positivo, e da lì in poi ogni riga ha segno alterno (vedremo prossimamente come mai si possono avere più righe). Il diagramma di questo metodo:
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+    
+    % Definizione della matrice
+    % 'matrix of math nodes' mette tutto in math mode ($...$) automaticamente
+    \matrix (m) [matrix of math nodes, row sep=1.2em, column sep=1.5em, minimum width=2em]
+    {
+        \text{\textbf{Segno}} & \text{\textbf{Deriva}} & \text{\textbf{Integra}} \\
+        +                     & f                      & g'                      \\
+        -                     & f'                     & g                       \\
+    };
+
+    % Linea orizzontale sotto l'intestazione
+    \draw (m-1-1.south west) -- (m-1-3.south east);
+
+    % Freccia diagonale (Prodotto parziale)
+    % Collega f (riga 2, col 2) a g (riga 3, col 3)
+    \draw[->, blue, thick] (m-2-2) -- (m-3-3);
+
+    % Freccia orizzontale (Integrale residuo)
+    % Collega f' a g
+    \draw[->, red, thick] (m-3-2) -- (m-3-3);
+
+\end{tikzpicture}
+\end{figure}
+
+Vi segnalo questo video YouTube dove viene spiegato con molti esempi: \href{https://www.youtube.com/watch?v=2I-_SV8cwsw}{link}
+
+
+\newpage
+\begin{esercizio}{}{}
+    Determinare 
+    \[
+    \int xe^x \,dx
+    \]
+\end{esercizio}
+
+Usiamo la ternica dell'integrazione per parti, e scegliamo $f(x) = x$, e $g'(x) = e^x$, quindi usando la tecnica DI Method, abbiamo
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+    
+    % Definizione della matrice
+    % 'matrix of math nodes' mette tutto in math mode ($...$) automaticamente
+    \matrix (m) [matrix of math nodes, row sep=0.6em, column sep=1.5em, minimum width=2em]
+    {
+        \text{\textbf{Segno}} & \text{\textbf{Deriva}} & \text{\textbf{Integra}} \\
+        +                     & x                      & e^x                      \\
+        -                     & 1                     & e^x                       \\
+    };
+
+    % Linea orizzontale sotto l'intestazione
+    \draw (m-1-1.south west) -- (m-1-3.south east);
+
+    % Freccia diagonale (Prodotto parziale)
+    % Collega f (riga 2, col 2) a g (riga 3, col 3)
+    \draw[->, blue, thick] (m-2-2) -- (m-3-3);
+
+    % Freccia orizzontale (Integrale residuo)
+    % Collega f' a g
+    \draw[->, red, thick] (m-3-2) -- (m-3-3);
+
+\end{tikzpicture}
+\end{figure}
+Da cui
+\[
+\int xe^x \,dx = \mathunderline{blue}{xe^x} - \int \mathunderline{red}{1\cdot e^x} \,dx = xe^x- e^x + c
+\]
+
+\begin{esercizio}{}{}
+    Determinare 
+    \[
+    \int x^3e^x \,dx
+    \]
+\end{esercizio}
+Se proviamo ad usare la integrazione per parti avremmo
+\[
+\int x^3e^x \,dx = x^3e^x - \int 3x^2e^x\,dx
+\]
+E noi ora dovremmo rifare l'integrazione per parti per altre 3 volte, ma diventa molto scomodo. Infatti è meglio usare il DI Method, infatti noi possiamo estendere la tabella a più righe, e chiaramente ogni riga nuova sarà la derivata o l'integrale di quella sopra. La soluzione all'integrale sarà sempre la somma delle diagonali (stando attenti ai segno che si alternano) fuori dall'integrale, mentre l'ultima riga sarà dentro l'integrale. Quindi per questo esercizio abbiamo
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+    
+    % Definizione della matrice
+    % 'matrix of math nodes' mette tutto in math mode ($...$) automaticamente
+    \matrix (m) [matrix of math nodes, row sep=0.6em, column sep=1.5em, minimum width=2em]
+    {
+        \text{\textbf{Segno}} & \text{\textbf{Deriva}} & \text{\textbf{Integra}} \\
+        +                     & x^3                      & e^x                      \\
+        -                     & 3x^2                     & e^x                       \\
+        +                     & 6x                      & e^x                      \\
+        -                     & 6                    & e^x                       \\
+        +                     & 0                     & e^x                       \\
+    };
+
+    % Linea orizzontale sotto l'intestazione
+    \draw (m-1-1.south west) -- (m-1-3.south east);
+
+    % Freccia diagonale (Prodotto parziale)
+    % Collega f (riga 2, col 2) a g (riga 3, col 3)
+    \draw[->, blue, thick] (m-2-2) -- (m-3-3);
+    \draw[->, blue, thick] (m-3-2) -- (m-4-3);
+    \draw[->, blue, thick] (m-4-2) -- (m-5-3);
+    \draw[->, blue, thick] (m-5-2) -- (m-6-3);
+
+    % Freccia orizzontale (Integrale residuo)
+    % Collega f' a g
+    \draw[->, red, thick] (m-6-2) -- (m-6-3);
+
+\end{tikzpicture}
+\end{figure}
+\[
+\int x^3e^x\,dx = \mathunderline{blue}{x^3e^x} - \mathunderline{blue}{3x^2e^x} + \mathunderline{blue}{6xe^x}-\mathunderline{blue}{6e^x} + \int \mathunderline{red}{0\cdot e^x} \,dx = x^3e^x - 3x^2e^x+6xe^x-6e^x +c
+\]
+
+\newpage
+\begin{esercizio}{}{}
+    Determinare 
+    \[
+    \int \log(x) \,dx
+    \]
+\end{esercizio}
+
+In questo caso dobbiamo usare uno stratagemma, ovvero riscriviamo l'integrale come
+\[
+  \int \log(x) \,dx=\int 1\cdot \log(x) \,dx
+\]
+Ora possiamo applicare il teorema dell'integrazione per parti, scegliendo $f(x)=\log(x)$ e $g'(x)=1$, quindi 
+\[
+\int 1\cdot \log(x) \,dx = x\log(x) - \int x \cdot \dfrac{1}{x} \,dx = x\log(x) - \int 1 \,dx = x\log(x) -x+ c
+\]
+
+\begin{esercizio}{}{}
+    Determinare
+    \[
+    \int x\arctan(x)\,dx 
+    \]
+\end{esercizio}
+In questo caso applichiamo il teorema con $f(x)=\arctan(x)$ e $g(x)=x$
+\[
+\int x\arctan(x)\,dx = \dfrac{x^2}{2}\arctan(x) - \int \dfrac{1}{x^2+1} \cdot \dfrac{x^2}{2} \,dx
+\]
+Ora però notiamo che quello che abbiamo dentro l'integrale è più o meno complesso, ma vedremo bene nella prossime pagine come fare gli integrali di rapporti tra polinomi. Ora però era più furbo scegliere un altra primitiva, infatti noi nella formula dell'integrazioni per parti dobbiamo integrare $g'(x)$, ma come abbiamo sempre visto quando integriamo abbiamo la costante di integrazione, che fino ad esso abbiamo sempre ignorato, ma se scegliamo una primitiva più adeguata potrebbe semplificarci notevolmente i conti. In questo caso se scegliessimo la primitiva con $c=\frac{1}{2}$ avremmo
+\[
+\int g'(x) = \int x \,dx = \dfrac{x^2}{2} + c = \dfrac{x^2}{2} + \dfrac{1}{2} = \dfrac{x^2+1}{2}
+\]
+In questo modo 
+\begin{align*}
+    \int x\arctan(x)\,dx &= \dfrac{x^2+1}{2}\arctan(x) - \int \dfrac{1}{x^2+1} \cdot \dfrac{x^2+1}{2} \,dx \\
+    &= \dfrac{x^2+1}{2}\arctan(x) - \int \dfrac{1}{2} \,dx \\
+    &= \dfrac{x^2+1}{2}\arctan(x) -\dfrac{x}{2} + c
+\end{align*}
+\newpage
+\begin{teorema}{Integrazione per Sostituzione}{}
+    Sia $a,b,c,d \in \mathbb{R}$, $a<b$ e $c<d$, $f:[a,b]\to \mathbb{R}$, $f \in C^0([a,b])$ sia $\varphi : [c,d] \to [a,b]$ tale che $\varphi \in C^1([c,d])$,  $\varphi(c)=a$ e $\varphi(d)=b$, allora vale
+    \[
+    \int_{c}^{d} f(\varphi(x))\varphi'(x) \,dx = \int_{a}^{b} f(x) \,dx
+    \]   
+    Forma indeterminata, poniamo $t=\varphi(x)$
+     \[
+    \int f(\varphi(x))\varphi'(x) \,dx = \int f(t) \,dt
+    \] 
+\end{teorema}
+\begin{proof}
+    Ricordiamo la regola della catena delle derivate, e con $F$ indichiamo una primitiva di $f$
+    \[
+    (F \circ \varphi)'(x) = F'(\varphi(x))\varphi'(x) = f(\varphi(x))\varphi'(x)
+    \]
+    Se applichiamo l'integrale parte per parte
+    \begin{align*}
+        \int_{c}^{d} f(\varphi(x))\varphi'(x) \,dx  &= \int_{c}^{d} (F \circ \varphi)'(x) \,dx  \\
+        &= \left.(F \circ \varphi)(x)\right|_{x=c}^{x=d}\\
+        &= F(\varphi(d)) - F (\varphi(c))\\
+        &=F(b) - F(a) \\
+        &= \int_{a}^{b} f(x)\,dx
+    \end{align*}
+\end{proof}
+
+\begin{esercizio}{}{}
+    Determinare
+    \[
+    \int x^6\cos(x^7)\,dx
+    \]
+\end{esercizio}
+Notiamo che dentro il coseno abbiamo $\varphi(x)=x^7$ e notiamo che la sua derivata è $\varphi'(x)=7x^6$, che quasi abbiamo, infatti noi dentro l'integrale abbiamo $x^6$, quindi possiamo "compensare" nel seguente modo
+\[
+\int x^6\cos(x^7)\,dx = \int\dfrac{1}{7}\cdot 7x^6\cdot \cos(x^7)\,dx = \dfrac{1}{7}\int  \cos(x^7) \cdot 7x^6\,dx
+\] 
+Ora possiamo usare la formula infatti ponendo $t=x^7$ abbiamo che
+\[
+\dfrac{1}{7}\int  \cos(x^7) \cdot 7x^6\,dx = \dfrac{1}{7}\int  \cos(t) \,dt =  \dfrac{1}{7}\sin(t) + c 
+\]
+L'integrale inizialmente era rispetto alla $x$, ora però la soluzione è rispetto alla variabile $t$, quindi torniamo alla variabile $x$ con la sostituzione $t=x^7$
+\[
+\dfrac{1}{7}\sin(t) + c = \dfrac{1}{7}\sin(x^7) + c
+\]
+\newpage
+In molti esercizi più difficili può essere necessario fare sia l'integrazione per parti che per sostituzione. Vediamo un esempio particolarmente avanzato
+\begin{esercizio}{}{}
+    Determinare
+    \[
+    \int x^9\sin(x^5)\,dx
+    \]
+\end{esercizio}
+Se provassimo a fare come l'esercizio precedente, noteremmo che non si potrebbe applicare il principio di sostituzione, infatti se poniamo $\varphi(x)=x^5$, la sua derivata sarebbe $\varphi(x)=5x^4$, ma noi abbiamo $x^9$ quindi così non si può fare, però se fosse $x^4$ anzichè $x^9$ sarebbe
+\[
+\int x^4\sin(x^5)\,dx = \dfrac{1}{5}\int 5x^4\sin(x^5)\,dx = \dfrac{1}{5}\int \sin(t)\,dt = \dfrac{-1}{5} \cos(t) = \dfrac{-1}{5} \cos(x^5) +c 
+\]
+Quindi, dato che possiamo fare questo integrale proviamo a "forzare" questo integrale, infatti l'integrale iniziale lo possiamo riscrivere come 
+\[
+\int x^9\sin(x^5)\,dx = \int (x^5)\cdot(x^4\sin(x^5))\,dx
+\]
+Ora su questo integrale possiamo applicare l'integrazione per parti ponendo $f(x)=x^5$, $g'(x)=x^4\sin(x^5)$, avremmo
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+    
+    % Definizione della matrice
+    % 'matrix of math nodes' mette tutto in math mode ($...$) automaticamente
+    \matrix (m) [matrix of math nodes, row sep=0.6em, column sep=1.5em, minimum width=2em]
+    {
+        \text{\textbf{Segno}} & \text{\textbf{Deriva}} & \text{\textbf{Integra}} \\
+        +                     & x^5                      & x^4\sin(x^5)                     \\
+        -                     & 5x^4                     & \dfrac{-1}{5} \cos(x^5)                        \\
+    };
+
+    % Linea orizzontale sotto l'intestazione
+    \draw (m-1-1.south west) -- (m-1-3.south east);
+
+    % Freccia diagonale (Prodotto parziale)
+    % Collega f (riga 2, col 2) a g (riga 3, col 3)
+    \draw[->, blue, thick] (m-2-2) -- (m-3-3);
+
+    % Freccia orizzontale (Integrale residuo)
+    % Collega f' a g
+    \draw[->, red, thick] (m-3-2) -- (m-3-3);
+
+\end{tikzpicture}
+\end{figure}
+\begin{align*}
+    \int (x^5)\cdot(x^4\sin(x^5))\,dx &= \mathunderline{blue}{(x^5)\left(\dfrac{-1}{5} \cos(x^5) \right)} - \int \mathunderline{red}{(5x^4)\left(\dfrac{-1}{5} \cos(x^5)\right)} \,dx \\
+&= \mathunderline{blue}{\dfrac{-x^5}{5} \cos(x^5)}  + \int \mathunderline{red}{x^4\cos(x^5)} \,dx
+\end{align*}
+Ora l'integrale rimanente possiamo riusare la tecnica dell'esercizio prima
+\[
+ \int x^4\cos(x^5) \,dx =  \dfrac{1}{5}\int 5x^4\cos(x^5) \,dx =  \dfrac{1}{5}\int \cos(t) \,dt = \dfrac{1}{5}\sin(t) + c = \dfrac{1}{5}\sin(x^5) + c 
+\]
+Quindi l'integrale iniziale vale
+\[
+\int x^9\sin(x^5)\,dx = \dfrac{1}{5}\sin(x^5) - \dfrac{x^5}{5} \cos(x^5) +c
+\]
+\newpage
+\begin{esercizio}{}{}
+    Determinare
+    \[
+    \int \dfrac{1}{x\log(x)}\,dx
+    \]
+\end{esercizio}
+Per risolvere questo integrale dobbiamo riscrivere come
+\[
+\int \dfrac{1}{x\log(x)}\,dx = \int \dfrac{1}{\log(x)} \cdot \dfrac{1}{x}\,dx
+\]
+Possiamo notare che se poniamo $\varphi(x)=\log(x)$ la sua derivata sarebbe $\varphi'(x)=\dfrac{1}{x}$, di conseguenza abbiamo
+\[
+\int \dfrac{1}{\log(x)} \cdot \dfrac{1}{x}\,dx =\int \dfrac{1}{t} \,dt = \log|t| + c = \log|\log(x)| + c  
+\]
+Con questo esercizio abbiamo notato che 
+\[
+\int \dfrac{1}{\varphi(x)} \varphi'(x) \,dx = \int \dfrac{\varphi'(x)}{\varphi(x)} \,dx = \log|\varphi(x)| +c
+\]
+E questo vale per qualsiasi funzione $\varphi(x)$, e vedremo che ci tornerà comodo anche per le prossime tecniche di integrazione.
+\begin{esercizio}{}{}
+    Determinare
+    \[
+        \int \dfrac{x}{\sqrt[2]{x-2}}\,dx
+    \]
+\end{esercizio}
+Per questo esercizio dobbiamo usare il principio di sostituzione al contrario, infatti se di solito imponiamo $t=\varphi(x)$, adesso imponiamo $x=\varphi(t)$, quindi se imponiamo
+\[
+\sqrt[2]{x-2} = t \implies x-2 = t^2 \implies x=t^2-2 \implies \varphi'(t) = t^2-2
+\]
+Quindi ora facciamo la derivata parte per parte
+\[
+\varphi'(t)=2t
+\]
+Quindi l'integrale iniziale diventa
+\[
+\int \dfrac{x}{\sqrt[2]{x-2}}\,dx = \int \dfrac{t^2-2}{t} 2t\,dt = \int 2t^2 -4 \,dt = \dfrac{2t^3}{3} - 4t + c
+\]
+Ma come al solito dobbiamo "tornare" alla funzione rispetto alla variabile $x$.
+\[
+\dfrac{2t^3}{3} - 4t + c = \dfrac{2\sqrt[2]{x-2}^3}{3} - 4\sqrt[2]{x-2} + c = \dfrac{2(x-2)\sqrt[2]{x-2}}{3} - 4\sqrt[2]{x-2} + c
+\]
+
+\newpage
+Nei prossimi esercizi vedremo degli integrali della forma
+\[
+\int \dfrac{P(x)}{Q(x)}
+\]
+Con $P(x)$ e $Q(x)$ due polinomi di grado rispettivamente $\delta P$ e $\delta Q$. Ora dovremo studiare singolarmente tutti i singoli casi facendo un esempio per ogni casistica.
+\begin{esercizio}{}{}
+    \textbf{Caso $\mathbf{\delta P \geq \delta Q}$} 
+    \[
+        \int \dfrac{2x^3+x^2+4x-1}{x^2+1}\,dx
+    \]
+\end{esercizio}
+Dato che $\delta P \geq \delta Q$ allora possiamo scrivere il rapposto come
+\[
+\dfrac{P(x)}{Q(x)} = \dfrac{N(x)}{Q(x)} + R(x)
+\]
+Con $\delta N < \delta Q$ e $\delta R < \delta Q$, rendendo più semplice l'integrale. Quindi per trovare $N(x)$ e $R(x)$ dobbiamo fare la divisione in colonna dei polinomi.
+\begin{table}[!h]
+    \centering
+\begin{tabular}{rrrr|l}
+$2x^3$ & $+x^2$ & $+4x$ & $-1$ & $x^2+1$ \\ \cline{5-5} 
+$-2x^3$                    &        & $-2x$ &      & $2x+1$  \\ \cline{1-4}
+                           & $x^2$  & $+2x$ & $-1$ &         \\
+                           & $-x^2$ &       & $-1$ &         \\ \cline{2-4}
+                           &        & $2x$  & $-2$ &        
+\end{tabular}
+\end{table}
+Quindi con questo scopriamo che $R(x)=2x+1$ mentre $N(x)=2x-2$, e quindi possiamo riscrivere l'integrale come
+\[
+ \int \dfrac{2x^3+x^2+4x-1}{x^2+1} = \int \left(\dfrac{2x-2}{x^2+1} + (2x+1)\right) \,dx
+\]
+Ora possiamo dividere l'integrale in due, e notiamo che $R(x)$ lo possiamo calcolare dato che non ha più frazioni, mentre per $\frac{N(x)}{Q(x)}$ dobbiamo aspettare le prossime casistiche per capire come fare.
+\[
+ \int \left(\dfrac{2x-2}{x^2+1} + (2x+1)\right) \,dx =  \int \dfrac{2x-2}{x^2+1}\,dx +  \int 2x+1 \,dx =  \int \dfrac{2x-2}{x^2+1}\,dx +  x^2 + x 
+\]
+\begin{esercizio}{}{}
+    \textbf{Caso $\mathbf{\delta P =\delta Q-1}$} 
+    \[
+        \int \dfrac{x}{x^2+1}\,dx
+    \]
+\end{esercizio}
+Cerchiamo se al numeratore abbiamo la derivata del denominatore, così da cascare nella casistica del logaritmo. In questo esercizio notiamo che la derivata del denominatore è $Q'(x)=2x$, e quindi possiamo compensare
+\[
+\int \dfrac{x}{x^2+1}\,dx = \dfrac{1}{2}\int \dfrac{2x}{x^2+1}\,dx = \dfrac{1}{2}\log|x^2+1| + c
+\]
+\newpage
+\begin{esercizio}{}{}
+    \textbf{Caso} $\mathbf{\delta P=0,\delta Q=1}$ 
+    \[
+    \int \dfrac{3}{2x+7}\,dx
+    \]
+\end{esercizio}
+Questo casistica sembra simile alla casistica del logaritmo, ma prima dobbiamo fare una sostituzione
+\[
+2x+7=t \implies x=\dfrac{t}{2} + \dfrac{-7}{2} \implies \varphi(t) = \dfrac{t}{2} + \dfrac{-7}{2}  \implies \varphi'(t) = \dfrac{1}{2}
+\]
+Quindi
+\[
+\int \dfrac{3}{2x+7}\,dx = \int \dfrac{3}{t} \cdot \dfrac{1}{2}\,dt = \dfrac{3}{2}\int \dfrac{1}{t} \,dt= \dfrac{3}{2}\log|t| +c
+\]
+Come al solito dobbiamo tornare alla variabile $x$
+\[
+\dfrac{3}{2}\log|t| +c = \dfrac{3}{2}\log|2x+7| +c
+\]
+Ora ci sono i casi con $\delta Q = 2$, quindi vuol dire che il denominatore è della forma 
+\[
+Q(x)=ax^2+bx+c
+\]
+Per comodità però negli esercici useremo sempre \textbf{polinomi monici}, cioè della forma
+\[
+Q(x)=x^2+bx+c
+\]
+Qualora negli esercizi futuri dovesse eserci un polinomio al denominatore non monico, basta raccogliere il coefficiente di grado massimo e portarlo fuori dall'integrale. Vediamo un esempio
+\[
+\int \dfrac{1}{2x^2+4x+4} \,dx = \int \dfrac{1}{2(x^2+2x+2)} \,dx =  \dfrac{1}{2}\int \dfrac{1}{x^2+2x+2} \,dx 
+\]
+In questa maniera il denominatore è monico e potremo risolverli con le tecniche che vedremo nei prossimi esercizi. 
+
+Poi dato che ora il denominatore è di grado due sarà fondamentale capire se è scomponibile, e questo lo capiamo con il $\Delta=b^2-4ac$. Quindi d'ora in più nei prossimi esercizi, quando scriverò $\Delta$ intenderò il $\Delta$ della formula quadratica del denominatore.
+\begin{esercizio}{}{}
+    \textbf{Caso} $\mathbf{\delta Q=2, \Delta >0}$
+    \[
+    \int \dfrac{3x-5}{x^2-3x+2} \,dx
+    \] 
+\end{esercizio}
+Ora dato che $\Delta >0$ vuol dire che possiamo scrivere il denominatore come
+\[
+x^2-3x+2 = (x-1)(x-2)
+\]
+Ora quindi possiamo "spaccare" la frazione e cercare $A,B \in \mathbb{R}$ tali che
+\[
+\dfrac{3x-5}{x^2-3x+2} = \dfrac{A}{x-1} + \dfrac{B}{x-2} 
+\]
+Per trovare $A$ e $B$ dobbiamo fare il denominatore comune e far sì che i coefficienti dei vari monomi siano uguali
+\begin{align*}
+    \dfrac{3x-5}{x^2-3x+2} &= \dfrac{A(x-2) + B(x-1)}{(x-1)(x-2)} \\
+    &= \dfrac{Ax-2A + Bx-B}{(x-1)(x-2)} \\
+    &= \dfrac{(A+B)x +(-2A -B)}{(x-1)(x-2)} 
+\end{align*}
+Quindi è necessario che entrambi i coefficienti di $x$ al numeratore siano uguali e quindi
+\[
+3 = A+B
+\]
+Poi serve anche che il termine noto sia uguale
+\[
+-5 = -2A -B
+\]
+Ora possiamo fare un sistemando
+\[
+\begin{cases}
+    3 = A+B \\
+    -5 = -2A -B
+\end{cases}
+ \implies
+\begin{cases}
+     A=2 \\
+     B=1
+\end{cases}
+ \]
+ Quindi possiamo riscrivere l'integrale iniziale come
+
+\[
+\int \dfrac{3x-5}{x^2-3x+2} \,dx = \int \left(\dfrac{2}{x-1} + \dfrac{1}{x-2} \right) \,dx = \int \dfrac{2}{x-1} \,dx + \int \dfrac{1}{x-2}  \,dx
+\]
+Ed ora questa tipologia di fratte le abbiamo già incontrate nel caso $\mathbf{\delta P=0,\delta Q=1}$, quindi sappiamo come risolverle
+\[
+ \int \dfrac{2}{x-1} \,dx + \int \dfrac{1}{x-2}  \,dx = 2\log|x-1| + \log|x-2| + c
+\]
+Qualora non ci fosse il termine $x$ non cambierebbe nulla. Per esempio
+\[
+\int \dfrac{1}{x^2-3x+2} \,dx
+\]
+Avremmo sempre spaccato la frazione solamente che al momento del sistema metteremo il coefficiente del termine con la $x$ uguale a 0
+\[
+\dfrac{1}{x^2-3x+2} = \dfrac{A}{x-1} + \dfrac{B}{x-2}  \implies \dfrac{1}{x^2-3x+2} = \dfrac{(A+B)x +(-2A -B)}{(x-1)(x-2)} 
+\]
+Quindi il sistema sarebbe
+\[
+\begin{cases}
+    0=A+B \\
+    1=-2A -B
+\end{cases}
+\]
+E poi i passaggi sono i medesi di prima.
+\newpage 
+\begin{esercizio}{}{}
+     \textbf{Caso} $\mathbf{\delta P = 0, \delta Q=2, \Delta =0}$
+     \[
+     \int \dfrac{17}{x^2+6x+9}\,dx
+     \]
+\end{esercizio}
+In questo caso, dato che $\Delta=0$ allora abbiamo che possiamo scrivere il denominatore come
+\[
+Q(x) = (x+3)^2
+\]
+Con questo possiamo usare la sostituzione, sostituendo 
+\[
+x+3 = t \implies x=t-3 \implies \varphi(t) = t-3 \implies \varphi'(t)=1
+\]
+L'integrale diventa 
+\begin{align*}
+\int \dfrac{17}{x^2+6x+9}\,dx &= \int \dfrac{17}{(x+3)^2}\,dx \\
+&= \int \dfrac{17}{t^2} \cdot 1\,dt \\
+&= 17\int t^{-2}\,dt \\
+&= \dfrac{-17}{t} +c = \dfrac{-17}{x+3} + c    
+\end{align*}
+\begin{esercizio}{}{}
+     \textbf{Caso} $\mathbf{\delta P = 1, \delta Q=2, \Delta =0}$
+     \[
+     \int \dfrac{3x+4}{x^2+6x+9}\,dx
+     \]
+\end{esercizio}
+In questo caso dobbiamo fare qualcosa di molto simile al caso $\mathbf{\delta Q=2, \Delta >0}$. Infatti dato che $\Delta =0$ possiamo il denominatore l'esercizio precedente. Però la "spaccatura" in questo caso si fa con la moltiplicità, infatti la frazione di questo esercizio diventa
+\[
+\dfrac{3x+4}{x^2+6x+9} = \dfrac{A}{x+3} + \dfrac{B}{(x+3)^2}
+\]
+Ed ora la risoluzione è analoga al caso $\mathbf{\delta Q=2, \Delta >0}$.
+\begin{align*}
+    \dfrac{3x+4}{x^2+6x+9} &= \dfrac{A}{x+3} + \dfrac{B}{(x+3)^2} \\
+    &= \dfrac{A(x+3) + B}{x+3} \\
+     &= \dfrac{Ax+3A+ B}{x+3} 
+\end{align*}
+Da cui
+\[
+\begin{cases}
+    3=A \\
+    4=3A + B 
+\end{cases}
+\implies
+\begin{cases}
+    A=4 \\
+    B=-5
+\end{cases}
+\]
+L'integrale diventa
+\[
+\int \dfrac{3x+4}{x^2+6x+9}\,dx = \int \left(\dfrac{3}{x+3} + \dfrac{-5}{(x+3)^2}\right)\,dx = \int\dfrac{3}{x+3}\,dx + \int \dfrac{-5}{(x+3)^2}\,dx
+\]
+Ora ci siamo ricondotti alle casistiche $\mathbf{\delta P=0, \delta Q=1}$ e $\mathbf{\delta P = 0, \delta Q=2, \Delta =0}$.
+\[
+\int\dfrac{3}{x+3}\,dx + \int \dfrac{-5}{(x+3)^2}\,dx = 3\log|x+3| + \dfrac{5}{x+3} + c
+\]
+Ora vediamo un caso simile a quello che abbiamo appena risolto
+\begin{esercizio}{}{}
+    \[
+    \int \dfrac{2x^2+4}{(x+1)^3} \,dx
+    \]
+\end{esercizio}
+In questo caso dobbiamo scomporre nello stesso modo dell'esercizio precedente, chiaramente aggiungendo anche il termine con potenza 3
+\begin{align*}
+    \dfrac{2x^2+4}{(x+1)^3} &= \dfrac{A}{x+1} + \dfrac{B}{(x+1)^2} + \dfrac{C}{(x+1)^3} \\
+    &= \dfrac{A(x+1)^2 + B(x+1) + C}{(x+1)^3} \\
+    &= \dfrac{Ax^2 + 2Ax + A + Bx+B + C}{(x+1)^3} \\
+    &= \dfrac{Ax^2 + (2A + B)x+ A +B + C}{(x+1)^3} 
+\end{align*}
+Da cui
+\[
+\begin{cases}
+    2=A \\
+    0 = 2A + B \\
+    4 = A+B+C
+\end{cases}
+\implies
+\begin{cases}
+    A=2 \\
+    B=-4 \\
+    C=6
+\end{cases}
+\]
+L'integrale diventa
+\begin{align*}
+    \int \dfrac{2x^2+4}{(x+1)^3} \,dx &= \int \left(\dfrac{2}{x+1} + \dfrac{-4}{(x+1)^2} + \dfrac{6}{(x+1)^3}\right)\,dx\\
+     &= \int \dfrac{2}{x+1}\,dx + \int\dfrac{-4}{(x+1)^2} \,dx+ \int \dfrac{6}{(x+1)^3}\,dx
+\end{align*}
+Ed ora sappiamo risolverli singolarmente
+\[
+\int \dfrac{2}{x+1}\,dx + \int\dfrac{-4}{(x+1)^2} \,dx+ \int \dfrac{6}{(x+1)^3}\,dx = 2\log|x+1| + \dfrac{4}{x+1} - \dfrac{3}{(x+1)^2} + c
+\]
+In maniera più generale, se abbiamo un denominatore della forma $Q(x)=(x-x_0)^n$, lo possiamo riscrivere come
+\[
+\dfrac{P(x)}{Q(x)} = \dfrac{P(x)}{(x-x_0)^n} = \dfrac{A_1}{x-x_0} + \dfrac{A_2}{(x-x_0)^2} +\dfrac{A_3}{(x-x_0)^3} + ... + \dfrac{A_n}{(x-x_0)^n}
+\]
+\newpage 
+Per semplificarci la vita, calcoliamo un integrale che ci sarà fondamentale per i prossimi due esercizi:
+\[
+\int \dfrac{1}{x^2+b}\,dx
+\]
+Questo integrale assomiglia molto all'arcotangente, soltanto che c'è il $b$, quindi possiamo raccoglierlo
+\begin{align*}
+    \int \dfrac{1}{x^2+b}\,dx = \int \dfrac{1}{b\left(\frac{x^2}{b}+1\right)}\,dx =\dfrac{1}{b} \int \dfrac{1}{\left(\frac{x}{\sqrt{b}}\right)^2+1}\,dx
+\end{align*}
+Ora applichiamo una sostituzione
+\[
+\dfrac{x}{\sqrt{b}} = t \implies x = \sqrt{b}t \implies \varphi(t) = \sqrt{b}t \impliedby \varphi'(t) = \sqrt{b}
+\]
+Da cui
+\begin{align*}
+   \dfrac{1}{b} \int \dfrac{1}{\left(\frac{x}{\sqrt{b}}\right)^2+1}\,dx = \dfrac{1}{b} \int \dfrac{1}{t^2+1}\sqrt{b}\,dt = \dfrac{1}{\sqrt{b}}\arctan(t) + c =\dfrac{1}{\sqrt{b}}\arctan\left(\dfrac{x}{\sqrt{b}}\right) + c
+\end{align*}
+\begin{esercizio}{}{}
+    \textbf{Caso} $\mathbf{\delta P = 0, \delta Q=2, \Delta < 0}$
+    \[
+    \int \dfrac{8}{x^2+6x+11} \,dx
+    \]
+\end{esercizio}
+Ora dato che $\Delta <0$, il nostro polinomio non è scomponibile, quindi cerchiamo per quali valori $A,B\in \mathbb{R}$ il denominatore è uguale a
+\begin{align*}
+x^2+6x+11 &= (x+A)^2 + B \\
+    &= x^2+2Ax +A^2 + B 
+\end{align*}
+Come per gli altri casi, mettiamo a sistema tutte le costanti
+\[
+\begin{cases}
+    6=2A \\
+    11=A^2 + B
+\end{cases}
+\implies
+\begin{cases}
+    A=3 \\
+    B=2
+\end{cases}
+\]
+Quindi l'integrale diventa
+\[
+    \int \dfrac{8}{x^2+6x+10} \,dx = \int \dfrac{8}{(x+3)^2 +2} \,dx
+\]
+Ora possiamo fare una sostituzione
+\[
+x+3=t \implies x=t-3 \implies \varphi(t)=t-3 \implies \varphi'(t) = 1
+\]
+Da cui
+\[
+    \int \dfrac{8}{(x+3)^2 +2} \,dx= 8\int \dfrac{1}{t^2 +2} \,dt = \dfrac{8}{\sqrt{2}} \arctan\left(\dfrac{t}{\sqrt{2}}\right) + c = \dfrac{8}{\sqrt{2}} \arctan\left(\dfrac{x+3}{\sqrt{2}}\right) + c
+\]
+\begin{esercizio}{}{}
+    \textbf{Caso} $\mathbf{\delta P = 1, \delta Q=2, \Delta < 0}$
+    \[
+    \int \dfrac{3x-10}{x^2-8x+19} \,dx
+    \]
+\end{esercizio}
+Il primo passagio che dobbiamo fare è di riscrivere il denominatore come l'esercizio scorso
+\begin{align*}
+x^2-8x+19 &= (x+A)^2 + B \\
+    &= x^2+2Ax +A^2 + B 
+\end{align*}
+\[
+\begin{cases}
+    -8=2A \\
+    19=A^2 + B
+\end{cases}
+\implies
+\begin{cases}
+    A=-4 \\
+    B=3
+\end{cases}
+\]
+Quindi l'integrale lo possiamo riscrivere come
+\[
+\int \dfrac{3x-10}{x^2-8x+19} \,dx = \int \dfrac{3x-10}{(x-4)^2+3} \,dx
+\]
+Ora possiamo fare una sostituzione
+\[
+x-4=t \implies x=t+4 \implies \varphi(t)=t+4 \implies\varphi'(t) = 1
+\]
+Da cui
+\begin{align*}
+   \int \dfrac{3x-10}{(x-4)^2+3} \,dx = \int \dfrac{3(t+4)-10}{t^2+3} \,dt &= \int \dfrac{3t+2}{t^2+3} \,dt \\ 
+ &= \int \left(\dfrac{3t}{t^2+3} +\dfrac{2}{t^2+3} \right)\,dt \\
+  &= \int\dfrac{3t}{t^2+3}\,dt+  \int \dfrac{2}{t^2+3}\,dt
+\end{align*}
+Notiamo che il primo integrale lo possiamo calcolare con la tecnica del logaritmo
+\begin{align*}
+3\int\dfrac{t}{t^2+3}\,dt = 3\int\dfrac{1}{2} \cdot \dfrac{2t}{t^2+3}\,dt = \dfrac{3}{2}\log|t^2+3| + c &= \dfrac{3}{2}\log|(x-4)^2+3| + c\\
+    &= \dfrac{3}{2}\log|x^2-8x+19| + c
+\end{align*}
+Mentre il secondo integrale è dell'arcotangente
+\[
+\int \dfrac{2}{t^2+3}\,dt = \dfrac{2}{\sqrt{3}}\arctan\left(\dfrac{t}{\sqrt{3}}\right) + c = \dfrac{2}{\sqrt{3}}\arctan\left(\dfrac{x-4}{\sqrt{3}}\right) + c
+\]
+Quindi l'integrale iniziale vale
+\[
+    \int \dfrac{3x-10}{x^2-8x+19} \,dx = \dfrac{3}{2}\log|x^2-8x+19| + \dfrac{2}{\sqrt{3}}\arctan\left(\dfrac{x-4}{\sqrt{3}}\right) + c
+    \]
 \end{document}
+
