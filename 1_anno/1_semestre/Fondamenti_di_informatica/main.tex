@@ -3632,7 +3632,7 @@ Se $\alpha = 2$ allora il termine $x^{\alpha -2} = x^{2 -2} = 1$ e quindi il lim
     Questo succede perchè O-grande ci dice che una funzione è più piccola di un'altra, mentre o-piccolo ci dice che una funzione è tanto più piccola di un'altra, a tal punto da rendere il limite uguale a 0.
 
 
-\addcontentsline{toc}{subsection}{Confronti di Infiniti}
+\addcontentsline{toc}{subsection}{Confronti di Infiniti e Infinitesimi}
 \begin{definizione}{Confronti di Infiniti}{}
     Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f, g:A \to \mathbb{R}$, $x_0 \in \mathbb{R} \cup \{\pm\infty\}$ punto di acc. in $A$ e se 
     \[
@@ -3661,7 +3661,6 @@ Se $\alpha = 2$ allora il termine $x^{\alpha -2} = x^{2 -2} = 1$ e quindi il lim
     \end{itemize}
 \end{definizione}
 
-\addcontentsline{toc}{subsection}{Confronti di Infinitesimi}
 \begin{definizione}{Confronti di Infinitesimi}{}
     Sia $\varnothing \ne A \subseteq \mathbb{R}$, $f:A \to \mathbb{R}$, $x_0 $ punto di acc. in $A$ e se
 
@@ -7013,7 +7012,7 @@ Dopo questo elenco enorme di definizioni, capiamo come sono legate tra di loro
 
 \addcontentsline{toc}{subsection}{Teormea di Fermat}
 \begin{teorema}{Teorema di Fermat}{}
-    Siano $a,b \in \mathbb{R}$, $a<b$, $f:(a,b) \to \mathbb{R}$, $x_0 \in (a,b)$. Se $x_0$ è un punto di estremo relativo per $f$, e $f$ è derivabile in $x_0$, allora $f'(x_0) = 0$.
+    Siano $a,b \in \mathbb{R}$, $a<b$, $f:(a,b) \to \mathbb{R}$, $x_0 \in (a,b)$. Se $x_0$ è un punto di estremo relativo per $f$, se $f$ è derivabile in $x_0$ allora $f'(x_0) = 0$.
 \end{teorema}
 \begin{proof}
     Dato che per ipotesi $f$ è derivabile in $x_0$, allora sappiamo che
@@ -8507,6 +8506,7 @@ Noi però ci possiamo fermare al termine $x^2$ , di conseguenza il limite divent
 
 \section{Integrabilità}
 
+\addcontentsline{toc}{subsection}{Definizione di Partizione}
 \begin{definizione}{Partizione}{}
     Sia $a,b \in \mathbb{R}$, $a<b$, si dice una \textbf{Partizione di} $[a,b]$ un insieme della forma
     \[
@@ -8740,6 +8740,8 @@ Quindi con questa idea possiamo creare una \textbf{approssimazione per difetto} 
 \end{figure}
 
 Chiaramente per come le abbiamo definite, l'area blu sarà sempre minore di quella rossa, dato che quella blue sarà sempre minore dell'area effettiva, mentre quella rossa sarà sempre maggiore di dell'area esatta. Ora dobbiamo trovare un metodo per alcolarle. Quindi per l'approssimazione, dovremo calcolare l'altezza più piccola di ogni intervallo (che sarà $\displaystyle \inf_{[x_{i-1},x_i]} f$) moltiplicato per la base del rettangolo (cioè $x_i - x_{i-1}$) e poi sommarle per tutti i rettangoli. Per l'area in eccesso fare lo stesso ragionamento ma con $\displaystyle  \sup_{[x_{i-1},x_i]} f$.
+
+\addcontentsline{toc}{subsection}{Definizione di Somma Inferiore e Superiore}
 \begin{definizione}{Somma inferiore e superiore}{}
     Sia $a,b \in \mathbb{R}$, $f:[a,b]\to \mathbb{R}$ limitata e data una partizione $P=\{x_0,x_1,...,x_n\}$ di $[a,b]$ con $n \in \mathbb{N}$. allora definiamo
     \begin{itemize}
@@ -8867,6 +8869,8 @@ Ora capiamo un procedimento fondamentale, ovvero che più rendiamo fitta la part
 \end{figure}
  
 Con questo scopriamo che
+
+\addcontentsline{toc}{subsection}{Relazione tra Sotto-Partizioni e Partizioni}
 \begin{teorema}{Relazione tra Sotto-Partizioni e Partizioni}{}
    Sia $P_1$, $P_2$ partizioni di un intervallo $[a,b]$ e $f:[a,b]\to \mathbb{R}$, allora vale
  \[
@@ -8879,7 +8883,8 @@ Con questo scopriamo che
 \end{teorema}
  
 Da questo scopriamo un altro teorema importante:
-\begin{teorema}{Relazione tra diverse Partizioni}{}
+\addcontentsline{toc}{subsection}{Relazione tra Diverse Partizioni}
+\begin{teorema}{Relazione tra Diverse Partizioni}{}
    Sia $P_1$, $P_2$ partizioni di un intervallo $[a,b]$ e $f:[a,b]\to \mathbb{R}$, allora vale
  \[
  L(f, P_1) \leq U(f, P_2)
@@ -8907,6 +8912,7 @@ Da questo scopriamo un altro teorema importante:
 \end{proof}
 
 \newpage 
+\addcontentsline{toc}{subsection}{Definizione Integrale Inferiore e Superiore}
 \begin{definizione}{Integrale Inferiore e Superiore}{}
     Sia $a,b \in \mathbb{R}$, $f:[a,b]\to \mathbb{R}$ limitata, allora definiamo
     \begin{itemize}
@@ -8927,6 +8933,7 @@ Da questo scopriamo un altro teorema importante:
 L(f) \leq U(f)
 \]
 
+\addcontentsline{toc}{subsection}{Definizione Funzione Integrale secondo Riemann}
 \begin{definizione}{Funzione Integrale secondo Riemann}{}
     Sia $a,b \in \mathbb{R}$, $f:[a,b]\to \mathbb{R}$ limitata, si dice \textbf{integrabile} se 
     \[
@@ -9196,6 +9203,7 @@ Si nota che l'area che volevamo calcolare non è altro che un rettangolo, quindi
 L'area è sotto l'asse x, e quindi l'integrale dovrà essere negativo. Ma dato che $k<0$ e $b-a>0$ (questo perchè abbiamo scelto $a<b$) abbiamo che il valore dell'integrale è negativo, cioè $k(b-a) < 0$ come volevamo.
 \newpage
 
+\addcontentsline{toc}{subsection}{Caratterizzazione dell'Integrabilità}
 \begin{teorema}{Caratterizzazione dell'Integrabilità}{}
     Siano $a,b \in \mathbb{R}$, $a<b$, $f:[a,b]\to \mathbb{R}$ limitata. Tutte le seguenti affermazioni sono equivalenti:
     \begin{enumerate}[label=(\roman*)]
@@ -9230,6 +9238,8 @@ L'area è sotto l'asse x, e quindi l'integrale dovrà essere negativo. Ma dato c
     \]
 \end{teorema}
 Con queste caratterizzazioni possiamo scoprire varie proprietà degli integrali:
+
+\addcontentsline{toc}{subsection}{Integrale di Funzioni pari e Dispari}
 \begin{teorema}{Integrale di Funzioni pari e Dispari}{}
     Sia $a \in \mathbb{R}$, $f:[-a,a]\to \mathbb{R}$ limitata. Allora:
     \begin{itemize}
@@ -9335,6 +9345,7 @@ Proviamo a vedere se anche graficamente saremmo riusciti a trovare questo integr
 
 Notiamo quindi che l'area tra la funzione e l'asse x è un triangolo, la cui base è 1 e l'altezza $k$, quindi per calcolare l'area sarà $\frac{1 \cdot k}{2} = \frac{k}{2}$ che è lo stesso risultato dell'integrale.
 
+\addcontentsline{toc}{subsection}{Proprietà dell'integrale}
 \begin{teorema}{Proprietà dell'integrale}{}
     Date $a,b \in \mathbb{R}$, $a<b$, $f,g:[a,b]\to \mathbb{R}$ limitate e integrabili su $[a,b]$ allora
     \begin{itemize}
@@ -9358,6 +9369,8 @@ Notiamo quindi che l'area tra la funzione e l'asse x è un triangolo, la cui bas
     \end{itemize}
 \end{teorema}
 \newpage
+
+\addcontentsline{toc}{subsection}{Classi di Funzioni Integrabili}
 \begin{teorema}{Classi di Funzioni Integrabili}{}
     Date $a,b \in \mathbb{R}$, $a<b$, $f:[a,b]\to \mathbb{R}$ limitata allora
    \begin{itemize}
@@ -9463,6 +9476,7 @@ L(f_D) = U(f_D) \implies 0 = b-a \implies b=a
 \]
 Quindi notiamo che è integrabile se $b=a$, ma quando abbiamo definito l'intervallo $[a,b]$, affinchè sia un intervallo deve essere $a<b$, e quindi il valore che abbiamo trovato non è valido, e quindi la funzione di Dirichlet non è integrabile.
 
+\addcontentsline{toc}{subsection}{Teorema della Media Integrale}
 \begin{teorema}{Teorema della Media Integrale}{}
      Sia $a,b \in \mathbb{R}$, $a<b$, $f:[a,b]\to \mathbb{R}$ limitata e integrabile, poniamo
      \[
@@ -9503,6 +9517,7 @@ Quindi notiamo che è integrabile se $b=a$, ma quando abbiamo definito l'interva
     \]
 \end{proof}
 
+\addcontentsline{toc}{subsection}{Teorema Fondamentale del Calcolo Integrale}
 \begin{teorema}{Teorema Fondamentale del Calcolo Integrale}{}
     Sia $a,b \in \mathbb{R}$, $a<b$, $f:[a,b]\to \mathbb{R}$ limitata e integrabile su $[a,b]$. Definiamo $F:[a,b]\to \mathbb{R}$ ponendo
     \[
@@ -9568,6 +9583,7 @@ Ma per (\ref{eq:fond2}) sappiamo che
 Ma questo verifica (\ref{eq:fond}), e quindi abbiamo verifica il teorema
 \end{proof}
 
+\addcontentsline{toc}{subsection}{Corollario del Teorema Fondamentale del Calcolo Integrale}
 \begin{corollario}{Corollario del TFCI}{}
     Se $f\in C^0([a,b])$, ed $F$ è definita come sopra, allora 
     \begin{enumerate}[label=(\roman*)]
@@ -9591,6 +9607,7 @@ Ma questo verifica (\ref{eq:fond}), e quindi abbiamo verifica il teorema
     \]
 \end{proof}
 \newpage
+\addcontentsline{toc}{subsection}{Definizione di Primitiva}
 \begin{definizione}{Primitiva}{}
     Sia $\varnothing \ne I \subseteq \mathbb{R}$ intervallo, $f:I\to \mathbb{R}$. Si dice \textbf{Primitiva di  $f$ su $I$} una funzione $F:I\to \mathbb{R}$ tale che
     \[
@@ -9604,6 +9621,7 @@ Con questa definizione notiamo che esistono più primitive di una funzione infat
 \end{array}
 \]
 Notiamo che entrambe hanno come derivata $2x$ e quindi entrambe sono primitive di $2x$. Ma non ci sono solo queste, infatti anche $x^2+3$, $x^2-7$ e $x^2+3\pi$ sono primitive però differiscono tutte di una costante. Quindi generalizzando abbiamo il seguente teorema
+\addcontentsline{toc}{subsection}{Relazione tra le Primitive di una Funzione}
 \begin{teorema}{Relazione tra le Primitive di una Funzione}{}
     Sia $\varnothing \ne I \subseteq \mathbb{R}$ intervallo, $f:I\to \mathbb{R}$. Siano $F;G:I\to\mathbb{R}$ primitive di $f$ su $I$ allora $\exists c \in \mathbb{R}$ tale che
     \[
@@ -9624,6 +9642,7 @@ Notiamo che entrambe hanno come derivata $2x$ e quindi entrambe sono primitive d
     H(x) = c \implies  G(x)-F(x) = c \implies G(x)=F(x)+c\;\;\;\;\; \forall x \in I
     \]
 \end{proof}
+\addcontentsline{toc}{subsection}{Definizione Integrale Indefinito}
 \begin{definizione}{Integrale Indefinito}{}
     Chiamiamo \textbf{integrale Indefinito di $f$} l'insieme di tutte e sole le primitive di $f:I\to \mathbb{R}$, e lo indichiamo come
     \[
@@ -9648,6 +9667,7 @@ Però posso usare una qualsiasi primitiva, infatti se avessimo usato la primita 
 \]
 Quindi notiamo che non cambia nulla nel risultato.
 
+\addcontentsline{toc}{subsection}{Tabella Integrali Principali}
 Vediamo le principali primitive
 \begin{table}[!h]
     \centering
@@ -9669,6 +9689,7 @@ Vediamo le principali primitive
 \end{table}
 
 \newpage
+\addcontentsline{toc}{subsection}{Tecniche di Integrazione: Per Parti}
 \begin{teorema}{Integrazione per Parti}{}
     Sia $a,b \in \mathbb{R}$, $a<b$, $f,g:[a,b]\to \mathbb{R}$, $f$ e $g$ derivabili, allora vale
     \[
@@ -9851,6 +9872,7 @@ In questo modo
     &= \dfrac{x^2+1}{2}\arctan(x) -\dfrac{x}{2} + c
 \end{align*}
 \newpage
+\addcontentsline{toc}{subsection}{Tecniche di Integrazione: Per Sostituzione}
 \begin{teorema}{Integrazione per Sostituzione}{}
     Sia $a,b,c,d \in \mathbb{R}$, $a<b$ e $c<d$, $f:[a,b]\to \mathbb{R}$, $f \in C^0([a,b])$ sia $\varphi : [c,d] \to [a,b]$ tale che $\varphi \in C^1([c,d])$,  $\varphi(c)=a$ e $\varphi(d)=b$, allora vale
     \[
@@ -9993,6 +10015,7 @@ Ma come al solito dobbiamo "tornare" alla funzione rispetto alla variabile $x$.
 \]
 
 \newpage
+\addcontentsline{toc}{subsection}{Tecniche di Integrazione: Frazioni di Polinomi}
 Nei prossimi esercizi vedremo degli integrali della forma
 \[
 \int \dfrac{P(x)}{Q(x)}
@@ -10335,5 +10358,1547 @@ Quindi l'integrale iniziale vale
 \[
     \int \dfrac{3x-10}{x^2-8x+19} \,dx = \dfrac{3}{2}\log|x^2-8x+19| + \dfrac{2}{\sqrt{3}}\arctan\left(\dfrac{x-4}{\sqrt{3}}\right) + c
     \]
-\end{document}
+
+    \addcontentsline{toc}{subsection}{Definizione di Integrale Generalizzato}
+\begin{definizione}{Integrale Generalizzato}{}
+    Siano $a\in \mathbb{R}\cup \{-\infty\}$, $b\in \mathbb{R}$, $a<b$, $f:(a,b]\to \mathbb{R}$, integrabile su $[c,b]$ per ogni $c \in (a,b]$. Diciamo che \textbf{$f$ è integrabile in senso generalizzato su $(a,b]$ }se 
+    \[
+    \exists \lim_{c\to a^+} \int_{c}^{b}f(x)\,dx \in \mathbb{R} \cup \{\pm\infty\}
+    \]
+    In tal caso scriviamo
+    \[
+    \int_{a}^{b}f(x)\,dx  = \lim_{c\to a^+} \int_{c}^{b}f(x)\,dx 
+    \]
+    Analogamente,se $a\in \mathbb{R}$, $b\in \mathbb{R}\cup \{+\infty\}$, $a<b$, $f:[a,b)\to \mathbb{R}$, integrabile su $[a,c]$ per ogni $c \in [a,b)$. Diciamo che \textbf{$f$ è integrabile in senso generalizzato su $[a,b)$ }se 
+\[
+    \exists \lim_{c\to b^-} \int_{a}^{c}f(x)\,dx \in \mathbb{R} \cup \{\pm\infty\}
+    \]
+    In tal caso scriviamo
+    \[
+    \int_{a}^{b}f(x)\,dx  = \lim_{c\to b^-} \int_{a}^{c}f(x)\,dx 
+    \]
+\end{definizione}
+Vediamo l'esempio più classico. Infatti se volessimo calcolare 
+\[
+\int_{0}^{1}\dfrac{1}{x}\,dx
+\]
+Non potremmo applicare la definizione di integrale secondo Riemann, dato che la funzione non è limitata nell'intervallo di integrazione $[0,1]$. Quindi questa funzione non è integrabile secondo Riemann, però possiamo controllare se lo è in senso generalizzato. Dato che la funzione è integrabile in $[c,1]$ per ogni $c \in (0,1]$, allora 
+\begin{align*}
+    \int_{0}^{1}\dfrac{1}{x}\,dx &= \lim_{c\to 0^+} \int_{c}^{1}\dfrac{1}{x}\,dx \\
+    &= \lim_{c\to 0^+} \left.\log(x)\right|_{x=c}^{x=1} \\
+    &= \lim_{c\to 0^+} \left(\log(1) - \log(c)\right)\\
+    &= \lim_{c\to 0^+} -\log(c) = +\infty
+\end{align*}
+Dato che il limite vale $+\infty$, come con le serie, possiamo dire che l'integrale \textbf{Diverge}.
+
+
+    \addcontentsline{toc}{subsection}{Definizione di Integrale Convergente e Divergente}
+\begin{definizione}{Integrale Convergente e Divergente}{}
+     Siano $a\in \mathbb{R}\cup \{-\infty\}$, $b\in \mathbb{R}$, $a<b$, $f:(a,b]\to \mathbb{R}$, integrabile su $[c,b]$ per ogni $c \in (a,b]$. Se $f$ è integrabile in senso generalizzato su $(a,b]$, allora sia
+    \[
+    c = \int_{a}^{b} f(x)\,dx
+    \]
+    \begin{itemize}
+        \item Se $c \in \mathbb{R}$ allora diciamo che \textbf{l'integrale è Convergente}
+        \item Se $c \in\{\pm \infty\}$ allora diciamo che \textbf{l'integrale è Divergente}
+    \end{itemize}
+\end{definizione}
+
+Vediamo degli integrali fondamnetali, che ci serviranno per confrontarli con le altri integrali. Studiamo il carattere dell'integrale al variare di $\alpha \in \mathbb{R}$ 
+
+\[
+\int_{0}^{1}\dfrac{1}{x^\alpha}\,dx
+\]
+Il caso $\alpha=1$ lo abbiamo già fatto ed abbiamo visto che diverge. Ora quindi dato che $\forall \alpha\in \mathbb{R}$ abbiamo che  la funzione è integrabile in $[c, 1]$ per ogni $c \in (0,1)$, allora possiamo integrarlo in senso generalizzato.
+\begin{align*}
+    \int_{0}^{1}\dfrac{1}{x^\alpha}\,dx &= \lim_{c\to 0^+} \int_{c}^{1}\dfrac{1}{x^\alpha}\,dx \\
+&= \lim_{c\to 0^+} \left.\dfrac{x^{1-\alpha}}{1-\alpha}\right|_{x=c}^{x=1} \\
+&= \lim_{c\to 0^+} \left(\dfrac{1}{1-\alpha} - \dfrac{c^{1-\alpha}}{1-\alpha}\right) = \lim_{c\to 0^+} \dfrac{1-c^{1-\alpha}}{1-\alpha}
+\end{align*}
+Ora il termine $c^{1-\alpha}$ tende a $0$ solo se l'esponente è positivo, mentre diverge a $+\infty$ se l'esponente è negativo, quindi
+\[
+\lim_{c\to 0^+} \dfrac{1-c^{1-\alpha}}{1-\alpha} = \begin{cases}
+    \dfrac{1-0}{1-\alpha} & 1-\alpha > 0 \\
+    +\infty & 1-\alpha < 0
+\end{cases}
+=\begin{cases}
+    \dfrac{1}{1-\alpha} & \alpha < 1 \\
+    +\infty & \alpha > 1
+\end{cases}
+\]
+Quindi combinando anche il fatto che il caso $\alpha=1$ divergeva, abbiamo che l'integrale iniziale 
+\[
+\int_{0}^{1}\dfrac{1}{x^\alpha}\,dx = \begin{cases}
+    \text{Convergente} & \alpha < 1 \\
+    \text{Divergente}  & \alpha \geq 1
+\end{cases}
+\]
+Un altro integrale fondamentale per gli esercizi è
+\[
+\int_{1}^{+\infty}\dfrac{1}{x^\alpha}\,dx
+\]
+Con $\alpha\in \mathbb{R}$. Come prima l'integrale non è integrabile secondo Riemann dato che l'intervallo non è limitato, quindi controlliamo se è integrabile in senso generalizzato. Notiamo che $\forall M >1$ la funzione è limitata nell'intervallo $[1,M]$, quindi 
+\begin{align*}
+   \int_{1}^{+\infty}\dfrac{1}{x^\alpha}\,dx &= \lim_{M\to+\infty}\int_{1}^{M}\dfrac{1}{x^\alpha}\,dx \\[1em]
+   &=\begin{cases}
+    \displaystyle\lim_{M\to+\infty} \left.\dfrac{x^{1-\alpha}-1}{1-\alpha}\right|_{x=1}^{x=M} & \alpha \ne 1 \\[1.5em]
+   \displaystyle \lim_{M\to+\infty} \left.\log(x)\right|_{x=1}^{x=M} & \alpha= 1 \\
+   \end{cases} \\[1em]
+   &=\begin{cases}
+    \displaystyle\lim_{M\to+\infty} \left(\dfrac{M^{1-\alpha}}{1-\alpha} -\dfrac{1}{1-\alpha}\right)& \alpha \ne 1 \\[1em]
+   \displaystyle \lim_{M\to+\infty} \log(M)-\log(1) & \alpha= 1 
+   \end{cases} =\begin{cases}
+    \displaystyle\lim_{M\to+\infty} \dfrac{M^{1-\alpha}-1}{1-\alpha}& \alpha \ne 1 \\[1em]
+   \displaystyle \lim_{M\to+\infty} \log(M) & \alpha= 1 
+   \end{cases}
+\end{align*}
+  \newpage
+  Il caso $\alpha=1$ come prima diverge, mentre il termine $M^{1-\alpha}$ tende a 0 se l'esponente è negativo e tende a $+\infty$ quando l'esponente è positivo.
+  \[
+  \begin{cases}
+ \displaystyle  \dfrac{-1}{1-\alpha} & 1-\alpha < 0\\
+    \displaystyle+\infty& 1-\alpha > 0 \\
+   \displaystyle +\infty & \alpha= 1 
+   \end{cases} \implies
+   \int_{1}^{+\infty}\dfrac{1}{x^\alpha}\,dx = \begin{cases}
+    \text{Convergente }& \alpha > 1 \\
+     \text{Divergente }& \alpha \leq 1 
+\end{cases}
+  \]
+
+
+    \addcontentsline{toc}{subsection}{Proprietà degli Integrali Generalizzati}
+  \begin{teorema}{Proprietà degli Integrali Generalizzati}{}
+    
+    
+    \begin{itemize}
+        \item Siano $a,b\in \mathbb{R}$, $a<b$, $f:[a,b]\to \mathbb{R}$ limitata, allora se $f$ è integrabile secondo Riemann in $[a,b]$, allora $f$ è integrabile su $[a,b]$ in senso generalizzato, da cui
+    \[
+    \lim_{c\to b^-} \int_{a}^{c} f(x)\,dx =  \lim_{c\to a^+} \int_{c}^{b} f(x)\,dx =\int_{a}^{b} f(x)\,dx
+    \]
+    \item Se $f,g:(a,b]\to \mathbb{R}$ integrabili in senso generalizzato  e se entrambi convergono, allora $\forall \alpha, \beta \in\mathbb{R}$ vale
+    \[
+    \int_{a}^{b} (\alpha f + \beta g)(x)\,dx =   \alpha\int_{a}^{b} f(x)\,dx  +\beta\int_{a}^{b}  g(x)\,dx 
+    \]
+    Discorso analogo per $[a,b)$.
+    \item Se $f:(a,b]\to \mathbb{R}$ integrabile in senso generalizzato su $(c,b]$ per ogni $c \in (a,b)$, allora per ogni $\hat{b} \in (a,b)$ i seguenti integrali hanno lo stesso carattere
+    \[\begin{array}{c@{\qquad}@{\qquad}c}
+        \displaystyle\int_{a}^{b} f(x)\,dx &\displaystyle\int_{a}^{\hat{b}} f(x)\,dx
+    \end{array}\]
+    Discorso analogo per $[a,b)$.
+    \end{itemize}
+  \end{teorema}
+  Proviamo a capire meglio il terzo punto. Supponiamo di avere l'integrale
+  \[
+  \int_{0}^{100} \dfrac{1}{x} \,dx
+  \]
+  Notiamo che soddisfa tutte le ipotesi del teorema, infatti è integrabile in senso generalizzato in $(c,100]$ e per ogni $c \in (0, 100)$. Pertanto per ogni $\hat{b} \in (0,100)$ tutti gli integrali avranno lo stesso carattere. Facendo un esempio pratico, se prendiamo $\hat{b}_1 = 1$,$\hat{b}_2 = 10$, $\hat{b}_3 = 0.1$ allora i seguenti integrali avranno tutti il seguente carattere
+  \[
+  \begin{array}{c@{\qquad}c@{\qquad}c@{\qquad}c}
+    \displaystyle\int_{0}^{100} \dfrac{1}{x} \,dx &\displaystyle\int_{0}^{1} \dfrac{1}{x} \,dx &\displaystyle\int_{0}^{10} \dfrac{1}{x} \,dx &\displaystyle\int_{0}^{0.1} \dfrac{1}{x} \,dx 
+  \end{array}
+  \] 
+  Questo perchè quello che fa divergere o convergere l'integrale è all'avvicinarsi allo 0, quindi noi possiamo prendere qualsiasi estremo destro (in questo caso) che tanto il carattere sarà sempre lo stesso.
+
+    \addcontentsline{toc}{subsection}{Integrali Generalizzati in Entrambi gli Estremi}
+\begin{definizione}{Integrali Generalizzati in Entrambi gli Estremi}{}
+    Siano $a\in \mathbb{R}\cup \{-\infty\}$, $b\in \mathbb{R}\cup \{+\infty\}$, $a<b$, $f:(a,b)\to \mathbb{R}$, integrabile su $[c,d]$ per ogni $c, d \in (a,b)$ tali che $c < d$. Diciamo che \textbf{$f$ è integrabile in senso generalizzato su $(a,b)$} se $f$ è integrabile su $(a,c]$ e $[c,b)$ per ogni $c \in (a,b)$, e poniamo
+    \[
+    \int_{a}^{b} f(x) \,dx = \int_{a}^{c} f(x)\,dx +  \int_{c}^{b} f(x)\,dx
+    \]
+\end{definizione}
+Quindi dato il seguente integrale
+\[
+\int_{0}^{+\infty} \dfrac{1}{x^2} \,dx
+\]
+Dato che la funzione non è integrabile nè sull'estremo destro nè quello sinistro possiamo spaccare l'integrale in un $c\in(0,+\infty)$ qualsiasi, per esempio $c=1$, e quindi
+\[
+\int_{0}^{+\infty} \dfrac{1}{x^2} \,dx = \int_{0}^{1} \dfrac{1}{x^2} \,dx + \int_{1}^{+\infty} \dfrac{1}{x^2} \,dx
+\]
+Il primo integrale diverge a $+\infty$, mentre il secondo converge (come abbiamo visto prima), e quindi
+\[
+\int_{0}^{+\infty} \dfrac{1}{x^2} \,dx = +\infty
+\]
+
+    \addcontentsline{toc}{subsection}{Integrali Generalizzati con Finite Discontinità}
+\begin{definizione}{Integrali Generalizzati con Finite Discontinità}{}
+    Siano $a\in \mathbb{R}\cup \{-\infty\}$, $b\in \mathbb{R}\cup \{+\infty\}$, $a<b$, $f:(a,b)\to \mathbb{R}$. Diciamo che \textbf{$f$ è integrabile in senso generalizzato su $(a,b)$} se è integreabile in $(x_{i-1},x_i)$ per ogni $i = 1,...,n$ con $a=x_0 < x_1 < x_2 < ... < x_n = b$ e poniamo
+    \[
+     \int_{a}^{b} f(x) \,dx = \sum_{i=1}^{n}\int_{x_{i-1}}^{x_1} f(x)\,dx
+    \]
+\end{definizione}
+Quindi per esempio se volessimo calcolare l'integrale
+\[
+ \int_{0}^{2}\left(\dfrac{1}{\sqrt{|x|}}+\dfrac{1}{\sqrt{|x-1|}}+\dfrac{1}{\sqrt{|x-2|}} \right)\,dx
+\]
+Notiamo che la nostra funzione ha 3 discontinità: $x=0$, $x=1$ e $x=2$ quindi non è integrabile secondo Riemann, però possiamo spezzare l'integrale in 2 integrali, che sono integrabili in senso generalizzato.
+\[
+\int_{0}^{2}f(x) \,dx = \int_{0}^{1}f(x)\,dx + \int_{1}^{2}f(x)\,dx 
+\]
+E quindi possiamo calcolare i singoli integrali, e facendo i conti viene fuori
+\[
+\int_{0}^{2}f(x) \,dx = \int_{0}^{1}f(x)\,dx + \int_{1}^{2}f(x)\,dx = (2+2\sqrt{2}) + (2\sqrt{2} + 2) = 4\sqrt{2} + 4
+\]
+\newpage
+
+    \addcontentsline{toc}{subsection}{Criterio della Convergenza Assoluta}
+\begin{teorema}{Criterio della Convergenza Assoluta}{}
+    Siano $a\in \mathbb{R}\cup \{-\infty\}$, $b\in \mathbb{R}\cup \{+\infty\}$, $a<b$, $f:(a,b)\to \mathbb{R}$ integrabile (anche in senso generalizzato), allora se \textbf{l'integrale converge assolutamente} allora \textbf{converge semplicemente}, e scriviamo 
+    \[
+    \int_{a}^{b} |f(x)| \,dx \in \mathbb{R} \implies \int_{a}^{b} f(x) \,dx \in \mathbb{R} 
+    \] 
+\end{teorema}
+Il criterio della convergenza assoluta da solo non ci torna molto utile, infatti spesso va usato assieme al criterio del confronto 
+
+    \addcontentsline{toc}{subsection}{Criterio del Confronto Integrale}
+\begin{teorema}{Criterio del Confronto Integrale}{}
+     Siano $a\in \mathbb{R}\cup \{-\infty\}$, $b\in \mathbb{R}\cup \{+\infty\}$, $a<b$, $f:(a,b)\to \mathbb{R}$ integrabile in $[c,d]$ per ogni $c, d \in (a,b)$. Se vale
+     \[
+     0 \leq f(x) \leq g(x) \;\;\;\;\; \forall x \in(a,b)
+     \]
+     Allora  se
+     \begin{itemize}
+        \centering
+        \item $\displaystyle \int_{a}^{b} g(x) \,dx  \text{ Converge} \implies\int_{a}^{b} f(x) \,dx  \text{ Converge}  $
+   \item $\displaystyle \int_{a}^{b} f(x) \,dx  \text{ Diverge} \implies\int_{a}^{b} g(x) \,dx  \text{ Diverge}  $
+    \end{itemize}
+\end{teorema}
+Infatti se volessimo capire se il seguente integrale converge o diverge
+\[
+\int_{1}^{+\infty} \dfrac{\sin(x)}{x^2}\,dx
+\]
+Dovremmo trovare una funzione che sia maggiore o minore di quella dentro l'integrale. Però non potremmo applicare il criterio del confronto, dato che richiede che le funzioni siano positive. Quindi possiamo usare il criterio della convergenza assoluta per rendere tutto positivo il nostro integrale. E poi applichiamo il criterio del confronto con $\dfrac{1}{x^2}$ dato che $|\sin(x)| \leq 1$ per ogni $x \in \mathbb{R}$. Quindi
+\[
+\int_{1}^{+\infty} \left|\dfrac{\sin(x)}{x^2}\right|\,dx \leq \int_{1}^{+\infty} \dfrac{1}{x^2}\,dx 
+\]
+Ma il secondo integrale abbiamo già incontrato, e dato che $2>1$ allora il secondo integrale converge. Ma di conseguenza anche l'integrale con i valori assoluti converge per il criterio del confronto. Che poi per il criterio di convergenza assoluta converge anche l'integrale iniziale
+\[
+\int_{1}^{+\infty} \dfrac{1}{x^2}\,dx  \text{ Converge} \implies\int_{1}^{+\infty} \left|\dfrac{\sin(x)}{x^2}\right|\,dx  \text{ Converge} \implies \int_{1}^{+\infty} \dfrac{\sin(x)}{x^2}\,dx\text{ Converge}
+\]
+
+\newpage
+
+    \addcontentsline{toc}{subsection}{Criterio del Confronto Asintotico}
+\begin{teorema}{Criterio del Confronto Asintotico}{}
+    Siano $a\in \mathbb{R}\cup \{-\infty\}$, $b\in \mathbb{R}\cup \{+\infty\}$, $a<b$, $f,g:(a,b]\to \mathbb{R}$ integrabili su $[c,b]$ per ogni $c \in (a,b]$. Se
+    \[
+    \exists \lim_{x\to a^+} \dfrac{f(x)}{g(x)} = l \in \mathbb{R} \cup \{\pm \infty\}
+    \]
+    Allora se
+    \begin{itemize}
+        \item $l \in \mathbb{R} \setminus \{0\}$ allora i seguenti integrali hanno lo stesso carattere
+        \[
+        \begin{array}{c@{\qquad}@{\qquad}c}
+            \displaystyle\int_{a}^{b} f(x)\,dx &\displaystyle\int_{a}^{b} g(x)\,dx
+        \end{array}
+        \]
+        \item $l = 0$ allora vale $f(x) \leq \varepsilon g(x)$ per qualche $\varepsilon >0$, e quindi per il criterio del confronto deduciamo che:
+        \[
+        \int_{a}^{b} g(x)\,dx \text{ Converge } \implies \int_{a}^{b} f(x)\,dx \text{ Converge } 
+        \]
+        \[
+        \int_{a}^{b} f(x)\,dx \text{ Diverge } \implies \int_{a}^{b} g(x)\,dx \text{ Diverge } 
+        \]
+         \item $l \in \{\pm \infty\}$ allora vale $f(x) \geq M g(x)$ per qualche $M >0$, e quindi per il criterio del confronto deduciamo che:
+        \[
+        \int_{a}^{b} f(x)\,dx \text{ Converge } \implies \int_{a}^{b} g(x)\,dx \text{ Converge } 
+        \]
+        \[
+        \int_{a}^{b} g(x)\,dx \text{ Diverge } \implies \int_{a}^{b} f(x)\,dx \text{ Diverge } 
+        \]
+    \end{itemize}
+    
+\end{teorema}
+Vediamo un esercizio dove possiamo applicare questo teorema
+\begin{esercizio}{}{}
+    Determinare il carattere del seguente integrale al variare di $a \in \mathbb{R}$ 
+    \[
+    \int_{0}^{\frac{\pi}{2}} \dfrac{\cos(x)}{\sin(x)+x^a} \,dx
+    \]
+\end{esercizio}
+In primis notiamo che la nostra funzione non è definita solo per $x=0$, quindi è integrabile su $[c, \frac{\pi}{2}]$ per ogni $c \in (0,\frac{\pi}{2}]$. Quindi possiamo cercare una funzione asintotica alla nostra. Possiamo notare che il seno con lo sviluppo di Taylor diventa:
+\[
+\sin(x) + x^a = x+o(x) + x^a
+\]
+Però se $a>1$ notiamo che diventa un $o(x)$. Mentre per $a<1$ abbiamo che $x+o(x)$ diventa un o-piccolo di $x^a$ dato che $x^a$ è il termine più grossolano. Poi per $a=1$ abbiamo che diventa $x+x = 2x$.
+
+\newpage
+Di conseguenza la nostra funzione integranda è asintotica a 
+\[
+\dfrac{\cos(x)}{\sin(x)+x^a} \sim \dfrac{1}{x+x^a} \sim \begin{cases}
+    \dfrac{1}{x} & a >1 \\[1em]
+    \dfrac{1}{2x} & a=1 \\[1em]
+    \dfrac{1}{x^a} & a <1
+\end{cases}
+\]
+Di conseguenza facendo confronto con la funzione che già conosciamo $\dfrac{1}{x^\alpha}$ scopriamo che il nostro integrale converge per $a<1$ e diverge per $a \geq 1$.
+
+\begin{esercizio}{}{}
+     Determinare il carattere del seguente integrale al variare di $a \in \mathbb{R}$ 
+    \[
+    \int_{2}^{3}\dfrac{x\sin^a(x-2)}{\sqrt{x^2-4}}\,dx
+    \]
+\end{esercizio}
+Notiamo che la nostra funzione ha una discontinuità solo in $x=2$, quindi per comodità, possiamo fare una sostituzione con $t=x-2$
+\[
+\int_{0}^{1}\dfrac{(t+2)\sin^a(t)}{\sqrt{t^2+2t}}\,dx
+\]
+In questo modo è centrata sullo zero e ci tornerà più comodo dopo per il confronto con la funzione campione. Ora possiamo fare un paio di scomposizioni e usiamo lo sviluppo del seno ed abbiamo
+\[
+\dfrac{(t+2)\sin^a(t)}{\sqrt{t^2+2t}} = \dfrac{(t+2)\sin^a(t)}{\sqrt{t+2}\sqrt{t}} \sim \dfrac{(2)\sin^a(t)}{\sqrt{2}\sqrt{t}} \sim  \dfrac{\sqrt{2}(t)^a}{\sqrt{t}} = \dfrac{\sqrt{2}}{t^{\frac{1}{2} - a}}
+\]
+Per noi sappiamo che la funzione 
+\[
+\dfrac{\sqrt{2}}{t^{\frac{1}{2} - a}} = \begin{cases}
+    \text{Converge } &  \dfrac{1}{2} - a < 1\\[1em]
+    \text{Diverge } &  \dfrac{1}{2} - a \geq 1
+\end{cases} =\begin{cases}
+    \text{Converge } &   a > -\dfrac{1}{2}\\[1em]
+    \text{Diverge } &    a \leq -\dfrac{1}{2}
+\end{cases}
+\]
+\begin{esercizio}{}{}
+     Determinare il carattere del seguente integrale al variare di $a \in \mathbb{R}$ 
+    \[
+    \int_{\frac{2}{\pi}}^{+\infty}x^a\left(1-\cos\left(\dfrac{1}{x}\right)\right)\,dx
+    \]
+\end{esercizio}
+Notiamo che per ogni valore di $a$ abbiamo che il dominio della funzione integranda è $x\neq  0$, quindi nell'integrale dobbiamo solo studiare il comportamento per $x\to +\infty$. Notiamo che per equivalenze asintotiche abbiamo
+\[
+x^a\left(1-\cos\left(\dfrac{1}{x}\right)\right) \sim x^a \left(\dfrac{1}{2x^2}\right) = \dfrac{1}{2x^{2-a}} \;\;\; \text{per } x\to +\infty
+\] 
+Da cui per la serie campione sappiamo 
+\[
+\dfrac{1}{2x^{2-a}} =\begin{cases}
+    \text{Converge } &   2-a > 1\\
+    \text{Diverge } &    2-a \leq 1
+\end{cases} = 
+\begin{cases}
+    \text{Converge } &   a < 1\\
+    \text{Diverge } &    a \geq 1
+\end{cases}
+\]
+\begin{esercizio}{}{}
+     Determinare il carattere del seguente integrale al variare di $a \in \mathbb{R}$ 
+    \[
+    \int_{0}^{\frac{\pi}{2}}\dfrac{\sin(x)}{\log(1+\sqrt{x})\left(e^{x^a}-1\right)}\,dx
+    \]
+\end{esercizio}
+Notiamo che il dominio di questa funzione è 
+\[
+\mathbb{D}(f)=\begin{cases}
+    x\geq 0 \\
+    1+\sqrt{x} >0 \\
+    x \neq 0
+\end{cases} \implies
+\mathbb{D}(f) = \{x\in \mathbb{R}: x>0\}
+\]
+Pertanto, dobbiamo solo controllare il comportamento in $x=0$, per $a>0$ notiamo tramite un confronto asintotico che
+\[
+\dfrac{\sin(x)}{\log(1+\sqrt{x})\left(e^{x^a}-1\right)} \sim  \dfrac{x}{\sqrt{x}\cdot x^a}= \dfrac{1}{x^{a+\frac{1}{2} -1}} = \dfrac{1}{x^{a-\frac{1}{2} }} 
+\]
+Da cui per confronto con la funzione campione
+\[
+\dfrac{1}{x^{a-\frac{1}{2} }} = \begin{cases}
+    \text{Converge } &   a-\dfrac{1}{2} < 1\\[1em]
+    \text{Diverge } &     a<-\dfrac{1}{2} \geq 1
+\end{cases} =\begin{cases}
+    \text{Converge } &   0<a< \dfrac{3}{2} \\[1em]
+    \text{Diverge } &     a\geq \dfrac{3}{2}
+\end{cases}
+\]
+Notiamo invece che per $a=0$ abbiamo 
+\[
+\dfrac{\sin(x)}{\log(1+\sqrt{x})\left(e^{x^0}-1\right)} = \dfrac{\sin(x)}{\log(1+\sqrt{x})\left(e^{1}-1\right)} \sim \dfrac{x}{\sqrt{x}} = \sqrt{x} = \dfrac{1}{x^{-\frac{1}{2}}}
+\]
+Che per confronto con la funzione campione sappiamo che converge dato che $-\frac{1}{2}<1$. Ora ci manca da studiare per $a<0$, per comodità definiziamo $b = -a$, in modo tale che possiamo studiare il caso $b>0$. Ora se proviamo a fare il limite per $x\to 0^+$ notiamo che
+\[
+\lim_{x\to 0^+}\dfrac{\sin(x)}{\log(1+\sqrt{x})\left(e^{x^{-b}}-1\right)} \sim \lim_{x\to 0^+}\dfrac{x}{\sqrt{x}\left(e^{\frac{1}{x^b}}-1\right)} =  \lim_{x\to 0^+}\dfrac{\sqrt{x}}{e^{\frac{1}{x^b}}-1} = \bigl[\dfrac{0}{+\infty}\bigr] = 0
+\]
+Quindi la nostra funzione origina per $b>0$ (cioè $a<0$), la possiamo estendere 
+\[
+\tilde{f}(x) = \begin{cases}
+    \dfrac{\sin(x)}{\log(1+\sqrt{x})\left(e^{x^{-b}}-1\right)} & x \in (0,+\infty) \\
+    0 & x = 0 
+\end{cases}
+\]
+Ma quindi la funzione è continua in $[0, \dfrac{\pi}{2}]$ e quindi è integrabile secondo Riemann, pertanto per $a<0$ è convergente.
+
+\section{Equazioni Differenziali Ordinarie (EDO)}
+ \addcontentsline{toc}{subsection}{Definizione di EDO}
+\begin{definizione}{Equazioni Differenziali Ordinarie}{}
+    Una \textbf{Equazioni Differenziali Ordinarie}, abbreviata come \textbf{EDO}, è una qualsiasi equazione in cui appare sia una funzione (incognita) che una, o più, delle sue derivate. Quindi una EDO è della forma 
+    \[
+    f(t, u(t), u'(t), u''(t), ..., u^{n}(t)) = 0
+    \]
+    Dove $f$ è una qualsiasi funzione, $u$ è una funzione in funzione di $t$, e $n\in \mathbb{N}$. Si dice \textbf{ordine di una EDO} il grado più alto della derivata della funzione $u(t)$.  
+    
+    \textbf{N.B.} quindi nelle EDO non bisogna trovare un valore di $t$, ma una funzione che soddisfa la EDO.
+\end{definizione}
+Facciamo un esempio di EDO:
+\[
+u'(t) = u(t)
+\] 
+In questo caso stiamo cercando le funzioni che, le cue derivate sono uguali alla funzione stessa, e per chi ha un pò di occhio potrà notare che una soluzione può essere $\displaystyle u(t) = e^{t}$, ed infatti la defivata è $\displaystyle u'(t) = e^{t}$, pertanto questa soluzione soddisfa la EDO. 
+
+\textbf{Però non è l'unica!} infatti se guardiamo più attentamente scopriamo che più generalmente una soluzione alla EDO è 
+\[
+u(t) = ce^t \;\;\;\;\; c \in \mathbb{R}
+\]
+Per questo quando risolviamo una EDO ci aspettiamo di trovare una famiglia di soluzione, che da qui in poi chiameremo \textbf{Integrale Generale}. Può succedere però che di tutte le soluzioni a noi ce ne interessa una soltanto, e questo lo scopriamo con i problemi di Cauchy.
+
+ \addcontentsline{toc}{subsection}{Definizione Problemi di Cauchy}
+ \begin{definizione}{Problemi di Cauchy}{}
+    Un \textbf{Problema di Cauchy} è un sistema che contiene una EDO e delle \textbf{condizioni iniziali}. Le condizioni iniziali devono essere di numero $n$, dove $n\in\mathbb{N}$ è il grado della EDO. Quindi un problema di Cauchy è della forma
+    \[
+    \begin{cases}
+        f(t, u(t), u'(t), u''(t), ..., u^{n}(t)) = 0 \\
+        u(t_0) = u_0 \\ 
+        ... \\ 
+        u^{n-1}(t_{n-1}) = u_{n-1} \\ 
+    \end{cases}
+    \]
+\end{definizione}
+Rimaendo con l'esempio di prima, un possibile problema di Cauchy è
+\[
+\begin{cases}
+    u'(t) = u(t) \\
+    u(0)=2
+\end{cases}
+\]
+Quindi abbiamo visto che la soluzione della EDO è $u(t) = ce^t$, ma dobbiamo trovare il valore di $c\in\mathbb{R}$ in modo tale da soddisfare le condizioni iniziali. Quindi
+\[
+u(0)=2 \implies ce^0 = 2 \implies c=2
+\]
+Quindi l'unica soluzione che soddisfa il problema di Cauchy è $u(t) = 2e^t$.
+\newpage
+ \addcontentsline{toc}{subsection}{EDO Lineari \textit{I°} Ordine}
+\begin{teorema}{EDO Lineari \textit{I°} Ordine}{}
+    Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo aperto, $t_0\in I$ $u_0 \in \mathbb{R}$. Siano $a,b\in C^0(I)$, allora il seguente problema di Cauchy
+    \[
+        \begin{cases}
+            u'(t) = a(t)u(t) + b(t) \\
+            u(t_0) = u_0
+        \end{cases}
+    \]
+    Ha come soluzione unica
+    \[
+    u(t) = e^{A(t)-A(t_0)} \left(u_0 +\int_{t_0}^{t}e^{-(A(s)-A(t_0))}b(s)\,ds\right)
+    \]
+    con $A(t)$ una qualsiasi primitiva di $a(t)$
+\end{teorema}
+\begin{proof}
+    Affinchè sia una soluzione, dobbiamo controllare se verifica l'EDO e le condizioni iniziali, quindi proviamo a vedere se verifica l'EDO
+    \begin{align*}
+        u'(t) &= \dfrac{d}{dt} \left(e^{A(t)-A(t_0)} \left(u_0 +\int_{t_0}^{t}e^{-(A(s)-A(t_0))}b(s)\,ds\right)\right) \\
+&= \dfrac{d}{dt} \left(\mathunderline{red}{e^{A(t)-A(t_0)} }\right)\left(u_0 +\int_{t_0}^{t}e^{-(A(s)-A(t_0))}b(s)\,ds\right) + \\
+&+ \left(e^{A(t)-A(t_0)} \right)\dfrac{d}{dt} \left(\mathunderline{blue}{u_0 +\int_{t_0}^{t}e^{-(A(s)-A(t_0))}b(s)\,ds}\right) \\
+&= \mathunderline{red}{\left(e^{A(t)-A(t_0)} \right)(A'(t) - 0)}\left(u_0 +\int_{t_0}^{t}e^{-(A(s)-A(t_0))}b(s)\,ds\right) + \\
+&+ \left(e^{A(t)-A(t_0)} \right)\left(\mathunderline{blue}{e^{-(A(t)-A(t_0))}b(t)}\right)
+\end{align*}
+Usiamo la definizione di $u(t)$ e ricordiamo che $A'(t) = a(t)$
+\begin{align*}
+    &= A'(t)\left(\mathunderline{green}{e^{A(t)-A(t_0)} \left(u_0 +\int_{t_0}^{t}e^{-(A(s)-A(t_0))}b(s)\,ds\right)}\right) + e^{(A(t)-A(t_0))-(A(t)-A(t_0))}b(t) \\
+    &= a(t)\mathunderline{green}{u(t)} + e^0 b(t) \\
+    &= a(t)u(t) +b(t)
+\end{align*}
+Quindi notiamo che la soluzione risolve la EDO, ora controlliamo se soddisfa le condizioni iniziali
+\begin{align*}
+    u(t_0) =&  e^{A(t_0)-A(t_0)} \left(u_0 +\int_{t_0}^{t_0}e^{-(A(s)-A(t_0))}b(s)\,ds\right) \\
+=& e^0 \left(u_0 + 0\right) = u_0
+\end{align*}
+Sono verificate anche le condizioni iniziali, quindi abbiamo dimostrato che la soluzione che si siamo dati risolve quel problema di Cauchy.
+\end{proof}
+
+Ora dobbiamo dimostrare che questa soluzione è l'unica a quel problema di Cauchy. Per dimostrarlo dobbiamo prima dimostrare un altro teorema: quello di Gr\"onwall
+
+ \addcontentsline{toc}{subsection}{Lemma di Gr\"onwall}
+\begin{teorema}{Lemma di Gr\"onwall}{}
+    Sia $\varnothing \neq I \subseteq \mathbb{R}$ un intervallo aperto, $t_0\in I$, $u\in C^0(I)$ e derivabile su $I$. Siano $a\in C^0(I)$ e una sua primitiva $A\in C^1(I)$ allora 
+    \begin{enumerate}[label=(\roman*)]
+        \centering
+        \item $u'(t) \leq a(t) u(t) \;\;\;\; \forall t \in I\implies u(t) \leq u(t_0)e^{A(t)-A(t_0)} \;\;\;\; \forall t \geq t_0$ 
+        \item $u'(t) = a(t) u(t) \;\;\;\; \forall t \in I\implies u(t) = u(t_0)e^{A(t)-A(t_0)} \;\;\;\; \forall t \in I$ 
+    \end{enumerate}
+\end{teorema}
+\begin{proof}
+    Definiamo $v(t)=e^{A(t)-A(t_0)} $ per ogni $t \in I$, notiamo che 
+    \[
+    v(t_0) = e^{A(t_0)-A(t_0)} = e^0 = 1
+    \]
+    \[
+    v'(t) =  e^{A(t_0)-A(t_0)}\left(A'(t) - 0\right) =  e^{A(t_0)-A(t_0)} a(t) = a(t)v(t)
+    \]
+    Dato che $v$ è un esponenziale, sappiamo che $v(t)>0$ per ogni $t \in I$, allora possiamo definire 
+    \[
+    f(t) = \dfrac{u(t)}{v(t)} \;\;\;\;\; \forall t \in I
+    \]
+    Ora calcoliamo la derivata di questa nuova funzione
+    \begin{align*}
+        f'(t) = \dfrac{u'(t)v(t) - u(t)\mathunderline{blue}{v'(t)}}{v^2(t)} = \dfrac{u'(t)v(t) - u(t)\mathunderline{blue}{a(t)v(t)}}{v^2(t)}
+    \end{align*}
+    $(i)$ Dato che per ipotesi sappiamo che $u'(t) \leq a(t) u(t)$ allora 
+    \begin{align*}
+        f'(t) = \dfrac{\mathunderline{red}{u'(t)}v(t) - u(t)a(t)v(t)}{v^2(t)} \implies f'(t) \leq \dfrac{\mathunderline{red}{a(t) u(t)}v(t) - u(t)a(t)v(t)}{v^2(t)}  \implies f'(t) \leq 0
+    \end{align*}
+    Pertanto se la derivata è negativa per ogni $t \in I$ abbiamo che $f$ è descrescente in $I$. Quindi se prendiamo un punto $t_0 \in I$ abbiamo che
+    \[
+    f(t) \leq f(t_0) \;\;\;\;\; \forall t \geq t_0
+    \]
+    Ricordiamo come abbiamo definito $f(t)$ e $v(t)$
+    \[
+    \dfrac{u(t)}{v(t)} \leq \dfrac{u(t_0)}{\mathunderline{green}{v(t_0)}} \implies \dfrac{u(t)}{v(t)} \leq \dfrac{u(t_0)}{\mathunderline{green}{1}} \implies u(t) \leq u(t_0)v(t) \implies u(t) \leq u(t_0)e^{A(t)-A(t_0)}
+    \]
+    $(ii)$ per questo caso si fa il ragionamento analogo, infatti si può dedurre che $f'(t) = 0$ per ogni $t \in I$
+    Ma allora se la derivata è nulla su $I$, allora preso un $t_0 \in I$ vale
+    \[
+    f(t) = f(t_0) \;\;\;\;\; \forall t \in I
+    \]
+    Da cui
+    \[
+    \dfrac{u(t)}{v(t)}= \dfrac{u(t_0)}{v(t_0)} \implies u(t) = u(t_0)v(t) \implies u(t) = u(t_0)e^{A(t)-A(t_0)}
+    \]
+\end{proof}
+\newpage
+Ora abbiamo tutto quello che ci server per dimostrare l'unicità della soluzione che abbiamo dato prima per le EDO lineari di primo ordine.
+\begin{proof}
+    Supponiamo che esistano due soluzioni alla EDO: $u_1(t), u_2(t)$. Quindi dato che per ipotesi soddisfano l'EDO, allora valgono
+    \[
+    \begin{array}{c@{\qquad}@{\qquad} c}
+        \displaystyle \begin{cases}
+            u_1'(t) = a(t)u_1(t) + b(t) \\
+            u_1(t_0) = u_0
+        \end{cases}  & \begin{cases}
+            u_2'(t) = a(t)u_2(t) + b(t)\\
+            u_2(t_0) = u_0
+        \end{cases}
+    \end{array}
+    \]
+    Definiamo $U(t) = u_1(t) - u_2(t)$, osserviamo che 
+    \begin{align*}
+    U'(t) &= u_1'(t) - u_2'(t) \\
+    &= \left(a(t)u_1(t) + b(t)\right) - \left(a(t)u_2(t) + b(t)\right) \\
+    &= a(t)\left(u_1(t) - u_2(t)\right)\\
+    &= a(t) U(t)
+    \end{align*}
+
+    E che 
+    \begin{align*}
+        U(t_0) = u_1(t_0) - u_2(t_0) = u_0 - u_0 = 0
+    \end{align*}
+
+    Ora possiamo applicare il lemma di Gr\"onwall ad $U(t)$ e scopriamo che
+    \[
+    U'(t) = a(t) U(t) \implies U(t) = U(t_0) e^{A(t)-A(t_0)} \implies U(t) = 0 e^{A(t)-A(t_0)} \implies U(t) = 0
+    \]
+    Però ricordiamo che abbiamo definito $U(t) = u_1(t) - u_2(t)$, quindi
+    \[
+    U(t) = 0 \implies u_1(t) - u_2(t) = 0 \implies u_1(t) = u_2(t) 
+    \]
+Quindi le soluzione che devono essere uguali, e quindi se troviamo una soluzione alla EDO deve essere unica.
+\end{proof}
+Abbiamo dimostrato che la soluzione è quella che avevamo definito ed è unica, ma da dove viene fuori? Per capire come mai è proprio quella la formula, prendiamo l'EDO e moltiplichiamo parte per parte per $e^{-A(t)}$, con $A(t)$ una primitiva di $a(t)$
+\begin{align*}
+u'(t)=a(t)u(t) + b(t) &\implies u'(t)e^{-A(t)} = a(t)u(t)e^{-A(t)} + b(t)e^{-A(t)} \\
+&\implies u'(t)e^{-A(t)} - a(t)u(t)e^{-A(t)} = b(t)e^{-A(t)}  
+\end{align*}
+
+Ora notiamo che possiamo riscrivere il termine a sinitra come la derivata di un prodotto
+\[
+u'(t)e^{-A(t)} - a(t)u(t)e^{-A(t)} = b(t)e^{-A(t)} \implies \left(u(t)e^{-A(t)}\right)' = b(t)e^{-A(t)}
+\]
+Quindi per rimuovere la derivata applichiamo l'integrale parte per parte
+\begin{align*}
+   \int \left(u(t)e^{-A(t)}\right)' \,dt = \int  b(t)e^{-A(t)}\,dt  &\implies u(t)e^{-A(t)} + c = \int  b(t)e^{-A(t)} \,dt \\
+   &\implies u(t) = e^{A(t)}\left(-c + \int  b(t)e^{-A(t)} \,dt \right)
+\end{align*}
+
+Poi con le condizioni iniziali abbiamo la formula di che abbiamo verificato prima.
+
+\newpage
+\begin{esercizio}{}{}
+    Determinare la soluzione al seguente problema di Cauchy
+    \[
+    \begin{cases}
+        u'(t) = -\dfrac{2u(t)}{t} + t^2  \\
+        u(1) = 0
+    \end{cases}
+    \]
+\end{esercizio}
+In questo esercizio notiamo che $t_0=1$ e $u_0=0$, e che
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+    a(t) = \dfrac{-2}{t} & b(t)=t^2
+\end{array}
+\] 
+Quindi troviamo una primitiva di $a(t)$
+\[
+A(t) = \int a(t) \,dt = \int \dfrac{-2}{t} \,dt =-2\log|t| =-\log(t^2)
+\]
+Quindi possiamo calcolare la soluzione 
+\begin{align*}
+    u(t) &= e^{-\log(t^2) - (-\log(1))} \left(0 + \int_{1}^{t}s^2e^{\log(s^2) - (\log(1))}\,ds\right)  = e^{-\log(t^2)}\int_{1}^{t}s^2e^{\log(s^2)}\,ds\\
+    &= \dfrac{1}{t^2}\int_{1}^{t}s^2\cdot s^2\,ds = \left.\dfrac{1}{t^2} \cdot \dfrac{s^5}{5}\right|_{s=1}^{s=t} = \dfrac{1}{t^2} \cdot \left(\dfrac{t^5}{5} - \dfrac{1^5}{5}\right) = \dfrac{t^3}{5} -\dfrac{1}{5t^2}
+\end{align*}
+ \addcontentsline{toc}{subsection}{EDO a Variabili Separabili \textit{I°} Ordine}
+\begin{teorema}{EDO a Variabili Separabili \textit{I°} Ordine}{}
+    Siano $\varnothing \neq I, J \subseteq \mathbb{R}$ due intervalli aperti. Siano $a\in C^0(I)$, $b \in C^0(J)$. Dati $t_o \in I$, $u_0 \in J$. $\exists I_0 \subseteq I$,$\exists J_0 \subseteq J$ tale che $t_0 \in I_0$ e $u_0 \in J_0$ ed esiste una soluzione al seguente problema di Cauchy
+    \[
+    \begin{cases}
+        u'(t) = a(t)b(u(t)) & \forall t \in I_0\\
+        u(t_0) = u_0
+    \end{cases}
+    \]  
+
+    \begin{itemize}
+        \item Se $b(u_0)=0$ allora  la soluzione al problema è
+        \[
+        u(t) = u_0 \;\;\;\;\; \forall t \in I_0
+        \]
+        \item  Se $b(u_0)\ne 0$ allora  la soluzione al problema è
+        \[
+        u(t) = B^{-1}\left(B(u_0) + \int_{t_0}^{t}a(s)\,ds\right)\;\;\; \forall t \in I_0
+        \]
+        Con $B \in C^1(J_0)$ una primitiva di $\dfrac{1}{b(t)}$ su $J_0$.
+    \end{itemize}
+    Se $b \in C^1(J)$ allora la soluzione trovata è unica.
+\end{teorema}
+\begin{proof}
+    Il primo caso è molto semplice ed abbastanza intuibile, infatti se $u(t)=u_0$ allora la condizione iniziale è verificata e vale $u'(t)=0$ da cui
+    \[
+    u'(t) = a(t)b(u(t)) \implies 0 = a(t)b(u_0) \implies 0= a(t)\cdot 0 
+    \] 
+    Pertanto è verificata. Se invece $b(u_0)\ne 0$ allora $\exists J_0 \subseteq J$ intorno di $u_0$ tale che 
+    \begin{equation}\label{eq:edo1}
+    \begin{array}{c@{\qquad}@{\qquad}c}
+        b(u) > 0 \;\;\;\; \forall u \in J_0 & b(u) < 0 \;\;\;\; \forall u \in J_0
+    \end{array}
+    \end{equation}
+    Ricordiamo che $u:I\to J$, quindi dato che è continua allora esisterà un intorno $I_0\subseteq I$ tale che 
+    \[
+    u(t) \in J_0 \;\;\;\;\; \forall t \in I_0
+    \]
+    Con questo scopriamo che 
+     \[
+    \begin{array}{c@{\qquad}@{\qquad}c}
+
+b(u(t)) > 0 \;\;\;\; \forall t \in I_0 & b(u(t)) < 0 \;\;\;\; \forall t \in I_0
+
+\end{array}
+\]
+    Ma allora dato che in qualsiasi caso $b(u(t)) \ne 0$ per ogni $t \in I_0$ allora possiamo riscrivere l'EDO come
+    \[
+     u'(t) = a(t)b(u(t)) \implies \dfrac{u'(t)}{b(u(t))} = a(t)
+    \]
+    Definiamo $B \in C^1(J_0)$ una primitiva di $\dfrac{1}{b(u)}$, questo perchè se facciamo la derivata di $B(u(t))$ vediamo che
+    \[
+    \dfrac{d}{dt}\left(B(u(t))\right) = B'(u(t))u'(t) = \dfrac{1}{b(u(t))}\cdot u'(t) =  \dfrac{u'(t)}{b(u(t))}
+    \]
+    Quindi possiamo riscrivere la EDO come 
+    \[
+    \dfrac{u'(t)}{b(u(t))} = a(t)\implies \dfrac{d}{dt}\left(B(u(t))\right) = a(t)
+    \]
+    Per rimuovere la derivata dobbiamo trovare una primitiva di $a(t)$, e per comodità per i conti scegliamo 
+    \[
+    A(t) = \int_{t_0}^{t}a(s)\,ds
+    \]
+    Pertanto la Edo diventa (ricordandoci del $+c$)
+    \[
+    B(u(t)) = c+ \int_{t_0}^{t}a(s)\,ds
+    \]
+    Per scoprire quanto vale $c$ basta che sostituiamo le condizioni iniziali ($u(t_0)=u_0$)
+    \[
+    B(u(t_0)) = c+ \int_{t_0}^{t_0}a(s)\,ds \implies B(u_0) = c + 0  \implies c=B(u_0)
+    \]
+    Ora per isolare la $u(t)$ basta che calcoliamo l'inversa di $B$, ma non sappiamo se $B$ è invertibile. Però ricordiamo che $B'(u)=\frac{1}{b(u)}$ e con (\ref{eq:edo1}) scopriamo che
+    \[
+    b(u) > 0 \implies  \dfrac{1}{b(u)} > 0 \implies B'(u) > 0 \implies B \text{ è monotona crescente}
+    \]
+    Ragionamento analogo per $ b(u) < 0$. 
+    
+    Quindi se $B$ è monotona allora sarà anche invertibile, di conseguenza
+    \[
+    u(t) = B^{-1}\left(B(u_0)+ \int_{t_0}^{t}a(s)\,ds\right)
+    \]
+\end{proof}
+
+\begin{esercizio}{}{}
+    Risolvere il seguente problema di Cauchy e determinare un intervallo $I$ valido
+    \[
+    \begin{cases}
+        u'(t)\cos(u(t)) = 1 \;\;\;\;\; \forall t \in I\\
+        u(0) =\dfrac{9\pi}{4}
+    \end{cases}
+    \]
+\end{esercizio}
+Notiamo subito che non è nella forma del teorema, quindi riarrangiamo
+\[
+u'(t)=\dfrac{1}{cos(u(t))}
+\]
+Notiamo  che $b(u_0)\ne 0$, quindi rientramo nel secondo caso del teorema, quindi risolviamo
+\[
+u'(t)\cos(u(t)) = 1 \implies \dfrac{d}{dt}(\sin(u(t))) = 1 \implies \sin(u(t)) = t +c
+\] 
+Usiamo le condizioni iniziali
+\[
+\sin(u(0)) = 0 +c \implies \sin\left(\dfrac{9\pi}{4}\right) = c \implies c=\dfrac{\sqrt{2}}{2}
+\]
+Ora dovremmo invertire il seno (usando l'arcoseno) però dobbiamo stare attenti, infatti anche nei semplici esercizi di trigonometria se avevamo 
+\[
+\sin(x) = \dfrac{1}{2} \implies x = \dfrac{\pi}{6} +2k\pi 
+\]
+Ma dobbiamo trovare una sola soluzione (dato che è un problema di Cauchy), e quindi dobbiamo riutilizzare le condizioni iniziali per trovare il valore di $k$
+\begin{align*}
+   u(t) = \arcsin\left(t+\dfrac{\sqrt{2}}{2}\right) +2k\pi \implies& u(0) = \arcsin\left(0+\dfrac{\sqrt{2}}{2}\right) +2k\pi  \\
+ \implies& \dfrac{9\pi}{4} = \dfrac{\pi}{4} +2k\pi  \\
+ \implies& \dfrac{8\pi}{4}  =  2k\pi   \implies k=1
+\end{align*}
+Quindi la soluzione all problema di Cauchy è 
+\[
+u(t) = \arcsin\left(t+\dfrac{\sqrt{2}}{2}\right) +2\pi 
+\]
+E per trovare $I$ è necessario trovare il dominio della nostra soluzione, infatti ricordiamo che il dominio dell'arcoseno è 
+\[
+I: -1< t+\dfrac{\sqrt{2}}{2} < 1 \implies -1-\dfrac{\sqrt{2}}{2}< t < 1-\dfrac{\sqrt{2}}{2}
+\]
+
+\begin{esercizio}{}{}
+    Determinare una soluzione al seguente problema di Cauchy
+    \[
+    \begin{cases}
+         u'(t) = 3t^2 -1 \\
+    u(0) = 1
+    \end{cases}
+    \]
+\end{esercizio}
+
+Questo esercizio è molto semplice, infatti oltre al termine $u'(t)$ non troviamo più la funzione incognita. Pertanto è sufficiente calcolare l'integrale parte per parte
+\begin{align*}
+    \int u'(t) \, dt &= \int 3t^2 -1  \,dt \\
+    u(t) &= \dfrac{3t^3}{3} - t + c = t^3 - t + c
+\end{align*}
+Ora per determinare $c\in\mathbb{R}$ basta usare la condizione iniziale
+\begin{align*}
+u(0) &= 0^3 - 0  + c\\
+1 &= c
+\end{align*}
+\begin{esercizio}{}{}
+    Determinare la soluzione al seguente problema di Cauchy
+    \[
+    \begin{cases}
+        u'(t)u(t) = t^2 \\
+        u(0) = -2
+    \end{cases}
+    \]
+\end{esercizio}
+
+Come prima notiamo che rientriamo nel secondo caso del Teorema, quindi dato che la funzione $u(t)$ è già isolata dalla variabile dipendente $t$, possiamo integrale parte per parte
+\[
+\int u'(t)u(t) \,dt= \int t^2 \,dt
+\]
+\[
+    \dfrac{u^2(t)}{2} = \dfrac{t^3}{3} + c
+\]
+Per trovare il valore di $c$  usiamo le condizioni iniziali $t_0=0$
+\[
+\dfrac{u^2(0)}{2} = \dfrac{0^3}{3} + c \implies   \dfrac{(-2)^2}{2} = 0 + c \implies c= 2
+\]
+Ora possiamo isolare $u(t)$
+\[
+\dfrac{u^2(t)}{2} = \dfrac{t^3}{3} + 2 \implies u^2(t) = \dfrac{2t^3}{3} + 4 \implies u(t) = \pm \sqrt{\dfrac{2t^3}{3} + 4} 
+\]
+Ora però, per via della radice, abbiamo due soluzioni ma solo una è quella che ci interessa. Per capire quale dobbiamo riusare le condizioni iniziali, infatti se poniamo $t=0$
+\[
+u(0) = \pm \sqrt{\dfrac{2\cdot 0^3}{3} + 4} \implies -2 = \pm \sqrt{0 + 4} \implies -2 = \pm 2
+\]
+Da questo capiamo che la soluzione che ci serve a noi è quella con il meno, pertanto la soluzione del problema di Cauchy è
+\[
+u(t) =-\sqrt{\dfrac{2t^3}{3} + 4}
+\]
+\newpage
+ \addcontentsline{toc}{subsection}{EDO Lineari \textit{II°} Ordine a Coefficienti Constanti Omogenea}
+\begin{teorema}{EDO Lineari \textit{II°} Ordine a Coefficienti Constanti Omogenea}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo aperto, $a,b,c \in\mathbb{R}$ con $a\ne 0$, consideriamo la seguente EDO
+    \[
+    au''(t) + bu'(t) + cu(t) = 0
+    \]
+    Definiamo il polinomio associato
+    \[
+    P(x) = ax^2 + bx + c
+    \]
+    Allora 
+    \begin{enumerate}[label=(\roman*)]
+        \item Se le radici di $P(x)$ sono due distinte: $\lambda_1$,$\lambda_2$ con $\lambda_1 \ne \lambda_2$ allora le soluzioni della EDO sono
+        \[
+        \begin{array}{c@{\qquad}@{\qquad}c}
+            u_1(t) = e^{\lambda_1 t} & u_2(t) = e^{\lambda_2 t}
+        \end{array}
+        \]
+        \item Se le radici di $P(x)$ sono coincidenti: $\lambda$ allora le soluzioni della EDO sono
+        \[
+        \begin{array}{c@{\qquad}@{\qquad}c}
+            u_1(t) = e^{\lambda t} & u_2(t) = te^{\lambda t}
+        \end{array}
+        \]
+        \item Se le radici di $P(x)$ sono due distinte complesse: $\alpha \pm i \beta$ allora le soluzioni della EDO sono
+        \[
+        \begin{array}{c@{\qquad}@{\qquad}c}
+            u_1(t) = e^{\alpha t}\cos(\beta t) & u_2(t) = e^{\alpha t}\sin(\beta t)
+        \end{array}
+        \]
+    \end{enumerate}
+\end{teorema}
+\begin{proof}
+    L'idea fondamentale per risolvere questa tipologia di equazioni è di provare ad indovinare quale sia la soluzione, dato che è impossibile isolare la funzione incognita. Ora per quello che abbiamo visto fino ad adesso l'unica funzione che può tornare comoda può essere la funzione esponenziale, dato che è l'unica funzione che è uguale a se stessa (a patto di costanti moltiplicative). Quindi se supponiamo che $u(t) = e^{x t}$ sia una soluzione, possiamo sostituiamola nella EDO
+    \begin{align*}
+        a(e^{x t})'' + b(e^{x t})' + c(e^{x t}) &= 0 \\
+        a(x^2 e^{x t}) + b(x e^{x t})+ ce^{xt} &= 0 \\
+        e^{x t}(ax^2 + b x+ c) = 0
+    \end{align*}
+    Ora il termine $ e^{xt}$ non può mai essere nullo, quindi possiamo rimuoverlo
+    \[
+    ax^2 + bx + c = 0
+    \]
+    E questo è il poliniomio che nel teorema abbiamo definito come "polinomio associato". Ora come ben sappiamo una equazione di secondo grado può avere 3 casi di soluzione: 2 distinte, 2 coincidenti (ovvero una doppia) e 2 soluzioni complesse. 
+
+    $(i)$ Supponiamo quindi che $P(x)$ ha due soluzioni distite $\lambda_1$,$\lambda_2$, allora vuol dire che la soluzione che abbiamo ipotizzato ($e^{xt}$) con $x=\lambda_1$ e con $\lambda_2$ risolvono la EDO, pertanto le soluzioni sono:
+     \[
+        \begin{array}{c@{\qquad}@{\qquad}c}
+            u_1(t) = e^{\lambda_1 t} & u_2(t) = e^{\lambda_2 t}
+        \end{array}
+        \]
+    Quindi ci aspettiamo che per ogni caso di avere due soluzioni, analogamente alla equazione di secondo grado. 
+    \newpage
+    $(ii)$ Se invece il polinomio associato $P(x)$ ha una sola soluzione, che denominiamo come $\lambda$ allora sicuramente una prima soluzione sarà
+    \[
+    u_1(t) = e^{\lambda t}
+    \]
+    Proprio per lo stesso ragionamento di prima. Ora però dobbiamo trovare la seconda soluzione e per farlo dobbiamo fare una osservazione, cioè che la nostra soluzione è doppia, pertanto il polinomio caratteristico lo possiamo scrivere come 
+    \[
+    P(x) = a(x-\lambda)^2
+    \]
+    Notiamo che la sua derivata vale
+    \[
+    P'(x) = 2a(x-\lambda)
+    \]
+    Da cui capiamo che
+    \[
+    P'(\lambda) = 2a(\lambda-\lambda) = 0
+    \]
+    Questo ci torna molto comodo, infatti riscriviamo la EDO nel seguente modo 
+    \begin{align*}
+        a(e^{x t})'' + b(e^{x t})' + c(e^{x t}) &=  e^{x t}(ax^2 + b x+ c) \\
+        &= e^{x t}P(x)
+    \end{align*}
+    Ora che abbiamo riscritto la EDO, possiamo fare la derivata rispetto ad $x$ ambo i lati
+    \begin{align*}
+        \dfrac{d}{dx}\left(a(e^{x t})'' + b(e^{x t})' + c(e^{x t})\right) &=  \dfrac{d}{dx}\left(e^{x t}P(x)\right)\\
+         a\dfrac{d}{dx}\left((e^{x t})''\right) + b\dfrac{d}{dx}\left((e^{x t})'\right) + c\dfrac{d}{dx}\left((e^{x t})\right) &= te^{x t}P(x) + e^{x t}P'(x) \\
+         a(te^{x t})'' + b(te^{x t})' + c(te^{x t}) &= te^{x t}P(x) + e^{x t}P'(x)
+    \end{align*}
+    Ora a questa nuova informazione che abbiamo, possiamo imporre $x=\lambda$
+    \[
+    a(te^{\lambda t})'' + b(te^{\lambda t})' + c(te^{\lambda t}) = te^{\lambda t}P(\lambda) + e^{\lambda t}P'(\lambda)
+    \]
+    Però ricordiamo che sia $P(\lambda) = 0$ che $P'(\lambda) = 0$, pertanto
+    \begin{align*}
+    a(te^{\lambda t})'' + b(te^{\lambda t})' + c(te^{\lambda t}) &= te^{\lambda t}0 + e^{\lambda t}0 \\
+    &= 0
+    \end{align*}
+    Pertanto dopo questo giochetto con le derivate, abbiamo scoperto che anche la funzione $u(t) =te^{\lambda t}$ rende nulla la EDO, pertanto è una soluzione alla EDO iniziale e quindi la seconda soluzione di questo caso è
+    \[
+    u_2(t) = te^{\lambda t}
+    \]
+
+    $(iii)$ per questo caso la dimostrazione è omessa dato che richiede di sapere le proprietà dei numeri complessi, però per chi li ha visti vi lascio un piccolo stralcio di dimostrazione
+   \begin{align*}
+    e^{(\alpha + i \beta)t} = e^{\alpha t} e^{i \beta t} = e^{\alpha t} \left(\cos(\beta t) + i\sin(\beta t)\right) \implies& u_1(t) = e^{\alpha t}\cos(\beta t) \\ 
+    & u_2(t) = e^{\alpha t}\sin(\beta t)
+   \end{align*}
+\end{proof}
+
+ \addcontentsline{toc}{subsection}{Integrale Generale delle EDO Lineari}
+\begin{teorema}{Integrale Generale delle EDO Lineari}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo aperto,$n\in\mathbb{R}$ ordine della EDO,  $a_i \in\mathbb{R}$ per ogni $i \leq n$ e $a_n\ne 0$, consideriamo la seguente EDO lineare omogenea
+    \[
+    a_n u^{(n)}(t) + a_{n-1} u^{(n-1)}(t) + ... + a_1 u'(t) = 0
+    \]
+    E siano $X=\{u_1(t),u_2(t), ..., u_n(t)\}$ l'insieme delle soluzioni semplici, allora l'integrale generale della EDO è 
+    \[
+    u_0(t) = \sum_{u\in X} c_j u
+    \]
+    con $c_j$ costanti.
+\end{teorema}
+\begin{proof}
+    Per la dimostrazione facciamo solo per le EDO di secondo ordine, dato che sono quelle con cui avremo a che fare negli esercizi, ma il principio è estendibile a qualsiasi ordine.
+
+    Quindi la EDO sarà della forma
+    \[
+     au''(t) + bu'(t) + cu(t) = 0
+    \]
+    Quindi come abbiamo visto prima avremo sempre 2 soluzioni, pertanto in ogni caso avremo $u_1(t)$ e $u_2(t)$. Dato che sono soluzioni alla EDO allora vale 
+    \[
+    \begin{array}{c@{\qquad}@{\qquad}c}
+      \mathunderline{red}{au_1''(t) + bu_1'(t) + cu_1(t) = 0} & \mathunderline{blue}{au_2''(t) + bu_2'(t) + cu_2(t) = 0}  
+    \end{array}
+    \]
+    Ora quindi controlliamo se $u_0(t) = k_1u_1(t) + k_2u_2(t)$ è una soluzione alla EDO
+    \begin{align*}
+       au_0''(t) + bu_0'(t) + cu_0(t) &=  a(k_1u_1(t) + k_2u_2(t))'' + b(k_1u_1(t) + k_2u_2(t))' + c(k_1u_1(t) + k_2u_2(t)) \\
+       &= ak_1u_1''(t) + ak_2u_2''(t) + bk_1u_1'(t) + bk_2u_2'(t) + ck_1u_1(t) + ck_2u_2(t) \\
+       &= ak_1u_1''(t)  + bk_1u_1'(t) + ck_1u_1(t) + ak_2u_2''(t) + bk_2u_2'(t) + ck_2u_2(t) \\
+       &= k_1(\mathunderline{red}{au_1''(t) + bu_1'(t) + cu_1(t)}) + k_2(\mathunderline{blue}{au_2''(t) + bu_2'(t) + cu_2(t)}) \\
+       &= k_1\cdot  0 + k_2 \cdot 0 = 0 
+    \end{align*}
+    Quindi notiamo che risolve l'EDO.
+\end{proof}
+
+\begin{esercizio}{}{}
+    Determinare l'integrale generale della seguente EDO
+    \[
+    u''(t)-3u'(t) + 2u(t) = 0
+    \]
+\end{esercizio}
+Notiamo che abbiamo una EDO lineare del secondo ordine omogenea, pertanto troviamo il polinomio associato: $P(x) =x^2-3x+2$, le cui radici sono $x=2$ e $x=1$, pertanto le soluzioni semplici saranno
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+u_1(t) = e^{1t} & u_2(t)=e^{2t}
+\end{array}
+    \]
+    Pertanto l'integrale generale sarà
+    \[
+    u_0(t) = c_1u_1(t) + c_2u_2(t) = c_1 e^{t} + c_2 e^{2t}  
+    \]
+\newpage
+    \begin{esercizio}{}{}
+    Determinare l'integrale generale della seguente EDO
+    \[
+    u''(t)+6u'(t) + 9u(t) = 0
+    \]
+\end{esercizio}
+
+Notiamo che siamo nello stesso caso dell'esercizio precedente, quindi cerchiamo il polinio associato  e le sue radici
+\[
+P(x) = x^2 +6x+9 \implies x=3
+\]
+Notiamo però che in questo esercizio le radici sono coincidenti, cioò ne abbiamo una sola, pertanto siamo nel secondo caso del teorema e le soluzioni saranno 
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+u_1(t) = e^{-3t} & u_2(t)=te^{-3t}
+\end{array}
+    \]
+    Di conseguenza l'integrale generale sarà
+    \[
+    u_0(t) = c_1 e^{-3t} + c_2 te^{-3t}  
+    \]
+
+
+
+\begin{esercizio}{}{}
+    Determinare l'integrale generale della seguente EDO
+    \[
+    u''(t)-4u'(t) + 13u(t) = 0
+    \]
+\end{esercizio}
+Cerchiamo il polinomio associato 
+\[
+P(x) = x^2 -4x+13 \implies x=\dfrac{-(-4)}{2\cdot 1} \pm \dfrac{\sqrt{(-4)^2-4(1)(13)}}{2\cdot 1} = 2 \pm 3i
+\]
+Quindi le soluzioni semplici sono
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+u_1(t) = e^{2t}\cos(3t) & u_2(t)=e^{2t}\sin(3t)
+\end{array}
+    \]
+    L'integrale generale sarà
+    \[
+    u_0(t) = c_1 e^{2t}\cos(3t) + c_2 e^{2t}\sin(3t) =e^{2t}( c_1 \cos(3t) + c_2 \sin(3t))
+    \]
+
+  \begin{esercizio}{}{}
+    Determinare l'integrale generale della seguente EDO
+    \[
+    u''(t)  = -25u(t)
+    \]
+\end{esercizio}  
+Riarrangiamo meglio la nostra EDO come siamo abituati e troviamo le radici del polinomio associato
+\[
+u''(t)  +25u(t) = 0 \implies x^2 +25= 0 \implies x = 0 \pm 5i
+\]
+Quindi le soluzioni semplici sono
+\[
+\begin{array}{c@{\qquad\qquad}c}
+    \begin{aligned}
+        u_1(t) &= e^{0t}\cos(5t) \\
+               &= \cos(5t)
+    \end{aligned}
+    &
+    \begin{aligned}
+        u_2(t) &= e^{0t}\sin(5t) \\
+               &= \sin(5t)
+    \end{aligned}
+\end{array}
+\]
+Quindi l'integrale generale è 
+\[
+u_0(t)= c_1\cos(5t) + c_2\sin(5t)
+\]
+\newpage
+ \addcontentsline{toc}{subsection}{EDO lineari \textit{II°} ordine  non Omogenee}
+\begin{teorema}{EDO lineari \textit{II°} ordine  non Omogenee}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo aperto, $a,b,c \in\mathbb{R}$ con $a\ne 0$, $f:I \to \mathbb{R}$ consideriamo la seguente EDO
+    \[
+    au''(t) + bu'(t)+cu(t) = f(t)
+    \]
+    Allora l'integrale generale sarà della forma 
+    \[
+    u(t) = u_p(t) + u_o(t)
+    \]
+    Dove $u_p(t)$ è una soluzione (che poi chiameremo \textbf{soluzione particolare}) alla nostra EDO, mentre $u_o(t)$ è la soluzione dell'EDO omogenea associata.
+\end{teorema}
+Sostanzialmente questo teorema ci dice che non appena abbiamo trovato una soluzione alla nostra EDO (che sarà $u_p(t)$) dovremo sempre aggiungere anche la soluzione della EDO omogenea associata.
+\begin{proof}
+    Supponiamo di avere sue soluzioni alla EDO originale, che chiamiamo $u(t)$ e $u_p(t)$. Pertanto varrà
+    \[
+\begin{array}{c@{\qquad}@{\qquad}c}
+\mathunderline{red}{au''(t) + bu'(t)+cu(t) = f(t)} & \mathunderline{blue}{au_p''(t) + bu_p'(t)+cu_p(t) = f(t)}
+\end{array}
+    \]
+    Definiamo una nuova funzione $u_o(t) = u(t) - u_p(t)$ e notiamo che questa nuova funzione soddisfa l'EDO omogena associata, infatti
+    \begin{align*}
+        au_o''(t) + bu_o'(t)+cu_o(t) &= a(u(t) - u_p(t))'' + b(u(t) - u_p(t))'+c(u(t) - u_p(t)) \\
+        &= au''(t) - au_p''(t) + bu'(t) - bu_p'(t)+cu(t) - cu_p(t) \\
+        &=  \mathunderline{red}{au''(t)  + bu'(t)+cu(t) } - (\mathunderline{blue}{au_p''(t)+bu_p'(t) + cu_p(t) })\\
+        &= f(t) - f(t) = 0
+    \end{align*}
+    Pertanto una qualsiasi soluzione alla EDO iniziale $u(t)$ dovrà sempre contenere anche la soluzione della equazione omogenea, oltre ad una soluzione che risolve la nostra EDO originale
+    \[
+    u_o(t) = u(t) - u_p(t) \implies   u(t) =  u_p(t)+ u_o(t)
+    \]
+\end{proof}
+Quindi per esempio se dobbiamo determinare l'integrale generale della seguente EDO
+\[
+u''(t) - 6u'(t) + 9u(t) = (1+2t)e^{3t}
+\]
+Allora la prima cosa che dobbiamo fare è determinare la soluzione della EDO omogenea associata, quindi in questo caso
+\[
+u''(t) - 6u'(t) + 9u(t) = 0 
+\]
+Ora la risolviamo come prima, per questo esercizio notiamo che abbiamo una soluzione doppia ($x=3$) e quindi le soluzioni saranno $u_1(t) = e^{3t}$ , $u_2(t)=te^{3t}$,
+quindi l'integrale generale dell' omogenea è 
+\[
+u_o(t) = c_1 e^{3t}+ c_2te^{3t}
+\]
+Ma quindi la soluzione della EDO originale (cioè quella NON omogenea) sarà della forma:
+\[
+u(t) = u_p(t) + \mathunderline{green}{u_o(t)} = u_p(t) + \mathunderline{green}{c_1 e^{3t}+ c_2te^{3t}}
+\]
+Ora capiamo come determinare la soluzione particolare.
+
+\newpage
+
+ \addcontentsline{toc}{subsection}{Trovare $u_p(t)$: Metodo Per Somiglianza}
+\begin{teorema}{Trovare $u_p(t)$: Metodo Per Somiglianza}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo aperto, $a,b,c \in\mathbb{R}$ con $a\ne 0$, $f:I \to \mathbb{R}$ consideriamo la seguente EDO
+    \[
+    au''(t) + bu'(t)+cu(t) = f(t)
+    \]
+    Se $f(t)$ è della forma 
+    \[
+    f(t) = Q(t) e^{\alpha t}
+    \]
+    con $Q(t)$ un qualsiasi polinomio di grado $n\in\mathbb{N}$ e $\alpha\in\mathbb{R}$, allora la soluzione particolare sarà della forma
+    \[
+    u_p(t) = S(t)e^{\alpha t} t^r
+    \]
+    Con $S(t)$ un polinomio generico di grado $n$, e $r\in \{0,1,2\}$ è la moltiplicità di $\alpha$ rispetto a $P(x)$, dove $P(x)$ è il poliniomo associato alla EDO.
+\end{teorema}
+
+Vediamo un esercizio per capirci meglio
+\begin{esercizio}{}{}
+    Determinare l'integrale generale della seguente EDO
+    \[
+    u''(t) - 6u'(t) + 9u(t) = (1+2t)e^{3t}
+    \]
+\end{esercizio}
+Come dicevamo prima l'integrale generale sarà della forma
+\[
+u(t) = u_p(t) + c_1 e^{3t}+ c_2te^{3t}
+\]
+Quindi ora dobbiamo trovare $u_p(t)$.Guardando $f(t)=(1+2t)e^{3t}$  notiamo  $\alpha =3$ e il grado del polinomio è $n=1$ dato che $Q(t)=1+2t$, in più, il polinomio associato alla EDO, $P(x)=x^2-6x+9$ lo possiamo riscrivere come $P(x)=(x-3)^2$, ma dato che $\alpha=3$ abbiamo che la molteplicità di $\alpha$ rispetto a $P(x)$ è doppia, da cui $r=2$. Pertanto la  soluzione particolare è della forma
+\[
+u_p(t) = (At+B)e^{3t}t^2
+\]
+Ora però dobbiamo trovare $A,B \in \mathbb{R}$ dato che la tecnica richiede un polinomio generico. Per trovare i valori di $A,B$ dobbiamo sostituire la soluzione particolare nella EDO, prima però per comodità calcoliamoci a parte le derivate di $u_p(t)$. Per comodità imponiamo $S(t) =At^3+Bt^2$ e questo lo faremo spesso nei casi in cui $r\in \{1,2\}$ dato che agevola molto i conti
+\begin{align*}
+    u_p(t) &= (At+B)e^{3t}t^2 = (At^3+Bt^2)e^{3t} =  Se^{3t}\\
+\\
+    u_p'(t) &= S'e^{3t} + S\left(e^{3t}\right)' \\
+        &= S'e^{3t} + 3Se^{3t}\\
+        &= e^{3t}(S' + 3S)\\
+\\
+    u_p''(t) &= \left(e^{3t}\right)'(S' + 3S)+e^{3t}(S' + 3S)'\\
+    &= 3 e^{3t}(S' + 3S) + e^{3t}(S'' + 3S') \\
+    &= e^{3t}(S''+6S'+ 9S)
+\end{align*}
+\newpage
+Ora sistutiamo queste derivate nella EDO
+\begin{align*}
+    \overbrace{e^{3t}(S''+6S'+ 9S)}^{u''(t)}  - 6\overbrace{e^{3t}(S' + 3S)}^{u'(t)}   + 9\overbrace{Se^{3t}}^{u(t)} =t\sin(t)
+\end{align*}
+Rimuoviamo $e^{3t}$ ambo i lati dato che non può mai essere nullo
+\begin{align*}
+S''+\mathunderline{red}{6S'}+ \mathunderline{blue}{9S}- \mathunderline{red}{6S'} -\mathunderline{blue}{18S}   + \mathunderline{blue}{9S} &=1+2t \\
+S'' &=1+2t
+\end{align*}
+Ricordiamo che $S(t) = At^3+Bt^2$
+\begin{align*}
+(At^3+Bt^2)'' &=1+2t \\
+6At+2B &=1+2t 
+\end{align*}
+Da cui
+\[
+\begin{cases}
+    6A= 2 \\
+    2B = 1
+\end{cases}
+=
+\begin{cases}
+    A =\frac{1}{3}  \\
+    B = \frac{1}{2}
+\end{cases}
+\]
+Pertanto la soluzione particolare è 
+\[
+u_p(t) = \left(\dfrac{t^3}{3}+\dfrac{t^2}{2}\right)e^{3t}
+\]
+Quindi l'integrale generale della EDO è
+\[
+u(t) = \left(\dfrac{t^3}{3}+\dfrac{t^2}{2}\right)e^{3t} + c_1 e^{3t}+ c_2te^{3t}
+\]
+Non vi preoccupare se vi sembra difficile o comunque articolato, tra poco vederemo un modo molto più semplice e veloce. Ma comunque gli esercizi possono essere anche molto più semplici, vediamo tipo
+\begin{esercizio}{}{}
+    Determinare l'integrale generale della seguente EDO
+    \[
+    u''(t) - 7u'(t) + 12u(t) = 5+8t^2
+    \]
+\end{esercizio}
+Risolviamo quindi prima la EDO omogenea, quindi il polinomio associato è $P(x)=x^2-7x+12$ le cui radici sono $x=3$ e $x=4$, quindi le soluzioni sono $u_1(t)=e^{3t}$ e $u_2(t)=e^{4t}$. Ora cerchiamo una soluzione particolare, e notiamo che $n=2$, e poi che $\alpha=0$ e notiamo che $\alpha$ non è uno zero di $P(x)$, quindi dobbiamo cercare una soluzione particolare del tipo
+\[
+u_p(t) = (At^2+Bt+C)e^{0t} t^0=At^2+Bt+C
+\]
+Ora possiamo sostituirla nella EDO
+\begin{align*}
+    (At^2+Bt+C)'' - 7(At^2+Bt+C)' + 12(At^2+Bt+C) &= 5+8t^2\\
+    2A - 7(2At + B) + 12At^2+12Bt+12C &=  \\
+    (2A -7B +12C) +t(-14A+12B) +12At^2 &= 5+0t + 8t^2
+\end{align*}
+Imponiamo il seguente sistema
+\[
+\begin{cases}
+    12A = 8 \\
+    -14A+12B = 0 \\
+    2A -7B +12C= 5
+\end{cases}=
+\begin{cases}
+    A = \dfrac{2}{3} \\[1em]
+    B = \dfrac{7}{9} \\[1em]
+    C= \dfrac{41}{54}
+\end{cases}
+\]
+Quindi l'integrale generale della EDO è 
+\[
+u(t) = \mathunderline{red}{u_p(t)}+ \mathunderline{blue}{u_o(t)} =\mathunderline{red}{\dfrac{2}{3}t^2 +\dfrac{7}{9}t+\dfrac{41}{54}} +\mathunderline{blue}{c_1e^{3t}+c_2e^{4t}}
+\]
+\begin{teorema}{Trovare $u_p(t)$: Metodo Per Somiglianza Generalizzato}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo aperto, $a,b,c \in\mathbb{R}$ con $a\ne 0$, $f:I \to \mathbb{R}$ consideriamo la seguente EDO
+    \[
+    au''(t) + bu'(t)+cu(t) = f(t)
+    \]
+    Se $f(t)$ è di una delle seguenti forme 
+    \[
+    \begin{array}{c@{\qquad}c@{\qquad}c}
+        Q_1(t) e^{\alpha t}\cos(\beta t)  & e^{\alpha t}\left[Q_1(t)\cos(\beta t) + Q_2(t)\sin(\beta t)\right] & Q_2(t) e^{\alpha t}\sin(\beta t)
+    \end{array}
+    \]
+    con $Q_1(t)$ e $Q_2(t)$  qualsiasi polinomi di grado rispettivamente $n_1,n_2\in\mathbb{N}$ e $\alpha,\beta\in\mathbb{R}$, allora la soluzione particolare sarà della forma
+    \[
+    u_p(t) = e^{\alpha t}\left[S_1(t)\cos(\beta t) + S_2(t)\sin(\beta t)\right]t^r
+    \]
+    Con $S_1(t)$ e $S_2(t)$  due polinomi generici di grado $\max\{n_1,n_2\}$ (chiaramente se c'è solo $Q_1(t)$ o solo $Q_2(t)$ sarà il grado di quel polinomio), e $r=1$  se  $\alpha\pm i\beta$ sono le radici di $P(x)$, dove $P(x)$ è il poliniomo associato alla EDO, altrimenti $r=0$.
+\end{teorema}
+Vediamo un esempio pratico
+\begin{esercizio}{}{}
+    Determinare l'integrale generale della seguente EDO
+    \[
+    u''(t)-4u'(t)+29u(t) = t\sin(t)
+    \]
+\end{esercizio}
+Come al solito risolviamo l'EDO omogenea associata
+\[
+u''(t)-4u'(t)+29u(t)=0 \implies x^2-4x+29=0 \implies x_{1/2}= 2 \pm 5i
+\]
+Da cui la soluzione omogenea è
+\[
+u_o(t) = e^{2t}\left(c_1\cos(5t) + c_2\sin(5t)\right)
+\]
+\newpage
+Ora dobbiamo cercare la $u_p(t)$ e notiamo che $f(t)$ è della forma: $Q(t)e^{\alpha t}\sin(\beta t)$, con $n=1$, $\alpha=0$ e $\beta=1$. In più notiamo che $\alpha\pm i\beta = 0 \pm 1i$ non è una soluzione del polinomio associato $P(x)=x^2+-4x+29$, pertanto $r=0$. Quindi la soluzione particolare sarà della forma 
+\begin{align*}
+    u_p(t) &= e^{0 t}\left((At+B)\cos(1t) + (Ct+D)\sin(1t)\right)t^0 \\
+    &= (At+B)\cos(x) + (Ct+D)\sin(t)
+\end{align*}
+
+Quindi come prima dobbiamo calcolare tutte le derivate:
+\begin{align*}
+    u_p(t) &= (At+B)\cos(t) + (Ct+D)\sin(t) \\
+    \\
+    u'_p(t) &= (A)\cos(t) +(At+B)(-\sin(t)) + (C)\sin(t) + (Ct+D)\cos(t) \\
+    &= (Ct + D + A)\cos(t) + (-At -B + C)\sin(t) \\
+    \\
+    u_p''(t) &= (C)\cos(t) + (Ct + D + A)(-\sin(t)) + (-A)\sin(t) +(-At -B + C)\cos(t)  \\
+    &= (-At -B + 2C)\cos(t) + (-Ct -D -2A)\sin(t)
+\end{align*}
+Per fare meno confusione, facciamo la somma prima solamente dei termini con il $\sin(t)$ e poi faccimo con solo in $\cos(t)$. 
+\begin{align*}
+    \overbrace{(-Ct -D -2A)\sin(t)}^{u''(t)}  - 4\overbrace{(-At -B + C)\sin(t)}^{u'(t)}   + 29\overbrace{(Ct+D)\sin(t)}^{u(t)} &=t\sin(t) \\
+    [(4A+28C)t-2A+4B-4C+28D]\sin(t) &= [1t+0]\sin(t)
+\end{align*}
+Da questo bisogna che
+\[
+\begin{cases}
+    4A+28C = 1 \\
+    -2A+4B-4C+28D = 0
+\end{cases}
+\]
+Ora facciamo lo stesso per i termini con il coseno (e ricordiamo che il coseno non c'è nell'espressione $f(t)$, pertanto questo risultato sarà uguale a 0)
+\begin{align*}
+    \overbrace{(-At -B + 2C)\cos(t)}^{u''(t)}  - 4\overbrace{(Ct + D + A)\cos(t)}^{u'(t)}   + 29\overbrace{(At+B)\cos(t)}^{u(t)} &=0 \\
+    [(28A-4C)t+28B+2C-4D-4A]\cos(t)&=[0t+0]\cos(t)
+\end{align*}
+Da questo ne evince che (unendo con il sistema precedente)
+\[
+\begin{cases}
+    28A-4C = 0 \\
+    28B+2C-4D-4A = 0 \\
+    4A+28C = 1 \\
+    -2A+4B-4C+28D = 0
+\end{cases}
+= \begin{cases}
+    A = \frac{1}{200}\\
+    B = -\frac{1}{1000} \\
+    C = \frac{7}{200} \\
+    D = \frac{11}{2000}
+\end{cases}
+\]
+Con questo scopriamo che la soluzione della EDO iniziale è
+\[
+u(t) = \overbrace{\left(\frac{1}{200}t -\frac{1}{1000}\right)\cos(t) + \left(\frac{7}{200}t +\frac{11}{2000}\right)\sin(t)}^{u_p(t)} + \overbrace{e^{2t}\left(c_1\cos(5t) + c_2\sin(5t)\right)}^{u_o(t)}
+\]
+\newpage
+ \addcontentsline{toc}{subsection}{Trovare $u_p(t)$:    Variazione delle Costanti}
+\begin{teorema}{Trovare $u_p(t)$: Variazione delle Costanti}{}
+    Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo aperto, $b,c \in\mathbb{R}$, $f:I \to \mathbb{R}$ consideriamo la seguente EDO
+    \[
+    u''(t) + bu'(t)+cu(t) = f(t)
+    \]
+    Siano $u_1(t)$ e $u_2(t)$ le soluzioni semplici della EDO omogenea, allora se troviamo $k_1, k_2 \in C^1(I)$ tali che
+    \[
+    \begin{cases}
+        k'_1(t)u_1(t) + k'_2(t)u_2(t) = 0 \\
+        k'_1(t)u_1'(t) + k'_2(t)u_2'(t) = f(t)
+    \end{cases}
+    \]
+    Allora la soluzione particolare della EDO iniziale è 
+    \[
+    u_p(t) = k_1(t)u_1(t) + k_2(t)u_2(t)
+    \]
+\end{teorema}
+\begin{proof}
+    Ricordiamo che $u_1(t)$ e $u_2(t)$  sono soluzioni della EDO omogenea, pertanto valgono 
+    
+    \begin{equation}
+    \begin{array}{c@{\qquad}@{\qquad}c}\label{eq:diff2}
+        u_1''(t) + bu_1'(t)+cu_1(t)=0 & u_2''(t) + bu_2'(t)+cu_2(t)=0 
+    \end{array}
+\end{equation}
+
+    Supponiamo che la soluzione particolare sia 
+    \[
+    u_p(t) = k_1(t)u_1(t) + k_2(t)u_2(t)
+    \]
+    Pertanto verifichiamo se risolve la EDO, calcoliamo prima le sue derivate
+    \begin{align*}
+         u_p(t) &= k_1(t)u_1(t) + k_2(t)u_2(t) \\
+         \\
+         u_p'(t) &= k_1'(t)u_1(t) +k_1(t)u_1'(t)+ k_2'(t)u_2(t) + k_2(t)u_2'(t)
+    \end{align*}
+    Per facilitarci i conti, supponiamo che 
+    \begin{equation}\label{eq:diff1}
+        k_1'(t)u_1(t) + k_2'(t)u_2(t) = 0
+    \end{equation}
+    In modo tale che 
+    \begin{align*}
+         u_p'(t) &= k_1(t)u_1'(t)+  k_2(t)u_2'(t) \\
+         \\
+         u_p''(t) &= k_1'(t)u_1'(t) + k_1(t)u_1''(t)+  k_2'(t)u_2'(t)+  k_2(t)u_2''(t)
+    \end{align*}
+    Ora sostituiamolo nella EDO per vedere se la verifica (per comodità ometterò la $t$)
+    \begin{align*}
+        \overbrace{\mathunderline{red}{k_1'u_1'} + \mathunderline{blue}{k_1u_1''}+  \mathunderline{red}{k_2'u_2'}+  \mathunderline{blue}{k_2u_2''}}^{u_p''(t)} + b(\overbrace{\mathunderline{green}{k_1u_1'+  k_2u_2'} }^{u_p'(t)})  + c( \overbrace{\mathunderline{pink}{k_1u_1 + k_2u_2}}^{u_p(t)}) &= f(t) \\
+        \mathunderline{red}{k_1'u_1' +  k_2'u_2'} +\mathunderline{blue}{k_1u_1''} +\mathunderline{green}{bk_1u_1'} + \mathunderline{pink}{ck_1u_1}  +\mathunderline{blue}{k_2u_2''} +\mathunderline{green}{bk_2u_2'} + \mathunderline{pink}{ck_2u_2}&=  \\
+        k_1'u_1' +  k_2'u_2' +k_1(u_1'' + bu_1'+cu_1) + k_2(u_2'' + bu_2'+cu_2) &=
+    \end{align*}
+    Ricordiamo (\ref{eq:diff2}) 
+    \begin{align}
+        k_1'u_1' +  k_2'u_2' +k_1\cdot 0 + k_2\cdot 0 &=f(t) \notag \\
+        k_1'u_1' +  k_2'u_2' &= f(t)\label{eq:diff3}
+    \end{align}
+    Pertanto la nostra soluzione particolare risolve la EDO solo se valgono (\ref{eq:diff1}) e (\ref{eq:diff3})
+    \[
+    \begin{cases}
+        k'_1(t)u_1(t) + k'_2(t)u_2(t) = 0 \\
+        k'_1(t)u_1'(t) + k'_2(t)u_2'(t) = f(t)
+    \end{cases}
+    \]
+\end{proof}
+Questo metodo quindi ci permette di cercare delle soluzioni nei casi in cui la funzione $f(t)$ non assomiglia ad una delle forme del metodo con somiglianza, ad esempio
+\begin{esercizio}{}{}
+    Determinare l'integrale generelare della seguente EDO
+    \[
+    u''(t) + u(t) = \dfrac{1}{\cos(t)} \;\;\;\;\; \forall t \in \left(0, \dfrac{\pi}{4}\right)
+    \]
+\end{esercizio}
+Ad ogni modo prima risolviamo la EDO omogenea associata 
+\[
+u''(t) + u(t) = 0 \implies x^2+1 = 0 \implies x_{1/2} = 0 \pm 1i
+\]
+Da cui le soluzioni semplici sono 
+\[
+\begin{array}{c@{\qquad\qquad}c}
+    \begin{aligned}
+        u_1(t) &= e^{0t}\cos(1t) \\
+               &= \cos(t)
+    \end{aligned}
+    &
+    \begin{aligned}
+        u_2(t) &= e^{0t}\sin(1t) \\
+               &= \sin(t)
+    \end{aligned}
+\end{array}
+\]
+Ora notiamo che la funzione $f(t)=\frac{1}{\cos(t)}$ non è riconducibile a nessuna delle forme del metodo con somiglianza, pertanto l'unico metodo che conosciamo è quello della variazione delle costanti. Quindi dobbiamo cercare due funzioni $k_1, k_2 \in \left(0, \frac{\pi}{4}\right)$ tali che
+\[
+    \begin{cases}
+        k'_1(t)\cos(t) + k'_2(t)\sin(t) = 0 \\
+        -k'_1(t)\sin(t) + k'_2(t)\cos(t) = \dfrac{1}{\cos(t)}
+    \end{cases}
+    \]
+    Ora nella prima equazione possiamo isolare $k'_1$ e nella seconda moltiplicare ambo i menbri per $\cos(t)$ e questo possiamo farlo dato che l'EDO è definita per $t \in \left(0, \frac{\pi}{4}\right)$ e in quell'intervallo $\cos(t)$ non si annulla mai.
+    \begin{align*}
+    &\begin{cases}
+        -k'_1\cos(t)   = k'_2\sin(t)\\
+        -k'_1\cos(t)\sin(t) + k'_2\cos^2(t) = 1
+    \end{cases}\implies 
+    \begin{cases}
+        -k'_1\cos(t)   = \mathunderline{red}{k'_2\sin(t)}\\
+        \mathunderline{red}{k'_2\sin(t)}\sin(t) + k'_2\cos^2(t) = 1
+    \end{cases}\\
+    & \implies 
+    \begin{cases}
+        k'_1\cos(t)   = -k'_2\sin(t)\\
+        k'_2(\sin^2(t) + \cos^2(t)) = 1
+    \end{cases}
+    \implies
+    \begin{cases}
+        k'_1\cos(t)   = -1\sin(t)\\
+        k'_2 = 1
+    \end{cases}\\
+    &\implies 
+    \begin{cases}
+        k'_1(t)  = -\dfrac{\sin(t)}{\cos(t) }\\
+        k'_2(t)=1
+    \end{cases}
+    \implies
+    \begin{cases}
+        k_1(t)  = \log|\cos(t)|\\
+        k_2(t)=t
+    \end{cases}
+    \end{align*}
+
+    Quindi la soluzione particolare alla EDO è 
+    \[
+    u_p(t) = \overbrace{\log|\cos(t)|}^{k_1}\cos(t) + \overbrace{t}^{k_2}\sin(t)
+    \]
+    Di conseguenza l'integrale generale è 
+    \[
+    u(t) = \log|\cos(t)|\cos(t)+t\sin(t) +c_1\cos(t) + c_2\sin(t)
+    \]
+    Questo metodo però può essere usato anche per risolvere EDO che rientrano nella forma del metodo con somiglianza, proviamo a rifare un esercizio che abbiamo già fatto, ma utilizzando questo nuovo metodo
+\begin{esercizio}{}{}
+    Determinare l'integrale generale della seguente EDO
+    \[
+    u''(t) - 6u'(t) + 9u(t) = (1+2t)e^{3t}
+    \]
+\end{esercizio}
+Le soluzioni semplici dell'omogenea le avevamo già calcolate e sono
+\[
+\begin{array}{c@{\qquad\qquad}c}
+    u_1(t) = e^{3t} &u_2(t) = te^{3t}
+\end{array}
+\]
+Quindi dobbiamo cercare $k_1, k_2$ tali che 
+\[
+    \begin{cases}
+        k'_1e^{3t} + k'_2te^{3t}= 0 \\
+        k'_13e^{3t} + k'_2(1e^{3t}+ t\cdot3e^{3t}) = (1+2t)e^{3t}
+    \end{cases}
+    \]
+In entrambe le equazioni possiamo dividere per $e^{3t}$ che non può mai essere nulla
+\begin{align*}
+    &\begin{cases}
+        k'_1 + k'_2t= 0 \\
+        3k'_1 + k'_2(1+ 3t) = 1+2t
+    \end{cases}
+    \implies
+    \begin{cases}
+        k'_1  = -k'_2t\\
+        -3tk'_2 + k'_2+ 3tk'_2 = 1+2t
+    \end{cases}\\
+    &
+    \implies
+    \begin{cases}
+        k'_1  = -k'_2t\\
+        k'_2= 1+2t
+    \end{cases}\implies
+    \begin{cases}
+        k'_1(t)  = -1t-2t^2\\
+        k'_2(t)= 1+2t
+    \end{cases}
+    \implies
+    \begin{cases}
+        k_1(t)  = \frac{-t^2}{2}-\frac{2t^3}{3}\\
+        k_2(t)= t+t^2
+    \end{cases}
+\end{align*}
+Quindi la soluzione particolare è 
+\begin{align*}
+u_p(t) &= \left(\frac{-t^2}{2}-\frac{2t^3}{3}\right)e^{3t} + \left(t+t^2\right)te^{3t} \\
+&= \left(\frac{-t^2}{2}-\frac{2t^3}{3} + t^2+t^3\right)e^{3t} \\
+&= \left(\frac{t^2}{2}+\frac{t^3}{3}\right)e^{3t}
+\end{align*}
+Di conseguenza l'integrale generale sarà dato da
+\[
+u(t) = \left(\frac{t^2}{2}+\frac{t^3}{3}\right)e^{3t} + c_1e^{3t} + c_2te^{3t}
+\]
+Come avevamo già trovato. Però da notale che con il metodo della somigliaza abbiamo dovuto calcolare due derivate (non tanto semplici) e abbiamo dovuto risolvere un sistema lineare, mentre con questo metodo abbiamo risolto un semplice sistema lineare, rendendo lo svolgimento molto più semplice che prima.
+
+\newpage
+ \addcontentsline{toc}{subsection}{Principio di Sovrapposizione}
+\begin{teorema}{Principio di Sovrapposizione}{}
+     Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo aperto, $a,b,c \in\mathbb{R}$ con $a\ne 0$, $f:I \to \mathbb{R}$ consideriamo la seguente EDO
+    \[
+    au''(t) + bu'(t)+cu(t) = f_1(t)+ f_2(t) + ... + f_n(t)
+    \]
+    Sia $u_1(t)$ la soluzione particolare alla EDO: $  au''(t) + bu'(t)+cu(t) = f_1(t)$, $u_2(t)$ la soluzione particolare della EDO $  au''(t) + bu'(t)+cu(t) = f_2(t)$, e così via fino ad $u_n(t)$.
+    Allora la soluzione particolare della EDO originale è
+    \[
+    u_p(t) = u_1(t) + u_2(t) + ...+ u_n(t)
+    \]
+\end{teorema}
+\begin{proof}
+    
+Controlliamo se la soluzione particolare risolve la EDO 
+\begin{align*}
+    a(u_1 + u_2 + ...+ u_n)'' +b(u_1 + u_2 + ...+ u_n)' + c(u_1 + u_2 + ...+ u_n) &= f_1+ f_2+ ...  +f_n\\
+    au_1''+au_2'' + ... + au_n'' +  bu_1'+bu_2' + ... + bu_n' +cu_1+cu_2 + ... + cu_n &= \\
+   \mathunderline{red}{ au_1''+ bu_1'+cu_1} +  \mathunderline{blue}{au_2''+ bu_2'+cu_2}  + ... +  \mathunderline{green}{au_n''+ bu_n'+cu_n} &= \\
+   \mathunderline{red}{f_1}+ \mathunderline{blue}{f_2}+ ...  +\mathunderline{green}{f_n}&= f_1+ f_2+ ...  +f_n
+\end{align*}
+\end{proof}
+\begin{esercizio}{}{}
+    Determinare l'integrale generale della seguente EDO
+    \[
+     u''(t)-4u(t) = e^t + \sin(t)
+    \]
+\end{esercizio}
+Come al solito cerchiamo prima la soluzione omogenea
+\[
+ u''(t)-4u(t)=0 \implies x^2-4 =0 \implies x_{1/2 } = \pm 2 \implies u_1(t) = e^{2t} \;\;\;\; u_2(t)=e^{-2t}
+\]
+Ora dobbiamo cercare la soluzione particolare, ma dato che la nostra EDO è formata da una somma, possiamo "spezzare" la equazione studiando singolaremente le soluzioni delle seguenti EDO
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+    u''(t)-4u(t) = e^t  & u''(t)-4u(t) = \sin(t)
+\end{array}
+\]
+Entrambe le risolviamo con il metodo di somiglianza, quindi nella prima EDO la soluzione particolare è della forma: $u_1(t)=Ae^{t}$, quindi
+\[
+(Ae^{t})''-4(Ae^{t}) = e^t \implies Ae^{t}-4Ae^{t} = e^{t} \implies -3A = 1 \implies A=\frac{-1}{3}
+\]
+Mentre la seconda soluzione è della forma: $u_2(t)=B\sin(t)$
+\[
+(B\sin(t))'' -4(B\sin(t)) = \sin(t) \implies -B\sin(t) - 4B\sin(t)=\sin(t) \implies B=\frac{-1}{5}
+\]
+Quindi la soluzione alla EDO originale è 
+\[
+u(t) = \overbrace{c_1e^{2t} + c_2e^{-2t}}^{u_o(t)} - \overbrace{\dfrac{e^{t}}{3}}^{u_1(t)} - \overbrace{\dfrac{\sin(t)}{5}}^{u_2(t)}
+\]
+\newpage
+ \addcontentsline{toc}{subsection}{EDO di Ordine Superiore al \textit{II}°}
+\begin{teorema}{EDO di Ordine Superiore al \textit{II}°}{}
+     Sia $\varnothing \ne I \subseteq \mathbb{R}$ un intervallo aperto, $f:I\to\mathbb{R}$, $n,k \in \mathbb{N}$ con $k\leq n$ consideriamo la seguente EDO
+    \[
+    f(t, u^{(k)}, u^{(k+1)}, u^{(k+2)},...,  u^{(n)}) = 0
+    \]
+    Definiamo 
+    \[
+    v(t) = u^{(k)}(t)
+    \]
+    In modo tale che la EDO diventa
+    \[
+    f(t, v, v^{(1)}, v^{(2)},..., v^{(n-k)}) = 0
+    \]
+    Trovata poi la soluzione a questa EDO, per avere la soluzione alla EDO originale basta integrare $k$ volte.
+    \[
+     u(t) = \underbrace{\int \int ... \int}_{k\;\text{volte}} v(t) \,dt
+    \]
+\end{teorema}
+Vediamo un esempio per affinare la tecnica
+
+\begin{esercizio}{}{}
+    Determinare l'integrale generale della seguente EDO
+    \[
+     u'''(t) = 36u'(t) +  e^{t}
+    \]
+\end{esercizio}
+Notiamo che possiamo applicare la tecnica facendo la seguente sostituzione
+\[
+v(t) = u'(t)
+\]
+In modo tale che la nuova EDO sia
+\[
+v''(t) = 36v(t) + e^{t}
+\]
+Questa la sappiamo risolvere, cerchiamo la soluzione omogenea
+\[
+v''(t) -36v(t) = 0  \implies x^2-36= 0 \implies x_{1/2} =\pm 6 \implies v_1(t) = e^{6t} \;\;\;\; v_2(t) = e^{-6t}
+\]
+Ora cechiamo la soluzione particolare della forma $v_p(t) = Ae^{t}$
+\begin{align*}
+(Ae^{t})'' - 36(Ae^{t}) = e^{t} \implies -35Ae^{t} &= 1e^{t} \implies A=\frac{-1}{35}
+\end{align*}
+ Quindi la soluzione della nuova EDO è
+\[
+v(t) = -\frac{e^{t}}{35} + c_1e^{6t} + c_2e^{-6t}
+\]
+Ora per trovare la soluzione originale basta integrale una sola volta dato che $v=u'$
+\[
+u(t) = \int v(t) \,dt = \int \left(-\frac{e^{t}}{35} + c_1e^{6t} + c_2e^{-6t} \right)\,dt = -\frac{e^{t}}{35} + \frac{c_1e^{6t}}{6} + \frac{c_2e^{-6t}}{-6} + c_3
+\]
+Ora ricordiamo che le costanti $c_1$,$c_2$ sono arbitrarie, quindi se moltiplicate o divise per un'altra costante, otteniamo sempre un'altra costante, quindi la soluzione la possiamo semplificare come
+\[
+u(t) =  -\frac{e^{t}}{35} + c_1e^{6t} + c_2e^{-6t} + c_3
+\]
+    \end{document}
 
