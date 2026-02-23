@@ -1,4 +1,0 @@
-\babel@toc {italian}{}\relax 
-\babel@toc {italian}{}\relax 
-\contentsline {section}{\numberline {1}Principio d'Induzione}{2}{section.1}%
-\contentsline {subsection}{Teorema del binomio di Newton}{2}{section*.2}%
