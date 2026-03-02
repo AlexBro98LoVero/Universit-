@@ -82,7 +82,7 @@
   \fcolorbox{#1}{white}{\strut$\displaystyle #2$}%
 }
 
-\title{DataBase} %title of the file
+\title{Fisica 1} %title of the file
 
 \begin{document}
 
@@ -151,13 +151,13 @@ La legge oraria è fondamentale perchè ci permette di analizzare interamente il
         \begin{axis}[
             axis lines = middle,
             xlabel = {$t$}, 
-            ylabel = {$x(t)$}, 
+            ylabel = {$x$}, 
             xmin = 0, xmax = 2.7,
             ymin = -0.5, ymax = 1.2, 
             domain = 0:2.2,        
             samples = 100,         
             grid = none,          
-            width=7cm, height=5cm, % Ho aumentato un po' l'altezza per chiarezza
+            width=7cm, height=5.5cm, % Ho aumentato un po' l'altezza per chiarezza
             xlabel style={anchor=west}, 
             ylabel style={anchor=south},
             % --- AGGIUNTA IMPORTANTE ---
@@ -193,6 +193,7 @@ La legge oraria è fondamentale perchè ci permette di analizzare interamente il
         \addplot[mark=*, mark size=1.5pt, gray] coordinates {(0.5, 0.75)};
         \addplot[mark=*, mark size=1.5pt, gray] coordinates {(1,1) };
 
+    \node at (axis cs:1.4, 0.9) [anchor=west] {$x(t)$};
         % --------------------------
 
         \end{axis}
@@ -240,6 +241,7 @@ v(t) = \dfrac{d x(t)}{dt} = \dfrac{d}{dt} \left(2t-t^2\right) = 2-2t
 \]
 La velocità istantanea la possiamo interpretare come la velocità che è segnata dal tachimetro in una macchina che sta eseguente il moto descritto dalla legge oraria $x(t)$. Quindi con il solito esempio possiamo calcolare la velocità in qualsiasi momento, e per esempio se io volessi sapere a che velocità stà andando il nostro oggetto al momento $t=2s$ basta calcolare $v(2) =  -2m/s$. Il meno sta ad indicare la direzione nel quale stiamo percorrendo, ed in questo caso è come se stessimo facendo la retromarcia dato che il segno meno sta a dire che stiamo andando in direzione opposta rispetto a dove punta l'auto.
 
+
 \begin{definizione}{Accelerazione Media}{}
 
 \addcontentsline{toc}{subsection}{Definizione di Accelerazione}
@@ -263,4 +265,193 @@ Come prima, più che l'accelerazione media a noi ci interessa l'accelerazione is
   \]
 \end{definizione}
 
+Da qui possiamo usare il \textbf{TFCI} (Teorema Fondamentale del Calcolo Integrale) per ricavare le formule inverse, infatti ricordiamo il  TFCI, sia $a,b \in \mathbb{R}$ con $a<b$ e $f$ una qualsiasi funzione integrabile in $[a,b]$
+\[
+\dfrac{d F(x)}{dx} = f(x) \implies \int_{a}^{b} f(s)\,ds =  F(b) - F(a)
+\]
+Quindi prendendo la definizione di velocità istantanea
+\[
+\dot{x}(t) = v(t) \implies \int_{t_1}^{t_2} v(s) \,ds = x(t_2) - x(t_1)
+\]
+Che riscrivendo e ponendo $t_1 = 0$ e $t_2 = t$
+\begin{equation}
+  \label{eq:spazio1}
+  \int_{0}^{t} v(s) \,ds = x(t) - x(0) \implies x(t) = x(0) + \int_{0}^{t} v(s) \,ds 
+\end{equation}
+
+Analogamente possiamo fare lo stesso ragionamento per l'accelerazione
+\begin{equation}
+  \label{eq:spazio2}
+\dot{v}(t) = a(t) \implies \int_{0}^{t} a(s) \,ds = v(t) - v(0) \implies v(t) = v(0) + \int_{0}^{t} a(s) \,ds 
+\end{equation}
+
+Inoltre possiamo sostituire la definizione che abbiamo appena trovato per la velocità (\ref{eq:spazio1}) nella equazione (\ref{eq:spazio2}). Stando attendi a rinominare le variabili per evitare confusione
+
+\begin{align*}
+  x(t) &= x(0) + \int_{0}^{t} \mathunderline{red}{v(s)} \,ds \\
+  &= x(0) + \int_{0}^{t} \mathunderline{red}{\left(v(0) + \int_{0}^{s} a(z) \,dz\right)}  \,ds  \\
+   &= x(0) + \int_{0}^{t} v(0)\,ds + \int_{0}^{t}\int_{0}^{s} a(z) \,dz  \,ds \\
+   &= x(0) +v(0)t + \int_{0}^{t}\int_{0}^{s} a(z) \,dz  \,ds \\
+\end{align*}
+
+Con quest'ultima equazione abbiamo scoperto che possiamo trovare la legge oraria avendo soltanto lo spazio iniziale $x(0)$ , la velocità iniziale $v(0)$ e dalla funzione dell'accelerazione in funzione del tempo.
+
+
+Inoltre grazie al TFCI e usando la definizione di velocità media nell'intervallo $[t_1, t_2]$ la possiamo trovare anche dalla funzione velocità istantanea, esando la definizione di media integrale 
+
+\begin{align*}
+v_m &= \dfrac{x(t_2)-x(t_1)}{t_2-t_1}  \\
+&= \dfrac{1}{t_2-t_1} \int_{t_1}^{t_2} v(s) \,ds
+\end{align*}
+
+
+\begin{definizione}{Tipologie di Moti}{}
+  Si dice
+  \begin{enumerate}[label=(\roman*)]
+    \item \textbf{Stato di Quiete} un corpo tale che  
+    \[\begin{array}{c@{\qquad}@{\qquad}c}
+      v(t) = 0 & a(t) = 0
+    \end{array}\]
+
+    \item \textbf{Moto Uniforme} un corpo tale che  
+    \[\begin{array}{c@{\qquad}@{\qquad}c}
+      v(t) = k \in \mathbb{R} \setminus \{0\} & a(t) = 0
+    \end{array}\]
+    
+  \item \textbf{Moto Uniformemente Accelerato} un corpo tale che  
+    \[\begin{array}{c@{\qquad}@{\qquad}c}
+      v(t) = f(t)  & a(t) = k \in \mathbb{R}\setminus \{0\}
+    \end{array}\]
+    con $f(t)$ una qualsiasi espressione analitica rispetto al tempo
+
+    \item \textbf{Moto Vario} un corpo tale che  
+   \[\begin{array}{c@{\qquad}@{\qquad}c}
+      v(t) = f_1(t)  & a(t) = f_2(t)
+    \end{array}\]
+    con $f_1(t)$, $f_2(t)$ due qualsiasi espressioni analitiche rispetto al tempo
+
+  \end{enumerate}
+\end{definizione}
+
+Facciamo un esempio, determinare il tipo di moto di un oggetto con la seguente legge oraria
+\[
+x(t) = at^2
+\]
+con $a \in \mathbb{R} \setminus \{0\}$. In primis notiamo che il corpo si muove, dato che c'è una dipendenza della posizione rispetto al tempo, pertanto possiamo già dire che non è in stato di quiete. Per controllare le altre casistiche dobbiamo calcolare la velocità, quindi calcoliamo la derivata di questa legge oraria
+\[
+v(t) = \dot{x}(t) = \dfrac{d}{dt}\left(at^2\right) = 2at
+\]
+Dopo che abbiamo trovato l'espressione di $v(t)$ possiamo affermare che non può essere un moto uniforme, dato che la velocità non è costante. Per controllare se è un moto uniformemente accelerato o vario ci serve sapere l'accelerazione, che quindi possiamo trovare facendo una derivata
+\[
+a(t) = \dot{v}(t)=\dfrac{d}{dt}\left(2at\right) = 2a
+\]
+Ora notiamo che l'accelerazione è costante, dato che non è dipendente da $t$, pertanto possiamo dire che la legge oraria data descrive un moto uniformemente accelerato.
+
+\begin{esercizio}{}{}
+  Siano due punti materiali su una linea, che chiameremo $p_1$ e $p_2$, siano date le loro leggi orarie
+  \[
+  p_1 : x_1(t) = v_1t  
+  \]\[
+  p_2 : x_2(t) = v_2t  + x_0
+  \] 
+  con $v_1, v_2, x_0 \in \mathbb{R}^+ \setminus \{0\}$. Discutere per quali valori di $v_1, v_2, x_0$ il punto $p_1$ supererà $p_2$, e se lo farà in quanto tempo.
+\end{esercizio}
+\begin{proof}[svolgimento]
+  In primis notiamo che i due moti descritti sono entrambi delle rette nel piano cartesiano, pertanto si incontreranno sempre in un unico punto tranne quando il coefficiente angolare delle rette è uguale, e  quindi se $v_1 = v_2$ non si raggiungono mai. Per tutti gli altri casi i due punti si incontrano in un punto che troviamo ponendo le posizioni uguali
+  \begin{align*}
+    x_1(t) &= x_2(t) \\
+    v_1t&= v_2t  + x_0 \\
+    (v_1-v_2)t &= x_0 \\
+    t &= \dfrac{x_0}{v_1-v_2}
+  \end{align*}
+  Pertanto i due punti materiali si incontrano sempre al tempo $t$, però ricordiamo che il tempo può essere solo positivo, ma ricordiamo che $x_0 >0$ e quindi affinchè il tempo sia positivo è necessario che $v_1 -v_2 > 0 \implies v_1 > v_2$. Pertanto il punto $p_1$ supererà $p_2$ solo se $v_1 > v_2$ e in tal caso lo supera al tempo $t=\dfrac{x_0}{v_1-v_2}$
+\end{proof}
+
+\begin{esercizio}{}{}
+  Un punto che si muove con moto uniformemente accelerato lungo l'asse $x$ passa nella posizione $x_1$ con velocità $v_1 = 1.9 \text{ m/s}$ e nella posizione $x_2 = x_1 + \Delta x$ con velocità $v_2 = 8.2 \text{ m/s}$. Calcolare, sapendo che $\Delta x = 10 \text{ m}$:
+\begin{enumerate}
+    \item quanto vale l'accelerazione $a$;
+    \item quanto tempo impiega il punto a percorrere il tratto $\Delta x$.
+\end{enumerate}
+\end{esercizio}
+
+\begin{proof}[svolgimento]
+  Dato che è un moto uniformemente accelerato, possiamo scrivere subito la legge oraria e della velocità calcolate al tempo $t_2$ (cioè quella di $x_2$ e $v_2$) e poniamo $t_1=0s$ il tempo iniziale.
+  \[
+\begin{cases}
+  v_2 = v_1 + at \\
+  x_2 = x_1 + v_1t + \frac{1}{2}at^2
+\end{cases} \implies\begin{cases}
+  v_2 = v_1 + at \\
+  x_1 + \Delta x = x_1 + v_1t + \frac{1}{2}at^2
+\end{cases} \implies\begin{cases}
+  v_2 = v_1 + at \\
+  \Delta x = v_1t + \frac{1}{2}at^2
+\end{cases} 
+  \]
+\end{proof}
+Senza troppa difficoltà notiamo che questo è semplicemente un sistema di equazioni a due incognite dato che $v_2,v_1,\Delta x$ li conosciamo e quindi risolviamo per $a$  e $t$ (che sono le richieste dell'eserizio)
+\begin{align*}
+v_2 = v_1 + at \implies at = v_2-v_1 &\implies \Delta x = v_1t + \frac{1}{2}(v_2-v_1)t\\[0.3em]
+  &\implies 2\Delta x = 2v_1t + (v_2-v_1)t \\[0.3em]
+   &\implies 2\Delta x =(v_2+v_1)t  \\[0.3em]
+    &\implies t = \frac{2\Delta x}{v_2+v_1} = \frac{2\cdot 10}{1.9 + 8.2} \approx 1.98s
+\end{align*}
+Trovato il tempo, cerchiamo l'accelerazione
+\begin{align*}
+  v_2 = v_1 + at \implies a = \dfrac{v_2-v_1}{t} = \dfrac{8.2-1.9}{1.98} \approx 3.18m/s^2
+\end{align*}
+
+\begin{esercizio}{}{}
+  In un rally automobilistico un pilota deve percorrere nel tempo minimo un tratto $d = 1 \text{ km}$, partendo e arrivando da fermo. Le caratteristiche dell'auto sono tali che l'accelerazione massima è $a_1 = 2.5 \text{ m/s}^2$, mentre il sistema di freni permette una decelerazione massima $a_2 = -3.8 \text{ m/s}^2$. Supponendo che il moto sia rettilineo, determinare il tempo ottenuto nella prova.
+\end{esercizio}
+Chiaramente il tempo migliore lo ha quando accelera al massimo per un tempo $t_1$, poi arrivato ad una velocità $v_1$ inizia a frenare brutamente fino ad arrivare a $v_2 =0$. Il moto lo possiamo dividere in due moti uniformemente accelerato, il primo in cui accelera con $a=a_1$, mentre nel secondo in cui accelera con $a=a_2$, quindi possiamo scrivere le leggi orarie per i due moti, per la fase di accelerazione abbiamo quindi da $t_0$ a $t_1$ ricordando che parte da fermo quindi $v_0=0$
+
+\[
+v_1 = v_0 + a_1\Delta t_1 \implies v_1 = a_1\Delta t_1
+\]
+Con $\Delta t_1 = t_1-t_0$. Mentre il secondo moto ha equazione ricordando che $v_2 = 0$
+\[
+v_2 = v_1 + a_2\Delta t_2 \implies -v_1 = a_2\Delta t_2
+\]
+Con $\Delta t_2 = t_2-t_1$. Ma da questo deduciamo che $a_1\Delta t_1 = -a_2\Delta t_2$, dato che entrambe sono uguali a $v_1$. Ora ricordiamo che il punto in un certo punto del tragitto deve cambiare moto (cioè il momento $t_1$), chiamiamo $x_1$ la posizione al tempo $t_1$, e deve valere $x_1 \in (0, d)$. Ora quindi nel primo tratto compierà uno spazio di $x_1$, mentre nel secondo tratto compierà uno spazio $d-x_1$ (cioè quello mancante). Quindi possiamo scrivere le leggi orarie dei due moti, partiamo dal primo
+\[
+x_1 = \dfrac{1}{2}a_1\Delta t_1^2
+\] 
+Mentre il secondo ha equazione, ponendo $v_1 = -a_2\Delta t_2$
+\[
+d-x_1 = v_1\Delta t_2 + \dfrac{1}{2}a_2\Delta t_2^2 \implies d-x_1 = -a_2\Delta t_2^2 + \dfrac{1}{2}a_2\Delta t_2^2 =  -\dfrac{1}{2}a_2\Delta t_2^2
+\]
+
+Ora possiamo imporre un sistema con le equazioni che abbiamo scoperto, in modo tale da scoprire $x_1, \Delta t_1$ e $\Delta t_2$, dato che tutte le altre costanti le conosciamo.
+\[
+\begin{cases}
+  a_1\Delta t_1 = -a_2\Delta t_2 \\
+  x_1 = \dfrac{1}{2}a_1\Delta t_1^2 \\
+  d-x_1 =  -\dfrac{1}{2}a_2\Delta t_2^2
+\end{cases}
+\]
+
+Isoliamo $\Delta t_1$ dalla prima e sommiamo la prima e la seconda 
+
+\[\begin{cases}
+  \Delta t_1 = -\dfrac{a_2}{a_1}\Delta t_2 \\
+  x_1 + (d-x_1) = \left(\dfrac{1}{2}a_1\Delta t_1^2\right) + \left(-\dfrac{1}{2}a_2\Delta t_2^2\right)
+\end{cases}
+\]
+\begin{align*}
+  d &= \dfrac{1}{2}a_1\left(-\dfrac{a_2}{a_1}\Delta t_2\right)^2  - \dfrac{1}{2}a_2\Delta t_2^2 \\
+  d &= \dfrac{1}{2}\dfrac{a^2_2}{a_1}\Delta t_2^2 - \dfrac{1}{2}a_2\Delta t_2^2  
+  \end{align*}
+  \[
+  d = \left(\dfrac{1}{2}\dfrac{a^2_2}{a_1} - \dfrac{1}{2}a_2 \right)\Delta t_2^2  \implies \Delta t_2 = \sqrt{\dfrac{2da_1}{a_2^2-a_2a_1}} = \sqrt{\dfrac{2\cdot 1000 \cdot 2.5}{(-3.8)^2-(-3.8)(2.5)}} \approx 14.45s
+  \]
+  Ora possiamo calcolare $\Delta t_1$ con la prima equazione
+  \[
+  \Delta t_1 = -\dfrac{a_2}{a_1}\Delta t_2 = -\dfrac{-3.8}{2.5}\cdot 14.45 \approx 21.97s 
+  \]
+  Trovati i tempi, non è necessario trovare $x_1$ dato che non è richiesto dal problema, quindi il tempo per percorrere interamente la distanza $d$ dobbiamo sommare i tempi dei due moti
+  \[
+  t_{tot} = \Delta t_1 +\Delta t_2 = 14.45 + 21.97 = 36.42s
+  \]
 \end{document}
