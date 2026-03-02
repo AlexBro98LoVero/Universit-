@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{cancel}
 \usepackage{polynom}
+\usepackage{amsmath,esvect}
 
 \usepackage{enumitem}
 \usepackage[most, theorems]{tcolorbox}
@@ -27,6 +28,11 @@
 
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{matrix, positioning}
+
+\definecolor{myred}{HTML}{EA4335}
+\definecolor{myyellow}{HTML}{FBBC05}
+\definecolor{mygreen}{HTML}{34A853}
+\definecolor{myblue}{HTML}{4285F4}
 
 \newtcbtheorem{teorema}{Teorema}{
   colback=blue!5!white,
@@ -105,14 +111,728 @@
 
 
 
-\section{Principio d'Induzione}
-\addcontentsline{toc}{subsection}{Teorema del binomio di Newton}
-\begin{teorema}{del binomio di Newton}{}
-\begin{equation*}
-    (a+b)^n = \sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^{k} \quad \forall n \in \mathbb{N}_0
-\end{equation*}
+\section{Numeri Complessi}
+\begin{definizione}{Numeri Complessi}{}
+  Definiamo un nuovo simbolo $i$, che chiamiamo \textbf{unità immaginaria} definita come
+  \[
+  i^2 = -1
+  \]
 
-\end{teorema} 
+  Con questo possiamo definire un \textbf{numero complesso} $z$ definito come
+  \[
+  z = a+bi \;\;\;\;\;\; a,b \in \mathbb{R}
+  \]
+
+  L'insieme di tutti i numeri complessi è  definito come
+
+  \[
+  \mathbb{C} = \{a+bi \; | \; \forall a,b \in \mathbb{R}\}
+  \]
+\end{definizione}
+ In principio i numeri comlessi sono nati per risolvere le equazioni di secondo grado, dato che se il discriminante è minore di zero l'equazione non aveva soluzioni nei reali, mentre nei numeri complessi possiamo sempre trovare due valori. Infatti se prendiamo la seguente e quazione e proviamo a risolverla abbiamo che 
+ \begin{align*}
+   x^2-4x+13 = 0 \implies x_{1/2} &= \dfrac{4 \pm \sqrt{16 - 52}}{2} \\
+   &= \dfrac{4 \pm \sqrt{-36}}{2} \\
+   &= \dfrac{4 \pm 6i}{2} \\
+   &= 2 \pm 3i
+ \end{align*}
+
+ Detto ciò, capiamo come sono le operazioni tra numeri complessi, e trattiamo la parte immaginaria come se fosse una variabile.  Prendiamo due numeri complessi $z_1 = a + bi$ e $z_2 = c + di$, e guardiamo la loro somma
+\begin{align*}
+   z_1 + z_2 &= (a+bi) + (c+di) \\
+   &= a+c + bi + di\\
+   &= (a+c) + (b+d)i \\
+ \end{align*}
+ Chiaramente funziona analogamente per la sottrazione, mentre guardiamo il prodotto
+\begin{align*}
+   z_1 \cdot z_2 &= (a+bi) \cdot (c+di) \\
+   &= ac + adi + bic + bdi^2\\
+   &= ac + adi + bci - bd\\
+   &= ac  - bd+ adi + bci \\
+   &= (ac  - bd)+ (ad + bc)i \\
+ \end{align*}
+ Il quoziente lo analiziamo dopo. 
+
+\begin{definizione}{Complesso Coniugato}{}
+  Sia $z = a+bi$ un numero complesso definiamo il suo \textbf{complesso coniugato} il numero complesso 
+  \[
+  \overline{z} = a-bi
+  \]
+\end{definizione}
+Quindi il complesso coniugato non è altro che lo stesso numero complesso ma girato il segno alla parte immaginaria, vediamo qualche proprietà
+\begin{teorema}{Proprietà Complesso Coniugato}{}
+  Siano $z_1 = a+bi$, $z_2 = c+di$ due numeri complessi, allora vale 
+  \begin{enumerate}[label=(\roman*)]
+    \centering
+    \item  $\;\;\;\overline{z_1 + z_2} = \overline{z_1}  + \overline{z_2}$
+    \item  $\;\;\;\overline{z_1 \cdot z_2} = \overline{z_1}  \cdot \overline{z_2}$
+    \item   $\;\;\;\overline{z} = z \iff z \in \mathbb{R}$
+  \end{enumerate}
+\end{teorema}
+
+\begin{proof}
+  ($i$) Proviamo a semplificare ambo i membri
+ \begin{align*}
+  \overline{z_1 + z_2} &= \overline{(a+bi) + ( c+di)} \\
+  &=  \overline{(a+c) + ( b+d)i} \\
+  &= (a+c) - ( b+d)i
+ \end{align*}
+ \begin{align*}
+  \overline{z_1}  + \overline{z_2} &= \overline{a+bi}  + \overline{ c+di} \\
+  &=  (a-bi) + (c-di)\\
+  &= (a+c) - ( b+d)i
+ \end{align*}
+ Si nota che sono uguali. 
+ 
+ ($ii$) Ora seguiamo lo stesso ragionamento 
+ \begin{align*}
+  \overline{z_1 \cdot z_2} &= \overline{(a+bi) \cdot ( c+di)} \\
+  &=  \overline{(ac  - bd)+ (ad + bc)i} \\
+  &= (ac  - bd) - (ad + bc)i
+ \end{align*}
+ \begin{align*}
+  \overline{z_1}  \cdot \overline{z_2} &= \overline{a+bi}  \cdot \overline{ c+di} \\
+  &=  (a-bi) \cdot (c-di)\\
+  &= (ac -(-b)(-d)) + ( a(-d)+ (-b)c)i \\
+  &= (ac -bd) - ( ad+ bc)i 
+ \end{align*}
+
+ ($iii$) Controlliamo l'implicazione ($\implies$)
+ \[
+ \overline{z} = z \implies a-bi = a+bi \implies -bi = bi \implies 2bi = 0 \implies b=0
+ \]
+ Ma un numero complesso con $b=0$ lo si scrive $z = a + 0i = a \in \mathbb{R}$, ragionamento analogo per l'implicazione inversa.
+
+\end{proof}
+
+Possiamo notare un qualcosa di interessante se moltiplichiamo un numero complesso $z=a+bi$ per il suo complesso coniugato:
+
+\begin{align*}
+\overline{z} \cdot z = (a-bi) \cdot (a+bi) &= (a\cdot a - (-b)(b)) + (a\cdot b + (-b)\cdot a)i \\
+  &= a^2 + b^2 + (ab-ab)i \\
+  &= a^2+b^2
+\end{align*}
+
+
+Con questo possiamo calcolare il quoziente tra due numeri complessi $z_1$ e $z_2$, infatti possiamo moltiplicare e dividere per il quoziente per il complesso coniugato del denominatore abbiamo 
+\begin{align*}
+  \dfrac{z_1}{z_2} &= \dfrac{z_1}{z_2} \cdot  \dfrac{\overline{z_2}}{\overline{z_2}} = \dfrac{z_1\cdot\overline{z_2}}{z_2\cdot\overline{z_2}} = \dfrac{(a+bi)\cdot (c-di)}{c^2+d^2} = \dfrac{(ac+db) + (bc-bd)i}{c^2+d^2}  = \dfrac{ac+db}{c^2+d^2} +\dfrac{bc-bd}{c^2+d^2} i
+\end{align*} 
+
+
+Tornando al motivo per cui sono nati i numeri complessi, abbiamo visto che un polinomio di grado 2 ha sempre 2 soluzioni complesse, e ed al più 2 soluzioni reali. C'è una qualche relazione tra il grado e il numero di soluzioni?
+
+\begin{teorema}{Teorema Fondamentale dell'Algebra}{}
+  Sia $f(z)$ un polinomio di grado $n\in \mathbb{N}$ a coefficienti complessi, allora l'equazione 
+  \[
+  f(z) = 0
+  \]
+  Ammette esattamente $n$ radici complesse (contanto anche le molteplicità) e al più $n$ radici reali.
+\end{teorema}
+
+La dimostrazione è omessa, però questo teorema ci garantisce che qualsiasi polinomio noi prendiamo, ci sarà sempre un numero complesso che renda zero tutto il polinomio, però lo stesso non vale per i numeri reali ma questo già lo sapevamo dato che ci sono equazioni che non hanno nessuna soluzione reale, come $x^2+1=0$.
+
+\begin{teorema}{Relazione tra Radici di un Polinomio a Coefficienti Reali}{}
+  Sia $f(z)$ un polinomio di grado $n\in \mathbb{N}$ a coefficienti reali, allora se $z_0\in\mathbb{C}$ è una radice di $f(z)$, allora anche $\overline{z_0}$ è una radice di $f(z)$ 
+  \end{teorema}
+\begin{proof}
+  Partiamo scrivendo il polinomio in forma estesa, e dato che $z$ è una radice deve valere
+  \[
+  a_nz_0^n + ... + a_2z_0^2 + a_1z_0^1 + a_0 = 0
+  \]
+  Possiamo applicare il complesso coniugato ad ambo i menbri
+  \[
+  \overline{a_nz_0^n + ... + a_2z_0^2 + a_1z_0^1 + a_0} = \overline{0}
+  \]
+  Utilizzando le proprietà dei complessi coniugati
+  \begin{align*}
+    \overline{a_nz_0^n} + ... + \overline{a_2z_0^2} + \overline{a_1z_0^1} + \overline{a_0} &= \overline{0}   \\  
+    \overline{a_n}\overline{z_0^n} + ... + \overline{a_2}\overline{z_0^2} + \overline{a_1}\overline{z_0^1} + \overline{a_0} &= \overline{0} 
+  \end{align*}
+   Ricordiamo che i coefficienti ($a_i$) sono reali per le condizioni, e quindi il loro complesso coniugato è il numero stesso. Ragionamento analogo per lo 0
+   \[
+a_n\overline{z_0^n} + ... + a_2\overline{z_0^2} + a_1\overline{z_0^1} +a_0= 0
+   \]
+   Ma questo non è altro che 
+   \[
+   f(\overline{z_0}) = 0
+   \]
+   Quindi anche $\overline{z_0}$ è uno zero del polinomio, come volevasi dimostrare.
+\end{proof}
+
+
+I numeri complessi li possiamo rappresentare graficamente sul piano di \textbf{Argand-Gauss}, che è l'equivalente del piano cartesiano per le funzioni. Nel piano di Argand-Gauss l'asse delle ascisse è detto \textbf{asse reale}, mentre l'asse delle ordinate è detto \textbf{asse immaginario}, un numero complesso è composto da una parte reale, che si indica con $\operatorname{Re}(z)$, mentre la parte immaginaria si indica con $\operatorname{Im}(z)$. I numeri complessi li possiamo rappresentare anche come \textbf{vettori}, ovvero delle freccie, come possiamo vedere in figura
+
+\begin{center}
+\begin{tikzpicture}[>=stealth, scale=1]
+
+    % Griglia di sfondo (opzionale, ma aiuta a leggere le coordinate)
+    \draw[step=1cm, gray!30, very thin] (-4,-4) grid (4,4);
+
+    % Assi cartesiani
+    \draw[->, thick] (-4.5,0) -- (4.5,0) node[right] {$\operatorname{Re}(z)$};
+    \draw[->, thick] (0,-4.5) -- (0,4.5) node[above] {$\operatorname{Im}(z)$};
+    
+    % Origine
+    \node[below left] at (0,0) {$0$};
+
+    % --- PUNTO 1 (Rosso) ---
+    % Coordinate: (2, 3) ovvero 2 + 3i
+    \coordinate (Z1) at (2, 3);
+    \draw[->, thick, myred] (0,0) -- (Z1);
+    \filldraw[myred] (Z1) circle (2pt) node[anchor=south west] {$z_1 = 2 + 3i$};
+    
+    % --- PUNTO 2 (Verde) ---
+    % Coordinate: (-3, 1.5) ovvero -3 + 1.5i
+    \coordinate (Z2) at (-3, 1.5);
+    \draw[->, thick, mygreen] (0,0) -- (Z2);
+    \filldraw[mygreen] (Z2) circle (2pt) node[anchor=south] {$z_2 = -3 + 1.5i$};
+
+    % --- PUNTO 3 (Blu) ---
+    % Coordinate: (1, -2.5) ovvero 1 - 2.5i
+    \coordinate (Z3) at (1, -2.5);
+    \draw[->, thick, myblue] (0,0) -- (Z3);
+    \filldraw[myblue] (Z3) circle (2pt) node[anchor=north west] {$z_3 = 1 - 2.5i$};
+
+    % Proiezioni tratteggiate sugli assi per z1 (esempio di abbellimento)
+    \draw[dashed, myred!70] (2,0) node[below, text=black] {$2$} -- (2,3);
+    \draw[dashed, myred!70] (0,3) node[left, text=black] {$3$} -- (2,3);
+
+\end{tikzpicture}
+\end{center}
+
+Con questo notiamo che possiamo rappresentare un numero complesso anche in un'altra forma, ovvero quella trigonometrica, nel senso un qualsiasi numero complesso lo possiamo scrivere come 
+\[
+z = \rho (\cos(\theta) + i \sin(\theta))
+\]
+Con $\rho$ la lunghezza del vettore e $\theta$ l'angolo che forma rispetto al semiasse positivo dei reali. Se abbiamo un numero complesso in forma algebrica $z=a+bi$ possiamo convertirlo in forma trigonometrica calcolando $\rho$ e $\theta$ nel seguente modo
+
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+  \rho = \sqrt{a^2+b^2} & \theta = \arctan\left(\dfrac{b}{a}\right)
+\end{array}
+\]
+
+Stando attenti che se $a<0$ dobbiamo aggiungere a $\pi$ all'angolo $\theta$ dato che l'arcotangente restituisce solo valori nell'intervallo $[-\frac{\pi}{2}, \frac{\pi}{2}]$.
+
+
+Possiamo scrivere i numeri complessi in un'ulteriore forma, però dobbiamo fare qualche ragionamento prima. Scriviamo gli sviluppi di Taylor in $x=0$ delle funzioni $e^x$, $\sin(x)$ e $\cos(x)$.
+
+\[
+e^{x} = 1 + x+ \dfrac{x^2}{2} + \dfrac{x^3}{3!} + ...
+\]
+\[
+\sin(x) = x - \dfrac{x^3}{3!} + \dfrac{x^5}{5!}+...
+\]
+\[
+\cos(x) = 1 - \dfrac{x^2}{2} + \dfrac{x^4}{4!} + ...
+\]
+
+Ora proviamo a mettere $xi$ al posto di $x$ nello sviluppo di $e^x$ e notiamo una cosa
+\begin{align*}
+e^{xi} &= 1 + xi+ \dfrac{(xi)^2}{2} + \dfrac{(xi)^3}{3!} + \dfrac{(xi)^4}{4!}+ \dfrac{(xi)^5}{5!}+ ...  \\
+&= 1 + xi+ \dfrac{x^2i^2}{2} + \dfrac{x^3i^3}{3!} + \dfrac{x^4i^4}{4!}+ \dfrac{x^5i^5}{5!} +...
+\end{align*}
+
+
+Per definizione sappiamo che $i^2=-1$, quindi $i^3 = i^2\cdot i = -i$, con lo stesso ragionamento possiamo calcolare $i^4 = i^2\cdot i^2 = -1\cdot (-1) = 1$ e così via, possiamo calcolare tutte le potenza di $i$, e quindi le tre funzioni diventano
+
+\[
+e^{xi} = \mathunderline{red}{1} + \mathunderline{blue}{xi} - \mathunderline{red}{\dfrac{x^2}{2}} - \mathunderline{blue}{\dfrac{x^3}{3!}i} + \mathunderline{red}{\dfrac{x^4}{4!}}+ \mathunderline{blue}{\dfrac{x^5}{5!}i} +...
+\]
+
+Ora raggruppiamo tutti i termini con la i e quelli senza
+
+\[
+e^{xi} = \left(\mathunderline{red}{1 - \dfrac{x^2}{2} + \dfrac{x^4}{4!}+...}\right) +\left(\mathunderline{blue}{x- \dfrac{x^3}{3!} +\dfrac{x^5}{5!} +...}\right) i
+\]
+
+Riconoscete qualcosa? Ebbenesì questi sono gli sviluppi di Taylor del seno e del coseno, quindi possiamo scrivere 
+
+\[
+e^{xi} = \mathunderline{red}{\cos(x)} + i\mathunderline{blue}{\sin(x)}
+\]
+
+Quindi un numero complesso lo possiamo scrivere anche come
+
+\[
+z = \rho (\cos\theta + i \sin\theta) = \rho e^{\theta i} 
+\]
+
+Con questo abbiamo capito che cos'è l'esponenziale di un numero puramente immaginario, ma cos'è un esponenziale di un numero complesso del tipo $z=a+bi$? La risposta è semplice, basta usare le proprietà degli esponenziali
+\[
+e^{z} = e^{a+bi} = e^{a} \cdot e^{bi} = e^{a} \left(\cos(b)+i\sin(b)\right)
+\]
+
+Ora controlliamo la seguente espressione presi $z_1 = a+bi$ e $z_2 = c+di$
+
+\[
+e^{z_1+z_2} = e^{z_1} \cdot e^{z_2}
+\]
+
+Anche se sembra ovvio dobbiamo controllarla, infatti sistemando l'espressione alla sinistra abbiamo che
+\begin{align*}
+  e^{z_1+z_2} = e^{(a+c) + (b+d)i} = e^{a+c} \left(\cos(b+d) + i \sin(b+d)\right)
+\end{align*}
+
+Mentre l'espressione alla destra 
+\begin{align*}
+  e^{z_1} \cdot e^{z_2} &= e^{a+bi} \cdot e^{c+di} \\
+  &= e^{a} \left(\cos(b)+i\sin(b)\right) \cdot e^{c} \left(\cos(d)+i\sin(d)\right) \\
+  &= e^{a} \cdot e^{c} \cdot \left(\cos(b)+i\sin(b)\right) \left(\cos(d)+i\sin(d)\right) \\
+  &= e^{a+c} \left(\cos(b)\cos(d)+i\cos(b)\sin(d)+i\sin(b)\cos(d) + i^2\sin(b)\sin(d)\right) \\
+  &= e^{a+c} \left(\cos(b)\cos(d)-\sin(b)\sin(d)+i(\cos(b)\sin(d)+\sin(b)\cos(d)) \right)
+\end{align*}
+
+
+Ma queste solo le formule di addizione di seno e coseno quindi 
+
+\[
+e^{z_1} \cdot e^{z_2}  = e^{a+c} \left(\cos(b+d) + i\sin(b+d) \right)
+\]
+
+Per finire il capitolo dei numeri complessi torniamo al motivo per cui li abbiamo inventati, ovvero risolvere le equazioni. In più abbiamo scoperto che una equazione polinomiale di grado n ha esattamente n soluzioni (contando anche la molteplicità), quindi come possiamo risolvere la seguente equazione polinomiale
+\[
+x^6+1=0
+\] 
+
+notiamo subito che nei reali non ha soluzioni, dato che richiede una radice sesta di -1. Per risolverla dobbiamo isolare $x^6$ e riscrivere il -1 in forma esponenziale ricordando che lo possiamo scrivere come $-1+0i$, quindi calcoliamo $\rho$ e $\theta$ come abbiamo visto prima
+\[
+z= -1 + 0i \implies \begin{cases}
+  \rho = \sqrt{(-1)^2 + 0^2} \\
+  \theta = \pi + \arctan\left(\frac{0}{-1}\right)
+\end{cases} \implies \begin{cases}
+  \rho = 1 \\
+  \theta = \pi 
+\end{cases}
+\]
+Poi dato che stiamo risolvendo una equazione dobbiamo aggiungere anche il termine $+2k\pi$ (con $k\in\mathbb{Z})$ dato che il numero -1, lo possiamo rappresentare sul piano di Argand-Gauss con gli angoli $\pi$, $3\pi$, $5\pi$... dato che l'angolo è lo stesso e compie $k$ giri. Quindi $\theta = \pi + 2k\pi$. Ora possiamo riscrivere l'equazione e risolvere
+\begin{align*}
+  x^6+1=0 \implies x^6=-1 \implies x^6 = 1e^{(\pi  + 2k\pi)i} &\implies \sqrt[6]{x^6} = \sqrt[6]{e^{(\pi  + 2k\pi)i}}\\
+  &\implies x = e^{\frac{\pi  + 2k\pi}{6}i}
+\end{align*}
+
+Ora le soluzioni le troviamo dando dei valori a $k$, e dato che l'equazione inizialmente era di grado 6 dovremo dare a $k$ i valori $k\in\{0,1,2,3,4,5\}$
+\[
+\begin{array}{c@{\qquad}@{\qquad}c@{\qquad}@{\qquad}c}
+  x_1 = e^{\frac{\pi}{6}i} =  \frac{\sqrt{3}}{2}+ \frac{1}{2}i &  x_2= e^{\frac{3\pi}{6}i} = i &  x_3= e^{\frac{5\pi}{6}i} = -\frac{\sqrt{3}}{2}+ \frac{1}{2}i \\[0.5em]
+  x_4 = e^{\frac{7\pi}{6}i} =  -\frac{\sqrt{3}}{2}- \frac{1}{2}i&  x_5= e^{\frac{9\pi}{6}i} = -i &  x_6= e^{\frac{11\pi}{6}i}  = \frac{\sqrt{3}}{2}-\frac{1}{2}i
+\end{array}
+\] 
+Con questo siamo riusciti a trovare tutte le 6 soluzioni della equazione, in più possiamo notare le soluzioni sono uno il complesso coniugato di un'altra soluzione, come avevamo visto nel teorema del complesso coniugato.
+
+
+
+
+
+
+\newpage
+\addcontentsline{toc}{subsection}{Richiami sugli insiemi}
+\begin{definizione}{Insieme Chiuso rispetto ad Una Operazione}{}
+Sia $A \neq \varnothing$ un insieme, sia $\oplus: A \times A \to A$ una operazione binaria, diciamo che $A$ è \textbf{chiuso} rispetto a $\oplus$ se vale
+\[
+\forall a_1, a_2 \in A : \;\;\; a_1 \oplus a_2 \in A 
+\] 
+\end{definizione}
+Ricordiamo i principali insiemi matematici 
+\begin{itemize}
+   \item \underline{Numeri Primi} ($\mathbb{P}$) è definito come
+  \[
+  \mathbb{P} = \{p \in \mathbb{N} \, | \, \forall a \in \mathbb{N}, 1 < a < p : p \nmid a\}
+  \]
+   Questo insieme non è chiuso rispetto alle 4 operazioni fondamentali (somma, sottrazione, prodotto, divisione)  dato che se prendiamo due numeri primi avremo sempre un numero pari (dato che i numeri primi sono tutti dispari), però un numero pari non è un numero primo, e quindi la somma di due numeri primi non è mai un numero primo (caso particolare se $p=2$, ma poco conta). Mentre moltiplicando due numeri primi sicuramente non otteremo mai un numero primo dato che il nuovo numero è divisibile per i due numeri primi. 
+  \item \underline{Numeri Naturali} ($\mathbb{N}$) è definito come
+  \[
+  \mathbb{N} = \{0, 1, 2,3, 4, 5, ...\}
+  \]
+  L'insieme $\mathbb{N}$ è chiuso rispetto alla somma e al prodotto, dato che possiamo prendere due numeri qualsiasi $n_1, n_2 \in \mathbb{N}$ e la loro somma e il loro prodotto sarà sempre in $\mathbb{N}$. Invece $\mathbb{N}$ non è chiuso rispetto a sottrazione e divisione dato che se prendiamo $n_1 = 2$,$n_2 = 5$ allora $n_1-n_2 \notin \mathbb{N}$, ragionamento analogo per la divisione.
+  \item \underline{Numeri Interi} ($\mathbb{Z}$) è definito come
+  \[
+  \mathbb{Z} = \{0, \pm 1, \pm 2,\pm3, \pm4, \pm5, ...\}
+  \]
+   Al contrario di $\mathbb{N}$, l'insieme $\mathbb{Z}$ è chiuso anche per la sottrazione, ma comunque non è chiuso rispetto alla divisione
+    \item \underline{Numeri Razionali} ($\mathbb{Q}$) è definito come
+  \[
+  \mathbb{Q} = \left\{\dfrac{p}{q} \; | \; p, q \in \mathbb{Z}, q \ne 0 \right\}
+  \]
+  L'insieme $\mathbb{Q} $ è finalemente chiuso rispetto alle 4 operazioni fondamentali, ed è anche un \textbf{campo}, che tra poco vedremo che vuol dire
+  \item \underline{Numeri Reali} ($\mathbb{R}$), che chiaramente è chiuso rispetto alle 4 operazioni ed anch'esso è un campo
+  \item \underline{Numeri Immaginari} ($\mathbb{C}$) è definito come
+  \[
+  \mathbb{C} = \left\{a+bi  \; | \; a, b \in \mathbb{R} \right\}
+  \]
+  Come $\mathbb{Q} $ e $\mathbb{R} $, anche $\mathbb{C} $ è chiuso rispetto le 4 operazioni fondamentali ed è un campo.
+\end{itemize}
+
+\begin{definizione}{Campo}{}
+  Sia $K \ne \varnothing$ un insieme, sia $+: K \times K \to K$ una operazione binaria che chiamiamo "somma", sia $\cdot: K \times K \to K$ una operazione binaria che chiamiamo "prodotto". Diciamo che $K$ è un \textbf{campo} se valgono le seguenti affermazioni per $\forall a,b,c \in K$
+  \begin{enumerate}[label=(\roman*)]
+    \item Proprietà associativa rispetto alla somma:
+    \[
+    (a+b) + c = a+(b+c)
+    \]
+    \item Proprietà commutativa rispetto alla somma:
+    \[
+    a+b = b+a
+    \]
+    \item Elemento nullo rispetto alla somma:
+    \[
+    \exists O \in K :\;\; a+ O =O + a =a  
+    \]
+    \item Elemento inverso addittivo:
+    \[
+    \exists -a \in K :\;\;  a + (-a) = (-a) + a  = O  
+    \]
+    \item Proprietà associativa rispetto al prodotto:
+    \[
+    (a\cdot b) \cdot  c = a\cdot (b\cdot c)
+    \]
+    \item Proprietà commutativa rispetto al prodotto:
+    \[
+    a\cdot b = b\cdot a
+    \]
+     \item Elemento unitario rispetto al prodotto:
+    \[
+    \exists I \in K :\;\; a \cdot I = I \cdot a = a  
+    \]
+    \item Elemento inverso moltiplicativo:
+    \[
+    \exists a^{-1} \in K :\;\;  a \cdot a^{-1} = a^{-1} \cdot a  = I \;\;\;\; (a \ne O)  
+    \]
+    \item Proprietà distributiva:
+    \[
+    c \cdot (a+b) = (a\cdot c) + (b\cdot c)
+    \] 
+  \end{enumerate}
+\end{definizione}
+\textbf{N.B.} Nella definizione è menzionato l'operatore somma ($+$) e prodotto ($\cdot$), \textbf{NON} è detto che siano la somma ed il prodotto come la conosciamo, possono anche essere due operazioni completamente diverse ed inventante a seconda di quello che ci serve. Quindi non pensate alla somma ed il prodotto in modo classico, pensate che siano due funzioni che prendono due elementi di $K$ e in output ne esce un'altro elemento di $K$, dopo vedremo un caso in cui ci inventeremo noi le funzioni somma e prodotto. 
+
+Prima abbiamo detto che $\mathbb{Q}$, $\mathbb{R}$ e $\mathbb{C}$  sono campi, proviamo a controllare per $\mathbb{Q}$ (il procedimento è analogo per gli altri due insiemi). Prendiamo come operatore somma e prodotto quelli a cui siamo abitutati. Chiaramente le proprietà associative, commutative e distributiva (sia somma che prodotto) sono rispettare delle regole fondamentali dell'algebra. Ora l'elemente neutro per la somma ($O$) è 0, mentre l'elemento unitario per il prodotto ($I$) è 1, e chiaramente sono rispettate le regole ($iii$) e ($vii$). Preso un numero razionale $\dfrac{p}{q}$, il suo inverso addittivo è $\dfrac{-p}{q}$ (che possiamo sempre trovare) e il suo inverso moltiplicativo è $\dfrac{q}{p}$ (e questo lo possiamo fare dato che l'inverso moltiplicato lo dobbiamo cercare per i valori diversi dall'elemento nullo, e pertanto $p\ne 0$ e quindi possiamo trovare sempre un inverso moltiplicativo). 
+
+Gli insiemi $\mathbb{Q}$, $\mathbb{R}$ e $\mathbb{C}$ sono dei campi e su questo siamo sicuri, e notiamo una cosa: ovvero che tutti e tre hanno una cardinalità infinita (cioè hanno infiniti elementi), quindi una possibile domanda che ci possiamo fare è se esistono campi finiti (ovvero con un numero finito di elementi). La risposta è sì e adesso vediamo che cosa ne sappiamo su questi campi. In primis stando alla definizione l'insieme deve contenere almeno due elementi: l'elemento neutro ($O$) e l'elemento unitario ($I$), quindi non può esistere un campo con un elemento. Però esiste un campo con esattamente 2 elementi? proviamo a inventare due funzioni "somma" e "prodotto" in modo tale da rende un campo con gli elementi $\{0,1\}$. Se abbiamo solo due elementi allora avremo da gestire le seguenti operazioni
+
+\[
+\begin{array}{c@{\qquad}@{\qquad}@{\qquad}@{\qquad}c}
+  0 + 0 = ? &  0 \cdot 0 = ? \\
+  0 + 1 = ? &  0 \cdot 1 = ? \\
+  1 + 0 = ? &  1 \cdot 0 = ? \\
+  1 + 1 = ? &  1 \cdot 1 = ? \\ 
+\end{array}
+\]
+
+Affinchè questo sia un campo dobbiamo far valere le condizioni ($iii$) e ($vii$), quindi sappiamo che 
+\[
+\begin{array}{c@{\qquad}@{\qquad}@{\qquad}@{\qquad}c}
+  0 + 0 = 0 &  0 \cdot 0 = ? \\
+  0 + 1 = 1 &  0 \cdot 1 = 0 \\
+  1 + 0 = 1 &  1 \cdot 0 = 0 \\
+  1 + 1 = ? &  1 \cdot 1 = 1 \\ 
+\end{array}
+\]
+
+Possiamo scegliere $ 0 \cdot 0 =0$, mentre per $1 + 1$ dobbiamo fare qualche ragionamento in più. Infatti non possiamo scegliere 2 dato che $2\notin \{0,1\}$ e quindi non sarebbe nel campo. Per decidere cosa deve valere quest'ultima espressione, dobbiamo ricorrere alla condizione ($iv$), ovvero che ogni elemento di un campo deve avere un inverso addittivo, ma fino ad ora non abbiamo ancora trovato un numero che sommato ad 1 dia 0. Pertanto per soddisfare la condizione ($iv$) dobbiamo imporre $1+1=0$, perchè altrimenti non esisterebbe nessun numero $a\in \{0,1\}$ tale che $1+a = 0$. Quindi le operazioni devono rispettare le seguenti regole
+\[
+\begin{array}{c@{\qquad}@{\qquad}@{\qquad}@{\qquad}c}
+  0 + 0 = 0 &  0 \cdot 0 = 0 \\
+  0 + 1 = 1 &  0 \cdot 1 = 0 \\
+  1 + 0 = 1 &  1 \cdot 0 = 0 \\
+  1 + 1 = 0 &  1 \cdot 1 = 1 \\ 
+\end{array}
+\]
+Scegliendo queste operazioni abbiamo costruito un campo finito con due soli elementi, chiaramente dovendo "ricostruire" la somma e il prodotto. Tra l'altro è interessante notare che la somma ha la tabella di verità della \textbf{xor}, mentre il prodotto quella della \textbf{and}.  
+\newpage
+Siamo riusciti a costruire un campo con 2 elementi, quindi possiamo sempre costruire un campo con p elementi?
+\begin{teorema}{Teorema di Classificazione dei Campi Finiti}{}
+  Esiste sempre un campo di $n$ elementi se e solo se $n=p^k$ con $p\in \mathbb{P}$, $p>1$ e $k \in \mathbb{N}$.
+  \end{teorema} 
+La dimostrazione è omessa, ma questo ci fa capire che, ad esempio, non esiste un campo di 6 elementi dato che $6=2\cdot3$, quindi non è un numero primo.
+
+\begin{definizione}{Spazio Vettoriale}{}
+  Sia $V \ne \varnothing$ un insieme, sia $K\ne \varnothing$ un campo, siano due operazioni binarie "somma" ($+$) e "prodotto" ($\cdot$) definite come
+  \vspace{-0.3cm}\[
+  + : V \times V \to V
+  \]
+  \[
+  \cdot : K \times V \to V 
+  \]
+  Diciamo che $V$ è uno \textbf{spazio vettoriale} su  $K$ con le  operazioni  "somma" e "prodotto" se valgono le seguente proprietà per $\forall v, u, w \in V$ e $\forall \alpha, \beta \in K$
+  \begin{enumerate}[label=(\roman*)]
+    \item Elemento nullo rispetto alla somma
+    \[
+    \exists O \in V \;\;: \;\;\; v+O = v = O+v
+    \]\vspace{-0.9cm}\item Proprietà associativa rispetto alla somma
+    \[
+    (u+v) +w = u+(v+w)
+    \]\vspace{-0.9cm}
+    \item Elemento inverso addittivo
+    \[
+    \exists -v \in V \;\;: \;\;\; v+(-v) = O = (-v)+v
+    \]\vspace{-0.9cm}
+    \item Proprietà commutativa rispetto alla somma
+    \[
+    v+u = u+v
+    \]\vspace{-0.9cm}
+    \item Elemento unitario rispetto al prodotto 
+    \[
+    \exists I \in V \;\;: \;\;\; I\cdot v = v 
+    \]\vspace{-0.9cm}
+    \item Proprietà associativa rispetto al prodotto
+    \[
+    \alpha\cdot (\beta \cdot v) = (\alpha\cdot \beta) \cdot v 
+    \]\vspace{-0.9cm}
+    \item Proprietà distributiva I
+    \[
+    (\alpha+ \beta )\cdot v = \alpha\cdot v + \beta \cdot v 
+    \] \vspace{-0.9cm}
+    \item Proprietà distributiva II
+    \[
+    \alpha\cdot(v+ u)= \alpha\cdot v + \alpha\cdot u
+    \]
+  \end{enumerate}
+\end{definizione}
+
+Vediamo qualche esempio di spazi vettoriali. Se prendiamo $\mathbb{R}^2$, cioè prendiamo una coppia di numeri reali, che è definito come 
+\[
+\mathbb{R}^2 = \{(a_1, a_2) \;|\; a_i \in \mathbb{R}\}
+\]
+Se difiniamo la somma di due punti in $\mathbb{R}^2$ come
+\[
+(a,b) + (c,d) = (a+c, b+d)
+\] 
+E se prendiamo un $\lambda \in \mathbb{R}$, definiamo il prodotto come
+\[
+\lambda \cdot (a,b) = (\lambda a, \lambda b)
+\]
+Con queste definizioni è facile mostrare che $\mathbb{R}^2$ è uno spazio vettoriale dato che rispetta tutti i criteri. Analogamente possiamo vedere come $\mathbb{R}^3$ è uno spazio vettoriale, definito come
+\[
+\mathbb{R}^3 = \{(a_1, a_2,a_3) \;|\; a_i \in \mathbb{R}\}
+\]
+e definendo la somma e prodotto allo stesso modo
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+  (a,b,c) + (d,e,f) = (a+d, b+e, c+f) & \lambda \cdot (a,b,c) = (\lambda a, \lambda b, \lambda c)
+\end{array}
+\]
+Chiaramente questo si può estendere a qualsiasi dimensione $n$, infatti per ogni $n\in\mathbb{N}$ l'insieme $\mathbb{R}^n$ è uno spazio vettoriale. Questo concetto lo possiamo estendere con il seguente teorema
+\begin{teorema}{}{}
+  Sia $K$ un campo, allora $K^n$ è uno spazio vettoriale $\forall n \in \mathbb{N}$
+\end{teorema}
+
+Questo ci conferma quanto abbiamo detto prima, ma ci permette di dire anche che $\mathbb{Q}^n$ oppure $\mathbb{C}^n$ sono spazi vettoriali. 
+
+\begin{definizione}{Vettori Linearmente Indipendenti}{}
+  Sia $K$ un campo, $V$ uno spazio vettoriale su $K$, siano
+  \[
+  v_1, v_2, v_3, ..., v_n \in V
+  \]
+  \[
+  a_1, a_2,a_3,...,a_n \in K
+  \]
+  Definiamo una \textbf{combinazione lineare} la seguente espressione
+  \[
+  a_1v_1 + a_2v_2 + a_3v_3 + ... + a_nv_n \in V
+  \]
+  Se poniniamo la combinazione lineare uguale al vettore nullo ($\vv{0}$), se l'unica soluzione a questa equazione è 
+  \[
+  a_1=a_2=a_3=...=a_4=0
+  \] 
+  Allora diciamo che i vettori $v_1, v_2, v_3, ..., v_n$ sono \textbf{linearmente indipendenti}, altrimeti si dicono \textbf{linearmente dipendenti}.
+\end{definizione}
+\newpage
+Vediamo subito un esempio, prendiamo $V= \mathbb{R}^2$, controlliamo se $v_1=(3,1)$ e $v_2=(2,5)$ sono linearmente indipendenti rispetto a $V$, per farlo scriviamo la loro combinazione con $a_1$,$a_2\in \mathbb{R}$
+\[
+a_1v_1 + a_2v_2 = a_1(3,+1) + a_2(2,5) = (3a_1,a_1)+(2a_2, 5a_2) = (3a_1+2a_2, a_1+5a_2)
+\] 
+Ora dobbiamo importo uguale al vettore nullo, che in $V$ è $(0,0)$
+\[
+(3a_1+2a_2, a_1+5a_2) = (0,0) \implies \begin{cases}
+  3a_1+2a_2 = 0 \\
+  a_1+5a_2 = 0
+\end{cases}
+\]
+Risolviamolo
+\[
+\begin{cases}
+  3a_1+2a_2 = 0 \\
+  a_1 = -5a_2
+\end{cases}\implies
+\begin{cases}
+  3(-5a_2)+2a_2 = 0 \\
+  a_1 = -5a_2
+\end{cases} \implies
+\begin{cases}
+  12a_2 = 0 \\
+  a_1 = -5a_2
+\end{cases} \implies
+\begin{cases}
+  a_2 = 0 \\
+  a_1 = 0
+\end{cases}
+\]
+
+Dato che le uniche soluzioni che abbiamo trovato sono $(0,0)$ allora possiamo affermare che $v_1$ e $v_2$ sono linearmente indipendenti. Vediamo un altro caso, sia $V=\mathbb{R}^2$ e $v_1=(1,2)$ e $v_2=(2,4)$ vediamo se sono linearmente indipendenti o dipendenti
+
+\[
+a_1v_1 +a_2v_2 = (a_1, 2a_1) + (2a_2, 4a_4) = (a_1+2a_2, 2a_1+4a_2) = (0,0)
+\]
+Risolviamo il sistema
+\[
+\begin{cases}
+  a_1+2a_2 = 0 \\
+  2a_1+4a_2 = 0
+\end{cases} \implies
+\begin{cases}
+  a_1 = -2a_2 \\
+  2(-2a_2)+4a_2 = 0
+\end{cases} \implies
+\begin{cases}
+  a_1 = -2a_2 \\
+  0a_2 = 0
+\end{cases} 
+\]
+ Qua invece scorpiamo qualcosa di strano, dato che possiamo scegliere un qualsiasi $a_2$ che la seconda equazione è soddisfatta, pertanto per questo esercizio abbiamo infinite soluzioni, pertanto non sono linearmente indipendenti, e quindi diciamo che sono linearmente dipendenti.
+
+In generale in $\mathbb{R}^2$ due vettori sono linearmente indipendenti se non sono paralleli, infatti prendendo il primo esempio (3,1) e (2,5) non sono paralleli e lo possiamo vedere nel primo grafico, mentre il secondo problema dato che sono paralleli dato che $v_2=2v_1$, allora non sono linearmente indipendenti.
+
+
+\begin{figure}[htbp]
+    \centering
+    % Primo grafico
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                xmin=0, xmax=4,
+                ymin=0, ymax=6,
+                axis lines=middle,
+                grid=none,
+                xlabel={$x$},
+                ylabel={$y$},
+                width=\textwidth,
+                height=6cm
+            ]
+                % Vettore (3,1) in rosso
+                \draw[->, very thick, myred] (0,0) -- (3,1) 
+                    node[pos=1, anchor=north west, text=black] {$(3,1)$};
+                % Vettore (2,5) in giallo
+                \draw[->, very thick, myyellow] (0,0) -- (2,5) 
+                    node[pos=1, anchor=south east, text=black] {$(2,5)$};
+            \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}\hfill
+    % Secondo grafico
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                xmin=0, xmax=3,
+                ymin=0, ymax=5,
+                axis lines=middle,
+                grid=none,
+                xlabel={$x$},
+                ylabel={$y$},
+                width=\textwidth,
+                height=6cm
+            ]
+                % Vettore (2,4) in blu (disegnato prima per fare da sfondo a quello verde)
+                \draw[->, very thick, myblue] (0,0) -- (2,4) 
+                    node[pos=1, anchor=south east, text=black] {$(2,4)$};
+                % Vettore (1,2) in verde
+                \draw[->, very thick, mygreen] (0,0) -- (1,2) 
+                    node[pos=1, anchor=north west, text=black] {$(1,2)$};
+            \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}
+\end{figure}
+
+
+\newpage
+Sia $V=\mathbb{R}^2$, siano $v_1=(3,-2)$,$v_2=(3,1)$,$v_3=(1,3)$ vediamo se sono linearmente indipendenti
+\[
+\begin{cases}
+  3a_1+3a_2+a_3 = 0 \\
+  -2a_1+a_2+3a_3 = 0
+\end{cases} \implies
+\begin{cases}
+  a_3 = 3a_1-3a_2 \\
+  a_2 = 2a_1-3a_3
+\end{cases} \implies 
+\begin{cases}
+  a_3 = 3a_1-3(2a_1-3a_3) \\
+  a_2 = 2a_1-3(3a_1-3a_2)
+\end{cases} 
+\]
+\[
+\implies\begin{cases}
+  a_3 = -3a_1 + 9a_3 \\
+  a_2 = -7a_1+9a_2
+\end{cases} \implies
+\begin{cases}
+  a_3 = \frac{3}{8}a_1 \\
+  a_2 = \frac{7}{8}a_1
+\end{cases}
+\]
+Risolvendo notiamo che abbiamo infinite soluzioni, dato che preso un $a_1\in\mathbb{R}$ possiamo sempre trovare un $a_2$,$a_3$, pertanto abbiamo infinite soluzioni e quindi sono linearmente dipendenti. In generale se abbiamo $\mathbb{R}^n$ al massimo $n$ vettori possono essere linearmente indipendenti, in questo caso avevamo $\mathbb{R}^2$ ma avevamo 3 vettori quindi erano dipendenti. Se invece abbiamo meno vettori di quanto è la dimensione dello spazio vettoriale, i vettori possono essere indipendenti, però vedremo più avanti che formano uno sotto-spazio vettoriale dato che non riescono a generare tutti i vettori dello spazio.
+
+
+Ora controlliamo se in $V=\mathbb{R}^3$ i vettori $v_1=(2,0,1)$,$v_1=(-1,1,0)$ e $v_3=(3,3,1)$ sono linearmente indipendenti.
+\[
+a_1v1+a_2v_2+a_3v_3 = \begin{pmatrix}
+2a_1 \\
+0 \\
+a_1
+\end{pmatrix} + \begin{pmatrix}
+-a_2 \\
+a_2 \\
+0
+\end{pmatrix} + \begin{pmatrix}
+3a_3 \\
+3a_3 \\
+a_3
+\end{pmatrix} =  \begin{pmatrix}
+2a_1-a_2+3a_3 \\
+a_2+3a_3 \\
+a_1+a_3
+\end{pmatrix} = \begin{pmatrix}
+0 \\
+0\\
+0
+\end{pmatrix}
+\]
+Impostiamo il sistema
+\[
+\begin{cases}
+  2a_1-a_2+3a_3 = 0 \\
+  a_2+3a_3  = 0 \\
+  a_1+a_3 = 0
+\end{cases} \implies
+\begin{cases}
+  2a_1-a_2+3a_3 = 0 \\
+  a_2  = -3a_3 \\
+  a_1= -a_3
+\end{cases} \implies
+\begin{cases}
+  -2a_3+3a_3+3a_3 = 0 \\
+  a_2  = -3a_3 \\
+  a_1= -a_3
+\end{cases}
+\]
+\[
+\implies\begin{cases}
+  4a_3 = 0 \\
+ a_2  = -3a_3 \\
+  a_1= -a_3
+\end{cases}
+\implies\begin{cases}
+  a_3 = 0 \\
+  a_2 =0  \\
+  a_1 = 0 
+\end{cases}
+\]
+
+Dal sistema si evince che i vettori sono linearmente indipendenti.
+
+
 
 
 \end{document}
