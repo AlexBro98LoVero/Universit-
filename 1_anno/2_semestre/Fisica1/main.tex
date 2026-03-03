@@ -64,6 +64,12 @@
   fonttitle=\bfseries,
 }{esem}
 
+
+% Definizione dei colori
+% Definizione dei colori
+\definecolor{myred}{HTML}{EA4335}
+\definecolor{mygreen}{HTML}{34A853}
+\definecolor{myblue}{HTML}{4285F4}
 % \newtheorem{theorem}{Teorema}
 % \newtheorem{proposition}[theorem]{Proposizione}
 % \newtheorem{corollary}[theorem]{Corollario}
@@ -347,6 +353,8 @@ a(t) = \dot{v}(t)=\dfrac{d}{dt}\left(2at\right) = 2a
 \]
 Ora notiamo che l'accelerazione è costante, dato che non è dipendente da $t$, pertanto possiamo dire che la legge oraria data descrive un moto uniformemente accelerato.
 
+\textbf{N.B.} Un corpo che compie un moto in caduta libera subisce un moto uniformemente accelerato con $a(t)=g$, dove $g$ è la \textbf{l'accelerazione gravitazionale} e vale $g\approx 9.81m/s^2$. Chiaramente se poniamo la direzione del sistema verso l'alto l'accelerazione ha segno negativo, dato che la gravità punta verso il basso.
+
 \begin{esercizio}{}{}
   Siano due punti materiali su una linea, che chiameremo $p_1$ e $p_2$, siano date le loro leggi orarie
   \[
@@ -454,4 +462,892 @@ Isoliamo $\Delta t_1$ dalla prima e sommiamo la prima e la seconda
   \[
   t_{tot} = \Delta t_1 +\Delta t_2 = 14.45 + 21.97 = 36.42s
   \]
+\begin{esercizio}{}{}
+  Sia un corpo in caduta libera, con una certa altezza iniziale $x_0 > 0$ e una velocità iniziale $v_0 \ne 0m/s$, determinare il tempo di caduta in funzione di $x_0$, $v_0$. 
+\end{esercizio}
+\begin{proof}[svolgimento]
+  In primis, scegliamo che la direzione dell'asse verticale verso l'alto, dato che il corpo è in caduta libera possiamo dire che l'accelerazione vale
+  \[
+  a(t)=-g
+  \]
+  Con questo sistema di riferimento, se $v_0>0$ vuol dire che parte con una velocità che punta verso l'alto, mentre se $v_0 <0$ vuol dire che parte che parte con una velocità che punta verso il basso. 
+  
+  Il tempo di caduta è il tempo che impiega il corpo a toccare terra, e dato che nel nostro sistema la terra è a $0m$, il tempo di caduto lo troviamo risolvendo $x(t) = 0$. Quindi dobbiamo trovare la legge oraria, e quindi 
+  \[
+  v(t) = v_0 + \int^t_0 a(s)\,ds = v_0 + \int^t_0 -g\,ds = v_0 -gt
+  \]
+  Ora cerchiamo la legge oraria
+  \[
+  x(t) = x_0 + \int_{t}^{0} v(s)\,ds = x_0 + \int_{t}^{0}  v_0 -gs\,ds = x_0  + v_0t-\dfrac{1}{2}gt^2
+  \]
+  Ora che sappiamo la legge oraria, poniamo la condizione che abbiamo definito prima ($x(t)=0$)
+  \[
+  x_0  + v_0t-\dfrac{1}{2}gt^2 = 0 \implies t_{1/2} = \dfrac{-v_0 \pm \sqrt{v_0^2 + 2gx_0}}{-g} = \dfrac{v_0 \pm \sqrt{v_0^2 + 2gx_0}}{g}
+  \]
+  Ora chiaramente il tempo di caduta deve essere positivo, quindi prendiamo il tempo di caduta è quello senza il meno.
+\end{proof}
+
+  \begin{definizione}{Vettore}{}
+    Un vettore è un oggetto matematico/geometrico modellizzabile come un segmento orientato e caratterizzato da 
+    \begin{itemize}
+      \item \textbf{modulo}, cioè la lunghezza del segmento
+      \item \textbf{direzione}, ovvero la retta su cui giace
+      \item \textbf{verso} ovvero se "punta" venso destra o sinistra rispetto alla direzione.
+    
+    \end{itemize}
+
+    In fisica ci interessano solamente vettori \textbf{bidimensionali} oppure \textbf{tridimensionali} che li rappresentiamo con una coppia o una terna di numeri reali. Quindi un vettore bidimensionale è della forma
+    \[
+    \vec{v} = (v_x, v_y) = \begin{pmatrix}
+      v_x \\
+      v_y
+    \end{pmatrix}
+    \;\;\;\;\;\; v_x, v_y \in \mathbb{R}
+    \] 
+    Mentre un vettore tridimensionale lo rappresentiamo nel seguente modo
+    \[
+    \vec{v} = (v_x, v_y, v_z) = \begin{pmatrix}
+      v_x \\
+      v_y\\
+      v_z
+    \end{pmatrix}
+    \;\;\;\;\;\; v_x, v_y, v_z \in \mathbb{R}
+    \] 
+  \end{definizione}
+  I vettori li possiamo rappresentare in degli spazi appositi, per i vettori 2D li rappresentiamo sul piano cartesiano, mentre i vettori 3D nello spazio euclideo. Vediamo un esempio con un vettore $\vec{v_1} = (1,2)$ e $\vec{v_2} = (3,2,4)$ 
+\begin{figure}[htbp]
+    \centering
+    
+    % Primo grafico: R^2 (2D)
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                xmin=-1, xmax=3,
+                ymin=-1, ymax=4,
+                axis lines=middle,
+                grid=none,
+                xlabel={$x$},
+                ylabel={$y$},
+                width=\textwidth,
+                height=5.5cm
+            ]
+                % Vettore v1 (1,2) in rosso
+                \draw[->, very thick, myred] (0,0) -- (1,2) 
+                    node[pos=1, anchor=south east, text=black] {$\vec{v}_1 (1,2)$};
+                
+                % Linee guida 2D
+                \draw[dashed, gray] (1,0) -- (1,2) -- (0,2);
+            \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}\hfill
+    % Secondo grafico: R^3 (3D)
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                view={100}{30}, % Angolazione per una buona prospettiva
+                xmin=0, xmax=4,
+                ymin=0, ymax=4,
+                zmin=0, zmax=5,
+                axis lines=center,
+                grid=major,
+                xlabel={$x$},
+                ylabel={$y$},
+                zlabel={$z$},
+                width=\textwidth,
+                height=5.5cm
+            ]
+                % Linee di costruzione (impalcatura) per aiutare la percezione 3D
+                \draw[dashed, gray] (3,0,0) -- (3,2,0) -- (0,2,0); % Proiezione sul piano xy
+                \draw[dashed, gray] (3,2,0) -- (3,2,4);             % Quota z
+                \draw[dashed, gray] (0,0,4) -- (3,2,4);             % Proiezione sull'asse z
+                
+                % Vettore v2 (3,2,4) in blu
+                \draw[->, very thick, myblue] (0,0,0) -- (3,2,4) 
+                    node[anchor=south west, text=black] {$\vec{v}_2 (3,2,4)$};
+            \end{axis}
+        \end{tikzpicture}
+    \end{subfigure}
+    
+    
+  \end{figure}
+
+  Dalla costruzione è facile determinare il modulo dei due vettori, infatti possiamo usare il teorema di pitagora e abbiamo che il modulo (che si indica con $||\vec{v}||$) dei due vettori $\vec{v_1} = (v_x, v_y)$ e $\vec{v_2} = (v_x, v_y, v_z)$ è 
+  \[
+  \begin{array}{c@{\qquad}@{\qquad}c}
+    ||\vec{v_1}|| = \sqrt{v_x^2+v_y^2} & ||\vec{v_2}|| = \sqrt{v_x^2+v_y^2+v_z^2}
+  \end{array}
+  \]
+ % Che quindi con i vettori di esempio di prima scopriamo che 
+ %  \[
+  %\begin{array}{c@{\qquad}@{\qquad}c}
+   % ||\vec{v_1}|| = \sqrt{1^2+2^2} = \sqrt{5} & ||\vec{v_2}|| = \sqrt{3^2+2^2+4^2} = \sqrt{29}
+  %\end{array}
+ % \]
+
+  \begin{definizione}{Operazioni sui Vettori}{}
+    Siano $\vec{v_1}=(x_1, y_1, z_1)$ e $\vec{v_2}=(x_2, y_2, z_2)$ due vettori, allora definiamo il \textbf{vettore somma} $\vec{S}$ come 
+    \[
+    \vec{S} = \vec{v_1} + \vec{v_2} = \begin{pmatrix}
+      x_1\\ y_1\\ z_1
+    \end{pmatrix} +\begin{pmatrix}
+      x_2\\ y_2\\ z_2
+    \end{pmatrix} = \begin{pmatrix}
+      x_1+x_2\\ y_1+y_2\\ z_1+z_2
+    \end{pmatrix}
+    \]
+    
+    Sia $\vec{v}= (v_x,v_y, v_z)$ e $\lambda \in \mathbb{R}$, allora definiamo il \textbf{vettore prodotto} $\vec{P}$ come
+    \[
+    \vec{P} = \lambda \vec{v} = 
+       (\lambda v_x,  \lambda v_y,  \lambda v_z)
+    \] 
+    \textbf{N.B.} il concetto è estendibile anche ai vettori 2D
+  \end{definizione}
+
+  Penso che il concetto di somma di vettori penso sia abbastanza lineare, però capiamo come si interpreta graficamente, infatti la somma vettoriale segue la \textbf{regola del parallelogramma}. Prendiamo due vettori $\vec{v_1}=(2, 1)$ e $\vec{v_2} = (1, 3)$. Ora uniamo la "coda" di un vettore alla punta dell'altro e notiamo che si forma un parallelogramma. Il vettore somma è il vettore che parte dall'origine ed arriva alla punta del vettore spostato
+   \begin{figure}[htbp]
+    \centering
+    
+    % Primo grafico: Parallelogramma senza somma
+    \begin{tikzpicture}
+        \begin{axis}[
+            xmin=-0.5, xmax=4.5,
+            ymin=-0.5, ymax=4.5,
+            axis lines=center,
+            xlabel={$x$},
+            ylabel={$y$},
+            width=6cm,
+            height=5cm,
+            clip=false,
+            grid=none % Aggiunge la griglia per far leggere meglio le coordinate
+        ]
+            
+            % Vettore v1 (2,1) in rosso
+            \draw[->, very thick, draw=myred] (0,0) -- (2,1) 
+                node[anchor=north west, text=black] {$\vec{v}_1$};
+            
+            % Vettore v2 (1,3) in verde
+            \draw[->, very thick, draw=mygreen] (0,0) -- (1,3) 
+                node[anchor=south east, text=black] {$\vec{v}_2$};
+                
+            % Costruzione parallelogramma (linee tratteggiate)
+            \draw[dashed, thick, mygreen] (2,1) -- (3,4);
+            \draw[dashed, thick, myred] (1,3) -- (3,4);
+            
+        \end{axis}
+    \end{tikzpicture}
+    \hspace{1cm} % Spazio tra i due grafici
+    % Secondo grafico: Vettori e vettore somma senza costruzione
+    \begin{tikzpicture}
+        \begin{axis}[
+            xmin=-0.5, xmax=4.5,
+            ymin=-0.5, ymax=4.5,
+            axis lines=center,
+            xlabel={$x$},
+            ylabel={$y$},
+            width=6cm,
+            height=5cm,
+            clip=false,
+            grid=none
+        ]
+            
+            % Vettore v1 (2,1) in rosso
+            \draw[->, very thick, draw=myred] (0,0) -- (2,1) 
+                node[anchor=north west, text=black] {$\vec{v}_1$};
+            
+            % Vettore v2 (1,3) in verde
+            \draw[->, very thick, draw=mygreen] (0,0) -- (1,3) 
+                node[anchor=south east, text=black] {$\vec{v}_2$};
+                
+            % Vettore Somma S (3,4) in blu
+            \draw[->, very thick, draw=myblue] (0,0) -- (3,4) 
+                node[anchor=south west, text=black] {$\vec{S}$};
+            
+        \end{axis}
+    \end{tikzpicture}
+    
+\end{figure}
+
+Mentre il vettore prodotto è semplicemente un ingradimento o diminuzione. Se $|\lambda|> 1$  allora il vettore si allungherà, se $|\lambda|< 1$ allora si rimpicciolirà. Se $\lambda < 0$ allora il vettore viene rovesiato di verso. 
+\begin{figure}[htbp]
+    \centering
+    
+    % Primo grafico: Moltiplicazione per scalare lambda > 1
+    \begin{tikzpicture}
+        \begin{axis}[
+            xmin=-1, xmax=5,
+            ymin=-1, ymax=3,
+            axis lines=center,
+            xlabel={$x$},
+            ylabel={$y$},
+            width=6cm,
+            height=5cm,
+            clip=false,
+            grid=none,
+            xtick=\empty,
+            ytick=\empty,
+            title=  $\lambda>1$
+        ]
+            
+            % Retta d'azione del vettore (tratteggiata grigia)
+            \draw[dashed, thick, gray] (-1, -0.5) -- (5, 2.5);
+            
+            % Vettore lambda*v (4,2) in blu (disegnato prima così v gli si sovrappone)
+            \draw[->, very thick, draw=myblue] (0,0) -- (4,2) 
+                node[anchor=south east, text=black] {$\lambda\vec{v}$};
+                
+            % Vettore v (2,1) in rosso
+            \draw[->, very thick, draw=myred] (0,0) -- (2,1) 
+                node[anchor=north west, text=black] {$\vec{v}$};
+            
+        \end{axis}
+    \end{tikzpicture}
+    \hspace{1cm} % Spazio tra i due grafici
+    % Secondo grafico: Moltiplicazione per scalare lambda < 0
+    \begin{tikzpicture}
+        \begin{axis}[
+            xmin=-2, xmax=3,
+            ymin=-1.5, ymax=2,
+            axis lines=center,
+            xlabel={$x$},
+            ylabel={$y$},
+            width=6cm,
+            height=5cm,
+            clip=false,
+            grid=none,
+            xtick=\empty,
+            ytick=\empty,
+            title=$\lambda<0$ e  $|\lambda|<1$
+        ]
+            
+            % Retta d'azione del vettore (tratteggiata grigia)
+            \draw[dashed, thick, gray] (-2, -1) -- (3, 1.5);
+            
+            % Vettore v (2,1) in rosso
+            \draw[->, very thick, draw=myred] (0,0) -- (2,1) 
+                node[anchor=south east, text=black] {$\vec{v}$};
+                
+            % Vettore lambda*v (-1,-0.5) in verde (verso opposto)
+            \draw[->, very thick, draw=mygreen] (0,0) -- (-1,-0.5) 
+                node[anchor=north west, text=black] {$\lambda\vec{v}$};
+            
+        \end{axis}
+    \end{tikzpicture}
+    
+\end{figure}
+
+
+
+  \begin{definizione}{Versore}{}
+    Sia $\vec{v}$ un vettore 2D o 3D, si dice anche \textbf{versore} se vale
+    \[
+    ||\vec{v}|| = 1
+    \]
+  \end{definizione}
+
+  I versori fondamentali che ci porteremo dietro per tutto il corso sono quelli degl'assi, infatti possiamo definire $\hat{u_x}$, $\hat{u_y}$ e $\hat{u_z}$ che sono i vettori unitari che giacciono sugli assi.
+\begin{figure}[htbp]
+    \centering
+    
+    % Grafico 2D
+    \begin{tikzpicture}
+        \begin{axis}[
+            xmin=-0.5, xmax=1.5,
+            ymin=-0.5, ymax=1.5,
+            axis lines=center,
+            xtick=\empty,
+            ytick=\empty,
+            xlabel={$x$},
+            ylabel={$y$},
+            width=6cm,
+            height=6cm,
+            clip=false % Evita che le etichette vengano tagliate ai bordi
+        ]
+            
+            % Versore ux (1,0) in rosso
+            \draw[->, very thick, draw=myred] (0,0) -- (1,0) 
+                node[anchor=north west, text=black] {$\hat{u}_x$};
+            
+            % Versore uy (0,1) in verde
+            \draw[->, very thick, draw=mygreen] (0,0) -- (0,1) 
+                node[anchor=south east, text=black] {$\hat{u}_y$};
+            
+        \end{axis}
+    \end{tikzpicture}
+    \hspace{1.5cm} % <-- Riduci o aumenta questo valore per avvicinarli/allontanarli
+    % Grafico 3D
+    \begin{tikzpicture}
+        \begin{axis}[
+            view={100}{30}, % Angolazione della prospettiva
+            xmin=0, xmax=1.5,
+            ymin=0, ymax=1.5,
+            zmin=0, zmax=1.5,
+            axis lines=center,
+            xtick=\empty,
+            ytick=\empty,
+            ztick=\empty,
+            xlabel={$x$},
+            ylabel={$y$},
+            zlabel={$z$},
+            width=6cm,
+            height=6cm,
+            clip=false % IMPORTANTE: fa apparire ux che altrimenti veniva tagliato dal bordo!
+        ]
+            
+            % Versore ux (1,0,0) in rosso
+            \draw[->, very thick, draw=myred] (0,0,0) -- (1,0,0) 
+                node[anchor=north west, text=black] {$\hat{u}_x$};
+            
+            % Versore uy (0,1,0) in verde
+            \draw[->, very thick, draw=mygreen] (0,0,0) -- (0,1,0) 
+                node[anchor=north west, text=black] {$\hat{u}_y$};
+            
+            % Versore uz (0,0,1) in blu
+            \draw[->, very thick, draw=myblue] (0,0,0) -- (0,0,1) 
+                node[anchor=south east, text=black] {$\hat{u}_z$};
+            
+        \end{axis}
+    \end{tikzpicture}
+    
+\end{figure}
+
+I versori fondamentali in 2D hanno equazione 
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+  \hat{u}_x = \begin{pmatrix}
+  1 \\
+  0
+\end{pmatrix} & 
+\hat{u}_y = \begin{pmatrix}
+  0 \\
+  1
+\end{pmatrix}
+\end{array}
+\]
+mentre quelli 3D 
+\[
+\begin{array}{c@{\qquad}@{\qquad}c@{\qquad}@{\qquad}c}
+  \hat{u}_x = \begin{pmatrix}
+  1 \\
+  0 \\
+  0
+\end{pmatrix} & 
+\hat{u}_y = \begin{pmatrix}
+  0 \\
+  1\\
+  0
+\end{pmatrix}& 
+\hat{u}_z = \begin{pmatrix}
+  0 \\
+  0\\
+  1
+\end{pmatrix}
+\end{array}
+\]
+
+La cosa interessante è dei versori fondamentali è che possiamo scrivere un qualsiasi vettore $\vec{v}=(v_x, v_y, v_z)$ in funzione dei versori fondamentali
+\[
+\vec{v}=\begin{pmatrix}
+v_x \\ v_y\\ v_z 
+\end{pmatrix} = v_x
+\begin{pmatrix}
+1 \\ 0\\ 0
+\end{pmatrix} +v_y\begin{pmatrix}
+0 \\ 1\\0 
+\end{pmatrix} +v_z \begin{pmatrix}
+0\\ 0\\ 1
+\end{pmatrix} = v_x \hat{u}_x + v_y \hat{u}_y+ v_z \hat{u}_z 
+\]
+
+Possiamo trovare anche il versore di un vettore $\vec{v}$ qualsiasi, infatti se un versore è semplicemente un vettore di modulo 1, allora un qualsiasi vettore lo possiamo dividere per il suo modulo, in modo tale che il nuovo vettore abbiamo modulo 1.  Il versore di un vettore $\vec{v}$ lo indichiamo con $\hat{u}_v$ e lo calcoliamo nel seguente modo 
+\[
+\hat{u}_v = \dfrac{\vec{v}}{||\vec{v}||} = \left(\dfrac{v_x}{||\vec{v}||},
+  \dfrac{v_y}{||\vec{v}||},
+  \dfrac{v_z}{||\vec{v}||} \right)
+\]
+
+Quindi ad esempio, preso il vettore $\vec{v} = (1,2,-2)$ troviamo il suo versore, per farlo dobbiamo prima calcolare il modulo 
+\[
+||\vec{v}|| = \sqrt{1^2 + 2^2 + (-2)^2} = \sqrt{9} = 3
+\]
+quindi il versore di $\vec{v}$ è 
+\[
+\hat{u}_v = \dfrac{\vec{v}}{||\vec{v}||} = \left(\dfrac{1}{3},
+  \dfrac{2}{3},
+  \dfrac{-2}{3} \right)
+\]
+
+\begin{definizione}{Prodotto Scalare }{}
+  Siano $\vec{v_1}$ e $\vec{v_2}$ due vettori bidimensionali o tridimensionali, definiamo il \textbf{prodotto scalare}, che indichiamo con il simbolo $\cdot$, la seguente espressione
+  \[
+    v_1\cdot v_2 = x_1\cdot x_1 + y_1\cdot y_2 + z_1\cdot z_2 
+  \]
+  in 2D è definita come
+  \[
+   v_1\cdot v_2 = x_1\cdot x_1 + y_1\cdot y_2 
+   \]
+\end{definizione}
+
+Come dice il nome, il prodotto scalare restituisce uno scalare, cioò un numero, infatti se prendiamo $\vec{v_1}=(1,2)$ e $\vec{v_2}=(3,4)$ e seguiamo la definizio abbiamo che 
+\[
+\vec{v_1} \cdot \vec{v_2} = 1\cdot 3 + 2\cdot 4 = 11  
+\]
+In più grazie a questa definizione possiamo associargli un significato ben preciso, cerchiamo di capirlo pian piano. Partiamo definendo due vettori generici $\vec{v_1}=(x_1,y_1)$ e $\vec{v_2}=(x_2,y_2)$, e disegnamo il vettore differenza $\vec{v_3} = \vec{v_1}-\vec{v_2}=(x_1-x_2, y_1-y_2)$.  
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xmin=-0.5, xmax=3.5,
+            ymin=-0.5, ymax=2,
+            axis lines=center,
+            xlabel={$x$},
+            ylabel={$y$},
+            width=7cm,
+            height=6cm,
+            clip=false,
+            grid=none,
+            xtick = \empty,
+            ytick = \empty
+        ]
+            
+            % Vettore v1 (3,1) in rosso
+            \draw[->, very thick, draw=myred] (0,0) -- (3,1) 
+                node[anchor=north west, text=black] {$\vec{v}_1$};
+            
+            % Vettore v2 (1,1.5) in verde
+            \draw[->, very thick, draw=mygreen] (0,0) -- (1,1.5) 
+                node[anchor=south east, text=black] {$\vec{v}_2$};
+                
+       
+            
+            % Costruzione geometrica: vettore che unisce le due punte (tratteggiato blu)
+            \draw[->, very thick, draw=myblue] (1,1.5) -- (3,1)
+                node[anchor=south east, text=black] {$\vec{v}_3$};
+            
+            
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+Ora possiamo calcolare la lunghezza del vettore differenza in due modi: il primo è usando la formula del modulo dato che sappiamo i suoi componenti
+\begin{equation}\label{eq:prod1}  
+||\vec{v_3}||^2 = (x_1-x_2)^2+(y_1-y_2)^2 = x_1^2 -2x_1x_2 + x_2^2 + y_1^2-2y_1y_2 +y_2^2 
+\end{equation}
+
+Ora proviamo a calcolare la stessa distanza con il teorema del coseno, ponendo $\theta$ l'angolo tra i vettori $\vec{v_1}$ e $\vec{v_2}$.
+\begin{align}\label{eq:prod2}
+||\vec{v_3}||^2 &= \mathunderline{red}{||\vec{v_1}||^2} + \mathunderline{blue}{||\vec{v_2}||^2} - 2||\vec{v_1}||||\vec{v_2}||\cos(\theta)\nonumber  \\
+ &= \mathunderline{red}{x_1^2+y_1^2} + \mathunderline{blue}{x_2^2+y_2^2}  - 2||\vec{v_1}||||\vec{v_2}||\cos(\theta)  
+\end{align}
+Ora possiamo eguagliare (\ref{eq:prod1}) e (\ref{eq:prod2})
+\begin{align*}
+  x_1^2 -2x_1x_2 + x_2^2 + y_1^2-2y_1y_2 +y_2^2  &= x_1^2+y_1^2+x_2^2+y_2^2- 2||\vec{v_1}||||\vec{v_2}||\cos(\theta)  \\
+   -2x_1x_2-2y_1y_2  &=- 2||\vec{v_1}||||\vec{v_2}||\cos(\theta)  \\
+   x_1x_2+y_1y_2&= ||\vec{v_1}||||\vec{v_2}||\cos(\theta) \\
+   \vec{v_1} \cdot \vec{v_2} &= ||\vec{v_1}||||\vec{v_2}||\cos(\theta)
+\end{align*}
+
+Questa formula però è molto comoda per trovare l'angolo tra i due vettori, infatti se i due vettori sono perpendicolari, e cioè $\theta = \frac{\pi}{2}$ abbiamo che 
+\[
+\vec{v_1} \cdot \vec{v_2} = ||\vec{v_1}||||\vec{v_2}||\cos\left(\dfrac{\pi}{2}\right) = ||\vec{v_1}||||\vec{v_2}||\cdot 0  = 0
+\]
+
+Pertanto il prodotto vettoriale ci serve anche per controllare se due vettori sono perpendicolari oppure se sono paralleli, infatti se $\theta = 0$ allora il prodotto scalare è massimo 
+\[
+\vec{v_1} \cdot \vec{v_2} = ||\vec{v_1}||||\vec{v_2}||\cos\left(0\right) = ||\vec{v_1}||||\vec{v_2}||\cdot 1  = ||\vec{v_1}||||\vec{v_2}||
+\]
+ Se invece viene massimo ma di segno opposto vuol dire che è antiparallelo.
+
+ Ora prima di vedere il prossimo tipo di prodotto per i vettori, dobbiamo fare prima una veloce spiegazione sulle \textbf{matrici}. Per quello che ci interessa a noi, possiamo vedere le matrici come delle tabelle con delle righe e delle colonne, come se fosse una collezione di $n$ vettori, messi uno sotto l'altro. Delle matrici ciò che ci interessa è calcolare il \textbf{determinante}, cioè un valore associato ad ogni matriche che ne descrive certe caratteristiche. In questo corso non ci interessa molto il significato geometrico, ci interessa di più come calcolarlo quindi vediamo come calcolare il determinante di matrici 2x2 (cioè con 2 righe e due colonne)
+ \[
+ \det\begin{pmatrix}
+  a & b \\
+  c & d
+ \end{pmatrix} = ad-bc
+ \]
+
+ Quindi se volessi calcolare il determinante della seguente matrice 
+ \[
+ \det\begin{pmatrix}
+  1 & 3 \\
+  9 & 2
+ \end{pmatrix} = 1\cdot 2-3\cdot 9 = -25
+ \]
+Ora proviamo a calcolare il determinante di una matrice 3x3
+\[
+ \det\begin{pmatrix}
+  a & b & c \\
+  d & e &f \\
+  g & h & i
+ \end{pmatrix} = a\det\begin{pmatrix}
+  e &f \\
+  h & i
+ \end{pmatrix} - b \det\begin{pmatrix}
+ d  &f \\
+  g  & i
+ \end{pmatrix} + c\det\begin{pmatrix}
+  d & e  \\
+  g & h 
+ \end{pmatrix}
+ \]
+
+ Per ricordarsi una regola mnemonica, prendiamo la prima riga, e ad ogni elemento calcola il determinante della matrice tolta la riga e la colonna di quel elemento.  Attenzione che il secondo elemento ha un meno. 
+
+ Vediamo un esempio per praticarsi
+\[
+ \det\begin{pmatrix}
+  1 & 2 & 4 \\
+  2 & 1 &3 \\
+  11 & 5 & 2
+ \end{pmatrix} = 1\det\begin{pmatrix}
+  1 &3 \\
+  5 & 2
+ \end{pmatrix} - 2 \det\begin{pmatrix}
+ 2  &3 \\
+  11  & 2
+ \end{pmatrix} + 4\det\begin{pmatrix}
+  2 & 1  \\
+  11 & 5 
+ \end{pmatrix}
+ \]
+ Calcoliamo i singoli determinanti 
+ \[
+ \det\begin{pmatrix}
+  1 &3 \\
+  5 & 2
+ \end{pmatrix} = 1\cdot 2 - 3\cdot 5 = -13
+ \]
+ \[
+ \det\begin{pmatrix}
+ 2  &3 \\
+  11  & 2
+ \end{pmatrix} = 2\cdot2 - 3\cdot 11  = -29
+ \]
+\[
+\det\begin{pmatrix}
+  2 & 1  \\
+  11 & 5 
+ \end{pmatrix} = 2\cdot 5 - 1\cdot 11 = -1
+\]
+Quindi il determinante della matrice 3x3 
+\[
+ \det\begin{pmatrix}
+  1 & 2 & 4 \\
+  2 & 1 &3 \\
+  11 & 5 & 2
+ \end{pmatrix} = 1\cdot (-13) -2 \cdot(-29) +4 \cdot (-1) = -13 +58 -4 = 41
+\]
+
+
+\begin{definizione}{Prodotto Vettoriale}{}
+  Siano $\vec{v_1}$ e $\vec{v_2}$ due vettori tridimensionali, definiamo il \textbf{prodotto vettoriale}, che indichiamo con il simbolo $\wedge$, la seguente espressione
+   \[
+   \vec{v_1}\wedge\vec{v_2} = \det\begin{pmatrix}
+    \hat{u}_x & \hat{u}_y & \hat{u}_z \\
+    x_1 & y_1 & z_1 \\
+    x_2 & y_2 & z_2  
+   \end{pmatrix}
+   \]
+   \textbf{N.B.} non esiste il prodotto vettoriale in 2D
+\end{definizione}
+
+Simmetricamente al prodotto scalare, il prodotto vettoriale da come risultato un vettore a 3 dimensioni, che ha molte caratteristiche interessanti, in primis il modulo vale
+\[
+|| \vec{v_1}\wedge\vec{v_2}|| = ||\vec{v_1}|| ||\vec{v_2}|| \sin(\theta)
+\]
+ Dove, come prima, $\theta$ è l'angolo tra $\vec{v_1}$ e $\vec{v_2}$. Mentre è interessante sapere dove punta il vettore risultante, infatti il risultato del prodotto vettoriale è un vettore che segue la \textbf{regola della mano destra}, dove bisogna porre il pollice, indice, medio mutualmente ortogonali tra loro, e se il pollice è il primo vettore $(\vec{v_1})$ e l'indice il secondo vettore ($\vec{v_2}$), allora il medio è il vettore risultante. Si veda la figura in esempio
+\begin{figure}[htbp]
+    \centering
+    % Inserisci il percorso della tua immagine qui sotto
+    \includegraphics[width=0.4\textwidth]{img/Gemini_Generated_Image_g4bqjzg4bqjzg4bq.png}
+   
+\end{figure}
+
+Questo ci fa capire la natura del prodotto vettoriale, ovvero che è ortogonale al piano formato dai due vettori. In più provando con la mano, si può notare che il prodotto vettoriale è anticommutativo, ovvero che se invertiamo l'ordine degli operandi avremo il vettore uguale ma direzione opposta
+\[
+\vec{v_1}\wedge\vec{v_2} = - (\vec{v_2}\wedge\vec{v_1})
+\]
+Dato che il vettore nuovo è ortogonale agli altri due, allora possiamo usare la proprietà del prodotto scalare per dire che 
+\[
+ \vec{v_1}\cdot (\vec{v_1}\wedge\vec{v_2}) = 0
+\]
+\[
+ \vec{v_2}\cdot (\vec{v_1}\wedge\vec{v_2}) = 0
+\]
+Questo è dimostrabile facendo i conti e usando la definizione di prodotto vettoriale e scalare, ma in questa dispensa non lo vedremo.
+  
+\begin{definizione}{Derivata di un Vettore}{}
+  Sia $\vec{v}(t)=(x(t), y(t), z(t))$ un vettore, allora la sua derivata è definita come
+    \[
+    \dfrac{d}{dt}(\vec{v}(t)) = \begin{pmatrix}
+      \dot{x}(t)\\
+      \dot{y}(t)\\
+      \dot{z}(t)
+    \end{pmatrix}
+    \]
+    Ricordo che $\dot{x}(t)$ è la derivata di $x(t)$ rispetto al tempo.
+
+
+    \textbf{N.B.} Il concetto è estendibile anche ai vettori in 2 dimensioni.
+\end{definizione}
+
+Ora dopo tutta questa introduzione con i vettori possiamo comprendere i moti in 2 e 3 dimensioni, infatti possiamo definire una vettore $\vec{R}(t)$ che rappresenza la posizione nello  spazio o nel piano cartesiano di un corpo. Supponiamo di star analizzando un corpo muoversi nel piano cartesiano, allora il suo vettore spostamento è della forma 
+\[
+\vec{R}(t) = \begin{pmatrix}
+  R_x(t) \\
+  R_y(t)
+\end{pmatrix}
+\]  
+
+Dove $R_x(t)$  e $R_y(t)$ sono funzioni che rappresentano la posizione rispettivamente di $x$ e $y$ in funzione del tempo. 
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xmin=-0.5, xmax=4.5,
+            ymin=-0.5, ymax=3.5,
+            axis lines=center,
+            xtick=\empty, % Nessun numero sull'asse x
+            ytick=\empty, % Nessun numero sull'asse y
+            xlabel={$x$},
+            ylabel={$y$},
+            width=7cm,
+            height=6cm,
+            clip=false % Permette alle etichette di uscire leggermente dai bordi senza essere tagliate
+        ]
+            
+            % Vettore R(t) in blu
+            \draw[->, very thick, draw=myblue] (0,0) -- (3,2) 
+                node[anchor=south west, text=black] {$\vec{R}(t)$};
+            
+            % Proiezione sull'asse x (tratteggio verticale)
+            \draw[dashed, thick, gray] (3,2) -- (3,0)
+                node[anchor=north, text=black, yshift=-2pt] {$R_x(t)$};
+                
+            % Proiezione sull'asse y (tratteggio orizzontale)
+            \draw[dashed, thick, gray] (3,2) -- (0,2)
+                node[anchor=east, text=black, xshift=-2pt] {$R_y(t)$};
+            
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+Dal grafico scopriamo che possiamo descrivere il vettore anche in un altro modo: ovvero in \textbf{cordinate polari}. Ovvero anzichè descrivere un vettore secondo le sue cordinate $x$ e $y$ possiamo descriverlo usando la lunghezza del vettore e l'angolo che spazza tra il semiasse positivo. Quindi con le regole di trigonometria possiamo scrivere $\vec{R}(t)$ come
+\[
+\vec{R}(t) = \begin{pmatrix}
+  R(t) \cos(\theta(t)) \\
+R(t) \sin(\theta(t))
+\end{pmatrix}
+\]
+Dove $R(t)= ||\vec{R}(t)||$ è il modulo, e $\theta(t)$ è l'angolo al variare del tempo. Ora possiamo riscrivere il vettore come moltiplicazione tra modulo ed il suo versore
+\[
+\vec{R}(t) = R(t) \hat{u}_R(t)
+\]
+dove $\hat{u}_R(t)$ è il versore di $\vec{R}(t)$ e cioè il vettore $(\cos(\theta(t)), \sin(\theta(t)))$. $\vec{R}(t)$ è il vettore che traccia lo spostamento, quindi tiene conto dello spazio, quindi se facciamo la derivata di $\vec{R}(t)$ avremo la velocità del nostro punto, e quindi proviamo a fare la derivata, ricordandoci la regola del prodotto 
+\begin{equation}\label{eq:mcu1}
+\vec{v}(t)=\dfrac{d}{dt}(\vec{R}(t) ) = \dfrac{d}{dt}( R(t) \hat{u}_R(t)) =  \dot{R}(t) \hat{u}_R(t) +  R(t) \dfrac{d}{dt}\left(\hat{u}_R(t)\right)  
+\end{equation}
+
+
+Ora andiamo ad analizzare la derivata del versore, per semplicità notazionale usiamo  $\theta=\theta(t)$ e $\dot{\theta} = \dot{\theta}(t)$
+\[
+\dfrac{d}{dt}\left(\hat{u}_R(t)\right) = \dfrac{d}{dt}\begin{pmatrix}
+  \cos(\theta) \\
+\sin(\theta)
+\end{pmatrix} = \begin{pmatrix}
+  -\sin(\theta)  \cdot \dot{\theta}\\
+\cos(\theta)\cdot \dot{\theta}
+\end{pmatrix}=\dot{\theta}\begin{pmatrix}
+  -\sin(\theta)\\
+\cos(\theta)
+\end{pmatrix}
+\]
+Ora notiamo che ci è uscito un altro vettore molto simile però ha una caratteristica molto importante. Infatti proviamo a fare il prodotto scalare tra questo versore e $\hat{u}_R(t)$
+\[
+\hat{u}_R(t)\cdot \begin{pmatrix}
+  -\sin(\theta)\\
+\cos(\theta)
+\end{pmatrix} = \begin{pmatrix}
+  \cos(\theta)\\
+\sin(\theta)
+\end{pmatrix}\cdot\begin{pmatrix}
+  -\sin(\theta)\\
+\cos(\theta)
+\end{pmatrix} = \cos(\theta)\cdot(-\sin(\theta)) + \sin(\theta)\cdot \cos(\theta) = 0
+\] 
+
+Questo ci fa capire che la derivata del versore è ortogonale al versore stesso (dato che il prodotto scalare è risualtato nullo), quindi questo nuovo versore lo chiamiamo $\hat{u}_N(t)$, dato che è la normale del versore originale. Quindi definiamo 
+\[
+\hat{u}_N(t) = \begin{pmatrix}
+  -\sin(\theta)\\
+\cos(\theta)
+\end{pmatrix}
+\]
+e quindi dopo questo riscriviamo la derivata del versore nel seguente modo 
+\[
+\dfrac{d}{dt}\left(\hat{u}_R(t)\right) = \dot{\theta} \hat{u}_N(t)
+\]
+Pertanto dopo questa analisi, possiamo riscrivere (\ref{eq:mcu1}) nel seguente modo
+\[
+\vec{v}(t) =  \dot{R}(t) \hat{u}_R(t) +  R(t) \dot{\theta} \hat{u}_N(t)
+\] 
+
+Da eusto scopriamo che in un modo in 2D, la velocità è composta da una velocità parallela alla direzione del moto ($\hat{u}_R(t)$) e di una componente ortogonale alla direzione del moto ($\hat{u}_N(t)$)
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            unit vector ratio=1 1, % <-- IL SEGRETO: forza la scala 1:1 assoluta sugli assi
+            xmin=-0.5, xmax=7.5,
+            ymin=-0.5, ymax=7.5,
+            axis lines=center,
+            xtick=\empty, ytick=\empty,
+            xlabel={$x$}, ylabel={$y$},
+            width=10cm
+        ]
+            
+            % Coordinate fisse cartesiane (Terna 3-4-5 per ortogonalità perfetta)
+            \coordinate (O) at (0,0);
+            \coordinate (P) at (4,3); % Punta di R(t)
+            
+            % Componente radiale v_R (lungo la retta di R)
+            % Delta = (2, 1.5) -> proporzionale a (4,3)
+            \coordinate (vR) at (6, 4.5); 
+            
+            % Componente trasversale v_N (perpendicolare a R)
+            % Delta = (-1.2, 1.6) -> Prodotto scalare (2)(-1.2) + (1.5)(1.6) = -2.4 + 2.4 = 0 !!
+            \coordinate (vN) at (2.8, 4.6); 
+            
+            % Punta del vettore velocità totale (vR + vN)
+            \coordinate (V) at (4.8, 6.1); 
+            
+            % Traiettoria (tangente alla velocità)
+            \draw[dashed, thick, gray] (1.5, 0.5) to[out=35, in=-110] (P) to[out=70, in=235] (5.8, 7.2) node[right, text=gray] {Traiettoria};
+            
+            % Vettore R(t) in blu
+            \draw[->, very thick, draw=myblue] (O) -- (P) 
+                node[midway, above left, text=black] {$\vec{R}(t)$};
+            
+            % Angolo theta (l'angolo di 4,3 è esattamente 36.87 gradi)
+            \draw[->, thick] (1.5,0) arc (0:36.87:1.5) 
+                node[midway, right, xshift=2pt] {$\theta(t)$};
+            
+            % --- VETTORI DELLE COMPONENTI ---
+            
+            % Linee del parallelogramma
+            \draw[dashed, thin, gray] (P) -- (vR) -- (V);
+            \draw[dashed, thin, gray] (P) -- (vN) -- (V);
+            
+            % Vettore velocità totale
+            \draw[->, very thick, draw=black] (P) -- (V) 
+                node[anchor=south west] {$\vec{v}(t)$};
+                
+            % Componente radiale in rosso (R dot * u_R)
+            \draw[->, very thick, draw=myred] (P) -- (vR) 
+                node[pos=0.8, anchor=north west, text=myred, yshift=-2pt] {$\dot{R}(t)\hat{u}_R(t)$};
+                
+            % Componente trasversale in verde (R * theta dot * u_N)
+            \draw[->, very thick, draw=mygreen] (P) -- (vN) 
+                node[pos=0.8, anchor=south east, text=mygreen, xshift=-2pt] {$R(t)\dot{\theta}\hat{u}_N(t)$};
+            
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+Questo che stiamo studiando è un moto varia nel piano cartesiano, ora però per comodità andiamo a studiare un caso molto semplice: \textbf{Moto Circolare}
+
+
+\newpage
+In un moto circolare, il corpo segue la traiettoria a forma di cerchio, e questo ci semplifica molto i conti, infatti se il corpo segue un moto circolare, allora vuol dire che il modulo del vettore $\vec{R}(t)$ è costante e quindi, 
+\[
+R(t) = R \in \mathbb{R}^+ \implies \dot{R}(t) = 0
+\]
+Pertanto l'equazione della velocità si semplifica parecchio
+\[
+\vec{v}(t) =  R \dot{\theta} \hat{u}_N(t)
+\]
+Da questo notiamo che in un moto circolare c'è solo una componente ortogonale, e non c'è nessuna componente parallela, quindi la velocità sarà sempre tangenziale alla circonferenza, per questo motivo questa velocità viene chiamata \textbf{velocità tangenziale}.
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            unit vector ratio=1 1, % <-- Fondamentale: fa sì che il cerchio sia perfettamente tondo
+            xmin=-3.5, xmax=3.5,
+            ymin=-3.5, ymax=3.5,
+            axis lines=center,
+            xtick=\empty, ytick=\empty,
+            xlabel={$x$}, ylabel={$y$},
+            width=8cm,
+            clip=false
+        ]
+            
+            % Traiettoria circolare (raggio R=2)
+            \draw[dashed, very thick, gray] (0,0) circle[radius=2];
+            
+            % Centro della circonferenza
+            \filldraw[black] (0,0) circle (1.5pt) node[anchor=north east] {$O$};
+            
+            
+            % --- VETTORI VELOCITÀ TANGENZIALE ---
+            
+            % Posizione 1: A destra (2,0) -> velocità verso l'alto
+            \draw[->, very thick, draw=myblue] (2,0) -- (2, 1.5) 
+                node[anchor=west] {$\vec{v}_1$};
+                
+            % Posizione 2: In alto (0,2) -> velocità verso sinistra
+            \draw[->, very thick, draw=myblue] (0,2) -- (-1.5, 2) 
+                node[anchor=south] {$\vec{v}_2$};
+                
+            % Posizione 3: A sinistra (-2,0) -> velocità verso il basso
+            \draw[->, very thick, draw=myblue] (-2,0) -- (-2, -1.5) 
+                node[anchor=east] {$\vec{v}_3$};
+                
+            % Posizione 4: In basso (0,-2) -> velocità verso destra
+            \draw[->, very thick, draw=myblue] (0,-2) -- (1.5, -2) 
+                node[anchor=north] {$\vec{v}_4$};
+                
+            
+            
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+Ora possiamo definire anche una nuova grandezza fisica: \textbf{velocità angolare} che indichiamo come $\omega(t)$ e definiamo come
+\[
+\omega(t) = \dfrac{d}{dt}(\theta(t)) = \dot{\theta}(t)
+\]
+Da questo possiamo dire che 
+\[
+\vec{v}(t) =  R\omega(t) \hat{u}_N(t) \implies ||\vec{v}(t)|| = R|\omega(t)|
+\]
+
+Con questo abbiamo discusso la velocità in un moto circolare, ora proviamo a trovare l'accelerazione, quindi calcoliamo la derivata di $\vec{v}(t)$
+\[
+\vec{a}(t) = \dfrac{d}{dt}(\vec{v}(t)) = \dfrac{d}{dt} (R \dot{\theta} \hat{u}_N(t)) = R\ddot{\theta} \hat{u}_N(t) + R\dot{\theta} \dfrac{d}{dt}\hat{u}_N(t)
+\]
+Ora come prima analiziamo la derivata del versore $\hat{u}_N(t)$
+\[
+\dfrac{d}{dt}\hat{u}_N(t)=\dfrac{d}{dt} \begin{pmatrix}
+  -\sin(\theta)\\
+\cos(\theta)
+\end{pmatrix} = \begin{pmatrix}
+  -\cos(\theta)\cdot \dot\theta\\
+-\sin(\theta)\cdot \dot\theta
+\end{pmatrix} = -\dot\theta\begin{pmatrix}
+  \cos(\theta) \\
+\sin(\theta)
+\end{pmatrix} 
+\]
+Ma questo nuovo versore lo abbiamo già visto: infatti è proprio la definizione di $\hat{u}_R(t)$, quindi abbiamo scoperto che 
+\[
+\dfrac{d}{dt}\hat{u}_N(t) = -\dot\theta\hat{u}_R(t)
+\]
+
+E quindi l'accelerazione ha espressione 
+\[
+\vec{a}(t) =R\ddot{\theta} \hat{u}_N(t) - R\dot{\theta}^2\hat{u}_R(t)
+\]
 \end{document}
