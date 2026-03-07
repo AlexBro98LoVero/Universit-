@@ -1201,8 +1201,8 @@ Da eusto scopriamo che in un modo in 2D, la velocità è composta da una velocit
     \begin{tikzpicture}
         \begin{axis}[
             unit vector ratio=1 1, % <-- IL SEGRETO: forza la scala 1:1 assoluta sugli assi
-            xmin=-0.5, xmax=7.5,
-            ymin=-0.5, ymax=7.5,
+            xmin=-0.5, xmax=8.5,
+            ymin=-0.5, ymax=8,
             axis lines=center,
             xtick=\empty, ytick=\empty,
             xlabel={$x$}, ylabel={$y$},
@@ -1350,4 +1350,296 @@ E quindi l'accelerazione ha espressione
 \[
 \vec{a}(t) =R\ddot{\theta} \hat{u}_N(t) - R\dot{\theta}^2\hat{u}_R(t)
 \]
+Per comodità, rinominiamo i versori come $\hat{u}_N(t)=\hat{u}_\parallel(t)$ dato che è parallela alla circonferenza, mentre $\hat{u}_R(t)=\hat{u}_\perp(t)$ dato che è perpendicolare alla circonferenza.
+\[
+\vec{a}(t) =R\ddot{\theta} \hat{u}_\parallel(t) - R\dot{\theta}^2\hat{u}_\perp(t)
+\]
+Vediamo graficamente come risulta la accelerazione in un moto circolare
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            unit vector ratio=1 1, % Forza la scala 1:1 assoluta sugli assi
+            xmin=-0.5, xmax=8.5,
+            ymin=-0.5, ymax=7,
+            axis lines=center,
+            xtick=\empty, ytick=\empty,
+            xlabel={$x$}, ylabel={$y$},
+            width=10cm
+        ]
+            
+            % Coordinate fisse cartesiane (Terna 3-4-5 per ortogonalità perfetta)
+            \coordinate (O) at (0,0);
+            \coordinate (P) at (4,3); % Posizione di R(t)
+            
+            % Componente radiale a_R (centripeta, punta verso l'origine)
+            % Delta = (-2, -1.5) -> proporzionale e opposta a (4,3)
+            \coordinate (aR) at (2, 1.5); 
+            
+            % Componente trasversale a_N (tangenziale, perpendicolare a R)
+            % Delta = (-1.5, 2) -> Prodotto scalare (-2)(-1.5) + (-1.5)(2) = 3 - 3 = 0 !!
+            \coordinate (aN) at (2.5, 5); 
+            
+            % Punta del vettore accelerazione totale (aR + aN)
+            % Posizione = P(4,3) + aR(-2,-1.5) + aN(-1.5,2) = (0.5, 3.5)
+            \coordinate (A) at (0.5, 3.5); 
+            
+            % Traiettoria (arco di circonferenza, dato che R è costante nella formula)
+            % L'arco parte da 80 gradi e scende a 10 gradi con raggio 5, passando per P(4,3)
+            \draw[dashed, thick, gray] (0.87, 4.92) arc (80:10:5);
+            
+            % Vettore R(t) in blu
+            \draw[->, very thick, draw=blue] (O) -- (P);
+            
+            % Angolo theta (l'angolo di 4,3 è esattamente 36.87 gradi)
+            \draw[->, thick] (1.5,0) arc (0:36.87:1.5) 
+                node[midway, right, xshift=2pt] {$\theta(t)$};
+            
+            % --- VETTORI DELLE COMPONENTI DELL'ACCELERAZIONE ---
+            
+            % Linee del parallelogramma
+            \draw[dashed, thin, gray] (aR) -- (A);
+            \draw[dashed, thin, gray] (aN) -- (A);
+            
+            % Vettore accelerazione totale
+            \draw[->, very thick, draw=black] (P) -- (A) 
+                node[anchor=south west ] {$\vec{a}(t)$};
+                
+            % Componente radiale in rosso (accelerazione centripeta: opposta a u_R)
+            \draw[->, very thick, draw=red] (P) -- (aR) 
+                node[pos=0.6, anchor= west, text=red, yshift=-2pt] {$-R\dot{\theta}^2\hat{u}_\perp(t)$};
+                
+            % Componente trasversale in verde (accelerazione angolare: lungo u_N)
+            \draw[->, very thick, draw=green!60!black] (P) -- (aN) 
+                node[pos=0.8, anchor= west, text=green!60!black, xshift=2pt] {$R\ddot{\theta}\hat{u}_\parallel(t)$};
+            
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+Notiamo che come nella velocità abbiamo una componente tangenziale che chiameremo \textbf{accelerazione tangenziale} che varrà
+\[
+\vec{a}_{tan} = R\ddot{\theta}\hat{u}_\parallel(t)
+\]
+Che però possiamo definire in un altra maniera, infatti se definiamo \textbf{l'accelerazione angolare} come 
+\[
+\alpha(t) = \dot{\omega}(t) = \ddot{\theta}(t)
+\]
+Allora possiamo definire l'accelerazione tangenziale come
+\[
+\vec{a}_{tan} = R\alpha(t)\hat{u}_\parallel(t)
+\]
+Mentre al contrario della velocità, abbiamo una componente radiale ma verso il centro, e quella è detta \textbf{accelerazione centripeta}, che vale
+\[
+\vec{a}_{cent} = -R\dot{\theta}^2\hat{u}_\perp(t)
+\]
+
+
+Ora definiamo due tipologie di moto circolare: \textbf{uniforme} e \textbf{uniformemente accelerato}, andiamo a vederli.
+
+In un \underline{moto circolare uniforme} abbiamo che la velocità angolare ($\omega(t)$) è costante, da questo ne consegue che 
+\[
+\omega(t) = \omega  \implies \ \alpha(t) = \dot{\omega}(t) = \dfrac{d}{dt}(\omega) = 0
+\] 
+Dal TFCI possiamo trovare anche la funzione $\theta(t)$
+\[
+\omega(t) = \dot{\theta}(t) \implies \theta(t) = \theta_0 + \int_{0}^{t} \omega(s)\,ds =  \theta_0 + \omega t 
+\]
+
+Mentre dato che $\alpha(t)=0$ allora vuol dire che $\vec{a}_{tan}(t)=0$, pertanto l'unica accelerazione nel sistema è quella centripeta che in modulo vale 
+\[
+||\vec{a}_{cent}|| = R\dot{\theta}^2 = R\omega^2
+\]
+Che ricordando che $||\vec{v}(t)|| = R|\omega(t)|$ possiamo riscrivere l'accelerazione come
+\[
+||\vec{a}_{cent}|| =\dfrac{||\vec{v}(t)||}{R} 
+\]
+
+\textbf{N.B.} anche se l'accelerazione angolare è nulla il moto non è uniforme (secondo la definizione che avevamo detto inizialmente) dato che ad ogni modo c'è una accelerazione in gioco: quella centripeta, e per questo motivo un moto circolare uniformemente lo classifichiamo come moto accelerato, dato che il modulo dell'accelerazione resta costante.  In generale un qualsiasi moto non rettilineo è almeno un moto accelerato, dato che come abbiamo visto per "girare" serve sempre una accelerazione centripeta.  
+
+Ora vediamo il \underline{moto circolare uniformemente accelerato}, la cui peculiarità è che la velocità angolare ($\alpha(t)$) è costante, da questo possiamo trovare l'espressione della velocità angolare
+\[
+\alpha(t) = \dot{\omega}(t) \implies \omega(t) = \omega_0 + \int_{0}^{t} \alpha(s) \,ds = \omega_0 + \alpha t
+\]
+
+Da questo possiamo trovare anche l'angolo 
+\begin{align*}
+\omega(t) = \dot{\theta}(t) \implies \theta(t) = \theta_0 + \int_{0}^{t} \omega(s)\,ds &=  \theta_0 + \int_{0}^{t} \omega_0 + \alpha s\,ds\\
+  &= \theta_0 + \omega_0 t + \dfrac{1}{2}\alpha t^2
+\end{align*}
+
+In questo modo abbiamo entrambe le componenti della accelerazione, che vale
+\[
+\vec{a}(t) =R\alpha \hat{u}_\parallel(t) - R(\omega_0 + \alpha t)^2\hat{u}_\perp(t)
+\]
+Con questo notiamo che la componente tangenziale resta uguale di modulo ad ogni tempo, invece la componente centripeta aumenta all'aumentare del tempo, in modo quadratico. Il modulo dell'accelerazione è (per semplicità scegliamo $\omega_0 = 0$)
+\[
+||\vec{a}(t)|| = \sqrt{(R\alpha )^2 + (R\alpha^2 t^2)^2} = R\alpha\sqrt{1 + \alpha^2 t^4  }
+\]
+
+Da questo scopriamo che l'accelerazione cresce assintoticamente come 
+\[
+||\vec{a}(t)|| \sim t^2
+\]
+
+Analogamente al moto circolare uniforme, anche se questo moto si chiama "uniformemente accelerato" non vuol dire che è un moto uniformemente accelerato (secondo la definizione che abbiamo dato inizialmente), dato che in questo moto l'accelerazione cambia sempre, appiamo appena dimostrato che cresce assintoticamente a $t^2$, per questo è un moto vario.
+
+
+\newpage
+Ora proviamo a vedere da un'altra prospettiva la velocità angolare $\omega$, fino ad oraa la velocità angolare è uno scalare, infatti non ci abbiamo mai messo la freccietta sopra, però adesso vediamo come lo possiamo scrivere come vettore.  Portiamo in 3 dimensioni il nostro moto circolare e lo mettiamo sul piano $\hat{xy}$
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            view={20}{60}, % Regola questi valori per cambiare l'angolo di visuale 3D
+            width=12cm, height=9cm,
+            xmin=-4, xmax=4,
+            ymin=-4, ymax=4,
+            zmin=0, zmax=5,
+            xlabel={$x$},
+            ylabel={$y$},
+            zlabel={$z$},
+            axis lines=center,
+            ticks=none, % Nasconde i numeri sugli assi per un look più "teorico"
+            grid=major
+        ]
+
+        % 1. Traiettoria circolare sul piano xy (z=0)
+        % Usiamo le equazioni parametriche x = R*cos(t), y = R*sin(t)
+        \addplot3 [
+            domain=0:360,
+            samples=60,
+            dashed,
+            thick,
+            blue
+        ] ({3*cos(x)}, {3*sin(x)}, {0});
+
+        % Origine
+        \coordinate (O) at (0,0,0);
+        
+        % 2. Punto P sulla traiettoria (fissato a theta = 45 gradi, R = 3)
+        % Coordinate x = 3*cos(45) = 2.121, y = 3*sin(45) = 2.121
+        \coordinate (P) at (2.121, 2.121, 0);
+        
+        % 3. Vettore velocità v(t) tangente alla traiettoria
+        % Direzione perpendicolare a R: (-sin(45), cos(45), 0)
+        % Moltiplichiamo per una costante (es. 2) per renderlo visibile
+        % Coordinata finale = P + v = (2.121 - 1.414, 2.121 + 1.414, 0) = (0.707, 3.535, 0)
+        \coordinate (V) at (0.707, 3.535, 0);
+        
+        % 4. Vettore velocità angolare omega lungo l'asse z
+        \coordinate (W) at (0, 0, 4);
+
+        % Disegno il vettore posizione R(t)
+        \draw[->, very thick, blue] (O) -- (P) 
+            node[midway, below right] {$\vec{R}(t)$};
+        
+        % Disegno il punto materiale P
+        \filldraw[black] (P) circle (2pt) 
+            node[below right] {$P$};
+
+        % Disegno il vettore velocità v(t)
+        \draw[->, very thick, red] (P) -- (V) 
+            node[right] {$\vec{v}(t)$};
+        
+      
+
+        % Dettaglio: segno di angolo retto approssimato per R e v
+        \draw[thin, black] (1.8, 2.4, 0) -- (1.5, 2.1, 0) -- (1.8, 1.8, 0);
+
+        \end{axis}
+    \end{tikzpicture}
+  \end{figure}
+
+
+    Ora possiamo definire il vettore $\vec{\omega}(t)$ come il vettore perpendicolare al piano $\hat{xy}$ con modulo il valore scalare di $\omega(t)$. Quindi nel grafico risulta
+    \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            view={20}{60}, % Regola questi valori per cambiare l'angolo di visuale 3D
+            width=12cm, height=9cm,
+            xmin=-4, xmax=4,
+            ymin=-4, ymax=4,
+            zmin=0, zmax=5,
+            xlabel={$x$},
+            ylabel={$y$},
+            zlabel={$z$},
+            axis lines=center,
+            ticks=none, % Nasconde i numeri sugli assi per un look più "teorico"
+            grid=major
+        ]
+
+        % 1. Traiettoria circolare sul piano xy (z=0)
+        % Usiamo le equazioni parametriche x = R*cos(t), y = R*sin(t)
+        \addplot3 [
+            domain=0:360,
+            samples=60,
+            dashed,
+            thick,
+            blue
+        ] ({3*cos(x)}, {3*sin(x)}, {0});
+
+        % Origine
+        \coordinate (O) at (0,0,0);
+        
+        % 2. Punto P sulla traiettoria (fissato a theta = 45 gradi, R = 3)
+        % Coordinate x = 3*cos(45) = 2.121, y = 3*sin(45) = 2.121
+        \coordinate (P) at (2.121, 2.121, 0);
+        
+        % 3. Vettore velocità v(t) tangente alla traiettoria
+        % Direzione perpendicolare a R: (-sin(45), cos(45), 0)
+        % Moltiplichiamo per una costante (es. 2) per renderlo visibile
+        % Coordinata finale = P + v = (2.121 - 1.414, 2.121 + 1.414, 0) = (0.707, 3.535, 0)
+        \coordinate (V) at (0.707, 3.535, 0);
+        
+        % 4. Vettore velocità angolare omega lungo l'asse z
+        \coordinate (W) at (0, 0, 4);
+
+        % Disegno il vettore posizione R(t)
+        \draw[->, very thick, blue] (O) -- (P) 
+            node[midway, below right] {$\vec{R}(t)$};
+        
+        % Disegno il punto materiale P
+        \filldraw[black] (P) circle (2pt) 
+            node[below right] {$P$};
+
+        % Disegno il vettore velocità v(t)
+        \draw[->, very thick, red] (P) -- (V) 
+            node[right] {$\vec{v}(t)$};
+        
+      % Disegno il vettore velocità angolare omega
+        \draw[->, very thick, green!50!black] (O) -- (W) 
+            node[right] {$\vec{\omega}(t)$};
+
+        % Dettaglio: segno di angolo retto approssimato per R e v
+        \draw[thin, black] (1.8, 2.4, 0) -- (1.5, 2.1, 0) -- (1.8, 1.8, 0);
+
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+
+Così facendo si scopre che 
+\[
+\vec{v}(t) = \vec{\omega}(t) \wedge \vec{R}(t)
+\]
+
+Questo è consistente con la regola della mano destra infatti, se mettere $\vec{\omega}(t)$ sul pollice, $\vec{R}(t)$ sull'indice e $\vec{v}(t)$ sul medio si vede che è come nel disegno. In più è consistente anche nel modulo, infatti ricordiamo che il modulo del prodotto vettoriale è dato da 
+\[
+||\vec{v}(t) ||= ||\vec{\omega}(t) \wedge \vec{R}(t)|| = ||\vec{\omega}(t)||||\vec{R}(t)||\cdot\sin(\alpha)
+\]
+
+Dove $\alpha$ è l'angolo tra $\vec{\omega}$ e $\vec{R}$, ma dato che sono ortogonali $\alpha = \pi/2$ e pertanto $\sin(\alpha) = 1$. In più dato che è un moto circolare $||\vec{R}(t)|| = R$. Infine per come abbiamo definito il vettore $\vec{\omega}$ abbiamo che $||\vec{\omega}(t)|| = \omega(t) $ quindi 
+
+\[
+||\vec{v}(t) ||= ||\vec{\omega}(t) \wedge \vec{R}(t)|| = \omega(t)R
+\]
+
+Ma questa definizione del modulo di $\vec{v}$ è proprio quella che abbiamo dato per la definizione di velocità angolare, quindi è consistente anche in modulo questo prodotto vettoriale.
+
+Da notare che per la regola della mano destra, se il nostro punto gira in senso antiorario allora il vettore $\vec{\omega}$ è parallelo al semiasse positivo delle $\hat{z}$. Mentre se il corpo ruota in senso antiorario, e quindi la velocità tangenziale prosegue in senso opposto, allora la velocità angolare punterà verso il basso per consistenza della regola della mano destra.
+
+
+\section{Meccanica: Dinamica}
 \end{document}
