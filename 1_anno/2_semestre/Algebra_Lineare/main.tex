@@ -832,7 +832,688 @@ Impostiamo il sistema
 
 Dal sistema si evince che i vettori sono linearmente indipendenti.
 
+Vediamo un'ultimo esempio: sia $V=\mathbb{R}^3$, siano $v_1=(2,-1,0)$, $v_1=(1,-3,2)$ e $v_3=(3,1,-2)$ determinare se i vettori sono linearmente indipendenti
+\[
+\begin{pmatrix}
+2a_1 \\
+-a_1 \\
+0
+\end{pmatrix} + \begin{pmatrix}
+a_2 \\
+-3a_2 \\
+2a_2
+\end{pmatrix} + \begin{pmatrix}
+3a_3 \\
+a_3 \\
+-2a_3
+\end{pmatrix} =
+\begin{pmatrix}
+0 \\
+0\\
+0
+\end{pmatrix} \implies \begin{cases}
+  2a_1+a_2+3a_3 = 0\\
+  -a_1-3a_2+a_3 = 0 \\
+  2a_2-2a_3=0
+\end{cases} 
+\]
+Risolviamo il sistema
+\[
+ \begin{cases}
+  2a_1+a_2+3a_3 = 0\\
+  a_1 = -3a_2+a_3  \\
+  a_2 = a_3
+\end{cases}
+\implies \begin{cases}
+  2a_1+a_2+3a_3 = 0\\
+  a_1 = -2a_3  \\
+  a_2 = a_3
+\end{cases}
+\]
 
+\[
+\implies \begin{cases}
+  -4a_3+a_3+3a_3 = 0\\
+  a_1 = -2a_3   \\
+  a_2 = a_3
+\end{cases}\implies \begin{cases}
+  0a_3= 0\\
+  a_1 = -2a_3   \\
+  a_2 = a_3
+\end{cases}
+\]
+
+Come nel caso in $\mathbb{R}^2$, possiamo scegliere un qualsiasi valore di $a_3$ che la prima equazione ha è verificata, pertanto che infinite soluzioni e quindi i vettori solo linearmente dipendenti. In $\mathbb{R}^3$ però l'interpretazione geometrica è un pò diversa, infatti se in $\mathbb{R}^2$ i vettori erano dipendenti se esano paralleli, in $\mathbb{R}^3$ 3 vettori sono dipendenti se sono complanari, ovvero appartengono allo stesso piano nello spazio. 
+
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            view={120}{25}, % Prospettiva mantenuta
+            width=12cm,
+            height=10cm,
+            grid=major,
+            xmin=-2, xmax=6,
+            ymin=-6, ymax=4,
+            zmin=-3, zmax=3,
+            xlabel={$x$},
+            ylabel={$y$},
+            zlabel={$z$},
+            axis lines=center,
+            xtick=\empty, % Rimuove i numeri sull'asse x
+            ytick=\empty, % Rimuove i numeri sull'asse y
+            ztick=\empty, % Rimuove i numeri sull'asse z
+        ]
+            
+            % Disegno il grande parallelogramma che unisce la parte di v2 e quella di -v2
+            \addplot3[
+                fill=myyellow,
+                opacity=0.3,
+                draw=myyellow!80!black,
+                thick
+            ] coordinates {
+                (-1,3,-2)   % -v2
+                (3,1,-2)    % 2v1 - v2 (che corrisponde a v3)
+                (5,-5,2)    % 2v1 + v2
+                (1,-3,2)    % v2
+                (-1,3,-2)   % Chiusura del poligono
+            };
+            
+            % Vettore v1 in rosso
+            \draw[->, very thick, myred] (0,0,0) -- (2,-1,0) 
+                node[anchor=south west, text=black] {$\vec{v}_1$};
+            
+            % Vettore v2 in verde
+            \draw[->, very thick, mygreen] (0,0,0) -- (1,-3,2) 
+                node[anchor=south east, text=black] {$\vec{v}_2$};
+
+            % Vettore opposto -v2 (tratteggiato verde)
+            \draw[ dashed, thick, mygreen] (0,0,0) -- (-1,3,-2);
+
+            % Prolungamento a 2*v1 (tratteggiato rosso)
+            \draw[dashed, thick, myred] (2,-1,0) -- (4,-2,0);
+
+            % Linee di costruzione del parallelogramma con -v2 (grigie tratteggiate)
+            \draw[dashed, thick, gray] (4,-2,0) -- (3,1,-2);
+            \draw[dashed, thick, gray] (-1,3,-2) -- (3,1,-2);
+
+            % Linee di costruzione del parallelogramma con v2 (grigie tratteggiate)
+            \draw[dashed, thick, gray] (4,-2,0) -- (5,-5,2);
+            \draw[dashed, thick, gray] (1,-3,2) -- (5,-5,2);
+
+            % Vettore v3 in blu
+            \draw[->, very thick, myblue] (0,0,0) -- (3,1,-2) 
+                node[anchor=west, text=black] {$\vec{v}_3$};
+
+        \end{axis}
+    \end{tikzpicture}
+    
+\end{figure}
+
+Ora andiamo a vedere delle casistiche un po' particolari, infatti prendiamo il seguente spazio vettoriale
+\[
+V = \{ f:\mathbb{R}\to \mathbb{R} \;|\; f\; \text{è una funzione}\}
+\]
+Prima però controlliamo se effettivamente è un spazio vettoriale sul campo $\mathbb{R}$, quindi controlliamo se valgono la somma e il prodotto per scalare, prendiamo $f_1, f_2 \in V$ e $\lambda \in \mathbb{R}$
+\[\begin{array}{c@{\qquad}c}
+  (f_1+f_2)(x) = f_1(x) + f_2(x) & (\lambda f_1)(x) = \lambda f_1(x)
+\end{array}\]
+è facile controllare che sono valide tutte le proprietà associative, dispributive e commutative dato che rispettano l'algebra che conosciamo. Quindi appurato che questo è uno spazio vettoriale, vediamo se ci sono vettori linearmente indipendenti, ad esempio $f_1(x)=\sin(x)$, $f_2(x)=\cos(x)$, $f_3(x)=e^x$. Per controllare usiamo la definizione di linearmente indipendenti e usiamo la funzione nulla $f_O(x)=0$.
+\[
+a_1 \sin(x) + a_2\cos(x) + a_3e^x = f_O(x) = 0
+\]
+Ora per risolvere possiamo usare gli sviluppi di Taylor
+\[
+a_1\left(x-\dfrac{x^3}{3!}+...\right) + a_2 \left(1-\dfrac{x^2}{2!}+...\right) + a_3\left(1+x+\dfrac{x^2}{2!}+...\right) =0
+\]
+\[
+a_2+a_3 + x\left(a_1+a_3\right) + \dfrac{x^2}{2!}\left(-a_2+a_3\right) + ... = 0 
+\]
+Affinchè un polinomio sia nulla su tutto $\mathbb{R}$ è necessario tutti i coefficienti sia nulli, quindi impostiamo un sistema
+\[
+\begin{cases}
+  a_2+a_3 = 0\\
+  a_1+a_3 = 0 \\
+  -a_2+a_3 = 0
+\end{cases} \implies
+\begin{cases}
+a_2 = -a_3 \\
+a_1 = -a_3 \\
+2a_3 = 0
+\end{cases}\implies
+\begin{cases}
+a_2 = 0 \\
+a_1 = 0\\
+a_3 = 0
+\end{cases}
+\]  
+Dato che questa è l'unica soluzione, sappiamo che $f_1(x)$, $f_2(x)$ e $f_3(x)$ sono linearmente indipendenti su $V$.
+
+\newpage
+\begin{esercizio}{}{}
+  Sia $V=\{f:\mathbb{R}\to \mathbb{R} \;|\;f \in C^{\infty}(\mathbb{R}) \}$ uno spazio vettoriale sul campo $K=\mathbb{R}$, determinare se $f_1(x)=e^{x}$ e $f_2(x)=e^{2x}$ sono linearmente indipendenti.
+\end{esercizio}
+\begin{proof}[svolgimento]
+Come nell'esempio di prima possiamo usare gli sviluppi di Taylor
+\[
+a_1e^{x} + a_2e^{2x} = 0
+\]
+\begin{align*}
+a_1\left(1+x+\dfrac{x^2}{2!}+...\right) +  a_2\left(1+2x+\dfrac{(2x)^2}{2!}+...\right) &= 0\\
+a_1 + a_2 + x(a_1+2a_2) + \dfrac{x^2}{2!}\left(a_1+4a_2\right)+...&= 0
+\end{align*}
+ In Generale i coefficienti del polinomio sono tutti $a_1+2^na_2$, quindi il sistema sarà
+ \[
+ \begin{cases}
+  a_1 + a_2 = 0 \\
+  a_1+2a_2 = 0
+ \end{cases} \implies
+ \begin{cases}
+  a_1  = - a_2 \\
+  a_2 = 0
+ \end{cases}\implies
+ \begin{cases}
+  a_1  = 0 \\
+  a_2 = 0
+ \end{cases}
+ \] 
+ Quindi le funzioni sono linearmente indipendenti sullo spazio $V$.
+\end{proof}
+\begin{esercizio}{}{}
+  Sia $V=\{f:\mathbb{R}\to \mathbb{R}\}$ uno spazio vettoriale sul campo $K=\mathbb{R}$, determinare se $f_1(x)=\sin(x)$, $f_2(x)=\sin(2x)$ e $f_3(x)=\sin(3x)$ sono linearmente indipendenti.
+\end{esercizio}
+\begin{proof}[svolgimento]
+  Questo esercizio lo potremmo risolvere sempre con Taylor, però vediamo un altro metodo. Usiamo la definizio di linearmente dipendenti
+  \[
+  a_1\sin(x) + \mathunderline{red}{a_2\sin(2x)} + a_3\mathunderline{blue}{\sin(3x)} = 0
+  \]
+  Usiamo le formule di addizione e moltiplicazione del seno, ricordando che $\sin(3x)$ lo possiamo riscrivere come $\sin(2x+x)$ e usare le formule di addizione.
+\begin{align*}
+  a_1\sin(x) + a_2 \left(\mathunderline{red}{2\sin(x)\cos(x)}\right) + a_3 \left(\mathunderline{blue}{\mathunderline{green}{\sin(2x)}\cos(x) + \mathunderline{myyellow}{\cos(2x)}\sin(x)}\right) &= 0 \\
+  a_1\sin(x) + 2a_2\sin(x)\cos(x) + a_3\left(\mathunderline{green}{2\sin(x)\cos^2(x)} + \left( \mathunderline{myyellow}{\cos^2(x)-1}\right)\sin(x)\right)&= 0 \\
+  a_1\sin(x) + 2a_2\sin(x)\cos(x) + 2a_3\sin(x)\cos^2(x) + a_3\sin(x)\cos^2(x) - a_3\sin(x) &= 0
+\end{align*}
+  Ora possiamo raccogliere un $\sin(x)$ a tutti i membri e eliminarlo dato che non è mai completamente nullo
+  \[
+  a_1 + 2a_2\cos(x) + 3a_3\cos^2(x)-a_3 = 0
+  \]
+  Ora tralasciando il coseno, questo è un polinomio di secondo grado, quindi come prima è completamente nullo se tutti i coefficienti sono nulli
+  \[
+  \begin{cases}
+    3a_3=0 \\
+    2a_2 = 0 \\
+    a_1-a_3 = 0
+  \end{cases} \implies
+  \begin{cases}
+    a_3=0 \\
+    a_2 = 0 \\
+    a_1= 0
+  \end{cases} 
+  \]
+  Da questo si evince che sono linearmente indipendenti.
+
+\end{proof}
+
+\begin{teorema}{}{}
+  Sia $V$ uno spazio vettoriale su un campo $K$ e 
+  \[
+  v_1, v_2, v_3, ..., v_n \in V
+  \]
+  I vettori sono linearmente dipendenti se e solo se uno di essi si può scrivere come combinazione lineare dei rimanenti vettori 
+  \[
+  v_i = \sum_{j \in \mathbb{N} \setminus \{i\}} a_jv_j
+  \]
+\end{teorema}
+
+\begin{proof}
+  Dato che questa è una dobbiamo implicazione dobbiamo controllare l'implicazione da entrambi i lati
+  
+  ($\implies$) Per ipotesi sappiamo che i vettori non linearmente dipendenti, quindi esistono $\lambda_1, \lambda_2, ..., \lambda_n \in K$ non tutti nulli tale che
+  \[
+  \lambda_1 v_1 + \lambda_2 v_2 + ...+ \lambda_i v_i + ... + \lambda_n v_n = \vec{0}    
+  \]
+  Dato che asiste almeno un $\lambda_i$ non nullo, possiamo isolare $v_i$
+  \[
+   \lambda_i v_i   =  -\lambda_1 v_1 - \lambda_2 v_2 + ...- \lambda_n v_n
+  \]
+  \[
+   v_i   =  -\dfrac{\lambda_1 }{\lambda_i }v_1 -\dfrac{\lambda_2 }{\lambda_i } v_2 + ...- -\dfrac{\lambda_n }{\lambda_i } v_n
+  \]
+  E la divisione la possiamo fare proprio perchè esiste almeno un $\lambda_i$ non nullo, e quindi non da problemi la divisione. 
+
+  Ora notiamo che abbiamo scritto un vettore dell'elenco come combinazione lineare degli altri, infatti basta porre $a_1 =- \frac{\lambda_1 }{\lambda_i }$, $a_2 = -\frac{\lambda_2 }{\lambda_i }$ ecc... per avere la stessa scrittura del teorema
+
+  ($\impliedby$) Ora per questo sappiamo che possiamo riscrivere un vettore come combinazione lineare degli altri vettori
+  \[
+  v_i = a_1 v_1 + a_2 v_2 + ... + a_nv_n
+  \]
+  Ora possiamo spostare $v_i$ 
+  \[
+    a_1 v_1 + a_2 v_2 + ... -v_i+... + a_nv_n = \vec{0}
+  \]
+  Notiamo che abbiamo potuto scrivere il vettore nullo come combinazione lineare dei vettori, e dato che il coefficiente di $v_i$ è $-1$ allora possiamo anche dire che non tutti sono nulli, pertanto i vettori sono linearmente dipendenti.
+\end{proof}
+
+Questo teorema ci può tornare comodo per evitare di fare conti per nulla, infatti se notiamo che un vettore è composizione lineare di altri possiamo dire subito che sono linearmente dipendenti, per esempio se avessimo un problema del tipo, sia uno spazio vettoriale $V=\mathbb{R}^3$, e siano i vettori 
+\[
+\begin{array}{c@{\qquad}c@{\qquad}c}
+  v_1=(2,0,6)  & v_2 = (1,2,3) & v_3=(1,0,3)
+\end{array}
+\]
+Ad occhio si può notare che $v_1=2v_3$, e quindi un vettore è una composizione lineare degli altri, quindi possiamo subito dire che i vettori sono linearmente dipendenti. Questo ci ha evitato di risolvere un sistema a tre equazioni.
+
+
+
+\begin{definizione}{Sottospazio Vettoriale}{}
+  Sia $V$ uno spazio vettoriale sul campo $K$. Sia $W \subset V$, diciamo che $W$ è uno \textbf{sottospazio vettoriale} se anch'esso è uno spazio vettoriale e con le operazioni di somma e di prodotto di $V$. Pertanto bisogna verificare che 
+  \[
+  \vec{0} \in W
+  \]
+  \[
+  \forall w_1, w_2 \in W \;\;\;\;\; w_1 + w_2 \in W
+  \]
+  \[
+  \forall w \in W \; \forall \lambda \in K \;\;\;\;\; \lambda \cdot w \in W
+  \]
+\end{definizione}
+
+Vediamo subito un esempio, prendiamo uno spazio vettoriale $V = \mathbb{R}^2$ sul campo $\mathbb{R}$. Allora un possibile sottospazio vettoriale è 
+\[
+W=\{(a,b) \;| \;3a-2b=0\}
+\]
+
+In primis notiamo che questo è un sottoinsieme di $V$ dato che di tutti i vettori $(a,b)$ prendiamo solo quelli che soddisfano l'equazione $3a-2b=0$. Ora dobbiamo controllare se questo insieme è chiuso rispetto alla somma e prodotto, proviamo a vedere, quindi prendiamo due vettori in $W$
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+  w_1 = (a_1, b_1) & w_2 = (a_2, b_2) 
+\end{array}
+\]
+Ma dato che $w_1,w_2 \in W$, allora dovranno soddisfare l'equazione
+\begin{equation}\label{eq:sotto1}
+  \begin{array}{c@{\qquad}@{\qquad}c}
+  3a_1-2b_1=0 &   3a_2-2b_2=0 
+\end{array}
+\end{equation}
+
+
+
+Ora dobbiamo controllare se il vettore somma $w_s$ appartiene a $W$, e per farlo deve soddisfare l'equazione $3a-2b=0$, pertanto 
+\[
+w_s=w_1+w_2 = \begin{pmatrix}
+  a_1+a_2 \\
+  b_1+b_2
+\end{pmatrix} \implies 3(a_1+a_2) - 2(b_1+b_2) = 3a_1-2b_1 + 3a_2 - 2b_2
+\] 
+
+Ma per (\ref{eq:sotto1}) possiamo dire che 
+
+\[
+\mathunderline{red}{3a_1-2b_1} + \mathunderline{blue}{3a_2 - 2b_2} = \mathunderline{red}{0} + \mathunderline{blue}{0}  =0 
+\]
+Ma quindi anche il vettore somma verifica l'equazione del sottospazio $W$, pertanto il vettore somma appartiene a $W$ e quindi il sottospazio è chiuso rispetto alla somma, ora dobbiamo controllare se lo è anche per il prodotto, quindi preso un qualsiasi vettore $w = (a,b) \in W$ e $\lambda \in \mathbb{R}$, doddiamo controllare se il vettore prodotto $w_p$ appartiene a $W$. 
+
+\[
+w_s=\lambda \cdot w = \begin{pmatrix}
+  \lambda a \\
+  \lambda b
+\end{pmatrix} \implies 3(\lambda a) - 2(\lambda b) = \lambda(3a-2b) = \lambda \cdot 0 = 0
+\] 
+Da questo scopriamo che $W$ è chiuso anche per il prodotto. 
+
+Vediamo un altro esempio, dato $V=\mathbb{R}^2$ determinare se 
+\[
+W= \{(a,b) \; |\; a+b = 3\}
+\]
+è uno sottospazio vettoriale di $V$. Per farlo controlliamo se presi due vettori $w_1, w_2 \in W$, la loro somma è in $W$
+\[
+w_1+w_2 = \begin{pmatrix}
+  a_1 + a_2 \\
+  b_1+b_2
+\end{pmatrix} \implies (a_1+a_2) + (b_1+b_2) = a_1+b_1 + a_2+b_2
+\]
+Ma dato che $w_1, w_2 \in W$ allora vale 
+\[
+  \begin{array}{c@{\qquad}@{\qquad}c}
+  a_1+b_1=3 &   a_2+b_2=3 
+\end{array}
+\]
+
+\[
+a_1+b_1 + a_2+b_2 = 3 +3 = 6 \ne 3
+\]
+Da questo notiamo che la somma di due vettori in $W$ non rispettano l'equazione di $W$ e pertanto $W$ non è chiuso rispetto alla somma e quindi non è uno sottospazio vettoriale di $V$. In più questo non è uno spazio vettoriale (e quindi uno sottospazio) anche perchè non c'è l'elemento nullo della somma ovvero il vettore $\vec{0} = (0, 0)$, e quindi anche questo ci permette di dire che $W$ non è uno spazio vettoriale e quindi nemmeno un sottospazio. 
+
+Vediamo un ultimo esempio: Sia $V = \mathbb{R}^2$ uno spazio vettoriale, determinare se 
+\[
+W = \{(a,b) \;|\; a\geq 0 \land b \geq 0\}
+\]
+è uno sottospazio vettoriale di $V$. Come al solito proviamo a vedere se lo spazio è chiuso rispetto all'addizione, quindi presi $w_1 = (a_1, b_1)$ e $w_2=(a_1,b_1)$ calcolaimo il vettore somma
+\[
+w_1 +w_2 = \begin{pmatrix}
+  a_1 + a_2 \\
+  b_1+b_2  
+\end{pmatrix}
+\]
+E controlliamo se è verificata per ogni $w_1,w_2$. Ed effettivamente dato che $a_1, a_2,b_1,b_2 \geq 0$, allora anche $a_1+a_2 \geq 0$ e $b_1+b_2 \geq 0$ e quindi lo spazio è chiuso rispetto alla somma. Ora controlliamo per il prodotto, prendiamo $w = (a,b)\in W$ e $\lambda \in \mathbb{R}$ calcoliamo il prodotto 
+\[
+\lambda \cdot w = \begin{pmatrix}
+  \lambda a \\
+  \lambda b
+\end{pmatrix}
+\]
+
+Dobbiamo controllare se $\lambda a$ verifica la condizione di $W$, cioè se $\lambda a \geq 0 $, ma dato che $a\geq 0$ allora serve che $\lambda \geq 0$, ma $\lambda \in \mathbb{R}$ allora il prodotto non è verificato per tutti i valori di $\lambda$, quindi $W$ non è chiuso rispetto al prodotto e di conseguenza non è uno sottospazio vettoriale. Se avessimo sceglto $\mathbb{R}^+$ come campo allora $W$ sarebbe stato un sottospazio vettoriare rispetto a $V$, che allora sarebbe $\mathbb{R}^{+} \times \mathbb{R}^{+}$.
+
+\begin{teorema}{}{}
+  Sia  $K$ un campo, allora il seguente insieme 
+\[
+W = \left\{ \begin{pmatrix}
+  x_1 \\
+  x_2 \\
+  \vdots \\
+  x_n
+\end{pmatrix} \in K^n \;\middle|\; \begin{array}{l}
+  a_{11} x_1 + a_{12} x_2 + \cdots + a_{1n} x_n = 0 \\
+  a_{21} x_1 + a_{22} x_2 + \cdots + a_{2n} x_n = 0 \\
+  \vdots \\
+  a_{m1} x_1 + a_{m2} x_2 + \cdots + a_{mn} x_n = 0
+\end{array} \right\}
+\]
+Allora $W$ è un sottospazio di $K^n$. con $n,m\in\mathbb{N}$ con $m < n$.
+\end{teorema}
+\begin{proof}
+  In primis notiamo che il vettore nullo valida tutte le espressioni dato che sono omogenee. Quindi dobbiamo controllare le altre 2 condizioni. Prendiamo due vettori $x$, $y$, controlliamo se la sua somma è in $W$
+  \[
+  x + y = \begin{pmatrix}
+  x_1 \\
+  x_2 \\
+  \vdots \\
+  x_n
+\end{pmatrix} + \begin{pmatrix}
+  y_1 \\
+  y_2 \\
+  \vdots \\
+  y_n
+\end{pmatrix} = \begin{pmatrix}
+  x_1 +y_1 \\
+  x_2 +y_2\\
+  \vdots \\
+  x_n + y_n
+\end{pmatrix}
+  \] 
+\end{proof}
+
+Ora affinche la somma sia in $W$ bisogna che verifiche le $m$ condizioni 
+\[
+\begin{cases}
+  a_{11} (x_1+y_1) + a_{12} (x_2+y_2) + \cdots + a_{1n} (x_n+y_n) = 0 \\
+  a_{21} (x_1+y_1) + a_{22} (x_2+y_2) + \cdots + a_{2n} (x_n+y_n) = 0 \\
+  \vdots \\
+  a_{m1} (x_1+y_1) + a_{m2} (x_2+y_2) + \cdots + a_{mn} (x_n+y_n) = 0
+\end{cases}
+\]
+\[
+\implies
+\begin{cases}
+  \mathunderline{red}{a_{11} x_1 + a_{12} x_2 + \cdots + a_{1n} x_n} + \mathunderline{blue}{a_{11} y_1 + a_{12} y_2 + \cdots + a_{1n} y_n} = 0 \\
+  \mathunderline{red}{a_{21} x_1 + a_{22} x_2 + \cdots + a_{2n} x_n} + \mathunderline{blue}{a_{21} y_1 + a_{22} y_2 + \cdots + a_{2n} y_n} = 0 \\
+  \vdots \\
+  \mathunderline{red}{a_{m1} x_1 + a_{m2} x_2 + \cdots + a_{mn} x_n} + \mathunderline{blue}{a_{m1} y_1 + a_{m2} y_2 + \cdots + a_{mn} y_n} = 0 \\
+  \end{cases}
+\]
+Ma dato che $x,y\in K^n$ allora loro soddisfano le equazioni, quindi 
+\[
+  \begin{cases}
+  \mathunderline{red}{0} + \mathunderline{blue}{0} = 0   \\
+  \mathunderline{red}{0} + \mathunderline{blue}{0} = 0   \\
+    \vdots \\
+ \mathunderline{red}{0} + \mathunderline{blue}{0} = 0   
+\end{cases}
+\]
+Pertanto è verificata la somma di vettori, ora dobbiamo controllare il prodotto per scalare, quindi prendiamo un vettore $x\in W$ e uno scalare $\lambda \in K$
+\[
+  \lambda x = \lambda \begin{pmatrix}
+  x_1 \\
+  x_2 \\
+  \vdots \\
+  x_n
+\end{pmatrix}  = \begin{pmatrix}
+  \lambda x_1  \\
+  \lambda x_2 \\
+  \vdots \\
+  \lambda x_n 
+\end{pmatrix}
+  \] 
+  Controlliamo se soddisfa le condizioni
+  \[
+\begin{cases}
+  a_{11} (\lambda x_1) + a_{12} (\lambda x_2) + \cdots + a_{1n} (\lambda x_n) = 0 \\
+  a_{21} (\lambda x_1) + a_{22} (\lambda x_2) + \cdots + a_{2n} (\lambda x_n) = 0 \\
+  \vdots \\
+  a_{m1} (\lambda x_1) + a_{m2} (\lambda x_2) + \cdots + a_{mn} (\lambda x_n) = 0
+\end{cases}
+\]
+  \[
+ \begin{cases}
+  \lambda (a_{11} x_1 + a_{12} x_2 + \cdots + a_{1n} x_n) = 0 \\
+  \lambda (a_{21} x_1 + a_{22} x_2 + \cdots + a_{2n} x_n )= 0 \\
+  \vdots \\
+  \lambda (a_{m1} x_1 + a_{m2} x_2 + \cdots + a_{mn} x_n) = 0
+\end{cases}
+\]
+
+ma dato che $x\in W$ allora soddisfa tutte le equazioni e quindi tutte le righe di questo sistema sono della forma $\lambda \cdot  0 = 0$ che chiaramente è verificato per $\forall \lambda \in K$. Quindi $W$ è chiuso anche rispetto al prodotto e quindi è un sottoinsieme di $K^n$.
+
+\begin{teorema}{}{}
+  Sia $V$ uno spazio vettoriale su un campo $K$, allora presi $n$ vettori 
+  \[
+  v_1, v_2, v_3, ..., v_n \in V
+  \]
+  Allora 
+  \[
+  W = \left\{\sum_{i=1}^{n}a_iv_i \;\middle|\; \forall a_i \in K \right\}
+  \]
+  è uno sottospazio di $V$
+\end{teorema}
+\begin{proof}{}
+  Chiaramente il vettore nullo nel insieme $W$, dato che se $\forall a_i = 0$ allora abbiamo proprio il vettore nullo. Ora dobbiamo controllare se $W$ è chiuso rispetto alla somma, quindi prendiamo due vettori $w_1,w_2\in W$
+  \[
+\begin{array}{c@{\qquad}@{\qquad}c}
+ \displaystyle w_1 = \sum_{i=1}^{n}a_iv_i & \displaystyle w_2 = \sum_{i=1}^{n}a_iv_i
+\end{array}
+  \]
+  Calcoliamo la somma
+  \[
+  w_1+w_2 = \sum_{i=1}^{n}a_iv_i + \sum_{i=1}^{n}b_iv_i = \sum_{i=1}^{n}\left(a_iv_i + b_iv_i\right)= \sum_{i=1}^{n}\left(a_i + b_i\right)v_i
+  \]
+  Ma dato che $a_i+b_i \in K$ (dato che $K$ è un campo) allora vediamo che anche la somma è una combinazione lineare dei vettori $v_1, v_2, ..., v_n$. Ora dobbiamo controllare se $W$ è chiuso rispetto al prodotto. Quindi prendiamo un vettore $w \in W$ e $\lambda \in K$
+  \[
+  \lambda w = \lambda \sum_{i=1}^{n}a_iv_i  = \sum_{i=1}^{n}(\lambda a_iv_i)  = \sum_{i=1}^{n}(\lambda a_i)v_i
+  \]
+  Ma dato che $\lambda a_i\in K$ per $\forall \lambda$ allora abbiamo che anche il prodotto è un vettore di $W$, pertanto $W$ è chiuso anche rispetto al prodotto e di conseguenza $W$ è un sotto spazio vettoriale di $V$.
+\end{proof}
+
+Quindi con questi due teoremi abbiamo visto i principali metodi di generare dei sottospazi vettoriali rispetto ad uno spazio vettoriale $V$, però adesso vediamo qualche altro esempio particolare. 
+\begin{esercizio}{}{}
+  Determinare se il seguente insieme è un sottospazio vettoriale di $V= C^{\infty}(\mathbb{R})$
+  \[
+  W = \{f \in C^{\infty}(\mathbb{R}) \;|\; f(2)=0\}
+  \]
+\end{esercizio}
+\begin{proof}[svolgimento]
+  Allora per essere uno sottospazio, dobbiamo controllare le tre condizioni: in primis controlliamo se c'è l'elemento nullo, e vediamo che c'è, infatti se prendiamo 
+  \[
+  g(x) = 0
+  \]
+  Notiamo che infatti $g \in C^{\infty}(\mathbb{R})$ dato che è una costante, in più rende valida l'espressione $g(2) = 0$. In altre presa qualsiasi funzione $h(x) \in W$ sappiamo che $h(x) + g(x) =  h(x)$, e quindi abbiamo dimostrato che l'elemento nullo è presente. Poi dobbiamo controllare se è chiuso rispetto alla somma, quindi prendiamo 2 funzioni: $g(x), h(x) \in W$ e controlliamo se la loro somma rispetta le condizioni del sottospazio
+  \[
+  (g+ h)(x) = g(x) + h(x) \xRightarrow{x=2} g(2) + h(2) = 0 + 0 = 0 
+  \]
+  Dato che la somma rispetta la condizione, allora $W$ è chiuso rispetto alla somma. Ora controlliamo se lo è anche per il prodotto, quindi prendiamo $g(x)\in W$ e $\lambda \in \mathbb{R}$. 
+  \[
+  (\lambda g)(x) = \lambda g(x)  \xRightarrow{x=2} \lambda g(2) = \lambda 0 = 0 
+  \]
+  Dato che per $\forall \lambda \in \mathbb{R}$ è verificata la condizione, allora possiamo dire che $W$ è chiuso anche per il prodrotto e quindi è uno sottospazio vettoriale di $V$. 
+
+\end{proof}
+
+  \textbf{N.B.} Questo insieme era un sottospazio unicamente perchè la condizione imposta è omogenea (cioè uguale a 0), perchè se avessimo scelto l'insieme 
+  \[
+  W_1 = \{f \in C^{\infty}(\mathbb{R}) \;|\; f(2)=1\}
+  \]
+
+  Questo non sarebbe stato un sottospazio vettoriale perchè saltano tutte e tre le condizioni necessarie. Dato che la funzione nulla $O(x) = 0$ non verifita più l'equazione $O(2) = 0 \neq 1$. Poi non vale più la somma
+  \[
+  (g+ h)(x) = g(x) + h(x) \xRightarrow{x=2} g(2) + h(2) = 1 + 1 = 2 \neq 1
+  \]
+   E nemmeno il prodotto 
+  \[
+  (\lambda g)(x) = \lambda g(x)  \xRightarrow{x=2} \lambda g(2) = \lambda\cdot 1 = \lambda \neq 1 
+  \]
+  Pertanto l'insieme originale è un sottospazio proprio perchè le funzioni hanno la proprietà di essere lineari, e perchè la condizione imposta è omogenea.
+\begin{esercizio}{}{}
+  Determinare se il seguente insieme è un sottospazio vettoriale di $V= C^{\infty}(\mathbb{R})$
+  \[
+  W = \{f \in C^{\infty}(\mathbb{R}) \;|\; f'(2)=0\}
+  \]
+\end{esercizio}
+\begin{proof}[svolgimento]
+  Qui il ragionamento è completamente speculare all'esercizio precedente, fatti l'elemento nullo, cioè la funzione $g(x)= 0$, verifica l'identità 
+  \[
+  g(x)= 0 \implies g'(x) = 0 \xRightarrow{x=2} g(2) = 0 
+  \]
+  Poi prese due funzioni $g, h \in W$ notiamo che la loro somma verifica l'identità
+  \[
+  (g+ h)(x) = g(x) + h(x) \xRightarrow{\frac{d}{dx}} g'(x) + h'(x) \xRightarrow{x=2} 0 + 0 = 0
+  \]
+  Ed anche il prodotto, infatti presa una funzione $g \in W$ e $\lambda \in \mathbb{R}$, abbiamo che 
+  \[
+  (\lambda g)(x) = \lambda g(x)  \xRightarrow{\frac{d}{dx}} \lambda g'(x) \xRightarrow{x=2} \lambda g'(2) =\lambda\cdot 0 =0  
+  \]
+  E con questo abbiamo verificato che $W$ è uno sottospazio vettoriale di $V$.
+\end{proof}
+
+Analogamente a prima, il ragionamento lo abbiamo potuto fare solo perchè l'operazione derivata è lineare e perchè la condizione imposta è omogenea, se avessimo scelto $f'(2) = 1$ nessuna delle tre condizioni sarebbe stata valida. 
+
+
+Vediamo un ultimo esempio per passare bene il concetto 
+\begin{esercizio}{}{}
+  Determinare se il seguente insieme è un sottospazio vettoriale di $V= C^{\infty}(\mathbb{R})$
+  \[
+  W = \left\{f \in C^{\infty}(\mathbb{R}) \;\middle|\; \int_{0}^{2}f(x)\,dx=0\right\}
+  \]
+\end{esercizio}
+\begin{proof}[svolgimento]
+  Come potreste immaginare, il ragionamento è analogo agli esercizi precedenti, infatti l'elemento nullo è presente e verifica l'identità 
+  \[
+  g(x)= 0 \implies \int_{0}^{2}0 \,dx \implies 0 \left|^{x=2}_{x=0}\right. = 0 
+  \]
+  Anche la somma
+  \[
+  \int_{0}^{2}g(x) + h(x)\,dx = \int_{0}^{2}g(x)\,dx+ \int_{0}^{2}h(x)\,dx = 0 + 0 = 0
+  \]
+  Pure il prodotto il prodotto
+  \[
+ \int_{0}^{2} \lambda g(x)\,dx  =  \lambda  \int_{0}^{2} g(x)\,dx  = \lambda \cdot 0  = 0 
+  \]
+  E con questo abbiamo verificato che $W$ è uno sottospazio vettoriale di $V$.
+\end{proof}
+
+\begin{teorema}{}{}
+  Sia $V$ uno spazio vettoriale su un campo $K$. Presi $U$ e $W$ sottospazi di $V$, allora $U \cap W$ è certamente uno sottospazio vettoriale di $V$, mentre $U \cup W$ non è garantito che sia un sottospazio di $V$. 
+\end{teorema}
+
+\begin{proof}
+  Dimostriamo intanto che $U\cap W$ è un sottospazio di $V$. Per farlo controlliamo se valida le condizioni necessarie, quindi controlliamo se esiste l'elemento nullo. Ma dato che $U$ e $W$ sono sottospazi allora vale che $\vec{0} \in U$, $\vec{0} \in W$ pertanto deve stare nell'intersezione di $\vec{0} \in U \cap W$. Ora controlliamo se è chiuso sulla somma, quindi presi 2 vettori $v_1, v_2 \in U\cap W$ sappiamo che 
+  \[
+  v_1, v_2 \in U \cap W \implies v_1, v_2 \in U \implies v_1+v_2 \in U
+  \]
+  \[
+  v_1, v_2 \in U \cap W \implies v_1, v_2 \in W \implies v_1+v_2 \in W
+  \]
+  Ma se valgono entrambe allora devono essere nell'intersezione, quindi $v_1+v_2\in U\cap W$.
+  
+  \newpage
+  Ora dobbiamo controllare se è chiuso anche rispetto al prodotto, preso un vettore in $v \in U\cap W$ e $\lambda \in K$, possiamo fare lo stesso ragionamento di prima
+  \[
+  v \in U \cap W \implies v \in U \implies \lambda \cdot v \in U
+  \]\[
+  v \in U \cap W \implies v \in W \implies \lambda \cdot v \in W
+  \]
+  Ma dato che valgono sempre queste affermazioni, allora $\lambda v \in U \cap W$, e pertanto è chiuso anche rispetto al prodotto e quindi $U \cap W $ è uno sottospazio vettoriale di $V$.
+
+
+  Per dimostrare che l'unione non è uno sottospazio vettoriale di $V$, facciamo un esempio pratico. Prendiamo $V = \mathbb{R}^2$, e i due sottospazi 
+  \[
+  U  = \{(x,y) \; |\; x = y \}
+  \]
+   \[
+  W  = \{(x,y) \; |\; x = -y \}
+  \]
+
+  Prendiamo i vettori $v_1 = (1, 1) \in U \subset U \cup W$ e $v_2 = (-1, 1) \in W \subset U \cup W$, proviamo a fare la somma tra i due vettori
+  \[
+  v_1 + v_2 = \begin{pmatrix}
+    1\\
+    1
+  \end{pmatrix}+\begin{pmatrix}
+    -1\\
+    1
+  \end{pmatrix} = 
+  \begin{pmatrix}
+    0\\
+    2
+  \end{pmatrix}
+  \notin U \cup W
+  \] 
+
+  Però questo vettore non soddisfa nessuna delle condizione dei due sottospazi $U$ e $W$. Quindi abbiamo visto un esempio che l'unione non è chiusa rispetto alla somma.
+\end{proof}
+ Se vogliamo essere più precisi, è solamente la condizione della somma che non è verificata, mentre quella dell'elemento nullo e del prodotto per uno scalare sono sempre verificati in una unione di due sottospazi vettoriali, ma dato che non è chiuso rispetto alla somma, basta per dire che non è uno spazio vettoriale, e quindi nemmeno uno sottospazio.  
+
+Dato che è solo la somma a dare problemi, definiamo un nuovo insieme 
+\begin{definizione}{}{}
+  Sia $V$ uno spazio vettoriale su un campo $K$, presi $U$ e $W$ sottospazi vettoriali di $V$, allora definiamo il seguente sottospazio vettoriale di $V$
+  \[
+  U+W = \{u + w \;|\; \forall u \in U\;\; \forall w \in W\}
+  \]
+\end{definizione}
+
+In primis controlliamo se è uno sottospazio vettoriale di $V$, per farlo facciamo i soliti controlli, quindi vediamo che esiste il vettore nullo dato che $\vec{0} \in U$ e $\vec{0} \in W$ e quindi possiamo trovare il vettore $\vec{0} + \vec{0} = \vec{0} \in U+W$. Poi controlliamo la somma, prendiamo quindi $v_1, v_2 \in U+W$ che saranno della forma $v_1 = u_1+w_1$ e $v_2 = u_2+w_2$, quindi la loro somma
+\[
+v_1 + v_2 = (u_1+w_1) + (u_2+w_2) = (u_1+u_2) + (w_1+w_2) 
+\]
+Che è della forma di un vettore di $U+W$ dato che $u_1+u_2 \in U$ e $w_1+w_2 \in W$. Controlliamo ora il prodotto per uno scalare, quindi preso $v \in U+W$ e $\lambda \in K$ abbiamo che
+\[
+\lambda \cdot v = \lambda \cdot (u+w) = (\lambda u) + (\lambda w)
+\]
+Che è della forma di un vettore di $U+W$ dato che $\lambda u \in U$ e $\lambda w\in W$. Quindi abbiamo scoperto che questo è effettivamente uno sottospazio vettoriale di $V$. Ora però vediamo qualche caratteristica di questo sottospazio. Ovvero che esso contiene l'insieme $U \cup W$, e lo notiamo da questo 
+\[
+U+W \supset \{u + \vec{0}\; |\; \forall u \in U \} = U
+\]
+\[
+U+W \supset \{\vec{0} + w\; |\; \forall w \in W\} = W
+\]
+
+
+Pertanto se $U+W$ contiene tutto l'insieme $U$ e tutto l'insieme $W$, allora contiene la loro unione, cioè
+\[
+U+W \supset U \cup W
+\]
+
+Il fatto più interessante è che $U+W$ è il più piccolo sottospazio di $V$, tra tutti quelli che esistono, che contiene $U\cup W$. Per dimostrarlo dobbiamo fare un ragionamento molto fine a cui bisogna stare attenti. Infatti per dimostrare che $U+W$ è il più piccolo sottospazio vettoriare che contiene $U$ e $W$, dobbiamo dire che preso un qualsiasi altro sottospazio vettoriale $L$ che contiene sia $U$ che $W$, dobbiamo dimostrare che qualsiasi sottospazio $L$ scegliamo, al suo interno conterrà sempre $U+W$. Se riusciamo a dimostrare questo, vuol dire che $U+W$ è il sottospazio "fondamentale", nel senso che è il più piccolo spazio che contiene la loro unione. Quindi partiamo proprio con l'idea di prendere un qualsiasi sottospazio vettoriale $L$ che contiene $U\cup W$, con questo abbiamo ovviamente che 
+\[
+\forall u \in U \implies u \in L 
+\]
+\[
+\forall w \in W \implies w \in L 
+\]
+Ma dato che  $L$ è uno sottospazio vettoriale per ipotesi, allora vuol dire che è chiuso sulla somma, e quindi ogni somma di due vettori in $L$ deve essere in $L$, quindi se prendiamo $u$ e $w$, tutte le loro possibili somme devono essere in $L$ quindi 
+\[
+\{u+w \;|\;\forall u \in U \;\;\forall w \in W \} \subseteq L
+\]
+$L$ chiaramente può essere più grande, ma affinche siano uno sottospazio vettoriale è necessario che sia chiuso rispetto alla somma, ma dato che $U \subset L$, $W \subset L$, allora anche tutte le loro somme devono essere in $L$. Con questo abbiamo dimostrato che $U+W$ è la "grandezza minima" di uno sottospazio vettoriale affinchè contenga $U\cup W$.
 
 
 \end{document}
