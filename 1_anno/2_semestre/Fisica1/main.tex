@@ -879,6 +879,425 @@ quindi il versore di $\vec{v}$ è
   \dfrac{-2}{3} \right)
 \]
 
+\newpage
+Ora che abbiamo iniziato a vedere i vettori possiamo iniziare a vedere un nuovo moto in 2 dimensioni, ma come vedremo lo possiamo semplificare molto, il moto in questione è quello \textbf{Parabolico}, ovvero un qualsiasi moto che segue una la forma di una parabola. Quello classico è quello di un proiettile, oppure di un pallone calciato con un certo angolo verso l'alto, vediamo un esempio.
+
+
+\begin{figure}[htbp]
+    \centering % <--- THIS IS THE COMMAND THAT CENTERS THE GRAPH
+\begin{tikzpicture}
+
+    \begin{axis}[
+        axis lines = center,
+        xlabel = {$x$},
+        ylabel = {$y$},
+        xmin = -0.5, xmax = 5,
+        ymin = -0.5, ymax = 5,
+        xtick =\empty,
+        ytick = \empty,
+        % Opzionale: aggiunge una griglia di sfondo
+        grid = none,
+        % Permette di disegnare fuori dai limiti se necessario
+        clip = false,
+        width=8cm, 
+        height=6cm 
+    ]
+    
+    % Disegna la traiettoria parabolica (es. y = 4x - x^2)
+    % Il dominio è impostato da 0 a 4 per mantenere y >= 0
+    \addplot [
+        domain=0:4, 
+        samples=100, 
+        color=blue,
+        thick
+    ]
+    {4*x - x^2};
+    
+    % Etichetta per l'origine O
+    \node[below left] at (axis cs:0,0) {$O$};
+    
+    % Vettore velocità iniziale v_0
+    % La derivata in x=0 è y'=4, quindi il vettore è diretto verso (1,4). 
+    % L'ho scalato a (0.75, 3) per renderlo proporzionato al grafico.
+    \draw[->, red, very thick, -stealth] (axis cs:0,0) -- (axis cs:0.50,2) node[left] {$\vec{v}_0$};
+
+    \end{axis}
+\end{tikzpicture}
+\end{figure}
+
+La cosa forte di questo sistema è che possiamo scomporre il vettore velocità in 2 componenti. Ovvero il vettore $\vec{v_0}$ lo possiamo scrivere rispetto ai vettori fondamentali come abbiamo visto prima nel seguente modo 
+\[
+\vec{v_0} = \begin{pmatrix}
+  v_{0x} \\
+  v_{0y} 
+\end{pmatrix} = \begin{pmatrix}
+  v_{0x} \\
+  0 
+\end{pmatrix}+\begin{pmatrix}
+  0 \\
+  v_{0y} 
+\end{pmatrix} = v_{0x}\hat{u_x} +v_{0y}\hat{u_y} 
+\]  
+Per trovare il valore di $v_{0x}$ e $v_{0y}$ li possiamo trovare usando la trigonometria ed usando le definizioni di seno e coseno (con $v$ indichiamo $||\vec{v}||$ e $\theta$ l'angolo che forma il vettore velocità con il semiasse positivo delle ascisse)
+
+\[
+v_{0x} = ||\vec{v}|| \cos(\theta) = v\cos(\theta)
+\]
+
+\[
+v_{0y} = ||\vec{v}|| \sin(\theta) = v\sin(\theta)
+\]
+Facendo abbiamo diviso il moto parabolico in due moti diversi: uno verticale ed uno orizzontale. Il moto orizzontale non è soggetto a nessuna forza o agente esterno pertanto sull'asse $\hat{x}$ compierà un modo uniforme (dato che c'è la velocità $v_{0x}$), pertanto possiamo scrivere la legge oraria del moto orizzontale come 
+\[
+x(t) = x_0 + v_{0x}t
+\]
+Mentre il moto verticale compierà un moto uniformemente accelerato dato che c'è l'accelerazione gravitazionale che punta verso il basso, ma per il resto non c'è nessun'altra forza che interagisce con il corpo, pertanto possiamo scrivere la legge oraria del moto sull'asse verticale come 
+\[
+y(t) = y_0 + v_{0y} t - \dfrac{1}{2}gt^2
+\]
+
+Usando queste due leggi orarie possiamo descrivere il moto parabolico che  a tutti gli effetti è un moto a due dimensioni, ma noi siamo furbi e usiamo due moti separati ad una dimensione ciascuno (che sappiamo usare).
+
+\begin{esercizio}{}{}
+  Sia un punto $P$ che compierà un moto parabolico ed al tempo $t_0 = 0s$ sarà nella posizione (0, 0), mentre il punto $Q$ al momento $t_0=0s$ è in posizione ($x_0, y_0$) con $x_0= 3m$ e $y_0 = 2m$. Al momento $t_0 = 0s$ il corpo $P$ viene sparato con velocità $v_0 = 8m/s$ con versore parallelo al segmento $\bar{PQ}$, mentre il punto $Q$ è soggetto solamente alla forza gravitazionale. Determinare se i due corpi si toccheranno oppure meno, se avviene l'impatto determinare il tempo $t^*$ in cui accade e in che posizione $(x^*, y^*)$. 
+\end{esercizio}
+
+\begin{proof}{svolgimento}
+  in primis facciamoci un disegno per capire meglio il problema
+
+  \begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        axis lines = center,
+        xlabel = {$x$ },
+        ylabel = {$y$ },
+        xmin = -0.5, xmax = 4.5,
+        ymin = -0.5, ymax = 3,
+        xtick = {0, 1, 2, 3, 4},
+        ytick = {0, 1, 2, 3},
+        grid = none,
+        clip = false,
+        axis equal image 
+    ]
+    
+    % Punto P (Origine, t=0)
+    \addplot[mark=*, color=black] coordinates {(0,0)};
+    \node[below left] at (axis cs:0,0) {$P$};
+    
+    % Punto Q (Bersaglio, t=0)
+    \addplot[mark=*, color=black] coordinates {(3,2)};
+    \node[above right] at (axis cs:3,2) {$Q\ (x_0,y_0)$};
+    
+    % Linea di mira ideale (senza gravità)
+    \draw[dashed, gray, thick] (axis cs:0,0) -- (axis cs:3,2);
+    
+    % Vettore velocità iniziale di P
+    \draw[->, red, very thick, -stealth] (axis cs:0,0) -- (axis cs:1.5,1) node[above left, text=red] {$\vec{v}_0$};
+
+    % Vettore accelerazione di gravità su Q
+    \draw[->, blue, thick, -stealth] (axis cs:3,2) -- (axis cs:3,1.2) node[right, text=blue] {$\vec{g}$};
+
+    % MOTO PARABOLICO DI P (Tratteggiato rosso)
+    % L'equazione della traiettoria è y = x*tan(\theta) - g*x^2 / (2*v0^2*cos^2(\theta))
+    % Con i dati forniti: y = (2/3)*x - 0.1107*x^2
+    \addplot [
+        domain=0:3, 
+        samples=100, 
+        color=red,
+        dashed,
+        thick
+    ]
+    {(2/3)*x - 0.1107*x^2};
+
+    % MOTO DI CADUTA DI Q (Tratteggiato blu)
+    % Q cade verticalmente da y=2 fino al punto di impatto a x=3
+    % Il punto di impatto è circa a y = 1.004 m
+    \draw[dashed, blue, thick] (axis cs:3,2) -- (axis cs:3,1.004);
+
+    % PUNTO DI IMPATTO
+    \addplot[mark=star, mark size=3pt, color=orange] coordinates {(3,1.004)};
+    
+% ANGOLO THETA
+    % L'angolo è arctan(2/3) ≈ 33.69 gradi. 
+    % Disegniamo l'arco usando una funzione parametrica per evitare deformazioni.
+    \addplot [
+        domain=0:33.69, 
+        samples=30, 
+        color=darkgray, 
+        thick
+    ] 
+    ({1*cos(x)}, {1*sin(x)});
+    
+    % Posizioniamo l'etichetta theta a metà dell'arco
+    \node[text=darkgray] at (1.24, 0.37) {$\theta$};
+    \end{axis}
+\end{tikzpicture}
+  \end{figure}
+    Quindi capendo meglio, abbiamo il corpo $P$ che compie un moto parabolico, quindi dobbiamo trovare le due leggie orarie che lo descrivano. Notiamo subito che parte dall'origine, quindi $x_{0p} = 0$ e $y_{0p} = 0$, mentre le due velocità le troviamo con $v_{0x} = v\cos(\theta)$ e  $v_{0y} = v\sin(\theta)$, quindi le leggi orarie di $P$ sono
+    \[
+    \begin{cases}
+      x_p(t) = x_{0p} + v_{0x} t \\
+      y_p(t) = y_{0p} + v_{0y} t - \dfrac{1}{2}gt^2
+    \end{cases} \implies
+    \begin{cases}
+      x_p(t) = v\cos(\theta) t \\
+      y_p(t) = v\sin(\theta)t - \dfrac{1}{2}gt^2
+    \end{cases} 
+    \]
+    L'angolo $\theta$ lo possiamo trovare con della semplice trigonometria, infatti il vettore $\vec{v_0}$ giace sul segmento $PQ$, che forma un triangolo rettangolo in $(x_0, 0)$, quindi l'angolo $\theta$ lo possiamo trovare con la definizione di tangente, infatti $\tan(\theta) = \frac{y_0}{x_0}$, che potremmo calcolare il valore effettivo, ma vedremo che non serve. 
+    Mentre il corpo $Q$ compie un moto di caduta libera senza velocità iniziale, quindi $v_{0} = 0m/s$, quindi le sue leggi orarie sono 
+    \[
+    \begin{cases}
+      x_q(t) = x_0 \\
+      y_q(t) = y_0 - \dfrac{1}{2}gt^2
+    \end{cases} 
+    \]
+
+    Ma affinchè i due corpi si tocchino deve essere che abbiamo la stessa posizione allo stesso tempo, quindi dobbiamo impostare un sistema con $x_p(t)=x_q(t)$ e $y_p(t)=y_q(t)$
+
+\[
+\begin{cases}
+ v\cos(\theta) t = x_0 \\
+  v\sin(\theta)t - \dfrac{1}{2}gt^2 = y_0 - \dfrac{1}{2}gt^2 
+\end{cases} \implies\begin{cases}
+ t = \dfrac{x_0}{v\cos(\theta)} \\
+  v\sin(\theta)t  = y_0
+\end{cases}
+\]\[
+\implies\begin{cases}
+ t = \dfrac{x_0}{v\cos(\theta)} \\[1.2em]
+  v\sin(\theta)\dfrac{x_0}{v\cos(\theta)} = y_0
+\end{cases}\implies\begin{cases}
+ t = \dfrac{x_0}{v\cos(\theta)} \\
+  \tan(\theta) x_0= y_0
+\end{cases}
+\]
+
+Ma usando la definizione geometrica che abbiamo dato per $\tan(\theta)$ e notiamo che abbiamo una identità, ciò vuol dire che i due corpi si incontrano (dato che la seconda equazione è verificata) ora per trovare il tempo di impatto possiamo usare la prima equazione
+
+\[
+t^* = \dfrac{x_0}{v\cos(\theta)} = \dfrac{3}{8 \cdot \cos(\arctan(2/3))} \approx 0.45s
+\]
+
+Ora dobbiamo trovare le coordinate del punto di incontro, la cordinata $x$ è molto semplice dato che il corpo $Q$ cade di moto di caduta libera, pertanto la sua coordinata può essere solamente $x_0$, e quindi $x^* = x_0 = 3m$. Mentre per la coordinata $y$ basta che inseriamo il tempo  che abbiamo appena trovato in una delle due leggi orarie, per comodità scegliamo quella del corpo $Q$ 
+
+\[
+y^*= y_q(t^*) = y_0 - \dfrac{1}{2}g(t^*)^2 = 2 - \dfrac{1}{2}\cdot 9.8 \cdot 0.45^2 \approx 1.006m
+\]
+
+
+  \end{proof}
+
+\begin{esercizio}{}{}
+  Sia un corpo che parte da un punto $A$ ed arriva al punto $B$. In questo tragitto compie uno spostamento di $d_1 = 1.35m$ e la legge della accelerazione è $a=-kv$ con $k=2.3s^{-1}$. Dopo il punto $B$ non c'è più il pavimento, e compie un moto di caduta libera e compie una gittata di $d_2=1.35m$ da una altezza $h=1.5m$. Determinare la velocità $v_a$ al punto $A$ affinchè  il corpo compia quel moto parabolico. 
+\end{esercizio}
+
+  \begin{proof}[svolgimento]
+    
+
+    Facciamoci subito un disegno 
+
+    \begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = center,
+            xlabel = {$x$},
+            ylabel = {$y$},
+            xmin = -0.5, xmax = 3.5,
+            ymin = -0.5, ymax = 2.5,
+            xtick = \empty, % Rimuove i numeri sull'asse x
+            ytick = \empty, % Rimuove i numeri sull'asse y
+            clip = false,
+            axis equal image 
+        ]
+        
+        % --- FASE 1: Da A a B (Moto sul pavimento) ---
+        
+        % Pavimento AB (senza etichetta testuale)
+        \draw[ultra thick] (0, 1.5) -- (1.35, 1.5);
+        % Riempimento per simulare la struttura del dislivello
+        \fill[lightgray!50] (0, 0) -- (0, 1.5) -- (1.35, 1.5) -- (1.35, 0) -- cycle;
+        \draw[thick] (0, 1.5) -- (0, 0); % Bordo sinistro
+        \draw[thick] (1.35, 1.5) -- (1.35, 0); % Bordo destro (precipizio)
+
+        % Corpo nel punto A (disegnato come una scatoletta, un piccolo rettangolo)
+        \draw[thick, fill=white] (0, 1.5) rectangle (0.2, 1.7);
+        % Etichetta per il punto A
+        \node[circle, fill=black, inner sep=0.5pt, label=above left:{$A$}] at (0, 1.5) {};
+        % Vettore velocità iniziale (parte dal centro della scatoletta)
+        \draw[->, red, very thick, -stealth] (0.1, 1.6) -- (0.7, 1.6) node[midway, above, text=red] {$\vec{v}_a$};
+
+        % Punto B (Fine del pavimento)
+        \draw[thick, fill=white] (1.15, 1.5) rectangle (1.35, 1.7);
+        \node[draw, circle, fill=black, inner sep=1pt, label=below left:{$B$}] at (1.35, 1.5) {};
+        \draw[->, red!80!black, very thick, -stealth] (1.25, 1.6) -- (1.95, 1.6) node[midway, above, text=red!80!black] {$\vec{v}_b$};
+
+        % Quota distanza d1
+        \draw[<->, >=stealth] (0, 2) -- (1.35, 2) node[midway, above] {$d_1$};
+        
+        % --- FASE 2: Da B a D (Moto Parabolico) ---
+
+        % Punto C (Base del dislivello)
+        \node[draw, circle, fill=black, inner sep=1pt, label=below left:{$C$}] at (1.35, 0) {};
+        
+        % Punto D (Punto di impatto)
+        \node[draw, circle, fill=black, inner sep=1pt, label=below right:{$D$}] at (2.7, 0) {};
+
+        % Linea del suolo (senza etichetta testuale)
+        \draw[ultra thick] (1.35, 0) -- (3.2, 0);
+
+        % Quota altezza h
+        \draw[<->, >=stealth] (1.5, 0) -- (1.5, 1.5) node[midway, right] {$h$};
+        
+        % Quota gittata d2
+        \draw[<->, >=stealth] (1.35, -0.4) -- (2.7, -0.4) node[midway, below] {$d_2$};
+
+        % Traiettoria parabolica (Tratteggiata blu)
+        \addplot [
+            domain=1.35:2.7, 
+            samples=100, 
+            color=blue,
+            dashed,
+            thick
+        ]
+        {1.5 - 0.823*(x-1.35)^2}; 
+
+   
+        % Segno dell'impatto in D
+        \addplot[mark=star, mark size=3pt, color=orange] coordinates {(2.7, 0)};
+
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+Cerchiamo di capire bene cosa ci chiede l'esercizio, infatti nel primo tratto abbiamo un moto molto strano, ovvero che lega la accelerazione in funzione della velocità, cosa che non abbiamo mai visto. Però è sempre una legge matematica, quindi in qualche modo se sappiamo la velocità $v_b$ nel punto $B$ in qualche modo potremmo sempre trovare la velocità nel punto $A$. Quindi lasciamo stare il moto nel tratto $AB$, e concentriamoci nel trovare va velocità $v_b$. Per farlo ci possiamo riscrivere le leggi orarie del moto parabolico, che in questo caso è molto più semplice dato che la velocità iniziale $v_b$ è esattamente perpendicolare al terreno, questo vuol dire che non ha alcuna componente vertivale, e che quindi $v_{bx} = v_b$ e $v_{by} = 0$. Poi se usiamo il punto $C$ come origine degli assi abbiamo che $x_0 = 0$ e $y_0 = h$ (si poteva usare qualsiasi altro punto del sistema, io preferisco il punto $C$ dato che semplifica i conti). Quindi le sue leggi orarie sono:
+
+\[
+\begin{cases}
+  x(t) = x_0 + v_{0x} t\\
+  y(t) = y_0 + v_{0y} t - \dfrac{1}{2}gt^2
+\end{cases} \implies
+\begin{cases}
+  x(t) =   v_{b} t\\
+  y(t) = h - \dfrac{1}{2}gt^2
+\end{cases} 
+\]
+
+Ora che abbiamo impostato le leggi orarie dobbiamo trovare $v_b$, per farlo possiamo usare il punto $D$, infatti il punto ha coordinate $(d_2, 0)$ (rimanendo sempre con $C$ come origine degli assi), e quindi possiamo sostituirlo nel sistema
+\[
+\begin{cases}
+  d_2 =   v_{b} t\\
+  0 = h - \dfrac{1}{2}gt^2
+\end{cases} \implies
+\begin{cases}
+      v_{b} = \dfrac{d_2}{t}\\[1.2em]
+  t =   \sqrt{\dfrac{2h}{g}}
+\end{cases}\implies
+v_{b} = d_2 \sqrt{\dfrac{g}{2h}} = 1.35 \cdot \sqrt{\dfrac{9.8}{2\cdot 1.5}}  \approx 2.44m/s
+\]
+
+Ora che abbiamo trovato la velocità al punto $B$ possiamo lasciare stare il moto parabolico, ma concentriamoci sul tratto $AB$. Ora noi sappiamo solamente lo spazio che compie ($d_1$), la velocità alla quale arriva ($v_b$) e la legge che governa il moto, che però possiamo ricordarci che $a(t) = \dot{v}(t)$, pertanto se lo sostituiamo nell'equazione del moto ci troviamo una equazione differenziale del primo ordine omogenea, che possiamo risolvere a variabili separabili. Però ci serve trovare una condizione iniziale, e per farlo spostiamo l'origine degli assi e mettiamo $A$ come origine degli assi, e da questo ne evince che $v(0)=v_a$.
+\begin{align*}
+a(t) = -kv(t) \implies \dfrac{dv}{dt} = -kv &\implies \dfrac{dv}{v} = -kdt \\
+&\implies \int \dfrac{dv}{v} = \int -kdt  \\
+&\implies \ln(v(t)) = -kt + c_1 \;\;\;\;\; &c_1 \in \mathbb{R} \\
+&\implies v(t) = e^{-kt+c_1} = ce^{-kt} \;\;\;\;\; &c \in \mathbb{R} 
+\end{align*}
+
+Ora per trovare il valore della costande di integrazione dobbiamo usare la condizione iniziale 
+\[
+v(t) = ce^{-kt} \xRightarrow{v(0) = v_a} v_a = ce^{-k\cdot 0} \implies c=v_a
+\]
+
+E quindi la legge della velocità esplicita è 
+
+\[
+v(t) = v_a e^{-kt}
+\]
+
+Ora possiamo risolvere il problema nel modo classico dato che abbiamo trovato la legge della velocità, per farlo troviamo la legge oraria integrando, ricordando che con il nuovo sistema di riferimento $x_0 = 0$
+\begin{align*}
+x(t) = x_0 + \int_{0}^{t}v(s)\,dx &=0+ \int_{0}^{t}v_a e^{-ks}\,dx = \left.\dfrac{-v_a}{k}e^{-ks} \right|^{s=t}_{s=0} \\
+&= \dfrac{-v_a}{k}e^{-kt} + \dfrac{v_a}{k}e^{-k\cdot 0}  = \dfrac{v_a}{k}\left(1-e^{-kt}\right)
+\end{align*}
+
+Ora noi possiamo applicare la legge oraria e della velocità nel punto $B$, e che quindi $v(t) = v_b$ e $x(t) = d_1$ e possiamo mettere a sistema
+\[
+\begin{cases}
+  v(t) = v_a e^{-kt} \\[0.5em]
+  x(t) =  \dfrac{v_a}{k}\left(1-e^{-kt}\right)
+\end{cases} \implies\begin{cases}
+  v_b = v_a e^{-kt} \\[0.5em]
+  d_1 =  \dfrac{v_a}{k}\left(1-e^{-kt}\right)
+\end{cases} \implies\begin{cases}
+  e^{-kt} = \dfrac{v_b}{v_a} \\[0.5em]
+  d_1 =  \dfrac{v_a}{k}\left(1-\dfrac{v_b}{v_a}\right)
+\end{cases}
+\]
+\[
+\implies\begin{cases}
+  e^{-kt} = \dfrac{v_b}{v_a} \\[0.5em]
+  d_1 =  \dfrac{v_a}{k}-\dfrac{v_b}{k}
+\end{cases}\implies
+  v_a =  d_1k + v_b= 1.35\cdot 2.3 + 2.44 \approx 5.55m/s
+\]
+
+  \end{proof}
+
+
+  Il metodo che abbiamo fatto era molto tecnico e complicato, ora però vediamo un modo molto più semplice ma poco intuitivo. Infatti noi sappiamo che 
+  \[
+  a= -kv
+  \]
+
+  Ora possiamo riscrivere l'accelerazione come 
+  \[
+  \dfrac{dv}{dt} = -kv  
+\]
+
+Ora possiamo riscrivere l'accelerazione come 
+\[
+\dfrac{dv}{dt} = \dfrac{dv}{dx} \cdot \dfrac{dx}{dt} = \dfrac{dv}{dx} \cdot v 
+\]
+
+Questo lo possiamo fare dato che è la regola della catena infatti se scrivessimo la velocità in funzione dello spazio avremmo 
+\[
+\dfrac{d}{dt} (v(x(t))) = \dfrac{d v(x(t))}{dx} \cdot \dfrac{dx(t)}{dt}
+\]
+
+Questo lo possiamo sempre fare, ma per ricordarlo possiamo pensare di aggiungere e togliere un $dx$. Facendo questo possiamo semplificare notevolemente l'espressione
+
+\[
+\dfrac{dv}{dx} \cdot v = -k v \implies \dfrac{dv}{dx} = -k \implies dv = -k dx 
+\]
+Ora possiamo integrare nel tratto $AB$, e quindi lo spazio passa da 0 a $d_1$, mentre la velocità passa da $v_a$ a $v_b$
+\begin{align*}
+\int_{v_a}^{v_b}\,dv = \int_{0}^{d_1}-k \,dx &\implies \left.v \right|^{v = v_b}_{v=v_a} = \left.-kx \right|^{x = d_1}_{x=0} \\
+  &\implies v_b-v_a = -kd_1  \implies v_a = v_b +kd_1 
+\end{align*}
+
+Come vedete abbiamo lo stesso risultato è lo stesso però questo era molto più veloce con i conti e non abbiamo dovuto risolvere una equazione differenziale. Questa tecnica di usare i differenziali come variabili vedremo che in fisica si usa molto spesso e lo rivedremo fare e rifare molteplici volte, intanto questo è il primo approccio.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 \begin{definizione}{Prodotto Scalare }{}
   Siano $\vec{v_1}$ e $\vec{v_2}$ due vettori bidimensionali o tridimensionali, definiamo il \textbf{prodotto scalare}, che indichiamo con il simbolo $\cdot$, la seguente espressione
   \[
@@ -929,7 +1348,11 @@ In più grazie a questa definizione possiamo associargli un significato ben prec
             
         \end{axis}
     \end{tikzpicture}
+
+
 \end{figure}
+
+
 
 Ora possiamo calcolare la lunghezza del vettore differenza in due modi: il primo è usando la formula del modulo dato che sappiamo i suoi componenti
 \begin{equation}\label{eq:prod1}  
@@ -1641,5 +2064,211 @@ Ma questa definizione del modulo di $\vec{v}$ è proprio quella che abbiamo dato
 Da notare che per la regola della mano destra, se il nostro punto gira in senso antiorario allora il vettore $\vec{\omega}$ è parallelo al semiasse positivo delle $\hat{z}$. Mentre se il corpo ruota in senso antiorario, e quindi la velocità tangenziale prosegue in senso opposto, allora la velocità angolare punterà verso il basso per consistenza della regola della mano destra.
 
 
-\section{Meccanica: Dinamica}
+Da questa notizione che abbiamo trovato possiamo estenderla per l'accelerazione tangenziale, infatti se fino ad ora l'accelerazione tangenziale era uno scalare (proprio come $\omega(t)$) possiamo derivarlo dall'espressione che abbiamo trovato per $\vec{\omega}$, per farlo prendiamo la definizione di velocità tangenziale e deriviamo ambo i membri
+\[
+\vec{v} = \vec{\omega} \wedge \vec{R} \xRightarrow{\frac{d}{dt}} \frac{d}{dt}(\vec{v}) = \frac{d}{dt}(\vec{\omega} \wedge \vec{R}) \implies \vec{a} =  \frac{d}{t}(\vec{\omega} \wedge \vec{R}) 
+\]
+Ora però dobbiamo vedere come si fa la derivata di un prodotto vettoriale, la dimostrazione è omessa, ma si dimostra che ha lo stesso comportamento del prodotto classico
+\[
+\frac{d}{dt}(\vec{u} \wedge \vec{w}) =  \frac{d\vec{u}}{dt}  \wedge \vec{w} +  \vec{u}\wedge \frac{d\vec{w}}{dt} 
+\]
+Detto questo possiamo semplificare l'espressione di prima 
+\begin{align*}
+\vec{a} &= \frac{d}{dt}(\vec{\omega} \wedge \vec{R})  \\
+&= \frac{d}{dt}(\vec{\omega})  \wedge \vec{R} + \vec{\omega} \wedge\frac{d}{dt}( \vec{R}) 
+\end{align*}
+Ora per la definizione che abbiamo dato, diciamo che la derivata di $\vec{\omega}$ è proprio $\vec{\alpha}$, mentre la derivata di $\vec{R}$ altro non è che la velocità tangenziale, che però sappiamo descrivere come $\vec{v} = \vec{\omega} \wedge \vec{R}$, quindi possiamo riscrivere come 
+\begin{align*}
+\vec{a} &=  \vec{\alpha}  \wedge \vec{R} + \vec{\omega} \wedge\vec{v} \\
+&= \vec{\alpha}  \wedge \vec{R} + \vec{\omega} \wedge(\vec{\omega} \wedge \vec{R}) 
+\end{align*}
+
+Che  come notiamo è molto simile (sennon identica) alla versione non vettoriale, infatti se seguissimo la regola della mano destra noteremo che $ \vec{\alpha}  \wedge \vec{R}$ è la porzione tangenziale (dato che $\vec{\alpha}$ è sempre sull'asse $\hat{z}$ prorpio come $\vec{\omega}$) e se calcoliamo il modulo e ricordiamo che sono ortogonali e che quindi l'angolo che formano è $\theta = \pi/2$
+\[
+||\vec{\alpha} \wedge \vec{R}|| = ||\vec{\alpha} ||||\vec{R}|| \sin(\theta) = \alpha \cdot R
+\]
+Che se usiamo la definizione di $\alpha = \ddot{\theta}$ è la stessa formula che abbiamo trovato con la prima notazione. Mentre la seconda parte seguendo la regola della mano destra viene fuori che è antiparallelo al vettore $\vec{R}$, questo ci fa dedurre che si tratta della porzione centripeta, ed infatti se calcoliamo il modulo e ricordiamo che i vettori sono tutti ortogonali tra loro abbiamo che
+\begin{align*}
+||\vec{\omega} \wedge(\vec{\omega} \wedge \vec{R}) || &= || \vec{\omega}  || \mathunderline{red}{||\vec{\omega} \wedge \vec{R} ||} \sin(\pi/2)\\
+&=\omega \mathunderline{red}{||\vec{\omega}  |||| \vec{R} || \sin(\pi/2)} \cdot 1 \\
+&= \omega \cdot \omega \cdot R = \omega^2 R
+\end{align*}
+Se usiamo la definizione di $\omega = \dot{\theta}$ vediamo che abbiamo la stessa formula che avevamo trovato con la definizione di accelerazione centripeta. Quindi abbiamo visto che possiamo possiamo "creare" dei vettori $\vec{\omega}$ e $\vec{\alpha}$ paralleli all'asse $\hat{z}$ possiamo riscrivere anche la velocità tangenziale e la accelerazione tangenziale come prodotto vettoriale, ed abbiamo anche notato che è consistente con le formule trovate precedentemente.  
+
+
+\newpage
+
+Ora possiamo usare il moto circolare per spiegare il moto armonico, infatti se prendiamo il vettore posizione in un moto circolare uniforme e lo scriviamo in coordinate polari abbiamo che 
+\[
+\begin{cases}
+  x(t) = R\cos(\theta_0 + \omega t) \\
+  y(t) = R\sin(\theta_0 + \omega t)
+\end{cases}
+\]
+
+Ora guardiamo solamente la coordinata x, in sosteanza noi sitiamo guardando solo la proiezione sull'asse $\hat{x}$ del punto che ruota nella circonferenza
+\begin{figure}[htbp]
+    \centering
+    % scale=0.85 riduce leggermente la figura per farla stare nei margini della pagina
+    \begin{tikzpicture}[scale=0.85, transform shape]
+        
+        % ==========================================
+        % GRAFICO 1: t_1 (Angolo 45 gradi)
+        % ==========================================
+        \begin{scope}[shift={(0,0)}]
+            % Assi
+            \draw[->, gray] (-2.5,0) -- (2.5,0) node[right, text=black] {$x$};
+            \draw[->, gray] (0,-2.5) -- (0,2.5) node[above, text=black] {$y$};
+            
+            % Circonferenza di raggio R=2
+            \draw[thick] (0,0) circle (2);
+            \node[below left] at (0,0) {$O$};
+            
+            % Punto P sulla circonferenza
+            \fill[black] (45:2) circle (2pt) node[above right] {$P_1$};
+            \draw[->, thick] (0,0) -- (45:2) node[midway, above left] {$R$};
+            
+            % Angolo theta
+            \draw[->] (0.6,0) arc (0:45:0.6) node[midway, right] {$\theta_1$};
+            
+            % Proiezione Q sull'asse x
+            \draw[dashed, blue] (45:2) -- ({2*cos(45)},0);
+            \fill[blue] ({2*cos(45)},0) circle (2.5pt) node[below=2pt, text=black] {$x(t_1)$};
+            
+            % Vettore spostamento armonico (evidenziato in blu sull'asse x)
+            \draw[->, blue, ultra thick] (0,0) -- ({2*cos(45)},0);
+            
+            
+            % Didascalia
+            \node at (0, -3.5) {\textbf{Istante $t_1$}};
+        \end{scope}
+
+        % ==========================================
+        % GRAFICO 2: t_2 (Angolo 135 gradi)
+        % ==========================================
+        \begin{scope}[shift={(6,0)}]
+            % Assi
+            \draw[->, gray] (-2.5,0) -- (2.5,0) node[right, text=black] {$x$};
+            \draw[->, gray] (0,-2.5) -- (0,2.5) node[above, text=black] {$y$};
+            
+            % Circonferenza
+            \draw[thick] (0,0) circle (2);
+            \node[below right] at (0,0) {$O$};
+            
+            % Punto P
+            \fill[black] (135:2) circle (2pt) node[above left] {$P_2$};
+            \draw[->, thick] (0,0) -- (135:2);
+            
+            % Angolo theta
+            \draw[->] (0.6,0) arc (0:135:0.6) node[midway, above right] {$\theta_2$};
+            
+            % Proiezione Q sull'asse x
+            \draw[dashed, blue] (135:2) -- ({2*cos(135)},0);
+            \fill[blue] ({2*cos(135)},0) circle (2.5pt) node[below=2pt, text=black] {$x(t_2)$};
+            
+            % Vettore spostamento armonico
+            \draw[->, blue, ultra thick] (0,0) -- ({2*cos(135)},0);
+            
+            
+            % Didascalia
+            \node at (0, -3.5) {\textbf{Istante $t_2$}};
+        \end{scope}
+
+        % ==========================================
+        % GRAFICO 3: t_3 (Angolo 315 gradi)
+        % ==========================================
+        \begin{scope}[shift={(12,0)}]
+            % Assi
+            \draw[->, gray] (-2.5,0) -- (2.5,0) node[right, text=black] {$x$};
+            \draw[->, gray] (0,-2.5) -- (0,2.5) node[above, text=black] {$y$};
+            
+            % Circonferenza
+            \draw[thick] (0,0) circle (2);
+            \node[above left] at (0,0) {$O$};
+            
+            % Punto P
+            \fill[black] (315:2) circle (2pt) node[below right] {$P_3$};
+            \draw[->, thick] (0,0) -- (315:2);
+            
+            % Angolo theta (mostriamo l'angolo intero o quello negativo)
+            \draw[->] (0.6,0) arc (0:315:0.6) node[midway, left] {$\theta_3$};
+            
+            % Proiezione Q sull'asse x
+            \draw[dashed, blue] (315:2) -- ({2*cos(315)},0);
+            \fill[blue] ({2*cos(315)},0) circle (2.5pt) node[above=2pt, text=black] {$x(t_3)$};
+            
+            % Vettore spostamento armonico
+            \draw[->, blue, ultra thick] (0,0) -- ({2*cos(315)},0);
+            
+            % Velocità angolare 
+            
+            % Didascalia
+            \node at (0, -3.5) {\textbf{Istante $t_3$}};
+        \end{scope}
+
+    \end{tikzpicture}
+\end{figure}
+
+Quindi un moto armonico è un qualsiasi moto unidimensionale che ha una legge oraria della forma 
+\[
+x(t) = R\cos(\theta_0 + \omega t)
+\]
+
+Dove $R$ è detta \textbf{ampiezza} che regola quanto è "alta" la sinusoide (dopo vediamo bene con il grafico), mentre $\theta_0$ è detta \textbf{fase} ovvero l' angolo al momento iniziale, mentre $\omega$ è detta \textbf{pulsazione}, e ci torna molto comoda dato che ci permette di calcolare il \textbf{periodo}, ovvero il tempo che ci impiega il nostro corpo a fare una rotazione completa, e la formula che li lega è 
+\[
+T = \dfrac{2\pi}{\omega}
+\]
+
+Dove $T$ è il periodo. La legge oraria la possiamo anche disegnare sul piano cartesiano, così capiamo anche il significato geometrico dei singoli elementi.
+
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = {$t$},
+            ylabel = {$x(t)$},
+            xmin = -0.5, xmax = 7.5,
+            ymin = -2.5, ymax = 3.5,
+            xtick = \empty,
+            ytick = \empty,
+            clip = false,
+            width=12cm, height=7cm
+        ]
+        
+        % Funzione x(t) = R*cos(\omega t + \theta_0)
+        % (Impostata con una fase tale che x(0) sia a metà ampiezza per chiarezza visiva)
+        \addplot [
+            domain=-0.5:7.5, 
+            samples=150, 
+            color=blue,
+            very thick
+        ]
+        {2*cos(deg(pi/2*x - pi/3))}; 
+        
+        % R (Ampiezza) - posizionato in corrispondenza del primo picco
+        \draw[<->, >=stealth, red, thick] (0.666, 0) -- (0.666, 2) node[midway, right] {$R$};
+        \draw[dashed, red, thin] (-0.5, 2) -- (7.5, 2);
+        \draw[dashed, red, thin] (-0.5, -2) -- (7.5, -2);
+        
+        \draw[<->, >=stealth, red, thick] (2.666, 0) -- (2.666, -2) node[midway, right] {$R$};
+
+
+        % T (Periodo) - misurato tra due creste successive
+        \draw[<->, >=stealth, darkgray, thick] (2.666, -2.5) -- (6.666, -2.5) node[midway, below] {$T$};
+        \draw[dashed, darkgray, thin] (2.666, -2) -- (2.666, -2.8);
+        \draw[dashed, darkgray, thin] (6.666, -2) -- (6.666, -2.8);
+        
+        % Rcos(\theta_0) sull'asse y al tempo t=0
+        \fill[green!60!black] (0, 1) circle (2pt) node[left, text=green!60!black] {$(0,R\cos\theta_0)$};
+        
+        % Origine
+        \fill[black] (0,0) circle (1.5pt) node[below left] {$O$};
+
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+
 \end{document}
