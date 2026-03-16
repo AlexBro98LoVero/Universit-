@@ -1515,5 +1515,251 @@ Ma dato che  $L$ è uno sottospazio vettoriale per ipotesi, allora vuol dire che
 \]
 $L$ chiaramente può essere più grande, ma affinche siano uno sottospazio vettoriale è necessario che sia chiuso rispetto alla somma, ma dato che $U \subset L$, $W \subset L$, allora anche tutte le loro somme devono essere in $L$. Con questo abbiamo dimostrato che $U+W$ è la "grandezza minima" di uno sottospazio vettoriale affinchè contenga $U\cup W$.
 
+\begin{definizione}{}{}
+  Sia $V$ spazio vettoriale su un campo $K$. Presi una lista di vettori $S = \{v_1, v_2, ..., v_n\}$ dove $v_i \in V$, allora indichiamo con $\mathcal{L}(S)$ il più piccolo sottospazio vettoriale generato da $S$, e si trova con 
+  \[
+  \mathcal{L}(S) = \left\{\sum_{i=1}^{n} \lambda_i v_i \;| \;\lambda_i \in K\; v_i \in S\right\}
+  \]
+\end{definizione}
 
-\end{document}
+Dato che $\mathcal{L}(S)$ è il più piccolo insieme generato dai vettori $S$, deve valere che $\mathcal{L}(S) \subseteq V$, il motivo per cui $\mathcal{L}(S)$ si trova come combinazione lineare dei vettori $S$ è uguale al motivo per cui abbiamo dimostrato che $U+W$ è il più piccolo sottoninsieme. Ovvero affinchè $\mathcal{L}(S)$ sia un sottospazio deve essere chiuso rispetto la somma, e per questo ogni sua somma dei vettori deve essere dentro $\mathcal{L}(S)$, ma dato che per definizione $\mathcal{L}(S)$ deve contenere $S$, allora bisogna che una qualsiasi combinazione lineare loro deve essere in $\mathcal{L}(S)$. Per questo motivo $\mathcal{L}(S)$ non è altro che la combinazione Lineare dei vettori $S$, perchè così è chiuso rispetto alla somma, ed invece è sempre chiuso rispetto al prodotto e è presente l'elemento nullo, proprio come il caso $U+W$.
+\newpage
+\begin{definizione}{Sistema Generatore}{}
+  Sia $V$ spazio vettoriale su un campo $K$. Presi una lista di vettori $S = \{v_1, v_2, ..., v_n\}$ dove $v_i \in V$, allora diciamo che \textbf{$S$ è un sistema generatore di $V$} se vale 
+  \[
+  \mathcal{L}(S) = V
+  \]
+\end{definizione}
+
+Qua cominiciamo a vedere un punto focale del corso, ovvero se troviamo dei vettori la cui combinazione lineare ci genera tutto il campo. Questo concetto di per sè è importantissimo, dato che possiamo usare dei vettori dati $S$ per descrivere tutti gli altri vettori e quindi vedremo che potremo lavorare su questi vettori generatori, dato che loro possono "creare" tutto il campo. 
+
+Vediamo un esempio: Prendiamo $V=\mathbb{R}^2$ e prendiamo $s_1 = (1, 1)$ e $s_2 = (-1, 2)$, vediamo se $S=\{s_1, s_2\}$ è un sistema generatore di $V$. Affinche $S$ sia un sistema generatore bisgona che la loro combinazione lineare è neccesario che ogni vettore di $V$ si possa scrivere come combinazione lineare di $s_1$ e $s_2$, quindi proviamo a vedere, prendiamo $\lambda_1,\lambda_2 \in \mathbb{R}$
+
+\[
+\forall v \in V \; : \;\; v = \lambda_1 s_1 + \lambda_2 s_2 = \begin{pmatrix}
+  \lambda_1 \\
+  \lambda_1
+\end{pmatrix} +  \begin{pmatrix}
+  -\lambda_2 \\
+  2\lambda_2 
+\end{pmatrix} =  \begin{pmatrix}
+  \lambda_1-\lambda_2 \\
+  \lambda_1+2\lambda_2 
+\end{pmatrix}
+\]
+
+
+Quindi proviamo a vedere se preso un qualsiasi vettore $v = (a,b)$ con $a,b \in \mathbb{R}$ possiamo generarlo con la combinazione lineare
+
+\[
+v = \begin{pmatrix}
+  a \\
+  b
+\end{pmatrix} = \begin{pmatrix}
+  \lambda_1-\lambda_2 \\
+  \lambda_1+2\lambda_2 
+\end{pmatrix} \implies \begin{cases}
+  a = \lambda_1-\lambda_2 \\
+  b = \lambda_1+2\lambda_2 
+\end{cases}
+\]
+
+Ora molta attenzione, noi dobbiamo controllare se $\forall a,b$ esistono dei valori di $\lambda_1, \lambda_2$ che rendono valido il sistema, quindi $a,b$ sono parametri, mentre $\lambda_1, \lambda_2$ sono le incognite.
+\[
+ \begin{cases}
+  a = \lambda_1-\lambda_2 \\
+  b = \lambda_1+2\lambda_2 
+\end{cases} \implies\begin{cases}
+  \lambda_1  = \lambda_2+a\\
+  b-a = 2\lambda_2 + \lambda_2
+\end{cases} \implies \begin{cases}
+  \lambda_1  = \frac{b+2a}{3}\\
+\lambda_2 = \frac{b-a}{3}
+\end{cases}
+\]
+
+Quindi con questo notiamo che presi un qualsiasi vettore $v=(a,b)$ noi possiamo sempre trovare un $\lambda_1, \lambda_2$ che permettono di generarlo. Ora vediamo un altro esempio. 
+
+Preso $V = \mathbb{R}^2$ e presi $s_1 = (1,2)$, $s_2 = (2, 4)$, $s_3 = (0, 1)$, determinare se $S = \{s_1,s_2,s_3\}$ sono un sistem generatore di $V$. Quindi come prima deve essere che 
+\[
+\forall v \in V \; : \;\; v = \lambda_1 s_1 + \lambda_2 s_2 + \lambda_3 s_3  =  \begin{pmatrix}
+  \lambda_1+2\lambda_2 + 0 \lambda_3\\
+  2\lambda_1+4\lambda_2 + 1 \lambda_3
+\end{pmatrix}
+\]
+
+Quindi preso un qualsiasi vettore $v =(a,b)$ dobbiamo controllare se esistono soluzioni al seguente sistema
+\[
+\begin{cases}
+  a = \lambda_1+2\lambda_2  \\
+  b = 2\lambda_1+4\lambda_2 + \lambda_3
+\end{cases}\implies
+\begin{cases}
+  a = \lambda_1+\lambda_2  \\
+  b =2a + \lambda_3
+\end{cases} \implies
+\begin{cases}
+  \lambda_1 = a-\lambda_2  \\
+  \lambda_3 =b-2a  
+\end{cases} 
+\]
+
+Con questo esempio notiamo che abbiamo infinite soluzione $\forall a, b$ dato che abbiamo 2 equazioni con 3 incognite, ma nonostante ciò è uno spazio generatore perchè presi $a,b$ allora noi possiamo sempre trovare $\lambda_1, \lambda_2, \lambda_3$ che rendono valido il sistema.
+
+\begin{teorema}{}{}
+  Sia $V$ uno spazio vettoriale su un campo $K$, siano $v_1, v_2, v_3, ..., v_n \in V$ linearmente indipendenti, allora nessun $v_i = \vec{0}$.
+\end{teorema}
+
+\begin{proof}
+  Se un $v_i$ fosse il vettore nullo, allora potremmo riscrivere una loro combinazione lineare in molteplici modi, ad esempio
+  \[
+  a_1v_1 + a_2v_2 + ... + 1 v_i + ... + a_n v_a = \vec{0}
+  \]
+  (al posto di 1 si poteva mettere qualsiasi altra costante) Ma allora non tutti i coefficienti sono nulli e per questo sono linearmente dipendenti.
+\end{proof}
+
+\begin{teorema}{}{}
+  Sia $V$ uno spazio vettoriale su un campo $K$, presi $v_1, v_2, ..., v_n\in V$ linearmente indipendenti e preso $\{w_1, w_2 ..., w_m\}$ un sistema generatore di $V$, allora $n\leq m$. 
+\end{teorema}
+\begin{proof}
+  Dato che $v_1\in V$ e $\{w_i\}$ è un sistema generatore di $V$ allora possiamo riscrivere $v_1$ come 
+  \[
+  v_1 = \lambda_1 w_1 + \lambda_2 w_2 + ... + \lambda_m w_m 
+  \] 
+  Con $\lambda_i\in K$. Dato che $v_1 \ne \vec{0}$ come visto nel teorema precedente, è necessario che almeno un $\lambda_i \ne 0$ (che per semplicità scegliamo $\lambda_1$), allora possiamo isolare $w_1$
+  \[
+  w_1 =\dfrac{1}{\lambda_1} v_1 - \dfrac{\lambda_2}{\lambda_1}w_2 + ... - \dfrac{\lambda_m}{\lambda_1}w_m 
+  \]
+  Quindi ora se volessimo scrivere un qualsiasi vettore $u \in V$ allora possiamo fare 
+  \begin{align*}
+  u &= a_1w_1 + a_2w_2 + ... + a_mw_m \\
+  &= a_1\left(\dfrac{1}{\lambda_1} v_1 - \dfrac{\lambda_2}{\lambda_1}w_2 + ... - \dfrac{\lambda_m}{\lambda_1}w_m \right) + a_2w_2 + ... + a_mw_m  \\
+  &= \dfrac{a_1}{\lambda_1} v_1 + \left(a_1-\dfrac{\lambda_2}{\lambda_1}\right)w_2 + ... +\left(a_m-\dfrac{\lambda_m}{\lambda_1}\right)w_m 
+  \end{align*}
+  Ma dato che sono tutti coefficienti, allora vuol dire che qualsiasi vettore $u$ lo possiamo scrivere come combinazione lineare dei vettori $\{v_1, w_2, w_3, ..., w_m\}$ pertanto questo è un sistema generatore di $V$. 
+
+  Ora prendiamo il vettore $v_2$ e dato che è in $V$ allora possiamo riscriverlo come combinazione lineare del secondo sistema
+  \[
+  v_2 = \lambda_{11} v_1 +  \lambda_{22} w_2 +  \lambda_{33} w_3 + ... + \lambda_{mm} w_m  
+  \]
+  Come prima sappiamo che $v_2 \ne \vec{0}$ e che quindi almeno un $\lambda_{ii} \ne 0$, anzì per questo possiamo dire qualcosa in più. Infatti se prendessimo tutti i $\lambda_{ii}=0$ per $i> 1$ avremmo che 
+\begin{align*}
+  v_2 = \lambda_{11} v_1 +  0 w_2 + 0 w_3 + ... + 0 w_m   = \lambda_{11} v_1
+\end{align*}
+Ma questo vorrebbe dire che $v_2$ e $v_1$ sono linearmente dipendenti, cosa impossibile per ipotesi del teormea, e allora è necessario che almeno un $\lambda_{ii}$ con $i>1$ deve essere diverso da zero (per comodità scegliamo $\lambda_{22}\ne 0$). Ora quindi possiamo isolare $w_2$
+ \[
+  w_2 =\dfrac{1}{\lambda_{22}} v_2 - \dfrac{\lambda_{11}}{\lambda_{22}}v_2 +\dfrac{\lambda_{33}}{\lambda_{22}}w_3 +  ... - \dfrac{\lambda_{mm}}{\lambda_{22}}w_{m} 
+  \]
+  Quindi per il ragionamento analogo a quello scorso abbiamo che possiamo riscrivere un qualsiasi vettore $u\in V$ come combinazione lineare dei vettori $\{v_1,v_2,w_3, ..., w_m\}$ e pertanto quest'ulitmo è uno spazio generatore di $V$. Questo ragionamento lo possiamo iterare per tutti i vettori $v_{i}$, però perchè funziona è necessario che $n\leq m$, perchè se fosse il contrario $n > m$ e che quindi abbiao più vettori $v_i$ che vettori $w_i$, allora potremmo cambiare i tutti i vettori $w_i$ con i rispettivi $v_i$, avremmo allora che anche $\{v_1, v_2, ..., v_m\}$ è un sistema di generatori e quindi possiamo scrivere il vettore $v_{m+1}$ come combinazione lineare di questo nuovo sistema. 
+  \[
+  v_{m+1} = a_1v_1 +a_2+v_2+ ... + a_mv_m
+  \]
+  Ma questo imporrebbe che $v_{m+1}$ è linearmente dipendente dai vettori $v_i$, cosa paraddosale dato che per ipotesi $v_i$ sono linearmente indipendenti, per questo vale $n \leq m$. 
+\end{proof}
+
+\begin{teorema}{}{}
+  Sia un campo $K$, allora presi $v_1, v_2, ..., v_l \in K^n$ allora se $l>n$ i vettori sono linearmente dipendenti. 
+\end{teorema}
+Prima di partire con la dimostrazione mi serve spiegare un concetto che ne faremo la dimostrazione tra poco ma per ora dobbiamo fidarci. Ovvero che se $K^n$ è uno spazio vettoriale, la quantità di vettori che ci servono per generare lo spazio vettoriale è esattamente $n$. Vediamo un esempio ma come dicevamo la dimostrazione formale la faremo tra qualche teorema, prendiamo $\mathbb{R}^2$ allora un sistema di generatori è $v_1=(1,0)$ e $v_2=(0,1)$, mentre per $\mathbb{R}^3$ possiamo usare $v_1=(1,0,0)$, $v_2=(0,1,0)$ e $v_3=(0,0,1)$.
+\begin{proof}
+  Questo termena non è altro che la negazione del teorema precedente, se prendiamo il $\{k_1, k_2, ..., k_n\}$ un sistema generatore di $K^n$ allora dal teorema precedente possiamo dire che 
+  \[
+  v_1, v_2, ..., v_l \text{ linearmente ind.} \land \{k_1, k_2, ..., k_n\} \text{ sistema gen. di } K^n \implies l \leq n
+  \]
+  Ora possiamo usare la negazione dell'implicazione
+  \[
+  \overline{l \leq n} \implies \overline{v_1, v_2, ..., v_l \text{ linearmente ind.} \land \{k_1, k_2, ..., k_n\} \text{ sistema gen. di } K^n }
+  \]
+  Semplificando e usando i teorema della logica binaria
+  \[
+  l  > n \implies \overline{v_1, v_2, ..., v_l \text{ linearmente ind.}} \lor \overline{\{k_1, k_2, ..., k_n\} \text{ sistema gen. di } K^n }
+  \]
+  Notiamo che è impossibile che $\{k_1, k_2, ..., k_n\}$ che non sia un sistema di $K^n$, quindi vale 
+  \[
+  l  > n \implies v_1, v_2, ..., v_l \text{ linearmente dip.} \lor \overline{Vero}
+  \]
+  \[
+  l  > n \implies v_1, v_2, ..., v_l \text{ linearmente dip.}
+  \]
+\end{proof}
+\begin{definizione}{Base di uno spazio}{}
+  Sia $V$ uno spazio vettoriale su un campo $K$, preso $S = \{v_1, v_2, ..., v_n$\}  con $v_i \in V$, diciamo che $S$ è una \textbf{base} di $V$ se valgono 
+  \begin{center}
+    
+  \begin{enumerate}
+    \centering
+    \item $S$ è un sistema generatore di $V$
+    \item $v_1, v_2, ..., v_n$ sono linearmente indipendenti
+  \end{enumerate} 
+\end{center}
+  \end{definizione}
+
+  Quindi tornando all'esempio nelle pagine scorse, avevamo scoperto che $\{(1, 1), (-1, 2)\}$ e $\{(1,2),(2, 4), (0, 1)\}$ sono entrambi sistemi generatori di $\mathbb{R}^2$. Però avevamo notato che il secondo insieme avevamo infinite soluzioni e sembrava che ci fossero più vettori di quanti ce ne servissero veramente. Questo accadeva perchè i 3 vettori erano linearmente dipendenti, e che quindi non erano una base, mentre il primo insieme era composto da due vettori linearmente indipendenti e quindi possiamo dire che è una base.
+  
+  \begin{teorema}{}{}
+    Sia $V$ uno spazio vettoriale sul campo $K$, se $\{v_1, v_2, ..., v_n\}$ è una base di $V$ e anche $\{u_1, u_2, ..., u_m\}$ è una base di $V$ allora $n = m$.
+  \end{teorema}
+  \begin{proof}
+    Dato che $\{v_1, v_2, ..., v_n\}$ è una base, allora è anche un sistema generativo di $V$, poi dato che $\{u_1, u_2, ..., u_m\}$ è una base di $V$ allora $u_1, u_2, ..., u_m$ sono linearmente indipendenti. Da questo usando il teorema di prima sappiamo che 
+    \[
+    m \leq n
+    \]
+    Allo stesso punto noi sappiamo che  $v_i$ sono linearmente indipendenti, e che $\{u_1, u_2, ..., u_m\}$ è una sistema generatore di $V$, pertanto per lo stesso teorema sappiamo 
+    \[
+    n \leq m
+    \]
+    Affinchè entrambe le proposizioni siano vere abbiamo che $n=m$.
+  \end{proof}
+
+  Quindi abbiamo scoperto che la quantità di vettori di una base è sempre la stessa, pertanto possiamo definire una nuova grandezza chiamata \textbf{dimensione}
+  \begin{definizione}{Dimensione di uno spazio vettoriale }{}
+    Sia $V$ uno spazio vettoriale su un campo $K$, allora definiamo \textbf{dimensione} come la cardinalità di una delle sue basi e la indichiamo come 
+    \[
+    \dim_k(V)
+    \]
+    \end{definizione}
+  
+    Vediamo qualche esempio
+    \[
+    \begin{array}{c@{\qquad}c@{\qquad}c}
+    \dim_\mathbb{R}(\mathbb{R}^2) =  2 & \dim_\mathbb{R}(\mathbb{R}^3) =  3 & \dim_\mathbb{R}(\mathbb{R}^n) =  n \\
+    \dim_\mathbb{R}(K^n) =  n & \dim_\mathbb{C}(\mathbb{C}) = 1 & \dim_\mathbb{C}(\mathbb{C}^n) = n
+    \end{array}
+    \]
+
+    Un caso molto particolare invece è la cardinalità di $\mathbb{C}$ sul campo $\mathbb{R}$. Infatti noi sappiamo che $\mathbb{C} = \{a +ib \;|\; a,b\in\mathbb{R}\}$, quindi possiamo scegliere come base $\{1, i\}$ che in $\mathbb{R} $ sono linearmente indipendenti, quindi 
+    \[
+    \dim_\mathbb{R}(\mathbb{C}) = 2
+    \]
+    Più in generale 
+    \[
+    \dim_\mathbb{R}(\mathbb{C}^n) = 2n
+    \]
+
+    \textbf{N.B.} Se il campo è proprio $\mathbb{C}$ allora i vettori $\{1, i\}$ non sono più linearmente indipendenti, dato che se usiamo la definizione di linearmente indipendente
+    \[
+    \lambda_1 \cdot 1 + \lambda_2 \cdot i =0
+    \]
+    Allora l'unica soluzione dovrebbe essere $\lambda_1=\lambda_2=0$, ma in realtà se prensiamo $\lambda_1 = 1$ e $\lambda_2 = i$ abbiamo che 
+    \[
+    1\cdot 1 + i \cdot i = 1 -1 = 0 
+    \]
+    Ma allora esiste un'altra combinazione non nulla che trova il vettore nullo, pertanto non sono linearmente indipendenti. 
+
+    Un'ulitmo esempio interessante è la dimensione dello spazio $\mathbb{R}[x]$, che è l'insieme dei polinomio nella variabile $x$ a coefficienti reali. Infatti se prendiamo l'insieme 
+    \[
+    V = \{f\in\mathbb{R}[x] \;|\; gr(f) \leq n\}
+    \]
+    Dove $gr(f)$ indica il grado del polinomio. Detta in altre parole, $V$ è l'insieme di tutti i polinomi di grado 3 o inferore a coefficiente reali. Quindi i componenti di questo insieme sono della forma 
+    \[
+    f(x)=a_0 + a_1 x + a_2x^2+ a_3x^3 + ... + a_nx^n
+    \]
+    Quindi possiamo scegliere come base 
+    \[
+    \{1,x,x^2,x^3,...,x^n\}
+    \]
+    Possiamo sceglierle anche perchè sono linearmente indipendenti tra loro. Da questo ne evince che
+    \[
+    \dim_{\mathbb{R}} (V) = n+1
+    \]
+    \end{document}
