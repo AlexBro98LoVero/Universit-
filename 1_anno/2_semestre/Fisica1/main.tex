@@ -8,7 +8,7 @@
 \usepackage{amssymb}
 \usepackage{cancel}
 \usepackage{polynom}
-
+\usepackage{bm}
 \usepackage{enumitem}
 \usepackage[most, theorems]{tcolorbox}
 \usepackage{xcolor}
@@ -25,8 +25,7 @@
   }%
 }
 \usetikzlibrary{patterns}
-
-\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.markings, arrows.meta}
 \usetikzlibrary{matrix, positioning}
 
 \newtcbtheorem{teorema}{Teorema}{
@@ -50,9 +49,9 @@
   fonttitle=\bfseries,
 }{es}
 
-\newtcbtheorem{corollario}{Corollario}{
-    colback=pink!5!white, 
-    colframe=pink!75!black, 
+\newtcbtheorem{legge}{Legge}{
+    colback=orange!5!white, 
+    colframe=orange!75!black, 
     enhanced,
   fonttitle=\bfseries,
 }{corr}
@@ -2269,6 +2268,1607 @@ Dove $T$ è il periodo. La legge oraria la possiamo anche disegnare sul piano ca
         \end{axis}
     \end{tikzpicture}
 \end{figure}
+\newpage
+Focalizziamoci ora sulla velocità e sull'accelerazione del nostro corpo, infatti proviamo a calcolarle
+\[
+v(t) = \dot{x}(t) = \dfrac{d}{dt}(R\cos(\theta_0 + \omega t)) = -\omega R\sin(\theta_0 + \omega t)
+\]\[
+a(t) = \dot{v}(t) = \dfrac{d}{dt}(-\omega R\sin(\theta_0 + \omega t)) = -\omega^2 R\cos(\theta_0 + \omega t)
+\]
 
+Ora possiamo notare che la componente $a(t)$ al suo interno contiene l'espressione di $x(t)$, quindi possiamo scrivere 
+\[
+a(t)=\ddot{x}(t) = -\omega^2 \mathunderline{red}{R\cos(\theta_0 + \omega t)} = -\omega^2 \mathunderline{red}{x(t)}
+\]
+
+Da questo ricaviamo l'equazione di un moto armonico
+\[
+\dfrac{d^2x(t)}{dt^2} = -\omega^2 x(t) \implies \dfrac{d^2x(t)}{dt^2} +\omega^2 x(t) = 0
+\]
+
+Quindi un corpo in moto armonico è un qualsiasi corpo che rende valida l'equazione differenziale, ed intutti i casi  la soluzione è della forma 
+\[
+x(t) = A\cos(\phi + \omega t)
+\]
+
+Appena faremo i principi della dinamica, vedremo il moto di corpo ad una molla, e vedremo che quello è un moto armonico.
+
+\section{Meccanica: Dinamica}
+
+\begin{legge}{I° Legge di Newton}{}
+  Un corpo non soggetto a forze permane nel suo stato di quiete o di moto uniforme
+\end{legge}
+
+Questa legge ci dice che se un corpo non subisce alcuna azione rimarrà nello stato che era, e può ossere uno stato di quiete, ovvero che $v(t) = 0$, oppure di moto uniforme, cioè $v(t)$ costante. Quindi detta in altre maniere, se la somma delle forze è nulla, allora la velocità è costante. 
+\[
+\sum_{i} \vec{F_i} = 0 \implies v(t) = \text{const}
+\]
+
+Attenzione che la legge non dice se non ci sono forze allora la velocità è costante, ma se la somma vettoriale è nulla allora la velocità è costante. Questo vuol dire che le forze ci posso anche essere ma basta che la loro somma sia nulla. Vediamo un esempio dove una scatola è premuta da un lato con una forza $\vec{F_1}$, e da un'altra forza $\vec{F_2}$ con modulo e direzione uguale ad $\vec{F_1}$ ma di verso opposto, quindi $\vec{F_2}= -\vec{F_1}$  
+
+
+\begin{center}
+\begin{tikzpicture}[>=latex]
+    
+    % Disegna il piano (asse x)
+    \draw[thick, ->] (-4.5, 0) -- (4.5, 0) node[below] {$x$};
+    
+    % Disegna la scatola al centro (da x=-1 a x=1, alta 2)
+    \draw[thick, fill=gray!20] (-1, 0) rectangle (1, 1);
+    
+    % Forza F1: preme da destra verso la scatola
+    \draw[thick, ->, blue, line width=1.5pt] (2.5, 0.5) -- (1, 0.5) node[midway, above, text=black] {$\vec{F}_2$};
+    
+    % Forza F2: preme da sinistra verso la scatola
+    \draw[thick, ->, red, line width=1.5pt] (-2.5, 0.5) -- (-1, 0.5) node[midway, above, text=black] {$\vec{F}_1$};
+\end{tikzpicture}
+\end{center}
+
+Però in questo caso abbiamo che la somma delle forze che agisce sul corpo è 
+\[
+\sum_{i \in \{1,2\}} \vec{F_i} = \vec{F_1} + \vec{F_2} = \vec{F_1} - \vec{F_1} = \vec{0}
+\]
+di conseguenza il corpo ha per la legge il corpo è a velocità costante, che vuol dire che può essere in stato di quiete o in moto uniforme. Però fino ad ora abbiamo parlato di forze ma non vi ho ancora detto cosa sono, vediamolo.
+
+\begin{legge}{II° Legge di Newton}{}
+  Un corpo soggetto a forze subisce una accelerazione pari alla seguente formula
+  \[
+  \vec{F} = m\vec{a}
+  \]
+  Dove $\vec{F}$ è la somma delle forze esercitate sul corpo, $m$ è la massa del corpo al quale sono applicate le forze e $\vec{a}$ è l'accelerazione che subito causata dalle forze $\vec{F}$.
+\end{legge}
+
+Con questo principio possiamo capire meglio il significato di forza. Infatti la forza non è altro che una interazione su un corpo, come può essere una spinta o una attrazione. Questa legge è "l'evoluzione" della prima legge, perchè la prima legge ci descrive un corpo in assenza di forze, mentre questa legge ci descrive alla presenza di forze. Questa formula ci permette di dedurre anche l'unita di misura della forza, che è il \textbf{Newton} (N) che è equivalente a
+\[
+[N] = [kg] \dfrac{[m]}{[s]^2}
+\]
+Da notare che è una equazione vettoriale, ciò vuol dire che il corpo soggetto a una forza, avrà un'accelerazione che ha stessa direzione e verso della forza. vediamo un esempio grafico
+
+\begin{center}
+\begin{tikzpicture}[>=latex]
+    
+    % Disegna il piano (asse x)
+    \draw[thick, ->] (-4.5, 0) -- (4.5, 0) node[below] {$x$};
+    
+    % Disegna la scatola al centro (da x=-1 a x=1, alta 2)
+    \draw[thick, fill=gray!20] (-1, 0) rectangle (1, 1);
+    
+    % Forza F1: preme da destra verso la scatola
+    \draw[thick, ->, red, line width=1.5pt] (-2.5, 0.5) -- (-1, 0.5) node[midway, above, text=black] {$\vec{F}$};
+    
+    % Forza F2: preme da sinistra verso la scatola
+    \draw[thick, ->, blue, line width=1.5pt] (0, 0.5) -- (0.9, 0.5) node[midway, above, text=black] {$\vec{a}$};
+\end{tikzpicture}
+\end{center}
+
+Ricordiamo però che tutti i corpi sulla superficie terrestre sono soggetti ad una accelerazione, quella gravitazionale, come avevamo visto sul moto di caduta libera. Quindi se un corpo è soggetto ad una accelerazione, vuol dire che c'è una forza che la genera, e in questo caso è la \textbf{forza peso}, e seguendo la formula della seconda legge abbiamo che 
+
+\[
+P = mg
+\]
+
+dove $P$ è il peso e $g$ l'accelerazione gravitazionale. Dato che l'accelerazione punta verso il basso, avremo che anche la forza peso punta il basso. Quindi è molto diverso il concetto di massa e peso, cosa che nel parlato li intercambiamo come se volessero dire la stessa cosa, ma per la fisica la massa è la quantità di sostanza di un corpo, mentre il peso è la forza che esercita il corpo per via dell'accelerazione gravitazionale. In più un altra differenza tra peso e massa è che la massa resta sempre quello, dato che misura la quantità di una sostanza, mentre il peso dipende dal posto in cui siamo, dato che è influenzato dell'accelerazione terrestre. 
+
+Quindi sulla luna dove l'accelerazione gravitazionale è inferiore ($g_{\text{Luna}} = 1.62m/s^2$) avremo un peso diverso, ma la massa è sempre quella. Ad esempio un corpo di massa $m=70kg$ sulla terra e sulla luna pesano 
+\[
+\begin{array}{c@{\qquad}@{\qquad} c}
+  P_{\text{Terra}} = mg_{\text{Terra}} = 70 \cdot 9.81 \approx 687N & P_{\text{Luna}} = mg_{\text{Luna}} = 70 \cdot 1.62 \approx 113N 
+\end{array}
+\]
+
+
+\begin{legge}{III° Legge di Newton}{}
+  Se un corpo $A$ esercita sul corpo $B$ una forza $\vec{F}_{AB}$, allora il corpo $B$ esercita una forza uguale in modulo e direzione, ma verso opposto, sul corpo $A$.
+\end{legge}
+Questa legge ci permette di unire le due leggi precedenti, infatti dal secondo principio noi sappiamo che un qualsiasi corpo, ad esempio un libro su una scrivania, hanno una forza peso e pertanto ci aspettiamo che si muova, ma nella realtà il libro resta sulla scrivania, e quindi per il primo principio la somma delle forze dovrebbe essere nulla dato che il libro sta fermo. 
+
+La verità sta proprio sulla terza legge, infatti noi sappiamo che se un corpo esercita una forza, come il libro che imprime il suo peso sul tavolo, riceve una forza uguale e contraria. Quindi vuol dire che il libro subisce la sua forza peso ed una forza ($\vec{N}$), che più avanti chiameremo vincolare, uguale e contraria, e che quindi la somma delle forze sul libro è nulla, e che quindi come ci ha insegnato il primo principio abbiamo che il libro sta fermo, proprio come succede nella realtà. 
+
+\begin{center}
+\begin{tikzpicture}[>=latex]
+
+    % Disegna il tavolo (una linea spessa)
+    \draw[line width=2pt] (-3.5, 0) -- (3.5, 0) node[right] {Tavolo};
+    
+    % Disegna il libro (rettangolo appoggiato sul tavolo)
+    \draw[thick, fill=orange!20] (-1.5, 0) rectangle (1.5, 1) node[midway] {Libro};
+    
+    % Definisce il centro di massa (CM) del libro
+    \coordinate (CM) at (0, 0.5);
+    \filldraw (CM) circle (1.5pt); % Un piccolo punto per il CM
+    
+    % Forza Peso (verso il basso, lunghezza 2 unità)
+    % Parte da y=0.5 e arriva a y=-1.5
+    \draw[thick, ->, blue, line width=1.5pt] (CM) -- (0, -1) node[right, text=black] {$\vec{P}$};
+    
+    % Reazione Vincolare (verso l'alto, lunghezza 2 unità)
+    % Parte da y=0.5 e arriva a y=2.5
+    \draw[thick, ->, red, line width=1.5pt] (CM) -- (0, 2) node[right, text=black] {$\vec{N}$};
+
+\end{tikzpicture}
+\end{center}
+
+Per lo stesso princiio il tavolo subisce la forza peso del libro e la sua forza peso, che le esercita sulla superficie terrestre, che a sua volta per la terza legge  esercita sul tavolo una forza uguale e contraria pari alla somma dei due pesi, dato che questa è la forza che esercita il tavolo sul pavimento. Proprio per questo motivo il tavolo non si muove proprio come il libro.
+
+Questo però non vuol dire che tutti i corpi sono fermi, quindi vediamo un esempio per capire meglio questa legge. Se voi andate su una pista da pattinaggio (un esempio di poco attito), se vi mettete al muro e provate a spinegere il muro avrete l'effetto di essere spinti dall'altra parte. Questo perchè voi applicate una forza al muro, ed il muro "risponde" dandovi anche a voi una spinta (che poi è quella che vi fa muovere) di uguale intensità ma verso opposto. 
+
+Vedete che in questo caso le forze non si cancellano e per questo motivo voi vi state spostando, e tecnicamente anche il muro si è spostato, solo che la forza che avete impresso è infima rispetto alla sua massa, infatti se la massa tende all'infinito abbiamo che l'accelerazione tende ad essere nulla, che effettivamente è quello che succede al muro
+\[
+\lim_{m \to +\infty} a(m) = \lim_{m \to +\infty}  \dfrac{F}{m} = 0 
+\]
+
+\begin{legge}{Legge di Hooke}{}
+  La forza che imprime una molla quando è estesa o compressa è data dalla formula
+  \[
+  \vec{F}(t) = -k\vec{x}(t)
+  \]
+  Dove $\vec{F}$ è la forza della molla, $k$ è la costante elastica, ovvero un coefficiente unico per ogni molla, e $x(t)$ è l'elongazione, ovvero la lunghezza di quanto allunghiamo o accorciamo la molla.   
+\end{legge}
+
+Con questa legge possiamo fare un qualcosa di molto utile, ovvero se prendiamo un corpo di massa $m$ e lo attacchiamo ad una molla, e tiriamo il corpo fino ad una lunghezza $l$, senza dargli alcuna velocità iniziale.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+        % Parete a sinistra
+        \fill [pattern=north east lines] (-0.3,0) rectangle (0,3);
+        \draw [thick] (0,0) -- (0,3);
+
+        % Pavimento
+        \fill [pattern=north east lines] (0,-0.3) rectangle (7.5,0);
+        \draw [thick] (0,0) -- (7.5,0);
+
+        % Origine degli assi
+        \node at (3.3,0.2) {$O$};
+
+        % Asse x
+        \draw [thick, ->] (0, 0) -- (8, 0) node[anchor=north] {$x$};
+        % Piccoli segni sull'asse per indicare posizioni chiave (opzionali)
+        % \draw (0,0.1) -- (0,0.3); % x=0
+        % \draw (3.5,0.1) -- (3.5,0.3) node[below] {$l_0$}; % l0
+        \draw (5.5,0.1) -- (5.5,0.3) node[below] {$l$}; % l
+
+        % Asse y
+        \draw [thick, ->] (3.5, -1) -- (3.5, 2.7) node[anchor=east] {$y$};
+        \draw [dashed, -] (5.5, -1) -- (5.5, 2.7);
+        % Posizione di riposo della molla (opzionale, tracciata in grigio)
+        % \draw [dashed, gray] (3.5,0) -- (3.5,2.2);
+
+        % Molla tirata
+        \draw [thick, decoration={coil, aspect=0.5, segment length=3.5mm, amplitude=3mm}, decorate] (0,0.6) -- (5,0.6);
+
+        % Corpo di massa m
+        \draw [thick, fill=gray!20] (5,0) rectangle (6,1);
+        \node at (5.5,0.5) {\Large $m$};
+
+        % Quota per indicare la lunghezza l (ora è superflua con l'asse x, ma la lascio per completezza)
+         \draw [|<->|, thick] (3.5, 1.6) -- (5.5, 1.6) node[midway, fill=white] {$l$};
+
+
+    \end{tikzpicture}
+\end{figure}
+
+
+Dato che la molla è in estensione, dappiamo che genera una forza, ma allora il nostro corco sta subendo una forza e quindi possiamo usare la seconda legge di Newton per dire 
+\[
+\vec{F} = m\ddot{x}(t) \implies -kx(t) = m\ddot{x}(t) \implies \ddot{x}(t) + \dfrac{k}{m}x(t) = 0 
+\]
+ Questa si nota che è l'equazione differenziale del moto armonico e che quindi la soluzione 
+ \[
+ x(t) = A\cos\left(\theta_0 + \sqrt{\dfrac{k}{m}}t\right)
+ \]
+
+ Per trovare $A$ e $\theta_0$ abbiamo bisogno delle condizioni iniziali, e quindi che $x(0) = l$ e che la volocità iniziale è nulla $\dot{x}(0) = 0$
+ \[
+ \dot{x}(t) = -A\sin\left(\theta_0 + \sqrt{\dfrac{k}{m}}t\right) \cdot \sqrt{\dfrac{k}{m}} \xRightarrow{\dot{x}(0) = 0}  0 = -A\sqrt{\dfrac{k}{m}} \sin\left(\theta_0 \right) \implies \theta_0= 0 
+ \]
+ \[
+ \begin{cases}
+   x(t) = A\cos\left( \sqrt{\dfrac{k}{m}}t\right) \\
+   x(0) = l 
+ \end{cases} \implies x(0) = l = A\cos(0) \implies A = l
+ \]
+
+ Quindi il corpo segue un moto armonico con legge oraria 
+ \[
+ x(t) = l\cos\left(\sqrt{\dfrac{k}{m}}t\right)
+ \]
+
+ \newpage
+ \begin{definizione}{Attrito Statico}{}
+    Una forza d'attrito statico è una forza che si oppone all'inizio del movimento tra due superfici a contatto tra loro. La forza di attrito statica si oppone al moto, quindi avrà direzione uguale al moto, ma verso opposto, il suo modulo invece è sempre uguale alla forza che comporta il moto, ma ha un valore massimo dato dall'espressione 
+    \[
+    F_{as} = \mu_s N 
+    \] 
+    Dove $\mu_s$ è il coefficiente d'attrito statico, mentre $N$ è il modulo del vettore normale alla superficie che genera l'attrito.
+ \end{definizione}
+
+ La forza di attrito statico è molto interessante, infatti ci da una forza necessaria per muovere un corpo che fa attrito. Infatti come dicievamo per valori della forza che impone il moto minori di $\mu_s N$ abbiamo che $F_{ab} = -F$ e quindi il corpo non si può muovere.
+ 
+ Vediamo un esempio per rendere l'idea 
+
+ \begin{esercizio}{}{}
+   Preso un corpo di massa $m=1kg$ attaccato ad una molla di costante elastica $k=100N/m$. Il corpo è soggetto all'attrito statico con il pavimento con un coefficiente $\mu_s = 0.2$. Determinare l'elongazione ($\Delta x$) massima tale che il corpo resta in equilibrio meccanico
+ \end{esercizio}
+
+ \begin{proof}[svolgimento]Facciamoci un disegno, ricordandoci che la il corpo è soggetto alla forza peso $\vec{F}_p$ e per la terza legge, il pavimento esercita sul corpo una reazione vincolare normale $\vec{N}$. Poi se l'elongazione è positiva (cioè che tiriamo la molla) allora la forza elastica sarà verso il punto di equilibrio (verso sinistra nel disegno), mentre la forza di attrito statico dato che si oppone al moto sarà verso l'esterno (verso destra nel disegno)
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+        % Parete a sinistra
+        \fill [pattern=north east lines] (-0.3,0) rectangle (0,3);
+        \draw [thick] (0,0) -- (0,3);
+
+        % Pavimento
+        \fill [pattern=north east lines] (0,-0.3) rectangle (7.5,0);
+        \draw [thick] (0,0) -- (7.5,0);
+
+        % Origine degli assi
+        \node at (3.3,0.2) {$O$};
+
+        % Asse x
+        \draw [thick, ->] (0, 0) -- (8, 0) node[anchor=north] {$x$};
+        % Piccoli segni sull'asse per indicare posizioni chiave (opzionali)
+        % \draw (0,0.1) -- (0,0.3); % x=0
+        % \draw (3.5,0.1) -- (3.5,0.3) node[below] {$l_0$}; % l0
+        \draw (5.5,0.1) -- (5.5,0.3) node[below] {$l$}; % l marks x=5.5
+
+        % Asse y
+        \draw [thick, ->] (3.5, -0.5) -- (3.5, 2.7) node[anchor=east] {$y$};
+
+        % Posizione di riposo della molla (opzionale, tracciata in grigio)
+        % \draw [dashed, gray] (3.5,0) -- (3.5,2.2);
+
+        % Molla tirata
+        \draw [thick, decoration={coil, aspect=0.5, segment length=3.5mm, amplitude=3mm}, decorate] (0,0.6) -- (5,0.6);
+
+        % Corpo di massa m
+        \draw [thick, fill=gray!20] (5,0) rectangle (6,1);
+        \node at (5.5,0.5) {\Large $m$};
+
+        % Quota per indicare la lunghezza l (ora è superflua con l'asse x, ma la lascio per completezza)
+         \draw [|<->|, thick] (3.5, 1.3) -- (5.5, 1.3) node[midway, fill=white] {$\Delta x$};
+
+        % --- AGGIUNTA DEI VETTORI DELLE FORZE ---
+        % Il centro della massa è approssimativamente in (5.5, 0.5)
+
+        % Forza peso (Fp) - Vettore verso il basso
+        \draw [thick, ->, red] (5.5, 0.5) -- (5.5, -0.7) node[below] {$\vec{F}_p$};
+
+        % Forza normale (N) - Vettore verso l'alto
+        \draw [thick, ->, blue] (5.5, 0.5) -- (5.5, 1.7) node[above] {$\vec{N}$};
+
+        % Forza elastica (Fe) - Vettore verso sinistra (richiamo verso x=3.5)
+        \draw [thick, ->, purple] (5.5, 0.5) -- (4.3, 0.5) node[below right] {$\vec{F}_e$};
+
+        % Forza di attrito statico (Fas) - Vettore verso destra (si oppone all'equilibrio)
+        \draw [thick, ->, orange] (5.5, 0.5) -- (6.7, 0.5) node[above left] {$\vec{F}_{as}$};
+
+    \end{tikzpicture}
+\end{figure}
+
+Ora quindi possiamo cominciare ad imporre le equazioni per la quiete. Le forze sulla componente verticale chiaramente si eliminano, $\vec{N} + \vec{F}_p = 0$. Mentre sulla componente orizzontale abbiamo che 
+\[
+\vec{F_e} = -\vec{F_{as}} \implies F_e = F_{as}
+\]
+Ma qua ricordiamo la condizione della forza di attrito statico 
+\[
+F_{as} \leq \mu_s N \implies F_e \leq \mu_s N
+\]
+Ma la forza normale non è altro che $N = mg$. Pertanto deve valere 
+\[
+ F_e \leq \mu_s mg 
+\]
+Usando le formule della forza elastica abbiamo che 
+\[
+ F_e \leq \mu_s mg  \implies k\Delta x \leq \mu_s mg \implies \Delta x \leq \dfrac{\mu_s mg}{k}  = \dfrac{0.2 \cdot 1 \cdot 9.81}{100} \approx 0.020 m = 2cm
+\]
+\end{proof}
+\begin{definizione}{Attrito Dinamico}{}
+  Una forza d'attrito dinamico è una forza che si oppone allo scorrimento di un corpo su una superficie, agendo in verso opposto allo scorrimento del moto, e ha modulo sempre pari a 
+  \[
+  F_{ad} =  \mu_d N
+  \]
+  Dove $F_{ad}$ è il modulo della forza di attrito dinamico, $\mu_d$ è il coefficiente d'attrito dinamico e $N$ è la forza normale al pavimento.
+\end{definizione}
+
+L'attrito dinamico è molto più semplice di quello statico, infatti il modulo è sempre uguale (a patto che il modulo dell'attrito sia inferiore alla forza che genera lo spostamento, che in quel caso il valore dela forza di attrito resta bloccata di modulo uguale alla forza che compie il moto, facendo sì che il corpo resta fermo), infatti l'attrito dinami è presente quando il corpo è già in moto, al contrario dell'attrito statico che è presente quando vogliamo spostare un corpo che parte da fermo. Vediamo un esempio interessante. 
+
+\begin{esercizio}{}{}
+  Sia un corpo di massa $m=5kg$ che cade in caduta libera, appoggiato al muro. Al momento $t_0 = 0s$ abbiamo che il nostro corpo ha una velocità $v_0 = 0m/s$ e si trova ad una altezza $h=20m$. Allo stesso tempo inizia a soffiare del vento che preme contro il corpo con una forza di $F_v = 100N$. Tra il corpo e la parete è presente dell'attrito dinamico con coefficiente d'attrito dinamico $\mu_d = 0.1$. Determinare quanto tempo ci impiega a toccare terra in più con la presenza del vento rispetto a parità di condizione e assenza di vento.    
+
+\textbf{N.B.} trascurare l'attrito statico.
+\end{esercizio}
+\begin{proof}[svolgimento]
+  Dalla casistica senza il vento c'è poco da dire, infatti è un classico esercizio di caduta libera di un corpo, e quindi abbiamo che 
+  \[
+  a(t) = -g \implies v(t) = 0 -gt \implies x(t) = h-\dfrac{1}{2}gt^2
+  \]
+  Cerchiamo quando il nostro corpo è a quota zero 
+  \[
+  x(t) = 0 \implies 0 = h-\dfrac{1}{2}gt^2 \implies t_1 = \sqrt{\dfrac{2h}{g}} =\sqrt{\dfrac{2 \cdot 20}{9.81}} \approx 2.02s
+  \]
+  \newpage
+  Concentriamoci ora sul caso con il vento. Facciamoci un disegno e stando attenti che il vento preme sul blocco (e che quindi a sua volta preme il muro) in modo parallelo al pavimento, quindi la forza normale sarà anch'essa parallela al pavimento. In più dato che il moto provegue nella direzione negativa dell'asse $\hat{y}$ abbiamo che la forza di attrito dinamico è in verso positivo sull'asse $\hat{y}$
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+        % Muro a sinistra
+        \fill [pattern=north east lines] (-0.4,0) rectangle (0,4.5);
+        \draw [thick] (0,0) -- (0,4.5);
+
+        % Pavimento
+        \fill [pattern=north east lines] (-0.4,-0.3) rectangle (3.5,0);
+        \draw [thick] (-0.4,0) -- (3.5,0);
+
+        % Asse y (per indicare l'altezza)
+        \draw [thick, ->] (-1.2, 0) -- (-1.2, 4.5) node[anchor=east] {$y$};
+        \node at (-1.4, 0) {$0$};
+
+        % Corpo di massa m appoggiato al muro
+        \draw [thick, fill=gray!20] (0, 3) rectangle (0.8, 3.8);
+        \node at (0.4, 3.4) {$m$};
+
+        % Quota altezza h
+        \draw [|<->|, thick] (2.2, 0) -- (2.2, 3.4) node[midway, fill=white] {$h = 20\mathrm{\,m}$};
+
+        % --- VETTORI DELLE FORZE ---
+        % Applicati nel centro di massa approssimativo (0.4, 3.4)
+
+        % Forza peso (Fp) - Verso il basso
+        \draw [thick, ->, red] (0.4, 3.4) -- (0.4, 2.0) node[below] {$F_p$};
+
+        % Forza di attrito dinamico (Fd) - Verso l'alto (si oppone alla caduta)
+        \draw [thick, ->, orange] (0.4, 3.4) -- (0.4, 4.4) node[above] {$F_{ad}$};
+
+        % Forza del vento (Fv) - Spinge contro il muro (da destra verso sinistra)
+        \draw [thick, ->, cyan] (0.4, 3.4) -- (-0.6, 3.4) node[left] {$F_v$};
+
+        % Forza normale (N) - Reazione del muro (da sinistra verso destra)
+        \draw [thick, ->, blue] (0.4, 3.4) -- (1.4, 3.4) node[right] {$N$};
+
+
+
+    \end{tikzpicture}
+    \end{figure}
+
+Come  al solito la forza normale bilancia perfettamente la forza premente quindi nell'asse parallelo al terreno la somma dei vettori è nulla, $F_v = N$. Invece cambia il discorso se guardiamo l'asse $\hat{y}$, infatti qui i moduli delle forze sono diverse, e quindi c'è una risultante, che possiamo calcolare come 
+\[
+R = F_p - F_{ad} = mg - \mu_d N  = mg - \mu_d F_v = 5 \cdot 9.81 - 0.1\cdot 100  \approx 39.1 N
+\]
+
+Dato che la risultante è positiva siamo sicuri che punta verso il basso, quindi per la seconda legge di Newton  possiamo trovare l'accelerazione 
+\[
+a(t) = \dfrac{R}{m} = \dfrac{mg - \mu_d F_v }{m}= g - \dfrac{\mu_d F_v }{m}
+\]
+Quindi ora possiamo trovare la legge oraria e successivamente il tempo di caduta, proprio come prima 
+
+\[
+v(t) = 0 + \left( g - \dfrac{\mu_d F_v }{m}\right)t
+\]
+\[
+x(t) = h - \left(\dfrac{mg - \mu_d F_v }{2m}\right)t^2
+\]
+
+Poniamo che tocchi il terreno 
+\begin{align*}
+x(t)=  0 \implies 0 = h - \left(\dfrac{mg - \mu_d F_v }{2m}\right)t^2 \implies t_2 &= \sqrt{\dfrac{2mh}{mg-\mu_dF_v}} \\[0.6em]
+&= \sqrt{\dfrac{2\cdot 5 \cdot 20}{5\cdot 9.81 - 0.1 \cdot 100}} \approx  2.26s
+\end{align*}
+
+Quindi la differenza nel tempo di caduta tra i due moti è pari a 
+\[
+\Delta t = t_2 - t_1 = 2.26 - 2.02 = 0.24s
+\]
+
+\end{proof}
+
+\newpage
+
+\begin{definizione}{Funi inestensibili e con massa trascurabile}{}
+  Siano due corpi $A$ e $B$ su un piano connessi da una fune inestensibile, allora la loro accelerazione sarà la stessa 
+  \[
+  a_A(t) = a_B(t)
+  \]
+  Poi dato che la fune è con massa trasculabile, allora ai capi della corda è presente una forza detta tensione $\vec{T}$, che punta sempre verso il centro della fune. 
+\end{definizione}
+
+Negli esercizi possiamo immaginarci una fune inestensibile come un tubo di ferro che tiene attaccato due corpi. Dobbiamo pensarlo come un corpo rigido e che non si deforma, e proprio per questo se due corpi si muovono si devono spostare a velocità uguali e accelerazione uguale, dato che la loro posizione è sempre spostata dalla lunghezza della corda. Se prendiamo due corpi $A$ e $B$ e li leghiamo con una fune inestensibile e applichiamo una forza al corpo $A$, succede che il corpo $A$ tira con sè il corpo $B$ e per farlo gli applica una tensione $\vec{T}$ per spingere $B$ nella direzione del moto. Però per il terzo principio $B$ eserciterà su $A$ una forza uguale e contraria, vediamo con l'immagine 
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[>=Stealth, thick]
+
+        % --- PAVIMENTO CON PATTERN (Longer for wider separation) ---
+        \fill [pattern=north east lines] (-1,-0.3) rectangle (9,0);
+        \draw [thick] (-1,0) -- (9,0);
+
+        % --- CORPO B (Block B, left) ---
+        % Positioned widely to the left
+        \draw[thick, fill=gray!20] (0.5,0) rectangle (2.0,1.5);
+        \node at (1.25, 0.75) {$B$};
+
+        % --- CORPO A (Block A, right) ---
+        % Positioned widely to the right
+        \draw[thick, fill=gray!20] (6.5,0) rectangle (8.0,1.5);
+        \node at (7.25, 0.75) {$A$};
+
+        % --- FUNE (String - Ultra thick for visual distinction) ---
+        % Increased length between bodies
+        \draw[thick] (2.0, 0.75) -- (6.5, 0.75);
+
+        % --- VETTORI DELLE FORZE (Applied from Centers of Mass) ---
+        % Centers of Mass: B at (1.25, 0.75), A at (7.25, 0.75)
+
+        % Forza esterna F su A (Red, pulling right)
+        \draw [ultra thick, ->, red] (7.50, 0.75) -- (8.75, 0.75) node[right, black] { $\vec{F}$};
+
+        % Tensioni (Action-Reaction, Blue)
+        % Tensione T_B (String pulls B right, vector on B)
+        \draw [ultra thick, ->, blue] (2, 0.75) -- (3.25, 0.75) node[above, black] { $\vec{T}_{B}$};
+
+        % Tensione T_A (String pulls A left, vector on A, reaction)
+        \draw [ultra thick, ->, blue] (6.5, 0.75) -- (5.5, 0.75) node[above, black] { $\vec{T}_{A}$};
+
+        
+    \end{tikzpicture}
+\end{figure}
+
+Quindi con queste informazioni possiamo scrivere la somma delle forze per entrambi i corpi. Poniamo la direzione e verso della forza $\vec{F}$ come asse di riferimento per il sistema. Quindi possiamo scrivere la seconda legge di Newton per entrambi i corpi
+\[
+\begin{cases}
+  \sum F = m_Aa_A\\
+  \sum F = m_Ba_B
+\end{cases}\implies\begin{cases}
+F - T= m_A a_A \\
+  T = m_B a_B 
+\end{cases}
+\]
+
+Ricordiamo che la caratteristica principale delle funi è che i due corpi abbiamo la stessa velocità, che chiamiamo semplicemente $a$
+
+Ora supponendo di star risolvendo un problema in cui ci danno come dati la forza $F$, e le due masse: $m_A$, $m_B$ possiamo trovare l'accelerazione e la tensione 
+\begin{align*}
+  \begin{cases}
+F- T = m_A a \\
+  T = m_B a 
+\end{cases} &\implies F - (m_B a) =  m_A a  \implies F = (m_A+m_B)a \\
+&\implies a=\dfrac{F}{m_A+m_B} \implies T = m_b \cdot \dfrac{F}{m_A+m_B}
+\end{align*}
+
+Come si può vedere dalla risoluzione, per trovare l'accelerazione è come se il corpo $A$ e il corpo $B$ fossero uno unico. Infatti se pensassimo che i due corpi si "fondessero" avremmo un nuovo corpo di massa $m = m_A+m_B$ e se sommiamo tutte le forze che agiscono sul nuovo corpo (cioè tutte le forze che agiscono nei due corpi $A$ e $B$)
+\[
+F_{tot} = F + T - T = F
+\]
+Poi con la seconda legge di Newton possiamo trovare l'accelerazione ed il risultato è lo stesso. Quindi questo ci fa capire che due corpi uniti da una fune inestensibile permette di renderlo un corpo unico.
+ 
+
+Correlato all'argomento delle funi, vediamo le carrucole. Il concetto di carrucola penso che sia ovvio per tutti, quindi vediamo subito in esercizio. 
+\begin{esercizio}{}{}
+  Siano due corpi $A$ e $B$ di massa rispettivamente $m_a = 5kg$ e $m_b = 50kg$, i corpi sono disposti come nel disegno. Il corpo $B$ è sottoposto a dell'attrito statico. Determinare il coefficiente d'attrito statico minimo affinchè il corpo sia in equilibrio meccanico. 
+ \begin{center}
+  \begin{tikzpicture}[>=Stealth, thick, scale=1.2]
+
+        % --- STRUTTURA DEL RIALZO E PARETE ---
+        % Piano orizzontale sollevato
+        \fill [pattern=north east lines] (0,2) rectangle (5,1.7);
+        \draw [thick] (0,2) -- (5,2);
+        
+        % Parete verticale che delimita il vuoto
+        \fill [pattern=north east lines] (5,0) rectangle (4.7,1.7);
+        \draw [thick] (5,2.3) -- (5,0);
+
+        % --- CARRUCOLA (Pulley) ---
+        \draw [fill=white] (5,2.15) circle (0.15);
+        \fill (5,2.15) circle (0.05); % Perno centrale
+
+        % --- CORPO B (sul rialzo) ---
+        % Posizionato orizzontalmente sul piano sollevato
+        \draw[thick, fill=gray!20] (1.5,2.0) rectangle (3.0,2.8);
+        \node at (2.25, 2.4) {$B$};
+
+        % --- CORPO A (sospeso nel vuoto) ---
+        % Posizionato verticalmente sotto la carrucola
+        \draw[thick, fill=gray!20] (5, 0.5) rectangle (5.8, 1.3);
+        \node at (5.4, 0.9) {$A$};
+
+        % --- FUNE (String) ---
+        % Tratto orizzontale da B alla carrucola
+        \draw[ultra thick] (3.0, 2.4) -- (5.0, 2.3);
+        
+        % Tratto verticale dalla carrucola ad A
+        \draw[ultra thick] (5.15, 2.15) -- (5.4, 1.3);
+
+        % --- VETTORI DELLE FORZE (Diagramma di Corpo Libero) ---
+        % Centers of Mass: B at (2.25, 2.4), A at (5.25, 0.9)
+    \end{tikzpicture}
+ \end{center}
+  
+\end{esercizio}
+\begin{proof}[svolgimento]
+  
+In questo esercizio abbiamo il disegno già fatto, però ci manca da mettere tutte le forze. In primi abbiamo le forze peso che chiaramente hanno entrambi, ma il corpo $B$ dato che è poggiato sul rialzo abbiamo che è sottoposto anche alla forza normale, mentre il corpo $A$ no perchè è sospeso sul vuoto. Poi dato che sono legati da una fune inestensibile abbiamo che entrambi sono soggetti ad una tensione (che per semplicità poniamo perfettamente verticale sul corpo $A$). Poi possiamo già capire che il corpo $B$ si muoverà verso destra (secondo il disegno)  allora forza di attrito andrà verso sinistra (secondo il disegno)
+
+\begin{figure}[h]
+  \centering
+
+  \begin{tikzpicture}[>=Stealth, thick, scale=1.4]
+
+        % --- STRUTTURA DEL RIALZO E PARETE ---
+        % Piano orizzontale sollevato
+        \fill [pattern=north east lines] (0,2) rectangle (5,1.7);
+        \draw [thick] (0,2) -- (5,2);
+        
+        % Parete verticale che delimita il vuoto
+        \fill [pattern=north east lines] (5,0) rectangle (4.7,1.7);
+        \draw [thick] (5,2.3) -- (5,0);
+
+        % --- CARRUCOLA (Pulley) ---
+        \draw [fill=white] (5,2.15) circle (0.15);
+        \fill (5,2.15) circle (0.05); % Perno centrale
+
+        % --- CORPO B (sul rialzo) ---
+        % Posizionato orizzontalmente sul piano sollevato
+        \draw[thick, fill=gray!20] (1.5,2.0) rectangle (3.0,2.8);
+        \node at (2.25, 2.4) {$B$};
+
+        % --- CORPO A (sospeso nel vuoto) ---
+        % Posizionato verticalmente sotto la carrucola
+        \draw[thick, fill=gray!20] (5, 0.5) rectangle (5.8, 1.3);
+        \node at (5.4, 0.9) {$A$};
+
+        % --- FUNE (String) ---
+        % Tratto orizzontale da B alla carrucola
+        \draw[ultra thick] (3.0, 2.4) -- (5.0, 2.3);
+        
+        % Tratto verticale dalla carrucola ad A
+        \draw[ultra thick] (5.15, 2.15) -- (5.4, 1.3);
+
+        % --- VETTORI DELLE FORZE (Diagramma di Corpo Libero) ---
+        % Centers of Mass: B at (2.25, 2.4), A at (5.25, 0.9)
+
+        % --- FORZE SUL CORPO B ---
+        % Forza Peso P_B (Red, verso il basso)
+        \draw [thick, ->, red] (2.25, 2.4) -- (2.25, 1.4) node[below, black] { $\vec{P}_b$};
+
+        % Forza Normale N_B (Blue, verso l'alto)
+        \draw [thick, ->, green] (2.25, 2.4) -- (2.25, 3.4) node[above, black] { $\vec{N}_b$};
+
+        % Tensione T (Blue, lungo la fune verso destra)
+        \draw [thick, ->, blue] (2.25, 2.4) -- (3.25, 2.4) node[above, black] {$\vec{T}$};
+   
+        % Tensione T (Blue, lungo la fune verso destra)
+        \draw [thick, ->, orange] (2.25, 2.4) -- (1.25, 2.4) node[above, black] {$\vec{F}_{as}$};
+
+        % --- FORZE SUL CORPO A ---
+        % Forza Peso P_A (Red, verso il basso)
+        \draw [thick, ->, red] (5.4, 0.9) -- (5.4, -0.1) node[below, black] {$\vec{P}_a$};
+
+        % Tensione T (Blue, lungo la fune verso l'alto)
+        \draw [thick, ->, blue] (5.4, 0.9) -- (5.4, 1.9) node[above right, black] {$\vec{T}$};
+
+
+    \end{tikzpicture}
+\end{figure}
+
+Studiamo le forze che sono esercitate sul corpo $B$, come al solito le forze verticali si cancellano a vicenda $\vec{P}_b= -\vec{N}_b$, mentre sull'orizzontale possiamo applicare il secondo principio della dinamica e scegliendo la direzione e verso di $\vec{T}$ come asse di riferimento 
+\[
+\sum F = \vec{F}_{as} + \vec{T} = m_b a_b  \implies -F_{as} + T = m_ba_b
+\] 
+
+Mentre per il corpo $A$ scegliamo la direzione e verso di $\vec{P}_a$ abbiamo che 
+\[
+\sum F = \vec{P}_{a} + \vec{T} = m_a a_a  \implies P_{a} - T = m_aa_a
+\]
+Ricordiamo che se due corpi sono legati da una fune inestensibile devono avevare la stessa accelerazione $a = a_a = a_b$ che in questo caso vogliamo che il corpo sia in equilibrio meccanico, ovvero che $a=0$, quindi possiamo imporre un sistema 
+\[
+\begin{cases}
+  -F_{as} + T = m_ba  = 0\\
+  P_{a} - T = m_aa = 0
+\end{cases} \implies P_{a} = F_{as}
+\]
+Ma ricordiamo la condizione massimo della forza statica 
+\[
+P_{a} = F_{as} \leq \mu_s N_b \implies \mu_s \geq \dfrac{P_a}{N_b} = \dfrac{m_a g}{m_b  g} =\dfrac{m_a }{m_b  }  = \dfrac{5}{50} = 0.1 
+\]
+\end{proof}
+
+Nella risoluzione dell'esercizio non abbiamo mai parlato della carrucola, perchè non è caratterizzata da nessuna forza o formula, è solo un disco su cui poggia la fune, però senza che ce ne accorgessimo ha fatto una cosa molto interessante: ovvero a "curvato" l'asse di riferimento. Infatti questo sistema che abbiamo appena risolto è identico al seguente sistema 
+
+\begin{center}
+    \begin{tikzpicture}[>=Stealth, thick, scale=1.2]
+
+        % --- ASSE DI RIFERIMENTO / PIANO UNICO ---
+        % Rappresentiamo l'asse del moto "sviluppato" orizzontalmente
+        \fill [pattern=north east lines] (0,-0.3) rectangle (8.5,0);
+        \draw [thick] (0,0) -- (8.5,0);
+
+        % --- CORPO B ---
+        \draw[thick, fill=gray!20] (1,0) rectangle (2.5,1.2);
+        \node at (1.75, 0.6) {$B$};
+
+        % --- CORPO A ---
+        \draw[thick, fill=gray!20] (5.5,0) rectangle (7,1.2);
+        \node at (6.25, 0.6) {$A$};
+
+        % --- FUNE ---
+        % Collega i due corpi lungo il nuovo asse orizzontale
+        \draw[thick] (2.5, 0.6) -- (5.5, 0.6);
+
+        % --- FORZE SUL CORPO B (Rimangono inalterate rispetto al suo asse locale) ---
+        % Forza Peso P_b (Red, verso il basso)
+        \draw [thick, ->, red] (1.75, 0.6) -- (1.75, -0.6) node[below left, black] {$\vec{P}_b$};
+        
+        % Forza Normale N_b (Green, verso l'alto)
+        \draw [thick, ->, green] (1.75, 0.6) -- (1.75, 1.8) node[above, black] {$\vec{N}_b$};
+        
+        % Tensione T (Blue, lungo la fune verso destra)
+        \draw [thick, ->, blue] (1.75, 0.6) -- (2.75, 0.6) node[above, black] {$\vec{T}$};
+        
+        % Attrito F_as (Orange, opposto al moto, verso sinistra)
+        \draw [thick, ->, orange] (1.75, 0.6) -- (0.75, 0.6) node[above, black] {$\vec{F}_{as}$};
+
+        % --- FORZE SUL CORPO A (Ruotate per allinearsi al nuovo asse 1D) ---
+        % Forza Peso P_a (Red, diventa la forza trainante verso destra)
+        \draw [thick, ->, red] (6.25, 0.6) -- (7.25, 0.6) node[above, black] {$\vec{P}_a$};
+        
+        % Tensione T (Blue, opposta al verso del moto, verso sinistra)
+        \draw [thick, ->, blue] (6.25, 0.6) -- (5.25, 0.6) node[above, black] {$\vec{T}$};
+
+    \end{tikzpicture}
+\end{center}
+Se cominiciamo a scrivere le equazioni dei due corpi ci accorgeremmo subito che sono identiche a quelle scritte nel problema prima. Infatti se riprendiamo il disegno originale è come se l'asse di riferimento fosse così
+
+
+\begin{figure}[h]
+  \centering
+
+  \begin{tikzpicture}[>=Stealth, thick, scale=1.4]
+
+        % --- STRUTTURA DEL RIALZO E PARETE ---
+        % Piano orizzontale sollevato
+        \fill [pattern=north east lines] (0,2) rectangle (5,1.7);
+        \draw [thick] (0,2) -- (5,2);
+        
+        % Parete verticale che delimita il vuoto
+        \fill [pattern=north east lines] (5,0) rectangle (4.7,1.7);
+        \draw [thick] (5,2.3) -- (5,0);
+
+        % --- CARRUCOLA (Pulley) ---
+        \draw [fill=white] (5,2.15) circle (0.15);
+        \fill (5,2.15) circle (0.05); % Perno centrale
+
+        % --- CORPO B (sul rialzo) ---
+        % Posizionato orizzontalmente sul piano sollevato
+        \draw[thick, fill=gray!20] (1.5,2.0) rectangle (3.0,2.8);
+        \node at (2.25, 2.4) {$B$};
+
+        % --- CORPO A (sospeso nel vuoto) ---
+        % Posizionato verticalmente sotto la carrucola
+        \draw[thick, fill=gray!20] (5, 0.5) rectangle (5.8, 1.3);
+        \node at (5.4, 0.9) {$A$};
+
+        % --- FUNE (String) ---
+        % Tratto orizzontale da B alla carrucola
+        \draw[ultra thick] (3.0, 2.4) -- (5.0, 2.3);
+        
+        % Tratto verticale dalla carrucola ad A
+        \draw[ultra thick] (5.15, 2.15) -- (5.4, 1.3);
+
+
+        \draw [thick, red] (0,2.4) -- (5.4,2.4);
+        \draw [->, thick, red] (5.4,2.4) -- (5.4,0) node[ right, black] {$\hat{x}$};
+    \end{tikzpicture}
+\end{figure}
+
+Ed è proprio questa la caratteristica delle carrucole, che possono "deformare" gli assi di riferimento, facendo sembrare un sistema unidimensionale un sistema bidimensionale.
+
+Chiaramente nei problemi potremmo incontrare più carrucole che quindi spezzeranno l'asse di riferimento più e più volte, ma questo non è un problema. 
+\newpage
+
+Il prossimo micro argomento è il piano inclinato, cioè quando abbiamo un oggetto su un piano non orizzontale, cioè ad esempio una situazione del genere
+\begin{center}
+    \begin{tikzpicture}[>=Stealth, thick, scale=1.0]
+
+        % --- PARAMETRI GEOMETRICI ---
+        \def\ang{30} % Angolo del piano inclinato (in gradi)
+        \pgfmathsetmacro{\Base}{6} % Lunghezza della base del cuneo
+        \pgfmathsetmacro{\H}{\Base*tan(\ang)} % Altezza calcolata trigonometricamente
+
+        % --- PAVIMENTO CON PATTERN ---
+        \fill [pattern=north east lines] (-1,-0.3) rectangle (\Base+1,0);
+        \draw [thick] (-1,0) -- (\Base+1,0);
+
+        % --- CUNEO (Piano inclinato) ---
+        % Triangolo rettangolo con angolo acuto a destra (\Base, 0)
+        \draw [thick] (0,0) -- (\Base,0) -- (0,\H) -- cycle;
+
+        % --- ANGOLO \theta ---
+        \draw (\Base-1,0) arc (180:180-\ang:1);
+        \node[fill=white, inner sep=1pt] at (\Base-1.35, 0.3) {$\theta$};
+
+        % --- CORPO B SUL PIANO ---
+        % Calcolo un punto esatto sull'ipotenusa su cui appoggiare il corpo
+        \pgfmathsetmacro{\Sx}{2.5}
+        \pgfmathsetmacro{\Sy}{\H - \Sx*tan(\ang)}
+        \coordinate (S) at (\Sx, \Sy);
+
+        % Ruoto il sistema di riferimento per disegnare il corpo parallelo al piano
+        \begin{scope}[shift={(S)}, rotate=-\ang]
+            % Blocco (appoggiato esattamente sulla superficie, base=1.5, altezza=1.2)
+            \draw[thick, fill=gray!20] (-0.75, 0) rectangle (0.75, 1.2);
+            
+            % Salvo il Centro di Massa e disegno l'etichetta del corpo
+            \coordinate (CM) at (0, 0.6);
+            \fill (CM) circle (0.05); % Pallino del CM
+        \end{scope}
+
+        % --- FORZA PESO ---
+        % Essendo fuori dallo scope ruotato, la freccia va dritta verso il basso
+        \draw [thick, ->, red] (CM) -- ++(0,-1.6) node[below, black] {$\vec{P}$};
+
+    \end{tikzpicture}
+\end{center}
+
+Chiaramente sul corpo agisce la sua forza peso, e quest'ultima la fa scendere per il piano, ma di quanto? Per capire come scende il corpo dobbiamo scomporre la forza peso in due componenti, una parallela ($P_{\parallel}$ che è la forza che lo spinge a valle ) e una perpendicolare ($P_{\perp}$ che è la forza che preme sul piano). Dato che tutto il nostro sistema è "storto" possiamo usare questi due vettori come assi di riferimento cosichè i conti risualtato più semplici. 
+\begin{center}
+    \begin{tikzpicture}[>=Stealth, thick, scale=1.0]
+
+        % --- PARAMETRI GEOMETRICI ---
+        \def\ang{30} % Angolo del piano inclinato (in gradi)
+        \pgfmathsetmacro{\Base}{6} % Lunghezza base del cuneo
+        \pgfmathsetmacro{\H}{\Base*tan(\ang)} % Altezza calcolata
+
+        % --- PAVIMENTO ---
+        \fill [pattern=north east lines] (-1,-0.3) rectangle (\Base+1,0);
+        \draw [thick] (-1,0) -- (\Base+1,0);
+
+        % --- CUNEO (Piano inclinato) ---
+        \draw [thick] (0,0) -- (\Base,0) -- (0,\H) -- cycle;
+
+        % --- ANGOLO \theta ---
+        \draw (\Base-1,0) arc (180:180-\ang:1);
+        \node[fill=white, inner sep=1pt] at (\Base-1.35, 0.3) {$\theta$};
+
+        % --- CORPO B, ASSI E COMPONENTI ---
+        \pgfmathsetmacro{\Sx}{2.5}
+        \pgfmathsetmacro{\Sy}{\H - \Sx*tan(\ang)}
+        \coordinate (S) at (\Sx, \Sy);
+
+        % Lavoriamo nel sistema di riferimento inclinato
+        \begin{scope}[shift={(S)}, rotate=-\ang]
+            
+            % 1. Disegno il blocco
+            \draw[thick, fill=gray!20] (-0.75, 0) rectangle (0.75, 1.2);
+            \coordinate (CM) at (0, 0.6); % Centro di Massa locale
+            \fill (CM) circle (0.05); 
+          
+
+            % 2. Assi di Riferimento (tratteggiati, centrati nel CM)
+            % Asse X (parallelo al piano)
+            \draw [thin, dashed, gray, ->] (-1.5, 0.6) -- (3, 0.6) node[right, black] {$\hat{x}$};
+            % Asse Y (perpendicolare al piano)
+            \draw [thin, dashed, gray, ->] (0, -2.5) -- (0, 2.5) node[below right, black] {$\hat{y}$};
+
+            % 3. Componenti della Forza Peso
+            % (Calcolate rispetto a un vettore P fittizio lungo 2.5)
+            % P_x = 2.5 * sin(30) = 1.25 (verso il basso lungo il piano)
+            \draw [thick, ->, red] (CM) -- ++(1.25, 0) node[above right, black] {$\vec{P}_\parallel$};
+            
+            % P_y = 2.5 * cos(30) = 2.16 (verso l'interno del piano)
+            \draw [thick, ->, red] (CM) -- ++(0, -2.16) node[left=2pt, black] {$\vec{P}_\perp$};
+            
+        \end{scope}
+
+    \end{tikzpicture}
+\end{center}
+
+Con un pò di trigonometria è facile dimostrare che 
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+  P_\parallel = P \sin \theta & P_\perp = P \cos \theta 
+\end{array}
+\]
+
+Poi dato che la forza $P_\perp$ preme sul piano abbiamo che per la terza legge il piano genera sul corpo una reazione normale uguale e contraria
+\begin{center}
+    \begin{tikzpicture}[>=Stealth, thick, scale=1.0]
+
+        % --- PARAMETRI GEOMETRICI ---
+        \def\ang{30} % Angolo del piano inclinato (in gradi)
+        \pgfmathsetmacro{\Base}{6} % Lunghezza base del cuneo
+        \pgfmathsetmacro{\H}{\Base*tan(\ang)} % Altezza calcolata
+
+        % --- PAVIMENTO ---
+        \fill [pattern=north east lines] (-1,-0.3) rectangle (\Base+1,0);
+        \draw [thick] (-1,0) -- (\Base+1,0);
+
+        % --- CUNEO (Piano inclinato) ---
+        \draw [thick] (0,0) -- (\Base,0) -- (0,\H) -- cycle;
+
+        % --- ANGOLO \theta ---
+        \draw (\Base-1,0) arc (180:180-\ang:1);
+        \node[fill=white, inner sep=1pt] at (\Base-1.35, 0.3) {$\theta$};
+
+        % --- CORPO B, ASSI E COMPONENTI ---
+        \pgfmathsetmacro{\Sx}{2.5}
+        \pgfmathsetmacro{\Sy}{\H - \Sx*tan(\ang)}
+        \coordinate (S) at (\Sx, \Sy);
+
+        % Lavoriamo nel sistema di riferimento inclinato
+        \begin{scope}[shift={(S)}, rotate=-\ang]
+            
+            % 1. Disegno il blocco
+            \draw[thick, fill=gray!20] (-0.75, 0) rectangle (0.75, 1.2);
+            \coordinate (CM) at (0, 0.6); % Centro di Massa locale
+            \fill (CM) circle (0.05); 
+
+            % 2. Assi di Riferimento (tratteggiati, centrati nel CM)
+            % Asse X (parallelo al piano)
+            \draw [thin, dashed, gray, ->] (-1.5, 0.6) -- (3, 0.6) node[right, black] {$\hat{x}$};
+            % Asse Y (perpendicolare al piano - allungato per far spazio a N)
+            \draw [thin, dashed, gray, ->] (0, -2.5) -- (0, 3.2) node[below right, black] {$\hat{y}$};
+
+            % 3. Componenti della Forza Peso (Rosse)
+            % P_x = 2.5 * sin(30) = 1.25 (verso il basso lungo il piano)
+            \draw [thick, ->, red] (CM) -- ++(1.25, 0) node[above right, black] {$\vec{P}_\parallel$};
+            % P_y = 2.5 * cos(30) = 2.16 (verso l'interno del piano)
+            \draw [thick, ->, red] (CM) -- ++(0, -2.16) node[left=2pt, black] {$\vec{P}_\perp$};
+
+            % 4. Forza Normale (Verde)
+            % N bilancia esattamente P_y, quindi ha la stessa lunghezza (2.16) ma verso opposto
+            \draw [thick, ->, green] (CM) -- ++(0, 2.16) node[left=2pt, black] {$\vec{N}$};
+            
+        \end{scope}
+
+    \end{tikzpicture}
+\end{center}
+Quindi sull'asse $\hat{y}$ la somma delle forze è nulla, mentre sull'asse $\hat{x}$ l'unica forza presente è $P_\parallel$, quindi è proprio questa forza che porta alla discesa del corpo. Adesso seguiranno qualche esercizio dove uniamo gli ultimi argomenti: piano inclinato, carrucole, attriti e forza elastica.
+
+\begin{esercizio}{}{}
+  Un blocco di massa $m_A = 10$ kg si trova su un piano inclinato di $37^\circ$ rispetto all'orizzontale. Il coefficiente di attrito statico tra il blocco e il piano è $\mu_s = 0.5$. Il blocco è collegato, tramite una fune ideale e una carrucola priva di massa e attrito alla sommità del piano, a un secondo blocco di massa $m_B$ che pende verticalmente. Quali valori di $m_b$ rendono il sistema in equilibrio meccanico?
+\end{esercizio}
+\begin{proof}[svolgimento]Come al solito facciamo prima un grafico qualitativo, ricordando che in un piano inclinato ci è più comodo girare il sistema di riferiemnto e scomporre la forza peso. Poi nel blocco $A$ avremo una forza normale uguale e contraria a $\vec{P}_{A\perp}$. Mentre il corpo $B$ ha la sua forza peso "normale" ed entrambi hanno una tensione che punta verso la carrucola.
+\begin{center}
+    \begin{tikzpicture}[>=Stealth, thick, scale=1.0]
+
+        % --- PARAMETRI GEOMETRICI ---
+        \def\ang{37} % Angolo del piano inclinato
+        \pgfmathsetmacro{\Base}{6} % Lunghezza base del cuneo
+        \pgfmathsetmacro{\H}{\Base*tan(\ang)} % Altezza calcolata
+
+        % --- PAVIMENTO ---
+        \fill [pattern=north east lines] (-1.5,-0.3) rectangle (\Base+1,0);
+        \draw [thick] (-1.5,0) -- (\Base+1,0);
+
+        % --- CUNEO (Piano inclinato) ---
+        \draw [thick] (0,0) -- (\Base,0) -- (0,\H) -- cycle;
+
+        % --- ANGOLO \theta ---
+        \draw (\Base-1,0) arc (180:180-\ang:1);
+        \node[fill=white, inner sep=1pt] at (\Base-1.35, 0.3) {$\theta$};
+
+        % --- CARRUCOLA ---
+        \coordinate (PulleyCenter) at (-0.3, \H+0.35);
+        % Trasformo la carrucola in un "nodo" per agganciare i fili esattamente al suo bordo
+        \node[circle, draw, thick, fill=gray!40, minimum size=0.8cm, inner sep=0pt] (Pulley) at (PulleyCenter) {};
+        \draw[thick] (0,\H) -- (PulleyCenter); % Supporto carrucola
+
+        % --- CORPO A, ASSI E COMPONENTI ---
+        \pgfmathsetmacro{\Sx}{2.5}
+        \pgfmathsetmacro{\Sy}{\H - \Sx*tan(\ang)}
+        \coordinate (S) at (\Sx, \Sy);
+
+        \begin{scope}[shift={(S)}, rotate=-\ang]
+            
+            % 1. Disegno il blocco A
+            \draw[thick, fill=gray!20] (-0.75, 0) rectangle (0.75, 1.2);
+            \coordinate (CMA) at (0, 0.6); % Centro di Massa locale A
+            \coordinate (AttachA) at (-0.75, 0.6); % Punto in cui il filo tocca il blocco A
+            
+            \fill (CMA) circle (0.05); 
+            \node[above right] at (0.2, 0.7) {$m_A$};
+
+            % 2. Assi di Riferimento
+            \draw [thin, dashed, gray, ->] (-3.5, 0.6) -- (2.5, 0.6) node[right, black] {$\hat{x}$};
+            \draw [thin, dashed, gray, ->] (0, -2.5) -- (0, 3.2) node[below right, black] {$\hat{y}$};
+
+            % 3. Componenti della Forza Peso (Rosse)
+            \draw [thick, ->, red] (CMA) -- ++(1.5, 0) node[above right, black] {$\vec{P}_{A\parallel}$};
+            \draw [thick, ->, red] (CMA) -- ++(0, -2.0) node[left=2pt, black] {$\vec{P}_{A\perp}$};
+
+            % 4. Forza Normale (Verde)
+            \draw [thick, ->, green] (CMA) -- ++(0, 2.0) node[left=2pt, black] {$\vec{N}$};
+
+            % 5. Tensione del filo (Blu)
+            \draw [thick, ->, blue] (CMA) -- ++(-1.5, 0) node[above left, black] {$\vec{T}$};
+            
+        \end{scope}
+
+        % 6. Filo dal blocco A alla carrucola (agganciato al bordo con angolo 53°)
+        \draw [thick] (AttachA) -- (Pulley.53);
+
+        % --- CORPO B (PENDENTE) E COMPONENTI ---
+        % Il filo scende dal bordo sinistro della carrucola (angolo 180°)
+        \coordinate (WireDrop) at (Pulley.180); 
+        \coordinate (CMB) at (-0.7, \H-2.5);
+        
+        % Disegno del filo verticale
+        \draw [thick] (WireDrop) -- (CMB);
+
+        % Disegno del blocco B
+        \draw[thick, fill=gray!20] (-1.1, \H-3.1) rectangle (-0.3, \H-1.9);
+        \fill (CMB) circle (0.05);
+        \node[right] at (-1.2, \H-2.5) {$m_B$};
+
+        \begin{scope}[shift={(CMB)}]
+            \draw [thick, ->, blue] (0,0) -- (0, 1.5) node[right, black] {$\vec{T}$};
+            \draw [thick, ->, red] (0,0) -- (0, -1.5) node[right, black] {$\vec{P}_B$};
+        \end{scope}
+
+    \end{tikzpicture}
+\end{center}
+
+Ora non ho definito l'attrito perchè è un caso molto particolare, dato che per come è posto il problema non possiamo definire a priori il verso. Perche se vince la forza del corpo $B$ abbiamo che il blocco $A$ andrà verso l'alto, e quindi la forza di attrito statico punterà verso il basso (ovvero secondo il versore $\hat{x}$). Mentre se vince la forza peso di $A$ abbiamo che il nostro blocco scenderà e quindi l'attrito punterà verso l'alto (cioè secondo il versore $-\hat{x}$). Pertanto dobbiamo studiare i due casi separati e unire le soluzioni alla fine. 
+\begin{center}
+    % --- PRIMO GRAFICO: Attrito verso l'alto (Caso m_B minima) ---
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \resizebox{\linewidth}{!}{
+        \begin{tikzpicture}[>=Stealth, thick]
+
+            % Parametri Geometrici
+            \def\ang{37} 
+            \pgfmathsetmacro{\Base}{6} 
+            \pgfmathsetmacro{\H}{\Base*tan(\ang)} 
+
+            % Pavimento e Cuneo
+            \fill [pattern=north east lines] (-1.5,-0.3) rectangle (\Base+1,0);
+            \draw [thick] (-1.5,0) -- (\Base+1,0);
+            \draw [thick] (0,0) -- (\Base,0) -- (0,\H) -- cycle;
+
+            % Angolo \theta
+            \draw (\Base-1,0) arc (180:180-\ang:1);
+            \node[fill=white, inner sep=1pt] at (\Base-1.35, 0.3) {$\theta$};
+
+            % Carrucola
+            \coordinate (PulleyCenter) at (-0.3, \H+0.35);
+            \node[circle, draw, thick, fill=gray!40, minimum size=0.8cm, inner sep=0pt] (Pulley) at (PulleyCenter) {};
+            \draw[thick] (0,\H) -- (PulleyCenter); 
+
+            % Corpo A
+            \pgfmathsetmacro{\Sx}{2.5}
+            \pgfmathsetmacro{\Sy}{\H - \Sx*tan(\ang)}
+            \coordinate (S) at (\Sx, \Sy);
+
+            \begin{scope}[shift={(S)}, rotate=-\ang]
+                \draw[thick, fill=gray!20] (-0.75, 0) rectangle (0.75, 1.2);
+                \coordinate (CMA) at (0, 0.6); % Centro di Massa A
+                \coordinate (AttachA) at (-0.75, 0.6); 
+                \coordinate (FrictionBase) at (0, 0.1); % Punto di applicazione attrito (base del blocco)
+                
+                \fill (CMA) circle (0.05); 
+                \node[above right] at (0.2, 0.7) {$m_A$};
+
+                % Forze sul blocco A dal CM
+                \draw [thick, ->, red] (CMA) -- ++(1.5, 0) node[right, black] {$\vec{P}_{A\parallel}$};
+                \draw [thick, ->, red] (CMA) -- ++(0, -1.8) node[below left, black] {$\vec{P}_{A\perp}$};
+                \draw [thick, ->, green] (CMA) -- ++(0, 1.8) node[above right, black] {$\vec{N}$};
+                \draw [thick, ->, blue] (0, 0.8) -- ++(-1.5, 0) node[above left, black] {$\vec{T}$};
+                
+                % ATTRITO VERSO L'ALTO (Arancione) - staccato dal centro
+                \draw [thick, ->, orange] (0, 0.4) -- ++(-1.3, 0) node[below left, black] {$\vec{F}_{as}$};
+            \end{scope}
+
+            % Filo A
+            \draw [thick] (AttachA) -- (Pulley.53);
+
+            % Corpo B
+            \coordinate (WireDrop) at (Pulley.180); 
+            \coordinate (CMB) at (-0.7, \H-2.5);
+            \draw [thick] (WireDrop) -- (CMB);
+            \draw[thick, fill=gray!20] (-1.1, \H-3.1) rectangle (-0.3, \H-1.9);
+            \fill (CMB) circle (0.05);
+            \node[right] at (-1.2, \H-2.5) {$m_B$};
+
+            \begin{scope}[shift={(CMB)}]
+                \draw [thick, ->, blue] (0,0) -- (0, 1.3) node[right, black] {$\vec{T}$};
+                \draw [thick, ->, red] (0,0) -- (0, -1.3) node[right, black] {$\vec{P}_B$};
+            \end{scope}
+
+        \end{tikzpicture}
+        }
+        \\[0.3cm]
+        \textbf{Caso 1:} Tendenza al moto verso il basso 
+    \end{minipage}%
+    \hfill%
+    % --- SECONDO GRAFICO: Attrito verso il basso (Caso m_B massima) ---
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \resizebox{\linewidth}{!}{
+        \begin{tikzpicture}[>=Stealth, thick]
+
+            % Parametri Geometrici
+            \def\ang{37} 
+            \pgfmathsetmacro{\Base}{6} 
+            \pgfmathsetmacro{\H}{\Base*tan(\ang)} 
+
+            % Pavimento e Cuneo
+            \fill [pattern=north east lines] (-1.5,-0.3) rectangle (\Base+1,0);
+            \draw [thick] (-1.5,0) -- (\Base+1,0);
+            \draw [thick] (0,0) -- (\Base,0) -- (0,\H) -- cycle;
+
+            % Angolo \theta
+            \draw (\Base-1,0) arc (180:180-\ang:1);
+            \node[fill=white, inner sep=1pt] at (\Base-1.35, 0.3) {$\theta$};
+
+            % Carrucola
+            \coordinate (PulleyCenter) at (-0.3, \H+0.35);
+            \node[circle, draw, thick, fill=gray!40, minimum size=0.8cm, inner sep=0pt] (Pulley) at (PulleyCenter) {};
+            \draw[thick] (0,\H) -- (PulleyCenter); 
+
+            % Corpo A
+            \pgfmathsetmacro{\Sx}{2.5}
+            \pgfmathsetmacro{\Sy}{\H - \Sx*tan(\ang)}
+            \coordinate (S) at (\Sx, \Sy);
+
+            \begin{scope}[shift={(S)}, rotate=-\ang]
+                \draw[thick, fill=gray!20] (-0.75, 0) rectangle (0.75, 1.2);
+                \coordinate (CMA) at (0, 0.6); % Centro di Massa A
+                \coordinate (AttachA) at (-0.75, 0.6); 
+                \coordinate (FrictionBase) at (0, 0.1); % Punto di applicazione attrito (base del blocco)
+                
+                \fill (CMA) circle (0.05); 
+                \node[above right] at (0.2, 0.7) {$m_A$};
+
+                % Forze sul blocco A dal CM
+                \draw [thick, ->, red] (0, 0.8) -- ++(1.5, 0) node[right, black] {$\vec{P}_{A\parallel}$};
+                \draw [thick, ->, red] (CMA) -- ++(0, -1.8) node[below left, black] {$\vec{P}_{A\perp}$};
+                \draw [thick, ->, green] (CMA) -- ++(0, 1.8) node[above right, black] {$\vec{N}$};
+                \draw [thick, ->, blue] (CMA) -- ++(-1.5, 0) node[above left, black] {$\vec{T}$};
+                
+                % ATTRITO VERSO IL BASSO (Arancione) - staccato dal centro
+                \draw [thick, ->, orange] (0, 0.4) -- ++(1.3, 0) node[below right, black] {$\vec{F}_{as}$};
+            \end{scope}
+
+            % Filo A
+            \draw [thick] (AttachA) -- (Pulley.53);
+
+            % Corpo B
+            \coordinate (WireDrop) at (Pulley.180); 
+            \coordinate (CMB) at (-0.7, \H-2.5);
+            \draw [thick] (WireDrop) -- (CMB);
+            \draw[thick, fill=gray!20] (-1.1, \H-3.1) rectangle (-0.3, \H-1.9);
+            \fill (CMB) circle (0.05);
+            \node[right] at (-1.2, \H-2.5) {$m_B$};
+
+            \begin{scope}[shift={(CMB)}]
+                \draw [thick, ->, blue] (0,0) -- (0, 1.3) node[right, black] {$\vec{T}$};
+                \draw [thick, ->, red] (0,0) -- (0, -1.3) node[right, black] {$\vec{P}_B$};
+            \end{scope}
+
+        \end{tikzpicture}
+        }
+        \\[0.3cm]
+        \textbf{Caso 2:} Tendenza al moto verso l'alto 
+    \end{minipage}
+\end{center}
+
+Iniziamo analizzando il caso 1, quindi quando vince la forza peso di $A$ e che quindi la forza d'attrito punterà verso l'alto. Come al solito nella componente $\hat{y}$  le forze si bilanciano perfettamente ($\vec{P}_{A\perp} + \vec{N} = 0$), e ci ricordiamo che che carrucole "spezzano" l'asse di riferimento, con questo possiamo scrivere la somma delle forze e che porremo nulla dato che l'esercizio ci chiede quando è in equilibrio meccanico (e che quindi quando la accelerazione è nulla)
+
+\[
+\sum F = -P_{B} + T - T - F_{as} + P_{A\parallel} = -P_{B}  - F_{as} + P_{A\parallel} = 0 
+\]
+ Isoliamo la forza d'attrito e poi ricordiamo la consizione necessaria della forza d'attrito statico per l'equilibrio meccanico 
+ \[
+  P_{A\parallel} -P_{B}   = F_{as} \leq \mu_s N \implies m_ag\sin\theta - m_bg \leq \mu_s m_ag\cos\theta
+ \]
+
+ Possiamo togliere $g$ dato che è presente in ogni membro e isoliamo $m_b$ che è la nostra incognita
+ \[
+ m_a\sin\theta - m_b \leq \mu_s m_a\cos\theta \implies m_b \geq m_a(\sin\theta -\mu_0\cos\theta) \approx 2.02kg
+ \]
+
+ Studiamo il secondo caso, che lo imposteremo alla stessa maniera
+ \[
+ \sum F = -P_{B} + T - T + F_{as} + P_{A\parallel} = -P_{B}  + F_{as} + P_{A\parallel} = 0 
+ \]
+Isoliamo la forza d'attrito e imponiamo la condizione 
+\[
+P_{B} - P_{A\parallel}   = F_{as} \leq \mu_s N \implies  m_bg  -m_ag\sin\theta \leq \mu_s m_ag\cos\theta
+\]
+
+Risolviamo per $m_b$ 
+ \[
+ m_b  -m_a\sin\theta  \leq \mu_s m_a\cos\theta \implies m_b \leq m_a(\sin\theta +\mu_0\cos\theta) \approx 10.01kg
+ \]
+
+ Il nostro corpo è in equilibrio quando valgono entrambe le condizioni dei nostri casi 
+ \[
+ \begin{cases}
+  m_b \geq 2.02 \\
+  m_b \leq 10.01
+ \end{cases} \implies m_b \in [2.02, 10.01]
+ \]
+\end{proof}
+
+Questo esercizio si poteva anche risolvere studiando un solo caso. Infatti possiamo usare un trick molto comodo, ovvero che non diamo un verso verso fisso alla forza d'attrito possiamo evitare di separare in due casi. Infatti se guardiamo dal punto di vista scalare il nostro sistema (e quindi non dal punto di vista vettoriale) possiamo supporre una direzione della forza d'attrito e poi in caso cambiargli il segno. Per questo motivo dobbiamo "aggiustare" la condizione dell'attrito mettendo il modulo 
+\[
+|F_{as}| \leq \mu_s N
+\]
+
+Con questo possiamo supporre una direzione casuale della forza ed in caso si corregge con il modulo. Quindi se supponiamo che le forze stanno come nel caso 1 avevamo scoperto che 
+\[
+ F_{as} = P_{A\parallel} -P_{B}   
+\]
+
+Da qui possiamo impostare la "nuova" condizione dell'attrito statico 
+\[
+|F_{as}| \leq \mu_s N \implies |P_{A\parallel} -P_{B}  | \leq \mu_s N 
+\]
+
+Ed effettivamente con questo abbiamo compreso entrambe le condizioni che erano 
+\[
+\begin{array}{c@{\qquad}@{\qquad}c}
+  P_{A\parallel} - P_{B}      \leq \mu_s N &   P_{B} -P_{A\parallel}      \leq \mu_s N
+\end{array}
+\]
+
+\begin{esercizio}{}{}
+  Due blocchi, A e B, di massa rispettivamente $m_A$ e $m_B$, sono posti su un doppio piano inclinato avente angoli alla base $\theta$ (a sinistra) e $\phi$ (a destra). I due corpi sono collegati da una fune inestensibile e di massa trascurabile che scorre su una carrucola ideale posta alla sommità del piano. Il blocco B è inoltre collegato alla base del suo piano inclinato tramite una molla di costante elastica $k$. Il piano su cui poggia il blocco B è privo di attrito, mentre tra il blocco A e il piano di destra è presente attrito.
+Sapendo che il sistema si trova in equilibrio statico, determinare l'espressione del coefficiente di attrito statico minimo ($\mu_s$) necessario per mantenere tale equilibrio, in funzione della compressione $\Delta x$ della molla.
+\end{esercizio}
+
+Facciamo un'analisi veloce per poi fare il disegno. Notiamo che qua abbiamo due piani inclinati, poi il corpo $B$ è collegato ad una molla, che però il problema ci considera di studiare solo il cosa in cui è compressa, cioè vuol dire che la molla esercita una forza elastica che spinge verso l'alto il blocco. Poi come al solito entrambi dobbiamo dividere il peso nelle sue componenti e in entrambi i casi si forma una forza normale per compensare la componente perpendicolare. Per via della fune abbiamo che i corpi sono soggetti ad una tensione, ed infine il corpo $A$ è soggetto ad un attrito statico, che per convenienza lo poniamo verso il verso dell'asse $\hat{x}$, dato che come abbiamo visto nell'esercizio di prima possiamo tralasciare il verso dell'attrito se usiamo la nuova condizione. 
+\begin{center}
+    \begin{tikzpicture}[>=Stealth, thick, scale=0.8]
+
+        % --- PARAMETRI GEOMETRICI ---
+        \def\angL{35} % Angolo theta (sinistra)
+        \def\angR{28} % Angolo phi (destra)
+        \def\H{4.5}   % Altezza del cuneo
+        
+        % Calcolo delle basi
+        \pgfmathsetmacro{\BaseL}{\H/tan(\angL)}
+        \pgfmathsetmacro{\BaseR}{\H/tan(\angR)}
+
+        % --- PAVIMENTO ---
+        \fill [pattern=north east lines] (-\BaseL-1.5, -0.3) rectangle (\BaseR+1.5, 0);
+        \draw [thick] (-\BaseL-1.5, 0) -- (\BaseR+1.5, 0);
+
+        % --- CUNEO (Doppio piano inclinato) ---
+        \draw [thick] (-\BaseL, 0) -- (\BaseR, 0) -- (0, \H) -- cycle;
+
+        % --- ANGOLI \theta e \phi ---
+        \draw (-\BaseL+1, 0) arc (0:\angL:1);
+        \node at (-\BaseL+1.4, 0.35) {$\theta$};
+        
+        \draw (\BaseR-1, 0) arc (180:180-\angR:1);
+        \node at (\BaseR-1.4, 0.35) {$\phi$};
+
+        % --- CARRUCOLA ---
+        \coordinate (PulleyCenter) at (0, \H+0.45);
+        \node[circle, draw, thick, fill=gray!40, minimum size=0.8cm, inner sep=0pt] (Pulley) at (PulleyCenter) {};
+        \draw[thick] (0, \H) -- (PulleyCenter); % Supporto carrucola
+
+        % ==========================================
+        % --- CORPO B (SINISTRA) E MOLLA COMPRESSA ---
+        % ==========================================
+        \pgfmathsetmacro{\SlopeL}{\H/sin(\angL)} % Lunghezza piano di sinistra
+        
+        % Sposto il sistema di riferimento nell'angolo in basso a sinistra
+        % e lo ruoto dell'angolo theta. Ora l'asse X sale lungo il piano.
+        \begin{scope}[shift={(-\BaseL, 0)}, rotate=\angL]
+            
+            \pgfmathsetmacro{\BoxPos}{0.4*\SlopeL} % Posizione del blocco B
+            
+            % Molla compressa (dall'origine della pendenza al blocco)
+            \draw[decoration={aspect=0.4, segment length=2.5mm, amplitude=2mm, coil}, decorate, thick, darkgray] (0, 0.5) -- (\BoxPos, 0.5);
+            
+            % Blocco B
+            \draw[thick, fill=gray!20] (\BoxPos, 0) rectangle (\BoxPos+1.5, 1);
+            \coordinate (CMB) at (\BoxPos+0.75, 0.5); % Centro di massa B
+            \coordinate (BTop) at (\BoxPos+1.5, 0.5); % Punto di aggancio filo B
+            
+            \fill (CMB) circle (0.05); 
+            \node[above left] at (\BoxPos+0.75, 0.7) {$m_B$};
+
+            % NUOVI ASSI SU B (x sale, y perpendicular)
+            \draw [thin, dashed, gray, ->] (\BoxPos-1.5, 2) -- (\BoxPos+2.5, 2) node[right, black] {$\hat{x}$};
+            \draw [thin, dashed, gray, ->] (\BoxPos+0.75, -2.5) -- (\BoxPos+0.75, 2.8) node[above, black] {$\hat{y}$};
+
+            % Forze su B
+            % Peso (Componenti)
+            \draw [thick, ->, red] (CMB) -- ++(-1.5, 0) node[above left, black] {$\vec{P}_{B\parallel}$};
+            \draw [thick, ->, red] (CMB) -- ++(0, -1.8) node[right=2pt, black] {$\vec{P}_{B\perp}$};
+            % Normale
+            \draw [thick, ->, green] (CMB) -- ++(0, 1.8) node[left=2pt, black] {$\vec{N}_B$};
+            % Tensione
+            \draw [thick, ->, blue] (\BoxPos+0.75, 0.75)-- ++(1.4, 0) node[above=2pt, black] {$\vec{T}$};
+            
+            % Forza Elastica (MOLLA COMPRESSA, spinge B verso l'alto)
+            \draw [thick, ->, orange] (\BoxPos+0.75, 0.25) -- ++(1.2, 0) node[below right=2pt, black] {$\vec{F}_e$};
+
+        \end{scope}
+
+        % ==========================================
+        % --- CORPO A (DESTRA) E ATTRITO VERSO DESTRA ---
+        % ==========================================
+        \pgfmathsetmacro{\SlopeR}{\H/sin(\angR)} % Lunghezza piano di destra
+        
+        % Sposto il sistema di riferimento sulla punta del cuneo
+        % e lo ruoto verso il basso. Ora l'asse X scende lungo il piano.
+        \begin{scope}[shift={(0, \H)}, rotate=-\angR]
+            
+            \pgfmathsetmacro{\BoxPosA}{0.25*\SlopeR} % Posizione del blocco A
+            
+            % Blocco A
+            \draw[thick, fill=gray!20] (\BoxPosA, 0) rectangle (\BoxPosA+1.5, 1);
+            \coordinate (CMA) at (\BoxPosA+0.75, 0.5); % Centro di massa A
+            \coordinate (ATop) at (\BoxPosA, 0.5);     % Punto di aggancio filo A
+            \coordinate (ABottom) at (\BoxPosA+1.5, 0.5); % Punto inferiore di A
+            
+            \fill (CMA) circle (0.05); 
+            \node[above right] at (\BoxPosA+0.75, 0.7) {$m_A$};
+
+            % Assi di Riferimento per il blocco A (mantenuti)
+            \draw [thin, dashed, gray, ->] (\BoxPosA-1.5, 2) -- (\BoxPosA+2.5, 2) node[right, black] {$\hat{x}$};
+            \draw [thin, dashed, gray, ->] (\BoxPosA+0.75, -2.5) -- (\BoxPosA+0.75, 2.8) node[above, black] {$\hat{y}$};
+
+            % Forze su A
+            % Peso (Componenti)
+            \draw [thick, ->, red] (\BoxPosA+0.75, 0.75) -- ++(1.3, 0) node[above right, black] {$\vec{P}_{A\parallel}$};
+            \draw [thick, ->, red] (CMA) -- ++(0, -1.8) node[left=2pt, black] {$\vec{P}_{A\perp}$};
+            % Normale
+            \draw [thick, ->, green] (CMA) -- ++(0, 1.8) node[right=2pt, black] {$\vec{N}_A$};
+            % Tensione
+            \draw [thick, ->, blue] (CMA) -- ++(-1.4, 0) node[above left, black] {$\vec{T}$};
+            
+            % Forza d'Attrito (Verso destra/basso, concorde con P_{A\parallel})
+            % Disegnata sulla superficie di contatto (y=0)
+            \draw [thick, ->, cyan] (\BoxPosA+0.75, 0.25) -- ++(1.6, 0) node[right, black] {$\vec{F}_{AS}$};
+            
+        \end{scope}
+
+        % --- FILI ALLA CARRUCOLA ---
+        \draw [thick] (BTop) -- (Pulley);
+        \draw [thick] (ATop) -- (Pulley);
+
+    \end{tikzpicture}
+\end{center}
+
+Detto ciò, calcoliamo la somma delle forze sull'asse $\hat{x}$ e dato che vogliamo che sia in equilibrio meccanico poniamo la somma uguale a zero 
+\[
+\sum F = -P_{B\parallel} + T + F_e - T + P_{A\parallel} + F_{as} = -P_{B\parallel} + F_e  + P_{A\parallel} + F_{as} = 0
+\]
+Da questo possiamo isolare la forza d'attrito 
+\[
+  F_{as} = P_{B\parallel} - F_e  - P_{A\parallel} 
+\]
+
+Applichiamo la condizione dell'attrito statico 
+\begin{align*}
+|F_{as}| = | P_{B\parallel} - F_e  - P_{A\parallel} | \leq \mu_s N_A \implies \mu_s &\geq \dfrac{ | P_{B\parallel} - F_e  - P_{A\parallel} |}{N_A}\\
+\mu_s&\geq \dfrac{ | m_bg\sin\theta - k\Delta x  - m_ag\sin\phi |}{m_ag\cos\phi}
+\end{align*}
+
+\newpage
+Definiamo un nuovo concetto, ovvero di un \textbf{campo di forze}. Diciamo un campo di forze una qualsiasi funzione che presi un punto del piano cartesiano $(x,y)$ associa un vettore bidimensionale, che rappresenta una qualche tipo di forza. un campo di forze è della forma 
+\[
+\vec{F}:\mathbb{R}^2 \to \mathbb{R}^2 \implies \vec{F}(x, y) = \begin{pmatrix}
+  F_x(x,y) \\
+  F_y(x,y)
+\end{pmatrix}
+\]
+
+Queste tipologie di forze ci servono per associare se un corpo è presente in un determinato punto, a che forza è soggetto. Un esempio pratico è il campo gravitazionale, infatti noi a seconda di dove siamo rispetto al pianeta terra subiamo una determinata forza. Vediamo un esempio pratico e come si possono rappresentare i campi di forze. Prendiamo il seguente campo
+\[
+\vec{F} = \begin{pmatrix}
+  x + y \\
+  x - y
+\end{pmatrix}
+\] 
+
+Allora possiamo rappresentare nel piano cartesiano nel seguente modo. Ad ogni punto associamo il suo vettore che disegnamo con lunghezza unitaria. Per capire il modulo di ogni vettore è sufficiente guardare il colore con la scala graduata a fianco al grafico.
+
+\begin{center}
+    \begin{tikzpicture}[scale=0.75]
+        \begin{axis}[
+            width=10cm, height=10cm,
+            xmin=-5, xmax=5,
+            ymin=-5, ymax=5,
+            domain=-4.5:4.5,
+            y domain=-4.5:4.5,
+            view={0}{90}, % Vista dall'alto (2D)
+            samples=13, % Determina la densità della griglia di frecce
+            axis lines=center,
+            xlabel={$x$},
+            ylabel={$y$},
+            colorbar,
+            colorbar right,
+            colormap/jet % Scala di colori classica: blu (basso) -> rosso (alto)
+        ]
+            \addplot3[
+                thick,
+                -stealth,
+                % 1. IL COLORE dipende dal modulo reale calcolato
+                point meta={sqrt(2*x^2 + 2*y^2)}, 
+                quiver={
+                    % 2. LA LUNGHEZZA è resa uniforme. 
+                    % Moltiplichiamo per 0.5 per dare una lunghezza visiva fissa.
+                    % Il +0.001 al denominatore evita l'errore di divisione per zero nell'origine.
+                    u={0.5 * (x+y) / sqrt(2*x^2 + 2*y^2 + 0.001)}, 
+                    v={0.5 * (x-y) / sqrt(2*x^2 + 2*y^2 + 0.001)},
+                    scale arrows=1,
+                    every arrow/.append style={-stealth},
+                    colored % Applica il colore del 'point meta' alla freccia
+                }
+            ] (x, y, 0);
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+Ora se prendiamo due punti nel piano cartesiano $A(x_a, y_a)$ e $B(x_b, y_b)$ e definiamo un cammino $\gamma$ che parte dal punto $A$ ed arriva al punto $B$.
+\begin{center}
+    \begin{tikzpicture}[
+        scale=0.75,
+        % Definisco qui lo stile per nasconderlo al parser di pgfplots
+        cammino decorato/.style={
+            ultra thick, 
+            black,
+            decoration={
+                markings,
+                mark=at position 0.55 with {\arrow[scale=1.5]{stealth}}
+            },
+            postaction={decorate}
+        }
+    ]
+        \begin{axis}[
+            width=10cm, height=10cm,
+            xmin=-5, xmax=5,
+            ymin=-5, ymax=5,
+            zmin=-1, zmax=1,
+            domain=-4.5:4.5,
+            y domain=-4.5:4.5,
+            view={0}{90}, 
+            samples=13, 
+            axis lines=center,
+            % --- FIX PER IL WARNING DEL TICKLABEL ANCHOR ---
+            xticklabel style={anchor=north},
+            yticklabel style={anchor=west},
+            % -----------------------------------------------
+            xlabel={$x$},
+            ylabel={$y$},
+            colorbar,
+            colorbar right,
+            colormap/jet
+        ]
+            % 1. CAMPO VETTORIALE
+            \addplot3[
+                thick,
+                point meta={sqrt(2*x^2 + 2*y^2)}, 
+                quiver={
+                    u={0.5 * (x+y) / sqrt(2*x^2 + 2*y^2 + 0.001)}, 
+                    v={0.5 * (x-y) / sqrt(2*x^2 + 2*y^2 + 0.001)},
+                    scale arrows=1,
+                    every arrow/.append style={-stealth},
+                    colored
+                }
+            ] (x, y, 0);
+
+            % 2. CAMMINO CURVILINEO \gamma DA A a B
+            % Ora applico semplicemente lo stile creato all'inizio
+            \draw[cammino decorato] (-3,-2) .. controls (2,-3) and (-2,4) .. (2,3);
+            
+            % Etichetta del cammino \gamma
+            \node[thick, black, font=\large] at (1.3, 3.5) {\large$\bm{\gamma}$};
+
+            % 3. PUNTI A e B
+            \fill[black] (-3,-2) circle (2.5pt) node[below right, font=\large] {$A$};
+            \fill[black] (2,3) circle (2.5pt) node[above right, font=\large] {$B$};
+
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+\begin{definizione}{Lavoro di una forza}{}
+  Sia $\vec{F}$ un campo di forze, siano $A(x_a, y_a)$ e $B(x_b, y_b)$ due punti sul piano cartesiano e $\gamma$ un cammino da $A$ a $B$. Allora definiamo \textbf{lavoro} di $\vec{F}$ come 
+  \[
+  W = \int_{\gamma} \vec{F} \cdot d\vec{r}
+  \] 
+  Dove $W$ è il lavoro, $d\vec{r}$ è lo spostamento infinitesimo, e $\cdot$ è il prodotto scalare tra i vettori. Mentre il simbolo di integrale si riferisce all'integrale di cammino.
+\end{definizione}
+
+Il lavoro lo possiamo intendere come la quantità che misura quanto una forza contribuisce allo spostamente, ovvero quanto è stata d'aiuto una determianta forza per spostare un corpo da $A$ a $B$. Dato che è il prodotto tra una forza e uno spostamento abbiamo che l'unità di misura del lavoro è $J$ (\textbf{Joule}).
+\[
+J = N \cdot m
+\]
+
+Cominicamo vedendo degli esempi semplici, ad esempio prendiamo un caso di un campo di forze costanti di modulo $\vec{F}(x,y) = (F, 0)$, cioè una forza orizzontale costante. Supponiamo quindi dover compiere uno spostamento da un punto $A(x_a, y)$, a un punto $B(x_b, y)$, ovvero compie uno spostamento orizzontale.
+\begin{center}
+  
+\begin{tikzpicture}[
+    scale=0.75,
+    % Stile per il percorso con la freccia a metà
+    cammino decorato/.style={
+        ultra thick, 
+        blue, % Messo in blu per far risaltare lo spostamento sul campo rosso
+        decoration={
+            markings,
+            mark=at position 0.55 with {\arrow[scale=1.5]{stealth}}
+        },
+        postaction={decorate}
+    }
+]
+    \begin{axis}[
+        width=12cm, height=8cm,
+        xmin=-1, xmax=7,
+        ymin=-1, ymax=5,
+        zmin=-1, zmax=1,
+        % Il domain definisce dove vengono disegnati i vettori
+        domain=0:6,
+        y domain=0:4,
+        view={0}{90}, 
+        samples=7, % Numero ridotto di campioni poiché il campo è omogeneo
+        axis lines=center,
+        xticklabel style={anchor=north},
+        yticklabel style={anchor=west},
+        xlabel={$x$},
+        ylabel={$y$},
+        % Colorbar e colormap rimossi perché il campo è costante
+    ]
+        % 1. CAMPO VETTORIALE COSTANTE F = (F, 0)
+        \addplot3[
+            red!70, % Colore fisso per tutti i vettori
+            quiver={
+                u={1}, % Componente orizzontale costante
+                v={0}, % Componente verticale nulla
+                scale arrows=0.6,
+                every arrow/.append style={-stealth}
+            }
+        ] (x, y, 0);
+
+        % 2. SPOSTAMENTO ORIZZONTALE DA A a B
+        \draw[cammino decorato] (1.5, 2.3) -- (5.5, 2.3);
+        
+        % Etichetta dello spostamento
+        \node[above, blue, font=\large] at (2.75, 2.4) {$\Delta \vec{x}$};
+
+        % 3. PUNTI A e B
+        \fill[black] (1.5, 2.3) circle (2.5pt) node[above left, font=\large] {$A$};
+        \fill[black] (5.5, 2.3) circle (2.5pt) node[above right, font=\large] {$B$};
+
+        % 4. PROIEZIONI SUGLI ASSI E ETICHETTE
+        \draw[dashed, gray, thick] (1.5, 2.3) -- (1.5, 0) node[below, black] {$x_a$};
+        \draw[dashed, gray, thick] (5.5, 2.3) -- (5.5, 0) node[below, black] {$x_b$};
+        \draw[dashed, gray, thick] (1.5, 2.3) -- (0, 2.3) node[left, black] {$y$};
+
+        % Legenda del campo
+        \node[red!80!black, font=\large, fill=white, inner sep=2pt] at (3, 4.5) {$\vec{F}(x,y) = (F, 0)$};
+
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+Ora proviamo a calcolare il lavoro compiuto, per farlo ci serve trovare l'espressione di $d\vec{r}$. Ricordiamo che $d\vec{r}$ è la variazione infinitesimale del nostro percorso, cioè è un vettore con la variazione infinitesimale di entrambe le cordinate, quindi $d\vec{r} = (dx, dy)$ ma dato che $y$ è costante la sua variazione sarà nulla, quindi $d\vec{r} = (dx, 0)$ e pertanto il prodotto scalare sarà
+\[
+\vec{F} \cdot d\vec{r} = \begin{pmatrix}
+  F \\
+   0
+\end{pmatrix} \cdot 
+\begin{pmatrix}
+  dx \\
+  0
+\end{pmatrix} = F\cdot dx + 0\cdot 0 = F\cdot dx
+\] 
+
+Quindi il nostro integrale è rimasto in integrale ad una dimensione e quindi, possiamo calcolare l'integrale ponendo gli estremi di integrazione dato che ora il nostro integrale è rispetto ad $x$ e il nostro cammino inizia da $x_a$ fino a $x_b$
+\[
+W = \int_{\gamma} \vec{F} \cdot d\vec{r} = \int_{x_a}^{x_b} F\cdot dx = F\int_{x_a}^{x_b} dx = F(x_b-x_a) = F\Delta x
+\] 
+
+Questo valore guardando il grafico è facile convincerci $F\Delta x$ è un numero positivo. Questo vuol dire che che la forza generata dal campo ha aiutato allo spostamento, e questo è facile convincerci dato che sia forza che spostamento puntano verso destra. Facendo un paragone con la vita reale, è come se noi corressimo verso destra e ci fosse il vento a nostro favore (cioè che punta verso destra), in questo caso il vento aiuta allo spostamento (chiaramente in questo esempio l'aiuto è minimo ma è sempre presente). Invece se stessimo percorrendo il cammino partendo da $B$ a $A$ avremmo il caso opposto, infatti in quel caso $F\Delta x< 0$ (dato che l'integrale partirebbe da $x_b$ e arriverebbe a $x_a$, cioè gli estremi di intergazione sarebbero invertiti). Questo vuol dire che la forza ha dato reso più difficile fare il cammino. Questo torna anche con il nostro esempio del vento, infatti se noi caminiamo in una direzione e abbiamo il vento contro risulta più difficile.  
+
+Vediamo un'altro esempio, proviamo a vedere ora se il campo è perpendicolare allo spostamento. Quindi supponiamo di avere un campo costante $\vec{F}(x,y) = (0, F)$ ed uno spostamento orizzontale, pertanto abbiamo che $d\vec{r} = (dx, 0)$. e quindi 
+\[
+\vec{F} \cdot d\vec{r} = \begin{pmatrix}
+  0 \\
+  F
+\end{pmatrix} \cdot \begin{pmatrix}
+  dx \\
+  0
+\end{pmatrix}
+= 0 \cdot dx + F \cdot 0 = 0
+\]
+Quindi il lavoro vale 
+\[
+W = \int_{\gamma} \vec{F} \cdot d\vec{r} =  \int_{\gamma} 0 = 0
+\]
+Con questo scorpiamo un altro comportamento fondamentale del lavoro, ovvero che se una forza è perpendicolare allo spostamento abbiamo che il lavoro è nullo. Questo conferma il concetto con cui abbiamo definito il lavoro, perchè se sto andando in una direzione e una forza mi preme perpendicolarmente non influirà il moto, dato che non lo aggevola e non lo impedisce. 
+
+Ora come ultimo caso particolare vediamo quando il campo non è nè perpendicolare nè parallelo allo spostamento. Vediamo un campo costante $\vec{F}(x,y) = (F_x, F_y)$ ed uno spostamento orizzontale. Quindi come prima abbiamo che  $d\vec{r} = (dx, 0)$, quindi
+\[
+\vec{F} \cdot d\vec{r} = \begin{pmatrix}
+  F_x \\
+  F_y
+\end{pmatrix} \cdot \begin{pmatrix}
+  dx \\
+  0
+\end{pmatrix}
+= F_x \cdot dx + F_y \cdot 0 = F_x \cdot dx
+\]
+Quindi il lavoro vale 
+\[
+W = \int_{\gamma} \vec{F} \cdot d\vec{r} =  \int_{x_a}^{x_b} F_x \cdot dx =  F_x\int_{x_a}^{x_b}  dx = F_x (x_b-x_a) = F_x\Delta x
+\]
+Questo risultato è la fuzione dei primi due esempi, infatti se abbiamo un campo che non è parallelo e nemmeno perpendicolare abbiamo che per il lavoro ci interessa solo la porzione parallela alla direzione dello spostamento. 
+
+In tutti gli esemi visti fino ad ora abbiamo usato uno spostamento costante per renderci più semplici la vita, nella maggior parte degli esercizi avremo delle traiettorie più complesse, e per questo riaggiustare la definizione di lavoro, infatti se noi moltiplichiamo e dividiamo per $dt$ (porzione inifinitesima di tempo) abbiamo che 
+\[
+W = \int_{\gamma} \vec{F} \cdot d\vec{r}   = \int_{\gamma} \vec{F} \cdot \dfrac{d\vec{r}}{dt} \,dt
+\]
+Ricordiamo che se $\vec{r}$ è il vettore spostamento, allora $\frac{d\vec{r}}{dt}$ è la velocità, quindi 
+\[
+W = \int_{\gamma} \vec{F} \cdot \vec{v}(t) \,dt
+\]
+Poi facendo così abbiamo che il nostro cammino ora è in funzione del tempo, e quindi il cammino lo calcoliamo dal tempo $t_0$ al tempo $t_1$
+\[
+W = \int_{t_0}^{t_1} \vec{F}(t) \cdot \vec{v}(t) \,dt
+\]
+
+Questo ci permette di calcolare più facilemente il lavoro di una forza, soppratutto negli esercizi, vediamone uno. 
+
+Sia un campo di forze $\vec{F}(x,y) = (-y, x)$, un corpo copie un cammino secondo la funzione $\vec{r}(t)=(2\cos(t), 2\sin(t))$  con $t\in [0, \pi]$. Per calcolare il lavoro compiuto dalla forza dobbiamo calcolare la velocità istantanea
+\[
+\dfrac{d\vec{r}}{dt} = \vec{v}(t)=(-2\sin(t), 2\cos(t))
+\]
+Ora possiamo riscrivere la funzione forza dato che nel nostro cammino noi sappiamo che $x(t)=2\cos(t)$ e $y(t) = 2\sin(t)$, allora possiamo riscrivere la forza come 
+\[
+\vec{F}(x(t), y(t)) = \begin{pmatrix}
+  -y(t) \\
+  x(t)
+\end{pmatrix} = \begin{pmatrix}
+  -2\sin(t)\\
+ 2\cos(t)
+\end{pmatrix}
+\]
+
+Quindi il prodotto scalare è 
+\begin{align*}
+\vec{F}(t) \cdot \vec{v}(t) = \begin{pmatrix}
+  -2\sin(t)\\
+ 2\cos(t)
+\end{pmatrix}\cdot \begin{pmatrix}
+  -2\sin(t)\\
+ 2\cos(t)
+\end{pmatrix} &= (-2\sin(t))\cdot (-2\sin(t)) + (2\cos(t))\cdot (2\cos(t)) \\
+&= 4\sin^2(t) + 4\cos^2(t) = 4  
+\end{align*}
+
+E quindi il lavoro è 
+\[
+ W = \int_{\gamma} \vec{F}(t) \cdot \vec{v}(t) \,dt = \int_{0}^{\pi} 4\,dt = 4\pi
+\]
 
 \end{document}
