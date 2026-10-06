@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.9.30)  5 OCT 2026 01:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.9.30)  6 OCT 2026 23:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -999,14 +999,34 @@ Package pdftex.def Info: logos/feit.png  used on input line 330.
  [5{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 File: logos/feit.png Graphic file (type png)
 <use logos/feit.png>
-Package pdftex.def Info: logos/feit.png  used on input line 421.
+Package pdftex.def Info: logos/feit.png  used on input line 411.
 (pdftex.def)             Requested size: 87.687pt x 35.07478pt.
  [6]
 File: logos/feit.png Graphic file (type png)
 <use logos/feit.png>
-Package pdftex.def Info: logos/feit.png  used on input line 425.
+Package pdftex.def Info: logos/feit.png  used on input line 464.
 (pdftex.def)             Requested size: 87.687pt x 35.07478pt.
- [7] (./main.aux)
+ [7]
+File: logos/feit.png Graphic file (type png)
+<use logos/feit.png>
+Package pdftex.def Info: logos/feit.png  used on input line 571.
+(pdftex.def)             Requested size: 87.687pt x 35.07478pt.
+ [8]
+File: logos/feit.png Graphic file (type png)
+<use logos/feit.png>
+Package pdftex.def Info: logos/feit.png  used on input line 679.
+(pdftex.def)             Requested size: 87.687pt x 35.07478pt.
+ [9]
+File: logos/feit.png Graphic file (type png)
+<use logos/feit.png>
+Package pdftex.def Info: logos/feit.png  used on input line 715.
+(pdftex.def)             Requested size: 87.687pt x 35.07478pt.
+ [10]
+File: logos/feit.png Graphic file (type png)
+<use logos/feit.png>
+Package pdftex.def Info: logos/feit.png  used on input line 761.
+(pdftex.def)             Requested size: 87.687pt x 35.07478pt.
+ [11] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -1015,18 +1035,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: AB5C5834EC7B4BE45DD3FFAE07DD06F9;308.
  ) 
 Here is how much of TeX's memory you used:
- 48434 strings out of 468897
- 1142443 string characters out of 5453907
- 1827015 words of memory out of 5000000
- 76377 multiletter control sequences out of 15000+600000
+ 48816 strings out of 468897
+ 1150480 string characters out of 5453907
+ 1825016 words of memory out of 5000000
+ 76752 multiletter control sequences out of 15000+600000
  642217 words of font info for 72 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
- 125i,17n,121p,800b,1135s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbi1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfxc2074.pfb>
-Output written on main.pdf (8 pages, 678471 bytes).
+ 125i,17n,121p,800b,1133s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbi1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfxc2074.pfb>
+Output written on main.pdf (12 pages, 717611 bytes).
 PDF statistics:
- 204 PDF objects out of 1000 (max. 8388607)
- 129 compressed objects within 2 object streams
- 22 named destinations out of 1000 (max. 500000)
+ 224 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
+ 29 named destinations out of 1000 (max. 500000)
  183 words of extra memory for PDF output out of 10000 (max. 10000000)
 

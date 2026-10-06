@@ -325,7 +325,7 @@ Questo lo possiamo fare proprio perchè per nelle applicazioni di tutti i giorni
 
 
 \begin{esercizio}{}{}
-  Sia un filo infinitamente lungo con densità di carica lineare costante $\lambda$, trovare la funzione campo elettrico in funzione della distanza $r$ dalla retta.
+  Sia un filo lungo $2L$ con densità di carica lineare costante $\lambda$, trovare la funzione campo elettrico in funzione della distanza $r$ dalla retta, rispetto al centro del filo, poi analizzare come si comporta per $L\to +\infty$.
 \end{esercizio}
 
 \begin{proof}[svolgimento]
@@ -334,7 +334,7 @@ Questo lo possiamo fare proprio perchè per nelle applicazioni di tutti i giorni
   \begin{center}
     
   \begin{tikzpicture}[
-    scale=0.8,
+    scale=1,
     >=latex,
     vector/.style={->, thick, red},
     component/.style={->, dashed, red!80},
@@ -348,8 +348,6 @@ Questo lo possiamo fare proprio perchè per nelle applicazioni di tutti i giorni
 
     % Filo infinito (asse x)
     \draw[wire] (-4.5, 0) -- (4.5, 0) ;
-    \draw[wire, dashed] (4.5, 0) -- (5, 0);
-    \draw[wire, dashed] (-4.5, 0) -- (-5, 0);
 
     % Punto P sull'asse y
     \def\r{2.5}
@@ -365,6 +363,7 @@ Questo lo possiamo fare proprio perchè per nelle applicazioni di tutti i giorni
     \coordinate (dq) at (\x, 0);
     \draw[line width=4pt, red] (\x-0.2, 0) -- (\x+0.2, 0) node[below=2.5pt, black] {$dq$};
     \draw[<->] (0, -0.3) -- (\x, -0.3) node[midway, below] {$x$};
+    \draw[<->] (0, -0.3) -- (-4.5, -0.3) node[midway, below] {$L$};
 
     % Distanza tra dq e P
     \draw[dashed, thick] (dq) -- (P) node[midway, above right, xshift=-2pt] {$d = \sqrt{r^2 + x^2}$};
@@ -393,34 +392,373 @@ dE &= \dfrac{1}{4\pi\varepsilon_0} \dfrac{\lambda dx}{(\sqrt{r^2+x^2})^2} \dfrac
 \end{pmatrix}
 \end{align*}
 
-Ora che è tutto apposto possiamo intergrare ambo i membri, e integriamo su tutto $\mathbb{R}$ dato che il filo è infinitamente lungo.
+Ora che è tutto apposto possiamo intergrare ambo i membri, e integriamo sull'intervallo $[-L, L]$ dato che le cariche esistono su questo intervallo.
 
 \begin{align*}
-\int dE &= \int_{-\infty}^{+\infty}\dfrac{1}{4\pi\varepsilon_0} \dfrac{\lambda dx}{(\sqrt{r^2+x^2})^2} \dfrac{1}{\sqrt{x^2+r^2}} \begin{pmatrix}
+\int dE &= \int_{-L}^{L}\dfrac{1}{4\pi\varepsilon_0} \dfrac{\lambda dx}{(\sqrt{r^2+x^2})^2} \dfrac{1}{\sqrt{x^2+r^2}} \begin{pmatrix}
   -x \\
   r
 \end{pmatrix} \\[0.1cm]
 \vec{E}(r) &= \dfrac{\lambda}{4\pi\varepsilon_0} \left[\begin{pmatrix}
   1 \\
   0
-\end{pmatrix}\int_{-\infty}^{+\infty}  \dfrac{-x dx}{(r^2+x^2)^{3/2}} + \begin{pmatrix}
+\end{pmatrix}\int_{-L}^{L}  \dfrac{-x dx}{(r^2+x^2)^{3/2}} + \begin{pmatrix}
   0 \\
   1
-\end{pmatrix}\int_{-\infty}^{+\infty}  \dfrac{r dx}{(r^2+x^2)^{3/2}}\right]
+\end{pmatrix}\int_{-L}^{L}  \dfrac{r dx}{(r^2+x^2)^{3/2}}\right]
 \end{align*}
 
-
-Il primo integrale notiamo che è una funzione dispari su un intervallo simmetrico, quindi sappiamo già che fa 0. Il secondo integrale lo risolviamo con una sostituzione, ponendo $x=r\tan \theta$ così gli estremi diventano $\pm\pi/2$. Poi per semplicità scriviamo il versore $(0, 1)$ come $\hat{y}$
+\newpage
+Il primo integrale notiamo che è una funzione dispari su un intervallo simmetrico, quindi sappiamo già che fa 0. Il secondo integrale lo risolviamo con una sostituzione, ponendo $x=r\tan \theta$ così gli estremi diventano $\pm\arctan(L/r)$. Poi per semplicità scriviamo il versore $(0, 1)$ come $\hat{y}$
 
 \begin{align*}
-  \vec{E}(r) &= \dfrac{\lambda r }{4\pi\varepsilon_0} \hat{y} \int_{-\pi/2}^{\pi/2}\dfrac{r}{(r^2+r^2\tan^2\theta )^{3/2}} \dfrac{d\theta}{\cos^2 \theta} \\
- &= \dfrac{\lambda r^2 }{4\pi\varepsilon_0} \hat{y}  \int_{-\pi/2}^{\pi/2}\dfrac{1}{r^3 \frac{1}{\cos^3\theta}} \dfrac{d\theta}{\cos^2 \theta} \\
- &= \dfrac{\lambda  }{4\pi\varepsilon_0 r} \hat{y}  \int_{-\pi/2}^{\pi/2}\cos\theta d\theta \\
- &= \dfrac{\lambda  }{4\pi\varepsilon_0 r} \hat{y} \left[\sin\left(\dfrac{\pi}{2}\right)-\sin\left(\dfrac{-\pi}{2}\right)\right] \\
- &= \dfrac{\lambda  }{2\pi\varepsilon_0 r} \hat{y} 
+  \vec{E}(r) &= \dfrac{\lambda r }{4\pi\varepsilon_0} \hat{y} \int_{-\arctan(L/r)}^{\arctan(L/r)}\dfrac{r}{(r^2+r^2\tan^2\theta )^{3/2}} \dfrac{d\theta}{\cos^2 \theta} \\
+ &= \dfrac{\lambda r^2 }{4\pi\varepsilon_0} \hat{y}  \int_{-\arctan(L/r)}^{\arctan(L/r)}\dfrac{1}{r^3 \frac{1}{\cos^3\theta}} \dfrac{d\theta}{\cos^2 \theta} \\
+ &= \dfrac{\lambda  }{4\pi\varepsilon_0 r} \hat{y} \int_{-\arctan(L/r)}^{\arctan(L/r)}\cos\theta d\theta \\
+ &= \dfrac{\lambda  }{4\pi\varepsilon_0 r} \hat{y} \left[\sin\left(\arctan\dfrac{L}{r}\right)-\sin\left(-\arctan\dfrac{L}{r}\right)\right] \\
+ &= \dfrac{\lambda  }{2\pi\varepsilon_0 r}  \sin\left(\arctan\dfrac{L}{r}\right) \hat{y}
 \end{align*}
+
+Dobbiamo ricordare ora trigonometria per snodare quella forma trigonometrica. Ora dato che $\theta=\arctan(L/r)$ allora sappiamo che $\tan\theta = L/r$ da questo possiamo costruire un triangolo rettangolo con base $r$ e altezza $L$
+
+\begin{center}
+  
+\begin{tikzpicture}[scale=1]
+  % Vertici
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (4,0);
+  \coordinate (C) at (4,3);
+
+  % Triangolo
+  \draw[thick] (A) -- (B) node[midway, below] {$r$};
+  \draw[thick] (B) -- (C) node[midway, right] {$L$};
+  \draw[thick] (A) -- (C) node[midway, above left] {$\sqrt{r^2 + L^2}$};
+
+  % Simbolo angolo retto
+  \draw (3.6,0) -- (3.6,0.4) -- (4,0.4);
+
+  % Arco per l'angolo theta
+  \draw (1,0) arc (0:36.87:1);
+  \node at (1.35,0.35) {$\theta$};
+\end{tikzpicture}
+\end{center}
+
+
+Usando la definizione di seno (opposto/ipotenusa) abbiamo che $\sin\theta=L/\sqrt{L^2+r^2}$ e da questo si deduce che 
+
+\[
+\sin\left(\arctan\dfrac{L}{r}\right) = \dfrac{L}{\sqrt{L^2+r^2}} \implies \vec{E}(r) =  \dfrac{\lambda  }{2\pi\varepsilon_0 r}   \dfrac{L}{\sqrt{L^2+r^2}} \hat{y}
+\]
+
+
+Ora invece dobbiamo studiare il caso $L\to+\infty$, ovvero di una asta infinitamente lunga
+
+\[
+\lim_{L\to +\infty} \dfrac{\lambda  }{2\pi\varepsilon_0 r}   \dfrac{L}{\sqrt{L^2+r^2}} \hat{y} = \lim_{L\to +\infty} \dfrac{\lambda  }{2\pi\varepsilon_0 r}   \dfrac{L}{L\sqrt{1+\frac{r^2}{L^2}}} \hat{y} =  \dfrac{\lambda  }{2\pi\varepsilon_0 r}   \hat{y} 
+\]
 \end{proof}
 
 
+
+
+\newpage
+
+\begin{esercizio}{}{}
+  Considerare una circonferenza di raggio $R$ con distribuzione di carica lineare costante $\lambda$. Trovare la funzione del campo elettrico sull'asse della circonferenza.
+\end{esercizio}
+
+\begin{proof}[svolgimento]
+  Ricordiamo che la circonferenza è solo il "bordo" del cerchio, infatti l'esercizio nomina la densità lineare. Facciamo un disegno
+
+
+  \begin{center}
+\begin{tikzpicture}[
+    % Terna 3D isometrica canonica (destrorsa: x x y = z)
+    x={(-0.866cm, -0.5cm)}, % asse x esce in avanti a sinistra (210°)
+    y={(0.866cm, -0.5cm)},  % asse y va a destra (330° / -30°)
+    z={(0cm, 1cm)},         % asse z verticale verso l'alto (90°)
+    scale=0.8
+]
+    % Definizione colori
+    \definecolor{myred}{RGB}{235, 60, 60}
+    \definecolor{myblue}{RGB}{50, 160, 230}
+
+    \def\R{2.0}    % Raggio dell'anello
+    \def\distX{3}  % Distanza x lungo l'asse
+
+    % Coordinate chiave
+    \coordinate (O) at (0, 0, 0);       % Origine (centro)
+    \coordinate (P) at (\distX, 0, 0);  % Punto P a distanza x
+    \coordinate (dq) at (0, 0, \R);     % Elemento dq in cima sull'asse z
+
+    % Assi y e z del piano (grigio chiaro per riferimento)
+    \draw[gray!60, thin, ->] (0, -\R*1.25, 0) -- (0, \R*1.35, 0) node[below right, black] {$y$};
+    \draw[gray!60, thin, ->] (0, 0, -\R*1.25) -- (0, 0, \R*1.35) node[above, black] {$z$};
+
+    % Asse x (perpendicolare al piano yz)
+    \draw[thick, ->] (-1.2, 0, 0) -- (4.2, 0, 0) node[below left] {$\vec{x}$};
+
+    % Anello circolare nel piano yz (tracciato esatto a raggio costante R)
+    \draw[very thick] plot[domain=0:360, samples=120] (0, {\R*cos(\x)}, {\R*sin(\x)});
+
+    % Raggio R (dall'origine a dq lungo l'asse z)
+    \draw[thick] (O) -- (dq) node[midway, right] {$R$};
+
+    % Elemento di carica dq (rosso)
+    \fill[myred] (dq) circle (2.2pt) node[above right] {$dq$};
+
+    % Segmento tratteggiato azzurro da dq a P
+    \draw[myblue, thick, dashed] (dq) -- (P);
+    \fill[myblue] (P) circle (1.8pt);
+
+    % Quota x posizionata SOTTO l'asse x (spostata lungo -z)
+    \def\zOff{0.45}
+    \coordinate (Q_O) at (0, 0, -\zOff);
+    \coordinate (Q_P) at (\distX, 0, -\zOff);
+
+    % Linee di riferimento e freccia di quota
+    \draw[thin, myblue] (O) -- (Q_O);
+    \draw[thin, myblue] (P) -- (Q_P);
+    \draw[<->, myblue, thick] (Q_O) -- (Q_P) node[midway, below] {$x$};
+
+\end{tikzpicture}
+  \end{center}
+
+
+Ora iniziamo descrivendo la quantità di carica, e dato che ci tornerà comodo per i conti possiamo usare le coordinate radiali, quindi come abbiamo visto ad analisi $dl = Rd\theta$ quindi 
+\[
+dq = \lambda Rd\theta
+\]
+
+Mentre la distanza è semplicemente 
+\[
+d = \sqrt{R^2+x^2}
+\]
+
+Infine possiamo trovare il vettore che congiunge il punto $dq$ con il punto sull'asse x, il che con un po di geometria è molto semplice 
+\[
+\hat{u} = (x, -R\cos\theta, -R\sin\theta )
+\]
+
+Che normalizzato diventa 
+\[
+\hat{u} = \dfrac{1}{\sqrt{R^2+x^2}}(x, -R\cos\theta, -R\sin\theta )
+\]
+
+
+Quindi l'integrale diventa 
+\[
+dE = \dfrac{1}{4\pi \varepsilon_0} \dfrac{\lambda Rd\theta}{(R^2+x^2)^{3/2}} \begin{pmatrix}
+  x \\
+   -R\cos\theta \\
+   -R\sin\theta 
+\end{pmatrix}
+\]
+
+\[
+\vec{E}(x) = \int_{0}^{2\pi}\dfrac{1}{4\pi \varepsilon_0} \dfrac{\lambda Rd\theta}{(R^2+x^2)^{3/2}} \begin{pmatrix}
+  x \\
+   -R\cos\theta \\
+   -R\sin\theta 
+\end{pmatrix}
+\]
+
+Notiamo che integrando rispetto a $\theta$ abbiamo che $R$ e $x$ sono constanti quindi possiamo portarle fuori. Invece dentro l'integrale resta solo $\cos\theta$ e $\sin\theta$ che integrati nell'intervallo $[0, 2\pi]$ entrambi valgono 0, quindi il vettore risultate è solo rispetto al versore $\hat{x}$, quindi possiamo sostituirlo nell'integrale e calcolarlo.
+\begin{align*}
+  \vec{E}(x) &= \dfrac{1}{4\pi \varepsilon_0} \dfrac{\lambda Rx}{(R^2+x^2)^{3/2}} \hat{x} \int_{0}^{2\pi}d\theta \\
+  &= \dfrac{1}{4\pi \varepsilon_0} \dfrac{\lambda Rx}{(R^2+x^2)^{3/2}} \hat{x} \cdot 2\pi \\
+  &= \dfrac{1}{2\varepsilon_0} \dfrac{\lambda Rx}{(R^2+x^2)^{3/2}} \hat{x} 
+\end{align*}
+
+\end{proof}
+
+
+\begin{esercizio}{}{}
+  Considerare un disco di raggio $R$ con distribuzione di carica superficiale costante $\sigma$. Trovare la funzione del campo elettrico sull'asse del disco. Poi analizzare cosa succede per $R\to+\infty$.
+\end{esercizio}
+
+
+\begin{proof}
+  
+  Notiamo che a differenza dell'esercizio di prima abbiamo che il disco ora è pieno, e che quindi ora stiamo analizzando una superficie piana, non più un filo unidimensionale. 
+
+  \begin{center}
+\begin{tikzpicture}[
+    % Terna 3D isometrica canonica (destrorsa: x x y = z)
+    x={(-0.866cm, -0.5cm)}, % asse x esce in avanti a sinistra (210°)
+    y={(0.866cm, -0.5cm)},  % asse y va a destra (330° / -30°)
+    z={(0cm, 1cm)},         % asse z verticale verso l'alto (90°)
+    scale=0.8
+]
+    % Definizione colori
+    \definecolor{myred}{RGB}{235, 60, 60}
+    \definecolor{myblue}{RGB}{50, 160, 230}
+    \definecolor{diskcolor}{RGB}{215, 235, 250} % azzurro chiaro per il riempimento
+
+    % Parametri geometrici
+    \def\R{2.2}       % Raggio massimo del disco
+    \def\r{1.25}      % Raggio della posizione di dq (r < R)
+    \def\angTheta{110} % Angolo polare theta nel piano yz per dq
+    \def\distX{3.2}   % Distanza x del punto P lungo l'asse
+
+    % Coordinate chiave
+    \coordinate (O) at (0, 0, 0);       % Origine (centro del disco)
+    \coordinate (P) at (\distX, 0, 0);  % Punto P a distanza x
+    % Punto dq nel piano yz a distanza r e angolo theta
+    \coordinate (dq) at (0, {\r*cos(\angTheta)}, {\r*sin(\angTheta)});
+
+    % Asse x posteriore (tratteggiato perché nascosto dietro al disco pieno)
+    \draw[thick, dashed] (-1.2, 0, 0) -- (0, 0, 0);
+
+    % Riempimento del disco pieno (piano yz)
+    \fill[diskcolor, opacity=0.75] plot[domain=0:360, samples=120] (0, {\R*cos(\x)}, {\R*sin(\x)});
+
+    % Assi y e z tracciati sul disco
+    \draw[gray!60, thin, ->] (0, -\R*1.2, 0) -- (0, \R*1.3, 0) node[below right, black] {$y$};
+    \draw[gray!60, thin, ->] (0, 0, -\R*1.2) -- (0, 0, \R*1.3) node[above, black] {$z$};
+
+    % Corona/anello tratteggiato a raggio r (locus dei punti a distanza r)
+    \draw[myblue!60, dashed, thin] plot[domain=0:360, samples=100] (0, {\r*cos(\x)}, {\r*sin(\x)});
+
+    % Bordo esterno del disco (circonferenza di raggio R)
+    \draw[very thick] plot[domain=0:360, samples=120] (0, {\R*cos(\x)}, {\R*sin(\x)});
+
+    % Raggio massimo R del disco (portato al bordo superiore lungo z)
+    \draw[thick] (O) -- (0, 0, \R) node[midway, right] {$R$};
+
+    % Raggio r dal centro a dq
+    \draw[thick] (O) -- (dq) node[midway, above left] {$\rho$};
+
+    % Elemento di carica dq (rosso, all'interno del disco)
+    \fill[myred] (dq) circle (2.2pt) node[above left] {$dq$};
+
+    % Asse x anteriore (esce perpendicolarmente dal centro del disco verso l'osservatore)
+    \draw[thick, ->] (0, 0, 0) -- (4.3, 0, 0) node[below left] {$\vec{x}$};
+
+    % Segmento tratteggiato azzurro da dq al punto P
+    \draw[myblue, thick, dashed] (dq) -- (P);
+    \fill[myblue] (P) circle (1.8pt);
+
+    % Quota x posizionata sotto l'asse x (spostata lungo -z)
+    \def\zOff{0.45}
+    \coordinate (Q_O) at (0, 0, -\zOff);
+    \coordinate (Q_P) at (\distX, 0, -\zOff);
+
+    \draw[thin, myblue] (O) -- (Q_O);
+    \draw[thin, myblue] (P) -- (Q_P);
+    \draw[<->, myblue, thick] (Q_O) -- (Q_P) node[midway, below] {$x$};
+
+\end{tikzpicture}
+\end{center}
+
+
+Dobbiamo iniziare a impostare tutte le variabili per poter fare al meglio l'integrale doppio. Infatti noi sappiamo che per le distribuzioni superficiali vale $dq = \sigma d\Sigma$, per comodità dato che abbiamo un disco centrato nell'origine è molto comodo usare le coordinate polari, e da analisi sappiamo che il elemento infinitesimo delle coordinate polari è $d\Sigma = \rho d\rho d\theta$, quindi abbiamo  
+\[dq = \sigma \rho d\rho d\theta\] 
+
+Dato che stiamo usando le coordinate polari la distanza diventa semplicemente 
+\[
+d = \sqrt{x^2+\rho^2}
+\]
+
+Infine abbiamo il vettore congiungente è uguale a prima
+\[
+\hat{u} = \dfrac{1}{\sqrt{x^2+\rho^2}} (x, -\rho\cos\theta,-\rho\sin\theta)
+\]
+
+Quindi la forma differenziale diventa
+\[
+dE = \dfrac{1}{4\pi\varepsilon_0} \dfrac{\sigma \rho d\rho d\theta}{(x^2+\rho^2)^{3/2}} \begin{pmatrix}
+  x \\
+  -\rho\cos\theta\\
+  -\rho\sin\theta
+\end{pmatrix}
+\]
+
+
+Ora per integrare dato che abbiamo due differenziali (dato che siamo in 2 dimensioni) dobbiamo integrare due volte, e facciamo che $\theta\in[0, 2\pi]$ e $\rho\in[0, R]$ in modo tale da ricoprire tutto il disco e poi vedremo che questi intervalli ci torneranno comodi per semplificare la vita.
+
+\begin{align*}
+  \vec{E}(x) &= \int_{0}^{2\pi} \int_{0}^{R} \dfrac{1}{4\pi\varepsilon_0} \dfrac{\sigma \rho d\rho d\theta}{(x^2+\rho^2)^{3/2}} \begin{pmatrix}
+  x \\
+  -\rho\cos\theta\\
+  -\rho\sin\theta 
+\end{pmatrix} 
+\end{align*}
+
+Guardiamo per un attimo solamente alla componente $y$ dell'integrale 
+\begin{align*}
+E_y(x) = \int_{0}^{2\pi} \int_{0}^{R} \dfrac{1}{4\pi\varepsilon_0} \dfrac{\sigma \rho d\rho d\theta}{(x^2+\rho^2)^{3/2}} \cdot -\rho\cos\theta &= -\mathunderline{red}{\int_{0}^{2\pi}\cos\theta  d\theta}  \int_{0}^{R} \dfrac{1}{4\pi\varepsilon_0} \dfrac{\sigma \rho^2 d\rho}{(x^2+\rho^2)^{3/2}} \\
+&= -\mathunderline{red}{0} \cdot \int_{0}^{R} \dfrac{1}{4\pi\varepsilon_0} \dfrac{\sigma \rho^2 d\rho}{(x^2+\rho^2)^{3/2}}  = 0
+\end{align*}
+
+Questo ragionamento lo possiamo estendere anche alla componente $z$ e quindi il campo elettrico (come nel caso precedente) è solo in direzione dell'asse $x$
+\begin{align*}
+  \vec{E}(x) = \int_{0}^{2\pi} \int_{0}^{R} \dfrac{1}{4\pi\varepsilon_0} \dfrac{\sigma \rho x d\rho d\theta}{(x^2+\rho^2)^{3/2}} \hat{x} &= \dfrac{\sigma x}{4\pi\varepsilon_0}\hat{x} \mathunderline{red}{\int_{0}^{2\pi}d\theta} \int_{0}^{R}  \dfrac{\rho d\rho }{(x^2+\rho^2)^{3/2}}  \\
+   &= \dfrac{\sigma x}{4\pi\varepsilon_0}\hat{x}\cdot \mathunderline{red}{2\pi} \cdot \dfrac{1}{2} \int_{0}^{R}  \dfrac{2\rho d\rho }{(x^2+\rho^2)^{3/2}} 
+\end{align*}
+
+Per l'integrale mancante svogliamo una sostituzione con $t = x^2+\rho^2$
+\begin{align*}
+  \vec{E}(x)  = \dfrac{\sigma x}{4\varepsilon_0}\hat{x} \int_{x^2}^{x^2+R^2}  \dfrac{dt }{t^{3/2}} &= \dfrac{\sigma x}{4\varepsilon_0}\hat{x} \left(\dfrac{2}{\sqrt{x^2}} -\dfrac{2}{\sqrt{x^2+R^2}} \right)\\
+   &= \dfrac{\sigma }{2\varepsilon_0} \left(1 -\dfrac{x}{\sqrt{x^2+R^2}} \right)\hat{x}
+\end{align*}
+
+Come consiglia il testo dell'esercizio, è interessante studiare come si comporta questo campo elettrico per $R\to+\infty$ e quindi quando è talmente grande che diventa interamente il piano $yz$. Per farlo calcoliamo il limite 
+\[
+\lim_{R\to+\infty} \dfrac{\sigma }{2\varepsilon_0} \left(1 -\dfrac{x}{\sqrt{x^2+R^2}} \right)\hat{x} = \dfrac{\sigma }{2\varepsilon_0} \left(1 -0 \right)\hat{x} =  \dfrac{\sigma }{2\varepsilon_0} \hat{x}
+\]
+
+Vediamo che se il piano diventa abbastanza grande allora il campo elettrico generato è costante in tutti i punti dello spazio, indipendentemente dal punto in cui lo si misura.
+\end{proof}
+
+
+\newpage
+\begin{definizione}{Potenziale Elettrico}{}
+  Sia $q$ una carica nello spazio, allora definiamo una quantità \textbf{potenziale elettrico} nel seguente modo 
+  \[
+  V(r) = \dfrac{1}{4\pi\varepsilon_0} \dfrac{q}{r}
+  \]
+
+  Questa nuova grandezza ha come unità di misuta il \textbf{volt} ($V$)
+\end{definizione}
+
+Per capire il perchè abbiamo definito questa quantità e perchè in questa maniera, proviamo a calcolare il lavoro svolto dalla forza di Coulomb da $q$ su una seconda carica generica $q_1$, per farlo usiamo la definizione di lavoro
+
+\[
+W = \int_{\gamma} \vec{F} \cdot d\vec{s} = \int_{\gamma} q_1\vec{E} \cdot d\vec{s}  = q_1\int_{\gamma} \dfrac{1}{4\pi\varepsilon_0} \dfrac{q}{r^2} \hat{u} \cdot d\vec{s}  
+\]
+
+
+Ricordiamo ora che il campo elettrico ha componente radiale, quindi $\hat{u}$ è radiale rispetto alla carica, e quindi il prodotto scalare proietta lo spostamente $d\vec{s}$ sulla componente radiale, e dato che l'asse radiale lo abbiamo indicato con $r$ allora $\hat{u}\cdot d\vec{s} = dr$ e dato che ora siamo in una dimensione possiamo prendere come estremi $[r_a, r_b]$ 
+
+
+\[
+W = q_1 \int_{r_a}^{r_b} \dfrac{1}{4\pi\varepsilon_0} \dfrac{q}{r^2} \,dr = -\dfrac{q_1q}{4\pi\varepsilon_0} \left[\dfrac{1}{r_b}-\dfrac{1}{r_a}\right]
+\]
+
+Ma quindi con la definizione che abbiamo dato prima con il potenziale elettrico vale
+\[
+W = -q_1(V_b-V_a) = -q_1 \Delta V
+\]
+
+Guardando le unità di misure possiamo scoprire che 
+\[
+[V] = \dfrac{[J]}{[C]}
+\]
+
+Poi con questi conti abbiamo scoperto anche che il lavoro è indipendente dal tipo di percorso fatto, infatti il lavoro dipende solamente dal punto di partenza ($V_a$) e dal punto di arrivo ($V_b$), Quindi se prendiamo un percorso $\gamma_1$ che parte da $A$ e termina in $B$ e un percorso diverso $\gamma_2$ che parte da $B$ e arriva a $A$ abbiamo che il lavoro complessivo in tutto il persorso vale 
+\begin{align*}
+\mathunderline{red}{\int_{\gamma_1} \vec{E} \cdot d\vec{s}} +\mathunderline{blue}{\int_{\gamma_2} \vec{E} \cdot d\vec{s}} &= \mathunderline{red}{-(V_b-V_a)} + [ \mathunderline{blue}{- (V_a-V_b)}] \\
+&=  -V_b+V_a - V_a+V_b = 0
+\end{align*}
+
+Ma dato che $\gamma_1$ e $\gamma_2$ formano una curva chiusa abbiamo che 
+
+\[
+\oint \vec{E} \cdot d\vec{s} = 0
+\]
+
 \end{document}
+
+
 
