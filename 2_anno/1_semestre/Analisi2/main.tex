@@ -56,9 +56,9 @@
   fonttitle=\bfseries,
 }{corr}
 
-\newtcbtheorem{esempio}{Esempio}{
-    colback=purple!5!white, 
-    colframe=purple!75!black, 
+\newtcbtheorem{proposizione}{Proposizione}{
+    colback=cyan!5!white, 
+    colframe=cyan!75!black, 
     enhanced,
   fonttitle=\bfseries,
 }{esem}
@@ -588,7 +588,7 @@ Per la frontiera sembra più complicato di quanto non lo sia veramente. Per capi
  Iniziamo dimostrando che 
 
   \[
-    B(\underbar{p}, r]  \subseteq Q(\underbar{p}, r] 
+    B(\underline{p}, r]  \subseteq Q(\underline{p}, r] 
   \]
 
 
@@ -607,10 +607,10 @@ Per la frontiera sembra più complicato di quanto non lo sia veramente. Per capi
   \forall i \leq n \qquad  |x_i-p_i| \leq   r
   \]
 
-  Riconosciamo che questa è la definizione proprio di $Q(\underbar{p}, r] $. Ora invede dobbiamo dimostrare che 
+  Riconosciamo che questa è la definizione proprio di $Q(\underline{p}, r] $. Ora invede dobbiamo dimostrare che 
 
   \[
-    Q(\underbar{p}, r]  \subseteq B(\underbar{p}, \sqrt{n}r] 
+    Q(\underline{p}, r]  \subseteq B(\underline{p}, \sqrt{n}r] 
   \]
 
   Partiamo dalla definizione di ipercubo
@@ -641,7 +641,7 @@ Per la frontiera sembra più complicato di quanto non lo sia veramente. Per capi
    \sqrt{(x_1-p_1)^2+(x_2-p_2)^2+\cdots + (x_n-p_n)^2}  \leq   \sqrt{n}r 
   \]
 
-  Ma questa è la definizione di $B(\underbar{p}, \sqrt{n}r] $.
+  Ma questa è la definizione di $B(\underline{p}, \sqrt{n}r] $.
 
   
 
@@ -1029,6 +1029,579 @@ L'unica differenza che essendo una curva a più dimensioni, prendiamo il suo mod
 \[
 L = \int_{a}^{b}\sqrt{1+[\dot{f}(t)]^2} dt
 \]
+
+
+\begin{definizione}{Curve Equivalenti}{}
+  Sia $\underline{\gamma}: I \subseteq \mathbb{R}^n\to \mathbb{R}$, $\tilde{\underline{\gamma}}: \tilde{I} \subseteq \mathbb{R}^n\to \mathbb{R}$ due curve parametriche. Diciamo che $\underline{\gamma}$ e $\tilde{\underline{\gamma}}$ sono \textbf{equivalenti} se $\exists \varphi : I \to \tilde{I}$ con $\varphi\in C^1(I)$ e $\forall t \in I: \dot{\varphi}(t) \neq 0$ tale che
+  \[
+  \underline{\gamma}(t) = \tilde{\underline{\gamma}}(\varphi(t)) \;\; \forall t \in I
+  \]
+\end{definizione}
+
+Con questa definizione stiamo cercando di dire che due curve sono "uguali" nel senso che proiettano la stessa curva nello spazio. Ad esempio se prendiamo le seguenti curve 
+\[
+\underline{\gamma_1}(t) =  \begin{pmatrix}
+  \cos t \\
+  \sin t
+\end{pmatrix} \;\; \forall t \in [0, 2\pi]
+\qquad \text{e} \qquad
+\underline{\gamma_2}(s) =  \begin{pmatrix}
+  \cos 2s \\
+  \sin 2s
+\end{pmatrix} \;\; \forall s \in [0, \pi]
+\]
+
+
+Notiamo che possiamo scegliere una funzione $\varphi(t) = 2t$, infatti ora notiamo che se componiamo $\underline{\gamma_1}(\varphi(t))$ abbiamo esattamente $\underline{\gamma_2}$, questo perchè le due curve descrivono la "stessa forma" solo che $\underline{\gamma_1}$ va ad una cerca velocità, mentre $\underline{\gamma_2}$ va al doppio della velocità, in questo caso. Questa è l'idea dietro le curve equivalenti, ovvero di curve che disegnano la stessa linea, ma magari con velocità e direzioni diverse. Proprio per questo valgono le seguenti proposizioni 
+
+\begin{proposizione}{Proprietà delle Curve Equivalenti}{}
+Siano $\underline{\gamma_1}$ e $\underline{\gamma_2}$ due curve equivalenti fra loro. Allora vale
+\begin{itemize}
+  \item Se $\underline{\gamma_1}$ è semplice $\iff$ $\underline{\gamma_2}$ è semplice
+  \item Se $\underline{\gamma_1}$ è chiusa $\iff$ $\underline{\gamma_2}$ è chiusa
+  \item Se $\underline{\gamma_1}$ è regolare $\iff$ $\underline{\gamma_2}$ è regolare
+  \item $L(\gamma_1, I) = L(\gamma_2, \tilde{I})$ 
+  \item $\underline{\dot{\gamma}_1}(t) = \underline{\dot{\gamma}_2}(\varphi(t)) \cdot \dot{\varphi}(t) $
+  \item $\underline{\gamma_1}$ e $\underline{\gamma_2}$ hanno (in modulo) lo stesso versore tangente. Di segno uguale se $\dot{\varphi}(t) >0$, di segno opposto se $\dot{\varphi}(t) <0$
+\end{itemize}
+\end{proposizione}
+
+Diamo una precisazione per le curve in $\mathbb{R}^2$. Fino ad ora abbiamo sempre descritto le curve in forma \textbf{cartesiana}, ovvero usando sempre e solo le coordinate $(x, y)$ per poi rappresentarle sul piano cartesiano. Però non è l'unico modo per esprimerle, infatti noi possiamo definire le curve in forma \textbf{polare}.
+
+\begin{definizione}{Curve in Forma Polare}{}
+  Sia $\underline{\gamma}$ una curva in $\mathbb{R}^2$, si definisce in forma polare se è esprimibile come 
+  \[
+  \underline{\gamma}(\theta) = \rho(\theta)(\cos\theta,  \sin\theta )= (\rho(\theta)\cos\theta, \rho(\theta) \sin\theta )
+  \]
+  Dove $\rho:\mathbb{R}\to\mathbb{R}$ è una funzione qualsiasi.
+\end{definizione}
+\newpage
+In questo modo possiamo esprimere i punti nel piano cartesiano tramite un angolo $\theta$, e il modulo $\rho$. Quindi ad esempio il punto nel piano cartesiano $(1,1)$, in forma polare si indica con la coppia $(\rho, \theta)$ ed equivale a $(\sqrt{2}, \pi/4)$.
+
+\begin{center}
+  
+\begin{tikzpicture}[scale=3.2, >=stealth]
+    % Assi cartesiani
+    \draw[->] (-0.2, 0) -- (1.5, 0) node[right] {$x$};
+    \draw[->] (0, -0.2) -- (0, 1.2) node[above] {$y$};
+    
+    % Proiezioni ortogonali (coordinate cartesiane)
+    \draw[dashed, gray] (1, 0) node[below, text=black] {$1$} -- (1, 1) -- (0, 1) node[left, text=black] {$1$};
+    
+    % Vettore posizione (modulo rho)
+    \draw[->, thick, blue!80!black] (0,0) -- (1,1) node[midway, above left] {$\rho = \sqrt{2}$};
+    
+    % Punto P nel piano
+    \filldraw (1,1) circle (0.7pt) node[above right] {$P \equiv (1,1)$};
+    
+    % Angolo (theta)
+    \draw[->, red!80!black, thick] (0.4, 0) arc (0:45:0.4) node[midway, right=2pt, yshift=2pt] {$\theta = \frac{\pi}{4}$};
+    
+    % Origine
+    \node[below left] at (0,0) {$O$};
+\end{tikzpicture}
+\end{center}
+
+
+Vediamo qualche esempio di curva polare per prendere mano.
+
+\begin{figure}[htbp]
+    \centering
+    
+    % ==========================================
+    % 1. rho = theta (Spirale di Archimede)
+    % ==========================================
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \begin{tikzpicture}[>=stealth, scale=0.8]
+            \draw[->, gray!70, very thin] (-2, 0) -- (2, 0) node[below, text=black] {\small $x$};
+            \draw[->, gray!70, very thin] (0, -2) -- (0, 2) node[left, text=black] {\small $y$};
+            \node[below right] at (0,0) {\small $O$};
+            
+            \node[above=2.2cm, font=\bfseries] at (0,0) {$\rho(\theta) = \theta$};
+            
+            % Limitata a 3 giri (1080 gradi), fattore ridotto a 0.1
+            \draw[thick, blue!80!black, domain=0:1080, samples=150, variable=\t, smooth] 
+                plot ({\t} : {0.1 * (\t*pi/180)});
+        \end{tikzpicture}
+    \end{minipage}\hfill
+    % ==========================================
+    % 2. rho = cos(theta) (Circonferenza)
+    % ==========================================
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \begin{tikzpicture}[>=stealth, scale=0.8]
+            \draw[->, gray!70, very thin] (-1, 0) -- (2.5, 0) node[below, text=black] {\small $x$};
+            \draw[->, gray!70, very thin] (0, -2) -- (0, 2) node[left, text=black] {\small $y$};
+            \node[below left] at (0,0) {\small $O$};
+            
+            \node[above=2.2cm, font=\bfseries] at (0.75,0) {$\rho(\theta) = \cos\theta$};
+            
+            % Scalata di 1.5 per riempire meglio il nuovo spazio
+            \draw[thick, red!80!black, domain=-90:90, samples=100, variable=\t, smooth, scale=1.5] 
+                plot ({\t} : {cos(\t)});
+        \end{tikzpicture}
+    \end{minipage}\hfill
+    % ==========================================
+    % 3. rho = e^theta (Spirale logaritmica)
+    % ==========================================
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \begin{tikzpicture}[>=stealth, scale=0.8]
+            \draw[->, gray!70, very thin] (-2, 0) -- (2, 0) node[below, text=black] {\small $x$};
+            \draw[->, gray!70, very thin] (0, -2) -- (0, 2) node[left, text=black] {\small $y$};
+            \node[below right] at (0,0) {\small $O$};
+            
+            \node[above=2.2cm, font=\bfseries] at (0,0) {$\rho(\theta) = e^\theta$};
+            
+            % Costante scalata a 0.08 per contenere l'esplosione a 180 gradi
+            \draw[thick, green!60!black, domain=-720:180, samples=200, variable=\t, smooth] 
+                plot ({\t} : {0.08 * exp(\t*pi/180)});
+        \end{tikzpicture}
+    \end{minipage}
+    
+\end{figure}
+
+
+Interessante è il vettore velocità, infatti 
+\[
+\underline{\dot{\gamma}}(\theta) = \dfrac{d}{d\theta} \left[\rho(\theta) \begin{pmatrix}
+  \cos\theta \\
+  \sin\theta 
+\end{pmatrix}\right] =\dot{\rho}(\theta) \begin{pmatrix}
+  \cos\theta \\
+  \sin\theta 
+\end{pmatrix} + \rho(\theta) \begin{pmatrix}
+  -\sin\theta \\
+  \cos\theta 
+\end{pmatrix}
+\]
+
+Infatti ora vediamo che, per la regolare del prodotto, è la composizione di vettori perpendicolari tra loro, infatti 
+\[
+\begin{pmatrix}
+  \cos\theta \\
+  \sin\theta 
+\end{pmatrix} \cdot \begin{pmatrix}
+  -\sin\theta \\
+  \cos\theta 
+\end{pmatrix} = -\cos\theta\sin\theta +\sin\theta\cos\theta  = 0
+\]
+
+Di conseguenza il modulo del vettore sarà
+
+\[
+||\underline{\dot{\gamma}}(\theta)|| = \sqrt{\dot{\rho}(\theta)^2 + \rho(\theta)^2}
+\]
+
+
+Questo concetto delle coordine polari si può estendere anche in 3 dimensioni, ma qui abbiamo due varianti: forma \textbf{sferica} e \textbf{cilindrica}. Queste le riaffronteremo meglio più avanti ma per ora vediamo solo la forma 
+
+\[
+\underline{\gamma}^{\text{sfera}} = \begin{pmatrix}
+  \rho \sin \varphi \cos \theta \\
+  \rho \sin \varphi \sin \theta \\
+  \rho \cos \varphi
+\end{pmatrix} \qquad\qquad
+\underline{\gamma}^{\text{cilindrica}} = \begin{pmatrix}
+  \rho \cos \theta \\
+  \rho \sin \theta \\
+  z
+\end{pmatrix}
+\]
+
+
+\section{Funzioni di più Variabili}
+
+Il concetto di funzione lo abbiamo ben noto tutti (spero), quindi il concetto di funzioni  più variabili vien da sè, infatti definiamo come funzione a più variabilie una della seguente forma
+
+\[
+f:D\subseteq \mathbb{R}^n \to \mathbb{R}
+\]
+
+Qui alcuni esempi randomici
+\[
+f(x,y) = x^2+\dfrac{y^2}{4} \qquad\qquad f(x,y) = \dfrac{e^{x+y}-1}{\arctan y} \qquad\qquad f(x,y,z,w) =\dfrac{x}{y} + \dfrac{z}{w}
+\]
+
+\begin{definizione}{Grafico di una Funzione}{}
+  Sia $f:D\subseteq\mathbb{R}^n\to \mathbb{R}$ allora definiamo \textbf{grafico} di $f$ come 
+  \[
+  \text{gr}(f) = \{(x_1, x_2, ..., x_n, f(x_1, x_2, ..., x_n): \forall (x_1, x_2, ..., x_n) \in D\}
+  \]
+\end{definizione}
+
+
+Dalla definizione di grafico si evince che il $\text{gr}(f) \subseteq \mathbb{R}^{n+1}$, quindi possiamo disegnarlo e rappresentarlo solo per $n=1$ e $n=2$, però il caso $n=1$ sono le funzioni a una variabile come siamo abituati, che rappresentiamo tramite il piano cartesiano, mentre possiamo dire qualcosa di nuovo per le funzioni a due variabili, infatti le possiamo rappresentare in 2 modi principalmente. Prensiamo come esempio la funzione $f(x,y)=e^{-x^2-y^2}$, il primo modo che abbiamo per rappresentarla è tramite un sistema di 3 assi, con $x$ e $y$ come piano di "base" e l'asse $z$ per $f(x,y)$. 
+\vspace{-0.3cm}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=7cm,
+    xlabel={$x$},
+    ylabel={$y$},
+    zlabel={$z$},
+    colormap/viridis,
+    view={35}{50}, % Angolo di visualizzazione
+    axis lines=center, % Mostra solo gli assi al centro, rimuovendo il box esterno
+    ticks=none, % Rimuove i numeri e le tacche per lasciare solo funzione e assi
+    grid=none, % Assicura che non ci sia alcuna griglia
+    label style={font=\small},
+    enlargelimits=true % Permette agli assi di sporgere leggermente oltre la funzione
+]
+\addplot3[
+    surf,
+    samples=40,
+    domain=-2.5:2.5,    % Dominio centrato
+    y domain=-2.5:2.5,
+] {exp(-x^2-y^2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+I colori indicano il valore di $f(x,y)$ e servono per rendere visivamente ancora più chiaro il disegno. Il problema di questo grafico è che disegnarlo a mano è molto complesso, sennon impossibile, e per questo esiste un altro modo per disegnare funzioni in $\mathbb{R}^2$. Il metodo è con le \textbf{curve di livello}, il metodo consiste risolvere l'equazione $f(x,y)=k$ per $k\in\mathbb{R}$ e disegnare sul piano cartesiano il grafico. Ad esempio con la funzione di prima un possibile grafico con le curve di livello 
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=8cm,
+    height=7cm,
+    xlabel={$x$},
+    ylabel={$y$},
+    axis lines=center,
+    xmin=-2.2, xmax=2.2,
+    ymin=-2.2, ymax=2.2,
+    axis equal image, % Mantiene i cerchi perfettamente rotondi
+    grid=none,
+    grid style={dashed, gray!30},
+    label style={font=\small},
+    tick label style={font=\footnotesize}
+]
+% k=0.8 (raggio=0.472)
+\addplot [color=blue!80, thick, variable=\t, domain=0:360, samples=100] ({0.472*cos(\t)}, {0.472*sin(\t)});
+\node[text=blue!80, fill=white, inner sep=1pt] at (axis cs: 0.15, 0.47) {\footnotesize $k=0.8$};
+
+% k=0.6 (raggio=0.714)
+\addplot [color=cyan!90!blue, thick, variable=\t, domain=0:360, samples=100] ({0.714*cos(\t)}, {0.714*sin(\t)});
+\node[text=cyan!90!blue, fill=white, inner sep=1pt] at (axis cs: 0.15, 0.71) {\footnotesize $k=0.6$};
+
+% k=0.4 (raggio=0.957)
+\addplot [color=green!70!black, thick, variable=\t, domain=0:360, samples=100] ({0.957*cos(\t)}, {0.957*sin(\t)});
+\node[text=green!70!black, fill=white, inner sep=1pt] at (axis cs: 0.15, 0.95) {\footnotesize $k=0.4$};
+
+% k=0.2 (raggio=1.268)
+\addplot [color=orange, thick, variable=\t, domain=0:360, samples=100] ({1.268*cos(\t)}, {1.268*sin(\t)});
+\node[text=orange, fill=white, inner sep=1pt] at (axis cs: 0.15, 1.26) {\footnotesize $k=0.2$};
+
+% k=0.05 (raggio=1.730)
+\addplot [color=red, thick, variable=\t, domain=0:360, samples=100] ({1.730*cos(\t)}, {1.730*sin(\t)});
+\node[text=red, fill=white, inner sep=1pt] at (axis cs: 0.15, 1.73) {\footnotesize $k=0.05$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{definizione}{Punto di Accumulazione/Punto isolato}{}
+  Sia $\underline{p} \in\mathbb{R}^n$, $D\subseteq \mathbb{R}^n$, diciamo che $\underline{p}$ è un \textbf{punto di accumulazione} per $D$ se 
+  \[
+  \forall U\subseteq \mathbb{R}^n \text{ intorno di } \underline{p} : \qquad U \cap D \setminus \{\underline{p}\} \ne \varnothing
+  \]
+  Definiamo l'insieme 
+  \[
+  \text{acc}(D) = \{\underline{p} \in\mathbb{R}^n: \, \underline{p} \text{ è punto di accumulazione per } D\}
+  \]
+  Se $\underline{p} \in D$, allora diciamo che $\underline{p}$ è \textbf{punto isolato} per $D$ se 
+  \[
+  \exists U\subseteq \mathbb{R}^n \text{ intorno di } \underline{p} : \qquad U \cap D = \{\underline{p}\}
+  \]
+
+\end{definizione}
+
+Per chi ha occhi attenti, riconoscerà che ricorda molto la definizione di punto di accumulazione visto ad analisi 1, ed infatti questà è l'estensione a più dimensioni di quel concetto, per poi introdurre poi il concetto di limite.
+
+Il concetto di punto di accumulazione è che attorno al punto $\underline{p}$ ci sono altri punti, come se fosse una "accumulazione" di punti, ovvero io posso prendere una qualsiasi palla (o intorno in generale) di centro $\underline{p}$ e io troverò semre altri punti di $D$, e che quindi ci possiamo sempre avvicinare al punto. Attenzione che non è necessario che $\underline{p}$ sia in $D$ per essere un punto di accumulazione, vediamo un esempio molto semplice 
+\[
+ D = \{(x,y) \in \mathbb{R}^2: \, y>0\}
+\]
+
+Questo insieme non è altro che la porzione di piano cartesiano superiore all'asse $x$, con asse $x$ escluso. Chiaramente tutti i punti di $D$ sono punti di accumulazione dato che qualsiasi punto io posso disegnare un cerchio e troverò sempre altri punti del dominio, ma se prendiamo un qualsiasi punto $(x, 0)$ questo non fa parte di $D$, ma nonostante ciò io posso disegnare un qualsiasi cerchio e troverò sempre degli elementi  di $D$. Questo è sempre verificato perchè $(x,0) \in \partial D\setminus D$
+
+\begin{teorema}{}{}
+  Sia $D\subseteq \mathbb{R}^n$, allora $\underline{p} \in \partial D \setminus D \implies \underline{p} \in \text{acc}(D)$.
+\end{teorema}
+
+\begin{proof}
+  Dato che $\underline{p} \in \partial D$ per definiziona sappiamo che $\forall U$ intorno di $\underline{p}$ vale 
+  \begin{equation}
+    \label{eq:th4}  
+  U \cap D \ne \varnothing \quad \land \quad U \setminus D \ne \varnothing
+  \end{equation}
+   Ma dato che \[
+  \underline{p} \in \partial D \setminus D \implies \underline{p} \notin D \implies D \setminus \{\underline{p}\} = D
+  \]
+  
+  Pertanto usando (\ref{eq:th4}) abbiamo che 
+  \[
+  U \cap D \ne \varnothing \implies U \cap (D\setminus \{\underline{p}\})\ne \varnothing
+  \]
+  Ma questa è la definizione di punto di accumulazione.
+\end{proof}
+
+Attenzione perchè questo ragionamento non è ovvio, infatti la condizione $\underline{p} \in \partial D\setminus D$ è sufficiente, mentre la condizione $\underline{p} \in \partial D$ non sarebbe sufficiente. Questo perchè un punto isolato è anche un punto di frontiera, come avevamo visto tempo fa quando avevamo definito il punto di frontiera. Per lo stesso motivo non possiamo dire $\underline{p}\in D$ allora $\underline{p}$ è un punto di accumulazione, proprio perchè un punto isolato non è di accumulazione.
+
+\newpage
+\begin{teorema}{}{}
+  Sia $D\subseteq \mathbb{R}^n$, allora $\underline{p} \in $acc$(D) \implies \underline{p} \in D \cup \partial D$. 
+\end{teorema}
+\begin{proof}
+  Dalla definizione di punto di accumulazione sappiamo che $\forall U$ intorno di $\underline{p}$ vale
+  \begin{equation}
+    \label{eq:th5}  
+  U \cap D \setminus \{\underline{p}\} \ne \varnothing \implies U \cap D \ne \varnothing  
+  \end{equation}
+  Ora possiamo dividere in due i casi: 
+  \begin{itemize}
+    \item Caso $\underline{p} \in D$, ma questo è banale perchè automaticamente implica che $ \underline{p} \in D \cup \partial D$. 
+    \item Caso $\underline{p} \notin D$, il che implica che affinchè sia vera la dimostrazione dobbiamo verificare che $\underline{p} \in \partial D$. Quindi dobbiamo verificare le condizioni del punto di frontiera, e notiamo che la prima condizione ce l'abbiamo già verificata grazie a (\ref{eq:th5}), quindi ci basta verificare la seconda condizione di punti di frontiera. Ma in questo caso abbiamo detto che $\underline{p} \notin D \implies \underline{p} \in \mathbb{R}^n \setminus D$, quindi $\forall U$ intorno  di $\underline{p}$ (e che quindi $\underline{p} \in U$) allora abbiamo che 
+    \[
+    U \cap (\mathbb{R}^n\setminus D) \supseteq \{\underline{p}\} \implies U \cap (\mathbb{R}^n\setminus D)  \ne \varnothing
+    \]
+
+    Ma questa è la definizione di punto di frontiera, quindi $\underline{p} \in \partial D \implies \underline{p} \in D \cup \partial D$. Il che verifica il teorema.
+  \end{itemize}
+\end{proof}
+
+\subsection{Limiti a più Variabili}
+\begin{definizione}{Limite di Funzioni a più variabili}{}
+  Sia $f:D\subseteq \mathbb{R}^n \to \mathbb{R}$, $\underline{p} \in \text{acc}(D)$ allora definiamo come \textbf{limite} di $f$ in $\underline{p}$ 
+  \[
+  \lim_{\underline{x} \to \underline{p}} f(\underline{x}) = l 
+  \]
+  La cui caratterizzazione è:
+  \begin{align*}
+    &\text{caso } l \in \mathbb{R} && \forall \varepsilon > 0\;\; \exists \delta > 0 : ||\underline{x} - \underline{p}|| < \delta \implies |f(\underline{x}) - l| < \varepsilon \\
+    &\text{caso } l = +\infty && \forall R > 0\;\; \exists \delta > 0 : ||\underline{x} - \underline{p}|| < \delta \implies f(\underline{x}) > R \\
+    &\text{caso } l = -\infty && \forall R > 0\;\; \exists \delta > 0 : ||\underline{x} - \underline{p}|| < \delta \implies f(\underline{x}) < -R
+  \end{align*}
+\end{definizione}
+
+Interessante è notare che confrontado questa definizione  al caso ad una variabile, vediamo che sono identiche, perchè l'unica cosa che cambia è che anzichè avere $|x-x_0|$ ora abbiamo la norma della differenza. Pertanto dato questa estremo legame con il caso ad una variabile abbiamo che tutti i teoremi che conosciamo e tutte le proprietà dei limiti rimangono le stesse.
+
+Infatti dai limiti ad una variabile ereditiamo tutti i seguenti teoremi: \textbf{algebra dei limiti}, \textbf{teorema della permanenza del segno}, \textbf{teorema dell'unicità del limite}, \textbf{teorema dei due carabinieri}, \textbf{teorema della composizione di due funzioni}. In più ne possiamo definire di nuovi
+
+\begin{proposizione}{Limite su Restrizioni}{}
+  Sia $f:A\subseteq \mathbb{R}^n \to \mathbb{R}$, sia $\underline{p} \in \text{acc}(A)$ allora 
+  \[
+  \forall B \subseteq A: \; \underline{p} \in \text{acc}(B) \qquad \lim_{\underline{x}\to\underline{p}} f(\underline{x}) = l \implies  \lim_{\substack{\underline{x}\to\underline{p} \\ \underline{x} \in B}} f(\underline{x}) = l
+  \] 
+\end{proposizione}
+
+Questa proprietà in realtà c'era anche nei limiti ad una variabile, e serviva per dimostrare che $\nexists \lim_{x\to \infty} \sin x$, però non avevamo avuto altri casi per sfruttare questo teorema. Nel calcolo di limiti a più variabili invece è molto utile perchè è molto utile per dimostrare la non esistenza dei limiti, infatti se troviamo almeno due restrizioni con limite diverso allora sappiamo che il limite originale non esiste. Vediamo un esempio 
+
+\[
+\lim_{(x,y)\to \underline{0}} \dfrac{xy}{x^4+y^2}
+\]
+
+Si riconosce subito che esce una forma indetermianta $[0/0]$, quindi proviamo a vedere come si comporta sulla restrizione del tipo $y=x$
+
+\[
+\lim_{(x,x)\to \underline{0}}  \dfrac{xx}{x^4+x^2} =\lim_{x\to 0}  \dfrac{1}{x^2+1} = 1  
+\]
+
+Ora invece scegliamo la restrizione $y=x^2$
+
+\[
+\lim_{(x,x^2)\to \underline{0}}  \dfrac{xx^2}{x^4+(x^2)^2} =\lim_{x\to 0}  \dfrac{x^3}{2x^4} = \lim_{x\to 0}  \dfrac{1}{2x} = \infty   
+\]
+
+Ma notiamo che i due limiti secondo due restrizioni diverse datto limiti diversi, quindi per la proposizione abbiamo che 
+\[
+\nexists\lim_{(x,y)\to \underline{0}}  \dfrac{xy}{x^4+y^2}
+\]
+
+\begin{teorema}{}{}
+   Sia $f:D\subseteq \mathbb{R}^n \to \mathbb{R}$, sia $\underline{p} \in \text{acc}(D)$ allora se $\exists h:\mathbb{R}\to \mathbb{R}$ tale che $f(\underline{x}) = h(x_i)$
+   \[
+   \lim_{x_i\to p_i} h(x_i) = l \implies  \lim_{\underline{x} \to \underline{p}} f(\underline{x})  = l
+   \]
+\end{teorema}
+\begin{proof}[dimostrazione]
+  Usiamo la definizione di limite ad una variabile 
+  \[
+  \forall \varepsilon > 0\; \exists \delta > 0 \qquad |x_i-p_i|< \delta \implies |h(x_i) - l| < \varepsilon
+  \]
+  Per ipotesi sappiamo che $f(\underline{x}) = h(x_i)$ quindi 
+  \[
+  \forall \varepsilon > 0\; \exists \delta > 0 \qquad |x_i-p_i|< \delta \implies |f(\underline{x}) - l| < \varepsilon
+  \]
+  Ricordiamo però la proprietà della norma 
+  \[
+  |x_i-p_i| \leq ||\underline{x} - \underline{p}||
+  \]
+  Quindi se prendiamo 
+   \[
+  \forall \varepsilon > 0\; \exists \delta > 0 \qquad ||\underline{x} - \underline{p}||< \delta \implies   |x_i-p_i| <  \delta \implies |f(\underline{x}) - l| < \varepsilon
+  \]
+  Il chè verifica il teorema.
+\end{proof}
+
+\begin{proposizione}{Teorema dell'Incollamento}{}
+  Sia $f:D \subseteq \mathbb{R}^n\to \mathbb{R}$, siano $D_1, D_2, ..., D_n \subseteq D$ tali che $D_1 \cup D_2 \cup ...  \cup D_n = D$ e sia $\underline{p} \in \text{acc}(D_i)$ 
+  \[
+  \forall i \leq n \;\; \lim_{\substack{\underline{x}\to\underline{p} \\ \underline{x} \in D_i}} f(\underline{x}) = l \implies  \lim_{\underline{x}\to\underline{p}} f(\underline{x}) = l
+  \]
+\end{proposizione}
+
+
+Questo teorema è fondamentale per le funzioni definite a tratti, infatti vediamo un esempio di applicazione, consideriamo la seguente funzione 
+
+\[
+f(x,y) = \begin{cases}
+  e^{xy} - 1  & \text{se } y>x^2 \\
+  1-\cos (x^2-y^3) & \text{se } y \leq x^2
+\end{cases}
+\]
+
+Il teorema ci dice quindi di studiare separatamente i due sottodomini della funzione : $D_1 = \{(x,y): y>x^2\}$ , $D_2 = \{(x,y): y\leq x^2\}$. Notiamo che il punto $(0,0)$ è punto di accumulazione per entrambi i domini, e che quindi possiamo calcolare i limiti, ricordando che usiamo tutti i teoremi ereditati dai limiti ad una variabile 
+
+\[
+ \lim_{\substack{(x,y)\to\underline{0} \\ (x,y) \in D_1}} f(x, y) =  \lim_{\substack{(x,y)\to\underline{0} \\ y > x^2}}   e^{xy} - 1  = e^{0\cdot 0 } -1 = 0 
+\]
+
+
+\[
+ \lim_{\substack{(x,y)\to\underline{0} \\ (x,y) \in D_2}} f(x, y) =  \lim_{\substack{(x,y)\to\underline{0} \\ y \leq x^2}}   1-\cos (x^2-y^3) = 1-\cos (0^2-0^3)=0 
+\]
+
+Dato che $D_1 \cup D_2 = \mathbb{R}^2$ cioè il dominio di $f$, e dato che i limiti sono usciti identici, abbiamo che 
+\[
+\lim_{(x,y)\to\underline{0} } f(x) = 0
+\]
+
+\begin{definizione}{Funzioni continue}{}
+   Sia $f:D\subseteq \mathbb{R}^n \to \mathbb{R}$, sia $\underline{p} \in D$ allora dichiamo che $f$ è \textbf{continua} in $\underline{p}$ se 
+   \[
+   \lim_{\underline{x} \to \underline{p}} f(\underline{x}) = f(\underline{p}) 
+   \]
+\end{definizione}
+
+Questo è un concetto che ci ha accompagnato per tutto analisi 1, ora lo estendiamo anche a più dimensioni nello stesso modo, per questo ereditiamo tutti i teoremi e proprietà delle funzioni continue.
+
+In realtà non c'è molto altro da dire sui limiti, quindi ora vediamo vari esercizi per capire le principali tecniche
+
+
+\begin{esercizio}{}{}
+Calcolare 
+\[
+\lim_{(x,y) \to \underline{0}} \dfrac{x\ln(1+xy^2)}{x^2+y^2}
+\]
+\end{esercizio}
+\begin{proof}[svolgimento]
+  
+Si nota subito che il limite è nella forma indetermianta $[0/0]$, quindi dobbiamo sistemarlo. In primis notiamo che abbiamo $\ln(1+xy^3)$ che ricordando le conoscienze aquisite con analisi 1, sembra molto uno sviluppo di taylor, dato che $(x,y) \to \underline{0}$ e che quindi $xy^2 \to 0$, pertanto possiamo svilupparla con taylor al primo ordine 
+\[
+\lim_{(x,y) \to \underline{0}} \dfrac{x\ln(1+xy^2)}{x^2+y^2} \sim \lim_{(x,y) \to \underline{0}} \dfrac{x\cdot xy^2}{x^2+y^2} =  \lim_{(x,y) \to \underline{0}} \dfrac{x^2y^2}{x^2+y^2}  
+\]
+
+Questa sembra molto il limite che abbiamo calcolato nel caso di prima, ma questo è diverso e lo vediamo subito. Infatti un'altro modo per risolvere i limiti è tramite una sostituzione, ad esempio in coordinate polari, ovvero 
+\[
+\begin{cases*}
+  x = \rho \cos\theta      \\
+  y = \rho \sin\theta 
+\end{cases*} 
+\]
+
+Quindi il limite passa da $(x,y)\to \underline{0}$ a $\rho\to 0$, con la sostituzione diventa.
+
+\[
+\lim_{\rho \to 0} \dfrac{(\rho\cos\theta)^2(\rho\sin\theta)^2}{(\rho\cos\theta)^2+(\rho\sin\theta)^2}  = \lim_{\rho \to 0} \dfrac{\rho^2\cos^2\theta\sin^2\theta}{\cos^2\theta + \sin^2\theta} = \lim_{\rho \to 0} \rho^2\cos^2\theta\sin^2\theta = 0
+\]
+\end{proof}
+
+Spesso e volentieri quando notate $x^2+y^2$, la soluzione è usare una sostituzione a coordinate polari perchè così poi per la prima legge della trigonometria. 
+
+\begin{esercizio}{}{}
+  Calcolare 
+  \[
+  \lim_{(x,y) \to \underline{0}} \dfrac{1-\cos(xy^2)}{x^3y^3}
+  \]
+\end{esercizio}
+
+\begin{proof}[svolgimento]
+  Iniziamo riconoscendo che è della forma $[0/0]$, e che termine dentro il coseno tende a 0, quindi possiamo fare uno sviluppo ai primi due termini 
+  \[
+  \lim_{(x,y) \to \underline{0}} \dfrac{1-\cos(xy^2)}{x^3y^3} \sim \lim_{(x,y) \to \underline{0}} \dfrac{1-\left(1-\dfrac{(xy^2)^2}{2}\right)}{x^3y^3} =  \lim_{(x,y) \to \underline{0}} \dfrac{y}{2x}
+  \]
+
+  Ora però non sembra che ci siamo molto altro da fare, quindi proviamo a vedere se non esiste, quindi cerchiamo due cammini diversi, ad esempio $y=0$ abbiamo che 
+   \[
+  \lim_{(x,0) \to \underline{0}} \dfrac{0}{2x}  = 0
+  \]
+
+  Adesso usiamo il cammino $y=x$
+   \[
+  \lim_{(x,x) \to \underline{0}} \dfrac{x}{2x}  = \dfrac{1}{2}
+  \]
+
+  Che quindi rende impossibile il limite 
+  \[
+  \nexists \lim_{(x,y) \to \underline{0}} \dfrac{1-\cos(xy^2)}{x^3y^3}
+  \]
+
+\end{proof}
+
+C'era anche un altro modo per risolvere l'ultimo limite è passando alle coordinate polari, vediamo come 
+\[
+\lim_{(x,y) \to \underline{0}} \dfrac{y}{2x} = \lim_{\rho \to 0} \dfrac{\rho \sin\theta}{2\rho \cos \theta} = \lim_{\rho \to 0} \dfrac{1}{2}\tan\theta =   \dfrac{1}{2}\tan\theta
+\]
+Ma come vediamo il limite che ne esce è dipendente da $\theta$ che però non è presente nel limite, dato che per $(x,y)\to \underline{0}$ è sufficiente che $\rho\to 0$, ma questo vuol dire che il limite varia a seconda di che angolo arriviamo, ed è lo stesso motivo intriseco del perchè con percorsi diversi abbiamo valori diversi.
+
+
+\begin{esercizio}{}{}
+Calcolare 
+\[
+\lim_{(x,y) \to \underline{0}} x^2\sin\left(\dfrac{1}{y^5}\right)
+\]
+\end{esercizio}
+
+\begin{proof}[svolgimento]
+  Su questo limite non possiamo applicare proprietà del prodotto dei limiti perchè il secondo limite non esiste, quindi dobbiamo fare in un'altra maniera. Non possiamo nemmeno usaro lo sviluppo di taylor perchè $1/y^5\to +\infty$. Questo limite possiamo risolverlo con il teorema dei due carabinieri infatti 
+  \[
+  \left|x^2\sin\left(\dfrac{1}{y^5}\right)\right| \leq |x^2|
+  \]
+  Dato che per $(x,y)\to \underline{0}$ vale $x^2\to 0$, abbiamo che 
+  \[
+  \lim_{(x,y) \to \underline{0}} x^2\sin\left(\dfrac{1}{y^5}\right) = 0
+  \]
+\end{proof}
+
+\begin{esercizio}{}{}
+  Calcolare $\displaystyle\lim_{\underline{x} \to \underline{0}} f(\underline{x})$ dove 
+\[
+f(x,y) = \begin{cases}
+  1  &\text{se } x^2 < y < 3x^2 \\
+  0  &\text{altrimenti }  \\
+\end{cases}
+\]
+\end{esercizio}
+
+\begin{proof}[svolgimento]
+  Questo è un semplice esempio per dare esempio che tutti i cammini devono essere rispettati. Infatti qualcuno potrebbe dire che scelgo $y=mx$, ovvero una qualsiasi retta passante per l'origine. In questo caso il cammino $y=mx$ rientra sempre nella seconda condizione e quindi $\forall m \in \mathbb{R}$ abbiamo che 
+  \[
+  \lim_{\underline{x} \to \underline{0}}f(\underline{x}) = 0
+  \] 
+  Ma questo non basta!, anche se con questo abbiamo dimostrato che ci arriviamo da qualsiasi direzione non abbaimo dimostrato che ci arriviamo da tutti i cammini! infatti se scegliamo $y=2x^2$, il limite sarebbe 1, e che quindi rende il limite impossibile.
+\end{proof}
+
+\newpage
+\subsection{Derivate in più Dimensioni}
+\begin{definizione}{Derivata Direzionale}{}
+  Sia $f:D \subseteq \mathbb{R}^n \to \mathbb{R}$, sia $\underline{0} \ne \underline{u} \in \mathbb{R}^n$, definiamo come \textbf{derivata direzionale di } $f$ con direzione $\underline{u}$ 
+  \[
+  \partial_{u}f(\underline{x}) = D_{u} f(\underline{x}) = \lim_{t\to 0} \dfrac{f(\underline{x} + t\underline{u}) - f(\underline{x})}{t}
+  \]  
+\end{definizione}
 
 \end{document}
 

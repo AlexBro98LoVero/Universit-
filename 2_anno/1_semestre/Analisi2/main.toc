@@ -4,3 +4,6 @@
 \contentsline {subsection}{Vettori}{2}{section*.2}%
 \contentsline {section}{\numberline {2}Elementi di Topologia}{4}{section.2}%
 \contentsline {section}{\numberline {3}Curve Parametriche}{9}{section.3}%
+\contentsline {section}{\numberline {4}Funzioni di più Variabili}{14}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Limiti a più Variabili}{16}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Derivate in più Dimensioni}{21}{subsection.4.2}%
