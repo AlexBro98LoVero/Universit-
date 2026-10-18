@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1791732182.27798 "/home/alexbro98/Desktop/salvataggio/Dispense/Uni/2_anno/1_semestre/Analisi2/main.tex" "main.pdf" "main" 1791732191.41259 0
-  "/home/alexbro98/Desktop/salvataggio/Dispense/Uni/2_anno/1_semestre/Analisi2/main.tex" 1791732182.04489 71068 f7171ea9fb8786d544cbf5499f7ff254 ""
+["pdflatex"] 1792336724.03834 "/home/alexbro98/Desktop/salvataggio/Dispense/Uni/2_anno/1_semestre/Analisi2/main.tex" "main.pdf" "main" 1792336733.46317 0
+  "/home/alexbro98/Desktop/salvataggio/Dispense/Uni/2_anno/1_semestre/Analisi2/main.tex" 1792336714.9823 95530 4ced5743b5ecea40763e335151eb20a1 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1775415801 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1775415801 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1775415801 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -315,10 +315,10 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1790749783 2969658 585d6f6f65298e28922b1b185685a0b6 ""
   "logos/feit.png" 1776455099.19779 82918 01c34b66edce9b28c69405ca21c4f209 ""
   "logos/logo.jpg" 1776455099.19179 458859 a4e55b31b0a89aabbb9e582a0c9c3693 ""
-  "main.aux" 1791732191.28588 1261 86602802af5831ccf8602915f9112fab "pdflatex"
-  "main.out" 1791732191.28688 1014 8456ca1cebf3bb54a56254547270350f "pdflatex"
-  "main.tex" 1791732182.04489 71068 f7171ea9fb8786d544cbf5499f7ff254 ""
-  "main.toc" 1791732191.28688 593 d7ffdb59e0d0519501d605423c01e9c5 "pdflatex"
+  "main.aux" 1792336733.3377 1261 9f3ff15d0a2d9e76572adbf3c817429e "pdflatex"
+  "main.out" 1792336733.3387 1014 8456ca1cebf3bb54a56254547270350f "pdflatex"
+  "main.tex" 1792336714.9823 95530 4ced5743b5ecea40763e335151eb20a1 ""
+  "main.toc" 1792336733.3397 593 d7ffdb59e0d0519501d605423c01e9c5 "pdflatex"
   "rapport.cls" 1790749362.4296 2286 42f2a8957c1ca5578c28b80e4d4d2407 ""
   (generated)
   "main.aux"

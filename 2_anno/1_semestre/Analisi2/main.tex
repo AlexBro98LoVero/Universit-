@@ -1499,7 +1499,7 @@ Calcolare
 \end{esercizio}
 \begin{proof}[svolgimento]
   
-Si nota subito che il limite è nella forma indetermianta $[0/0]$, quindi dobbiamo sistemarlo. In primis notiamo che abbiamo $\ln(1+xy^3)$ che ricordando le conoscienze aquisite con analisi 1, sembra molto uno sviluppo di taylor, dato che $(x,y) \to \underline{0}$ e che quindi $xy^2 \to 0$, pertanto possiamo svilupparla con taylor al primo ordine 
+Si nota subito che il limite è nella forma indetermianta $[0/0]$, quindi dobbiamo sistemarlo. In primis notiamo che abbiamo $\ln(1+xy^3)$ che ricordando le conoscienze aquisite con analisi 1, sembra molto uno sviluppo di Taylor, dato che $(x,y) \to \underline{0}$ e che quindi $xy^2 \to 0$, pertanto possiamo svilupparla con Taylor al primo ordine 
 \[
 \lim_{(x,y) \to \underline{0}} \dfrac{x\ln(1+xy^2)}{x^2+y^2} \sim \lim_{(x,y) \to \underline{0}} \dfrac{x\cdot xy^2}{x^2+y^2} =  \lim_{(x,y) \to \underline{0}} \dfrac{x^2y^2}{x^2+y^2}  
 \]
@@ -1566,7 +1566,7 @@ Calcolare
 \end{esercizio}
 
 \begin{proof}[svolgimento]
-  Su questo limite non possiamo applicare proprietà del prodotto dei limiti perchè il secondo limite non esiste, quindi dobbiamo fare in un'altra maniera. Non possiamo nemmeno usaro lo sviluppo di taylor perchè $1/y^5\to +\infty$. Questo limite possiamo risolverlo con il teorema dei due carabinieri infatti 
+  Su questo limite non possiamo applicare proprietà del prodotto dei limiti perchè il secondo limite non esiste, quindi dobbiamo fare in un'altra maniera. Non possiamo nemmeno usaro lo sviluppo di Taylor perchè $1/y^5\to +\infty$. Questo limite possiamo risolverlo con il teorema dei due carabinieri infatti 
   \[
   \left|x^2\sin\left(\dfrac{1}{y^5}\right)\right| \leq |x^2|
   \]
@@ -1603,5 +1603,427 @@ f(x,y) = \begin{cases}
   \]  
 \end{definizione}
 
+Purtroppo non è possibile estendere il concetto di derivata a più dimensioni (almeno per ora), infatti il concetto di derivata direzionale è di profilare la funzione secondo una direzione e derivare in quella direzione. Vediamo giusto un esempio, prendiamo una funzione in $\mathbb{R}^2$ e un versore 
+\[
+f(x,y) = x^2+2y +7xy \qquad\qquad \underline{u} = \begin{pmatrix}
+  3 \\
+  2
+\end{pmatrix}
+\]
+
+Quindi la derivata di $f$ nella direzione $\underline{u}$
+
+\begin{align*}  
+  \partial_{u}f(\underline{x}) &= \lim_{t\to 0} \dfrac{f(\underline{x} + t\underline{u}) - f(\underline{x})}{t} = \lim_{t\to 0} \dfrac{f(x+3t, y+2t) - f(x, y)}{t} \\
+  &= \lim_{t\to 0} \dfrac{(x+3t)^2 + 2(y+2t) +7(x+3t)(y+2t) -  x^2+2y +7xy }{t} \\
+  &= \lim_{t\to 0} \dfrac{6xt+9t^2+4t +14xt+21yt+ 42t^2 }{t} = 22x +21y +4 
+\end{align*}
+
+\begin{definizione}{Derivata Parziale}{}
+  Sia $f:D \subseteq \mathbb{R}^n \to \mathbb{R}$, definiamo come \textbf{derivata parziale} una derivata direzzionale lungo uno dei versori della base canonica di $\mathbb{R}^n$, e si indica come 
+  \[
+  \dfrac{\partial }{\partial x_i}f(\underline{x}) = \partial_{x_i} f(\underline{x}) = D_{x_i} f(\underline{x})
+  \]
+\end{definizione}
+
+Queste nuove derivate sono un po le "basi" di tutti gli altri vettori, la parte comoda delle derivate parziali è che quando eseguo la derivata secondo una variabile, le altre sono costanti e quindi le tratteremo come tali. Ad esempio prendendo come esempio la funzione di prima abbiamo che le derivate parziali sono 
+\[
+ \partial_{x} f= 2x + 0 + 7y = 2x + 7y 
+\qquad\qquad
+ \partial_{y} f= 0 + 2 + 7x = 7x +2
+\]
+
+\begin{definizione}{Derivata Parziale}{}
+  Sia $f:D \subseteq \mathbb{R}^n \to \mathbb{R}$, definiamo come \textbf{gradiente} di $f$ come il vettore delle derivate parzieli e si indica come
+ \[
+ \nabla f(\underline{x}) = \left(\partial_{x_1} f, \partial_{x_2} f, ..., \partial_{x_n} f \right)
+ \]
+\end{definizione}
+
+Prendendo d'esempio la funzione di prima 
+\[
+\nabla f = \begin{pmatrix}
+  2x + 7y  \\
+  7x +2
+\end{pmatrix}
+\]
+
+\newpage
+
+Il gradiente vedremo che sarà un pezzo fondamentale di tutto questo corso, e tra un pò capire che questa è la vera estensione della derivata a più dimensione, ma lo capiremo con calma. Intanto la prima cosa strana è che $\nabla f: \mathbb{R}^n \to \mathbb{R}^n $, quindi di fatto è un vettore. 
+
+Ora vediamo un fatto che è controintuitovo per chi ha studiano analisi 1, riprendiamo una vecchia funzione 
+\[
+f(x,y) = \begin{cases}
+  1 &\text{se } x^2 < y < 2x^2 \\
+  0 &\text{altrimenti}
+\end{cases}
+\]
+
+Questa funzione abbiamo già visto che non ha limite in $(0,0)$, e pertanto non è continua. Vediamo però le derivate parziali, infatti dato che la derivata parziale rispetto ad $x$ viene fatta sull'asse $x$ (quindi dalla retta $y=0$), allora la nostra funzione è definiata come 
+
+\[
+f(x,y) = 0 \qquad \text{ per } y=0
+\]
+
+Questa funzione è derivabile e fà $\partial_x f = 0$. Discorso analogo per la derivata parziale rispetto a $y$, e infatti vale $\partial_y f = 0$. In realtà è derivarile in ogni direzione, questo perchè se prendiamo un qualsiasi $m\in\mathbb{R}$ abbiamo che il profilo $y=mx$ 
+
+\[
+x^2 < y < 2x^2 \implies x^2 < mx < 2x^2 \implies \text{impossibile}
+\]
+
+Quindi per ogni direzione che noi scegliamo la funzione nostra cadrà nel secondo caso della definizione della funzione. Pertanto abbiamo scoperto che questa funzione è derivabile in ogni direzione, ma non è  continua. Questo perchè il concetto di derivata direzionale è "debole", quindi dobbiamo creare una nuova definizione, una "derivata plus".
+
+
+\begin{definizione}{Differenziabilità}{}
+  Sia $f:D \subseteq \mathbb{R}^n \to \mathbb{R}$, sia $\underline{p} \in \mathbb{R}^n$, diciamo che $f$ è \textbf{differenziabile} in $\underline{p}$ se 
+  \[
+  \lim_{\underline{x} \to \underline{p}} \dfrac{f(\underline{x}) - f(\underline{p}) - \nabla f(\underline{x}) \cdot (\underline{x}-\underline{p})}{||\underline{x} -\underline{p}||}
+  \]
+  oppure che 
+  \[
+  f(\underline{x}) = f(\underline{p}) + \nabla f(\underline{x}) (\underline{x} - \underline{p}) + o(||\underline{x} - \underline{p}||) 
+  \]
+\end{definizione}
+
+Vediamo che dalla definizione di differenziabilità è più "forte" del concetto di derivabilità, infatti affinchè una funzione sia differenziabile deve esistere il gradiente, e il gradiente è l'unione di tutte le derivate parziali, quindi la differenziabilità implica la derivabilità, non è vero il contrario. Infatti riprendendo la funzione di prima, sappiamo che esistono le derivate parziali (e di conseguenza il gradiente) però proviamo a verificare la differenziabilità in $\underline{0}$, ricordando che $\nabla f = (0,0 )$
+
+\[
+\lim_{(x,y) \to \underline{0}} \dfrac{f(x,y) - f(0,0) - \nabla f \cdot (x,y)}{\sqrt{x^2+y^2}} = \lim_{(x,y) \to \underline{0}} \dfrac{f(x,y)}{\sqrt{x^2+y^2}} 
+\]
+
+Ma questo limite se prendiamo il percorso $y=3/2x^2$ il limite tende a $+\infty$, mentre se prendiamo il persorso $y=0$ abbiamo che il limite tende a $0$. Di conseguenza il limite non esiste e pertanto non è differenziabile.
+
+\newpage
+L'idea di differenziabilità è molto legata al concetto di sviluppo di Taylor, infatti il termine $f(\underline{p}) + \nabla f(\underline{x}) \cdot (\underline{x} - \underline{p})$ è l'apposimazione di Taylor al primo ordine. Vediamo perchè: prendiamo per semplicità una funzione in $\mathbb{R}^2$ da sviluppare in $\underline{p} = \underline{0}$, chiaramente è estendibile a più dimensioni e in qualsiasi punto. Il polinomio di Taylor serve per approssimare una funzione come un polinomio generico, la differenza rispetto al caso ad una variabile è che qua dobbiamo mettere tutte le variabili
+
+\[
+f(x,y) = c_0 + c_1x + c_2y + c_3x^2 + c_4y^2+ \cdots
+\]
+
+Per capire i termini quanto valgono le costanti $c_0, c_1, c_2$ basta applicare lo stesso concetto visto con Taylor al primo ordine, e quindi per il termine $c_0$ basta calcolare la funzione in $\underline{0}$
+\[
+f(0,0) = c_0 + c_1 \cdot 0+ c_2 \cdot 0+ c_3 \cdot 0^2+ c_4 \cdot 0^2 \implies c_0 + \cdots = f(0,0)
+\]
+
+Per gli altri termini basta derivare una volta ogni variabile 
+\[
+\partial_x f(x,y) = \partial_x \left( c_0 + c_1x + c_2y + c_3x^2 + c_4y^2+ \cdots\right) = c_1 + 2c_3x \xRightarrow{\text{\underline{x} = \underline{0}}} c_1 = \partial_x f(0,0) 
+\]
+\[
+\partial_y f(x,y) = \partial_y \left( c_0 + c_1x + c_2y + c_3x^2 + c_4y^2+ \cdots\right) = c_2 + 2c_4 y \xRightarrow{\text{\underline{x} = \underline{0}}}c_2 = \partial_y f(0,0) 
+\]
+
+Tutti gli altri termini sono tutti un $o(\sqrt{x^2+y^2})$ perchè sono di grado $\geq 1$, e quindi il polinomio di taylor lo è 
+
+\[
+f(x,y)  = f(0,0) + \partial_x f(0,0)x + \partial_y f(0,0) y + o(\sqrt{x^2+y^2})
+\]
+
+Ma il termine con le variabili dato che sono una somma di combinazioni lineari possiamo riscriverla come
+
+\[
+f(x,y)  = f(0,0) + \begin{pmatrix}
+  \partial_x f(0,0) \\
+  \partial_y f(0,0)
+\end{pmatrix} \cdot \begin{pmatrix}
+  x \\
+  y
+ \end{pmatrix} +o(||\underline{x}||)= f(x,y)  = f(0,0) +\nabla f(0,0) \cdot \underline{x}+o(||\underline{x}||)
+\]
+
+
+Vedremo che questo concetto ci servirà molto per capire al meglio lo sviluppo al secondo ordine. Vediamo ora un modo molto semplice per capire se una funzione è differenziabile
+
+\begin{proposizione}{Teorema del Differenziale Totale}{}
+  Sia $f: D \subseteq \mathbb{R}^n \to \mathbb{R}$, sia $\underline{p}\in D$, allora 
+
+  \[
+  \exists U_p \text{ intorno di } \underline{p}: \; f \in C^1(U_p) \implies f \text{ è differenziabile in } \underline{p}
+  \]
+\end{proposizione}
+
+Da questo teorema vediamo ci basta controllare che sia derivabile e che la derivata sia continua in un intorno per essere differenziabile. Questo sarà il principale metodo che useremo per definire se una funzione è differenziabile, per certi casi particolari dovremo usare la definizione originale
+
+\newpage
+\begin{teorema}{Relazione tra Differenziabilità e Continuità}{}
+  Sia $f: D \subseteq \mathbb{R}^n \to \mathbb{R}$, sia $\underline{p}\in D$, allora 
+
+  \[
+  f \text{ è differenziabile in } \underline{p} \implies f \text{ è continua in } \underline{p}
+  \]
+\end{teorema}
+
+\begin{proof}[dimostrazione]
+  Proviamo a calcolare il seguente limite 
+
+  \[
+  \lim_{\underline{x} \to \underline{p}} \left[f(\underline{x}) - f(\underline{p}) \right]
+  \]
+
+  Dato che per ipotesi $f$ è differenziabile possiamo usare il suo sviluppo
+  \[
+  \lim_{\underline{x} \to \underline{p}} f(\underline{p}) + \nabla f(\underline{x}) (\underline{x} - \underline{p}) + o(||\underline{x} - \underline{p}||)  - f(\underline{p}) = \lim_{\underline{x} \to \underline{p}}\nabla f(\underline{x}) (\underline{x} - \underline{p}) + o(||\underline{x} - \underline{p}||)
+  \]
+
+  Notiamo che il primo termine tende a $0$ senza cadere in casi di indecisione, mentre il secondo dobbiamo moltiplicare e dividere per $|| \underline{x} - \underline{p}||$
+
+  \[
+  \lim_{\underline{x} \to \underline{p}}0 + \dfrac{o(||\underline{x} - \underline{p}||)}{||\underline{x} - \underline{p}||} ||\underline{x} - \underline{p}|| =   0 + 0\cdot 0
+  \]
+
+  Ma quindi il limite iniziale vale $0$ e quindi 
+  \[
+  \lim_{\underline{x} \to \underline{p}} \left[f(\underline{x}) - f(\underline{p}) \right] = 0 \implies \lim_{\underline{x} \to \underline{p}} f(\underline{x})  = f(\underline{p})
+  \]
+
+  Ma questa è la definizione di continuità.
+\end{proof}
+
+
+Vediamo che il concetto di differenziabilità assomiglia molto a quello che abbiamo visto ad analisi 1, infatti ad ora la differenziabilità ha le stesse proprietà della derivabilità in una dimensione. Vediamo ora anche altre proprietà che assomigliano sempre di più alla derivabilità in una dimensione
+
+\begin{teorema}{Formula del Gradiente}{}
+ Sia $f: D \subseteq \mathbb{R}^n \to \mathbb{R}$ allora 
+\[
+  \exists U_p \text{ intorno di } \underline{p}: \; f \in C^1(U_p) \implies \forall \underline{u} \in \mathbb{R}^n \setminus \{\underline{0}\}: \; D_{\underline{u}} f(\underline{p}) = \nabla f(\underline{p}) \cdot \underline{u} 
+\]
+\end{teorema}
+
+\begin{proof}[dimostrazione]
+  Per semplicità facciamo il caso con $\mathbb{R}^2$, e prendiamo un punto $\underline{p}$ e prendiamo un vettore qualsiasi $\underline{u}$, e facciamo questo disegno 
+
+  \begin{center}
+\begin{tikzpicture}[
+    scale=0.8,
+    >=Stealth,
+    dot/.style={circle, fill=black, inner sep=1.8pt}
+]
+    % Definizione delle coordinate dei 3 vertici
+    \coordinate (P) at (0,0);
+    \coordinate (V) at (4,0);   % Vertice in basso a destra (proiezioni)
+    \coordinate (Q) at (4,2.5); % Punto in alto a destra
+
+    % Proiezioni lungo x e y (tratteggiate)
+    \draw[dashed, thick, gray!80!black, ->] (P) -- (V) ;
+    \draw[dashed, thick, gray!80!black, ->] (V) -- (Q);
+
+    % Simbolo di angolo retto nel nuovo vertice V
+    \draw[gray!70] (3.7, 0) -- (3.7, 0.3) -- (4, 0.3);
+
+    % Segmento principale che congiunge i due punti
+    \draw[very thick, blue!75!black, ->] (P) -- (Q);
+
+    % Disegno dei punti e delle etichette
+    \node[dot, label={below left:$f(\underline{p})$}] at (P) {};
+    \node[dot, label={above right:$f(\underline{p} + t\underline{u})$}] at (Q) {};
+    \node[dot, label={below right:$f(\underline{v})$}] at (V) {};
+
+\end{tikzpicture}
+\end{center}
+
+Il punto $f(\underline{v})$ è la proiezione lungo i due assi del segmento, ora posiamo scrivere 
+\[
+f(\underline{p} + t\underline{u}) - f(\underline{p}) = f(\underline{p} + t\underline{u})  - f(\underline{v}) + f(\underline{v}) - f(\underline{p}) 
+\]
+\newpage
+Dato che per ipotesi $f \in C^1(U_p)$ allora su ogni proiezione possiamo applicare il teorema di Lagrange in una variabile, e quindi sappiamo che $\exists c_x, c_y \in U_p$ tale che 
+\[
+f(\underline{p} + t\underline{u}) - f(\underline{p}) = \partial_y f (c_y) (\underline{p}+ t\underline{u} - \underline{v}) + \partial_x f(c_x) (\underline{v} - \underline{p})
+\]
+
+Ma dato che $f(\underline{v})$ è la priezione lungo gli assi quindi se indichiamo con $\underline{u} = (u_x, u_y)$ abbiamo che 
+\[
+f(\underline{p} + t\underline{u}) - f(\underline{p}) = \partial_y f (c_y) t u_y + \partial_x f(c_x) t u_x
+\]
+Dividendo tutto per $t$ e portando al limite per $t\to 0$ abbiamo che $c_x\to p_x$ e $c_y\to p_y$
+\begin{align*}
+  \lim_{t\to 0}\dfrac{f(\underline{p} + t\underline{u}) - f(\underline{p})}{t} &= \lim_{t\to 0}\left[\partial_y f (c_y)  u_y + \partial_x f(c_x)  u_x \right]\\
+  D_{\underline{u}} f(\underline{p}) &= \partial_x f(p_x) u_x+\partial_y f(p_y) u_y = \nabla f(\underline{p}) \cdot \underline{u}
+\end{align*}
+
+\end{proof}
+
+Questa formula ci permette di capire molto bene il concetto di gradiente, infatti se prendiamo $\underline{u}$ un versore, usando la diseguaglianza di Cauchy-Schwarz abbiamo che 
+
+\[
+|| D_{\underline{u}} f(\underline{p})|| = ||\nabla f(\underline{p}) \cdot \underline{u}|| \leq ||\nabla f(\underline{p})|| || \underline{u}|| = ||\nabla f(\underline{p})||
+\]
+
+Da questo notiamo che la derivata direzzionare è sempre minore del gradiente, ed è esattamente uguale al gradiente qualora la direzione $\underline{u}$ è parallela al verso del gradiente. Quindi il gradiente non è altro che il vettore che punta a dove c'è la maggior crescita. Analogamente $-\nabla f$ è il vettore dove c'è la maggior decrescita. 
+
+
+\begin{proposizione}{Regola della Catena}{}
+  Sia $f:D\subseteq\mathbb{R}^n\to \mathbb{R}$ differenziabile in $\underline{x_0} \in D$. Sia $\underline{\gamma} : \mathbb{R} \to D$ una curva parametrica derivabile in $t_0 \in \mathbb{R}$ tale che $\underline{\gamma}(t_0) = \underline{x_0}$ allora
+  \[
+  \left.\dfrac{d}{dt} f(\underline{\gamma}(t) ) \right|_{t=t_0}= \nabla f(\underline{\gamma}(t_0)) \cdot \underline{\gamma}'(t_0)
+  \]
+\end{proposizione}
+
+Questo è un'ulteriore esempio di come il gradiente è l'effettivo sviluppo del concetto di derivata a più dimensioni. Questa proprietà permette anche di scoprire qualcosa di interessante, infatti se scegliamo una curva parametrica tale che 
+\[
+f(\underline{\gamma}(t)) = c \qquad \forall t \in \mathbb{R}
+\]
+Con $c\in \mathbb{R}$ un valore arbitrario. Supponiamo che la funzione si differenziabile nel suo domionio, e la curva derivabile nel suo dominio. La curva parametrica altro non è che il profilo di una curva di livello, dato che la funzione è costante per tutto il domionio della curva. Se deriviamo ambo i membri abbiamo 
+\begin{align*}  
+\dfrac{d}{dt} f(\underline{\gamma}(t) ) &= 0 \\
+\nabla f(\underline{\gamma}(t)) \cdot \underline{\gamma}'(t) &= 0 
+\end{align*}
+Ma dato che $ \underline{\gamma}'$ è la tangente alla curva, allora il gradiente è perpendicolare alla curva di livello. Infatti questa è un'altra proprietà del gradiente.
+
+\newpage
+\begin{definizione}{Punto di Massimo e Minimo}{}
+  Sia $f:D\subseteq\mathbb{R}^n\to \mathbb{R}$, sia $\underline{p} \in D$, allora diciamo che 
+  \begin{itemize}
+    \item $\underline{p}$ è un punto di \textbf{massimo locale} se se \\
+      \hspace*{\fill} $\exists\, U_p \text{ intorno di } \underline{p}: \; \forall \underline{x} \in U_p \cap D \quad f(\underline{x}) \leq f(\underline{p})$ \hfill\null
+    \item $\underline{p}$ è un punto di \textbf{minimo locale} se \\
+    \hspace*{\fill} $\exists\, U_p \text{ intorno di } \underline{p}: \; \forall \underline{x} \in U_p \cap D \quad f(\underline{x}) \geq f(\underline{p})$ \hfill\null
+  \end{itemize}
+\end{definizione}
+
+Chiramente il concetto è lo stesso che conosciamo già dal calcolo ad una variabile, ricordiamo che il concetto di massimo e minimo è locale, ovvero se trovamo un punto di minimo locale non vuol dire che è il punto più basso della nostra funzione, se ne troviamo uno allora è anche un minimo globale.
+
+Supponiamo di avere una funzione $f$ differenziabile e $\underline{p}$ è un punto di massimo locale di $f$. Definiamo una nuova funzione 
+\[
+g(t) = f(\underline{p} + t\underline{u})
+\]
+
+Con $\underline{u}\in\mathbb{R}^n$ un qualsiasi. Poi dato che $\underline{p}$ è un massimo per $f$, allora in $t=0$ $g$ ha un massimo. Quindi per il teorema di Fermat in una dimensione, sappiamo che la derivata di $g$ si annulla in $t=0$
+\[
+\left.\dfrac{d}{dt}f(\underline{p} + t\underline{u}) \right|_{t=0} = \nabla f(\underline{p} + t\underline{u}) \cdot \dfrac{d}{dt} (\underline{p} + 0\cdot \underline{u}) =\nabla f(\underline{p} ) \cdot \underline{u} = 0  
+\]  
+Dato che questo ragionamento lo possiamo applicare a qualsiasi vettore $\underline{u}$, allora possiamo scegliere $\underline{u} = \nabla f(\underline{p})$ cosichè
+\begin{align*}
+  \nabla f(\underline{p} ) \cdot \underline{u} &= 0 \\
+  \nabla f(\underline{p} ) \cdot  \nabla f(\underline{p} ) &= 0 \implies \nabla f(\underline{p} ) = \underline{0}
+\end{align*}
+
+Quindi, similmente a quanto abbiamo visto in una variabile, se un punto è di massimo (o minimo tanto il ragionamento è analogo) sappiamo che il gradiente si annulla. Quindi possiamo estendere anche il concetto di punto critico
+\begin{definizione}{Punto Critico}{}
+  Sia $f:D\subseteq\mathbb{R}^n\to \mathbb{R}$ differenziabile in $\underline{p} \in D$, diciamo che $\underline{p}$ è un \textbf{punto critico} se 
+  \[
+  \nabla f(\underline{p})  = \underline{0}
+  \]
+\end{definizione}
+
+Ma come era nel calcolo ad una variabile, può essere che il gradinete si annulla in un punto ma non è ne un minimo ne un massimo, e quel caso lo chiamavamo flesso, in più varibili lo definiamo punto di sella.
+\begin{definizione}{Punto Critico}{}
+  Sia $f:D\subseteq\mathbb{R}^n\to \mathbb{R}$ differenziabile in $\underline{p} \in D$, diciamo che $\underline{p}$ è un \textbf{punto di sella} se è un punto critico ma non è ne un massimo ne un minimo.
+\end{definizione}
+
+\newpage
+\begin{definizione}{Derivate Parziali Seconde}{}
+   Sia $f:D\subseteq\mathbb{R}^n\to \mathbb{R}$ definiamo come \textbf{derivata parziale seconda} rispetto a $x_i$ e $x_j$ come 
+   \[
+   \dfrac{\partial^2}{\partial_{x_i} \partial_{x_j}} f(\underline{x}) = \partial^2_{x_ix_j} f(\underline{x}) = D_{x_i} \left[D_{x_j} f(\underline{x})\right]
+   \] 
+   Definiamo come \textbf{deriva parziale pura} se $x_i = x_j$, altrimenti la definiamo \textbf{derivata parziale mista}.
+\end{definizione}
+
+Anche qua sembra molto l'evoluzione delle derivate seconde in una variabile, quello che cambia è che ora essendo a più variabili la seconda derivata la possiamo fare su $n$ variabili, infatti in uno spazio $\mathbb{R}^n$ una funzione ha $n^2$ possibili derivate parziali.
+
+Vediamo qualche esempio semplice in $\mathbb{R}^2$, prendiamo 
+\[
+f(x,y) = e^{4x} + \sin(5y) + x^y
+\]
+
+Calcoliamo tutte le possibili derivate parziali seconde, partiamo per schemattizzazione a calcolare le derivate prime
+\[
+\partial_x f = 4e^{4x} + 0 + yx^{y-1} = 4e^{4x} + yx^{y-1}
+\]
+\[
+\partial_y f = 0 + 5\cos(5y) + x^{y} \cdot \ln x= 5\cos(5y) + x^{y} \ln x
+\]
+
+Calcoliamo ora tutte le derivate parziali, partiamo con quelle pure
+\[
+\partial^2_{xx} f = \partial_x (\partial_x f) = 16e^{4x} + (y^2-y)x^{y-2}
+\]
+\[
+\partial^2_{yy} f = \partial_y (\partial_y f) = -25\sin (5x) + x^y\ln^2x
+\]
+Ora quelle miste 
+\[
+\partial^2_{xy} f = \partial_x (\partial_y f) = 0 + yx^{y-1}\ln x+x^y\dfrac{1}{x} = x^{y-1} \left(y\ln x +1\right)
+\]
+\[
+\partial^2_{yx} f = \partial_y (\partial_x f) = 0 + 1x^{y-1}+yx^{y-1}\ln x = x^{y-1} \left(1+y\ln x\right)
+\]
+
+Interassente è notare che le derivate parziali miste sono identiche, è un caso?
+
+\begin{proposizione}{Teorema di Schwarz}{}
+  Sia $f:D\subseteq\mathbb{R}^n\to \mathbb{R}$ una funzione tale che $f\in C^2(D)$ allora $\forall \underline{x} \in D$ vale
+  \[
+  \forall i, j\leq n : \; \partial^2_{x_ix_j} f(\underline{x}) = \partial^2_{x_jx_i} f(\underline{x}) 
+  \]
+\end{proposizione}
+
+Questo teorema ci permette di evitare di calcolare tutte le derivate seconde e ci permette di dimezzare i conti e semplificarci la vita.
+\newpage
+
+\begin{definizione}{Matrice Hessiana}{}
+   Sia $f:D\subseteq\mathbb{R}^n\to \mathbb{R}$, definiamo la \textbf{matrice hessiana} come 
+   \[
+   H_f(\underline{x}) = \begin{pmatrix}
+    \partial^2_{x_1x_1} f & \partial^2_{x_1x_2} f & \cdots & \partial^2_{x_1x_n} f \\
+     \partial^2_{x_2x_1} f & \partial^2_{x_2x_2} f & \cdots & \partial^2_{x_2x_n} f \\
+     \vdots  & \vdots & \ddots & \vdots \\
+     \partial^2_{x_nx_1} f & \partial^2_{x_nx_2} f& \cdots & \partial^2_{x_nx_n} f \\
+   \end{pmatrix} \in M^{n\times n}
+   \]
+\end{definizione}
+
+Per ora la matrice hessiana vediamola come un modo per "collezionare" le derivate seconde di una funzione, poi vedremo che in realtà ha una certa importanza. Nota importante per quando vedremo le applicazioni dell'hessiano, per via del teorema di Schwarz, la matrice è simmetrica, pertanto per il teorema spettrale sappiamo che è diagonalizzabile, che detta in altre parole vuol dire che abbiamo tutti autovalori reali non nulli, e di conseguenza potremo sempre calcolare il determinante di questa matrice.
+
+Lasciamo l'hessiano da parte un'attimo, e proviamo ora a sviluppare anche al secondo ordine una generica funzione $f\in\mathbb{R}^n$, proviamo usando la stessa tecnica che abbiamo visto per lo sviluppo al primo ordine, e come prima per semplificarci i conti teniamo conto di una funzione in $\mathbb{R}^2$ e cerchiamo lo sviluppo in $\underline{0}$. Da stare attenti che adesso oltre ai termini $x^2$ e $y^2$ si aggiunge anche il termine $xy$ perchè anche lui è lineare. Quindi supponiamo di sviluppare $f$ nel seguente modo 
+\[
+f(x,y) = c_0 + c_1x+ c_2y + c_3x^2+ c_4xy+c_5y^2 + \cdots
+\]
+
+I coefficienti $c_0, c_1, c_2$ li abbiamo già scoperti come trovarli,  e usiamo la stessa logica, infatti per trovare $c_3$ dovremo derivare due volte rispetto ad $x$, uguale per $y^2$ e invece per trovare $c_4$ dobbiamo calcolare la derivata mista. 
+\[
+\partial^2_{xx} f(0,0) = 0 + 0+ 0 +2c_3+0+ 0 + 0 \implies c_3 = \dfrac{1}{2}\partial^2_{xx} f(0,0)
+\]
+\[
+\partial^2_{yy} f(0,0) = 0 + 0+ 0 +0+0+ 2c_5+0 \implies c_5 = \dfrac{1}{2}\partial^2_{yy} f(0,0)
+\]
+\[
+\partial^2_{xy} f(0,0) = 0 + 0+ 0 +0+ c_4 + 0 +0\implies c_4 = \partial^2_{xy} f(0,0)
+\]
+Tutti gli altri termini sono degli o-piccoli di $||\underline{x}||^2$, quindi $f$ lo possiamo scrivere come 
+\[
+f(x,y) = f(\underline{0}) + \partial_x f(\underline{0}) x+ \partial_y f(\underline{0}) y + \dfrac{1}{2}\partial^2_{xx} f(\underline{0})x^2+ \partial^2_{xy} f(\underline{0})xy+ \dfrac{1}{2}\partial^2_{yy} f(\underline{0})y^2 + o(||\underline{x}||^2)
+\]
+L'approssimazione affine abbiamo vista che possiamo riscriverla con il gradiente, possiamo fare qualcosa anche per i termini quadratici? Vediamo intanto notiamo che tutti i termini quadratici hanno un fattore $1/2$ che possiamo raccogliere e notare che possiamo riscriverlo come 
+\[
+\dfrac{1}{2}\partial^2_{xx} f(\underline{0})x^2+ \partial^2_{xy} f(\underline{0})xy+ \dfrac{1}{2}\partial^2_{yy} f(\underline{0})y^2  =\dfrac{1}{2}\left[\partial^2_{xx} f(\underline{0})x^2+ \partial^2_{xy} f(\underline{0})xy+\partial^2_{xy} f(\underline{0})yx+ \partial^2_{yy} f(\underline{0})y^2 \right]
+\]
+
+\newpage
+
+Ma questa espressione la possiamo raccogliere in una matrice, e poi tramite dei prodotti vettori-matrice riuscire a riscrivere questo termine. Potremmo usare proprio l'hessiano, infatti l'hessiano è esattamente la somma (con le relative incognite) delle derivate parziali, quindi possiamo riscrivere come 
+\begin{align*}
+\partial^2_{xx} f(\underline{0})x^2+ \partial^2_{xy} f(\underline{0})xy+\partial^2_{xy} f(\underline{0})yx+ \partial^2_{yy} f(\underline{0})y^2  &= \begin{pmatrix}
+  x & y
+\end{pmatrix} \begin{pmatrix}
+ \partial^2_{xx} f(\underline{0}) & \partial^2_{xy} f(\underline{0}) \\
+ \partial^2_{xy} f(\underline{0}) & \partial^2_{yy} f(\underline{0})
+\end{pmatrix}\begin{pmatrix}
+  x \\
+  y
+\end{pmatrix} \\
+&= \underline{x}^{\text{T}} H_f(0,0) \underline{x}
+\end{align*}
+
+\textbf{N.B.} Dato che il prodotto per matrice non è commutativo dobbiamo stare attenti, in più dobbiamo ricordarci che la regola riga per colonna. Quindi per mettere le incognite per riga abbiamo bisogno di un vettore prima della matrice (che poi va anche trasposto e reso un vettore riga), e un'altro che va messo dopo per aggiungere le variabili in riga.
+
+Quindi possiamo riscrivere lo sviluppo di $f$ al secondo ordine in un punto $\underline{p}$, ovvero il polinomio di Taylor, come 
+\[
+f(\underline{x}) = f(\underline{p}) + \nabla f(\underline{p}) \cdot \underline{x}  + \dfrac{1}{2} (\underline{x}-\underline{p})^{\text{T}} H_f(\underline{p})(\underline{x}-\underline{p}) + o(||\underline{x}-\underline{p}||^2)
+\]
+
 \end{document}
+
 
